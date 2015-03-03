@@ -3,11 +3,22 @@
     <head>
         <meta charset="UTF-8" />
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        {% block stylesheets %}
+            
+        {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        
     </head>
     <body>
         {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        {% block javascripts %}
+            {% javascripts '@AppBundle/js/*'%}
+                <script src="{{asset('angularjs/1.3.14/angular.min.js', 'cdn')}}"></script>
+                <script src="{{asset('jquery/2.1.3/jquery.min.js', 'cdn')}}"></script>
+                <script src="{{asset('jquerymobile/1.4.3/jquery.mobile.min.js', 'cdn')}}"></script>
+                <script src="{{asset('jqueryui/1.11.3/jquery-ui.min.js', 'cdn')}}"></script>
+                <script src="{{ asset('@AppBundle/js/backbone-min.js') }}"></script>
+                <script src="{{ asset('@AppBundle/js/underscore-min.js') }}"></script>
+        {% endblock %}
     </body>
 </html>

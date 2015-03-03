@@ -16,6 +16,10 @@ framework:
     templating:
         engines: ['twig']
         #assets_version: SomeVersionScheme
+        packages:
+            cdn:
+                base_urls:
+                    http: ['https://ajax.googleapis.com/ajax/libs/']
     default_locale:  "%locale%"
     trusted_hosts:   ~
     trusted_proxies: ~
