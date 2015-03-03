@@ -1,0 +1,9 @@
+
+  <link rel="stylesheet" href="{{asset('jquerymobile/1.4.5/jquery.mobile.min.css', 'cdn')}}" />
+  <link rel="stylesheet" href="{{asset('jqueryui/1.11.3/themes/humanity/jquery-ui.css', 'cdn')}}" />
+{% stylesheets filter="compass" filter="cssrewrite"
+    "@AppBundle/sass/*" 
+  %}
+    <link rel="stylesheet" href="{{ asset_url }}" />
+    
+{% endstylesheets %}
