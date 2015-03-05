@@ -1,9 +1,7 @@
 
   <link rel="stylesheet" href="{{asset('jquerymobile/1.4.5/jquery.mobile.min.css', 'cdn')}}" />
   <link rel="stylesheet" href="{{asset('jqueryui/1.11.3/themes/humanity/jquery-ui.css', 'cdn')}}" />
-{% stylesheets filter="compass" filter="cssrewrite"
-    "@AppBundle/sass/*" 
-  %}
+{% stylesheets "@AppBundle/css/stylesheet.css" output='css/stylesheet.css' filter="cssrewrite" %}
     <link rel="stylesheet" href="{{ asset_url }}" />
-    
+    <link rel="stylesheet" href="{{ asset(@AppBundle/css/print.css)}}" media="print" />
 {% endstylesheets %}
