@@ -8,7 +8,9 @@
         
     </head>
     <body>
+        {% include "::header.html.twig" %}
         {% block body %}{% endblock %}
+        {% include "::footer.html.twig" %}
         {% include "::javascripts.html.twig" %}
     </body>
 </html>
