@@ -11,6 +11,6 @@
         {% include "::header.html.twig" %}
         {% block body %}{% endblock %}
         {% include "::footer.html.twig" %}
-        {% include "::javascripts.html.twig" %}
+        {% block javascripts %}{% include "::javascripts.html.twig" %}{% endblock %}
     </body>
 </html>
