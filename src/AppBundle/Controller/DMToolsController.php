@@ -28,6 +28,6 @@ class DMToolsController extends Controller {
       $chars = [["id" => 1, "name" => "", "init" => 0, "initcalc" => 0]];
     }
     
-    return $this->render('dm/initiative.html.twig', array('chars' => $chars));
+    return $this->render('dm/initiative.html.twig', array('pagetitle' => 'Party Initiative Roll Tool', 'chars' => $chars));
   }
 }
