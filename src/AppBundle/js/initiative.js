@@ -1,10 +1,8 @@
     //$(document).ready(function() {
       $(".datatable").DataTable({
+        order: [[2, "desc"]]
+      });
 
-      });
-      $(".accordion").accordion({
-        
-      });
     //});
     function addrow() {
       var numchars = Number($("#chartablebody tr:last-child").attr("name").replace(/\D/g,''));

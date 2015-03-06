@@ -27,6 +27,7 @@ class DMToolsController extends Controller {
     if (empty($chars)) {
       $chars = [["id" => 1, "name" => "", "init" => 0, "initcalc" => 0]];
     }
+    
     return $this->render('dm/initiative.html.twig', array('chars' => $chars));
   }
 }
