@@ -6,16 +6,23 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class DMToolsControllerTest extends WebTestCase
 {
-    public function testPageResponse()
+    public function testRoutes()
     {
+        $routes = array(
+            '/dm',
+            '/dm/initiative'
+        );
         $client = static::createClient();
-
-        $crawler = $client->request('GET', '/dm/initiative');
-
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        //test our directory root first
+        foreach($routes as $route) {
+            $crawler = $client->request('GET', $route);
+            $this->assertTrue($client->getResponse()->isSuccessful());            
+        }  
     }
     public function testInitiative()
     {
-      
+      //A basic test to make sure the form submission is returning results
+      $client = static::createClient();
+      $crawler = $client->request('POST', '/dm');
     }
 }
