@@ -1,0 +1,55 @@
+{% extends 'ref/index.html.twig' %}
+{% block body %}
+	<form id='jumpform' name = 'godselectform' action = '' method = 'post'>
+    <label for='god'>Select a God</label><br />
+    <select name = 'god' required='required'>
+      <option value = ''>Select A God</option>
+      {% for id, name in godnames %}
+        <option value='{{ id }}'>{{ name }}</option>
+      {% endfor %}
+    </select>
+    <input type='submit' value='Go' />
+	</form>
+	{% if god is defined %}
+    <article>
+      <h3>{{ god['name'] }}</h3>
+      <p>
+      <strong>Holy Symbol: </strong>{{ god['symbol'] }}
+      </p>
+      <p>
+        <strong>Alignment: </strong>{{ god['alignment'] }}
+      </p>
+      <p>
+        <strong>Domains: </strong>{{ god['domains']}}
+      </p>
+      <p>
+        <strong>5th Edition Domains: </strong>{{ god['domains5'] }}
+      </p>
+      <p>
+        <strong>Interfaith Blessing: </strong>{{ god['interfaith'] }}
+      </p>
+      <p>
+        <strong>Typical Worshippers: </strong>{{ god['worshippers'] }}
+      </p>
+      <p>
+        <strong>Allowed Cleric Alignments: </strong>{{ god['alignments'] }}
+      </p>
+      <p>
+        <strong>Favored Weapon: </strong>{{ god['weapon'] }}
+      </p>
+      <p>
+        <strong>Appearance: </strong>{{ god['appearance'] }}
+      </p>
+      <p>
+        <strong>Dogma: </strong>{{ god['dogma'] }}
+      </p>
+      <p>
+        <strong>Clergy and Temples: </strong>{{ god['clergy'] }}
+      </p>
+    </article>
+  {% endif %}
+	<h4><a href='/ref/domains'>Domains</a></h4>
+	<h4><a href='/ref/divines'>Angels, Demons, and others</a></h4>
+
+
+{% endblock %}
