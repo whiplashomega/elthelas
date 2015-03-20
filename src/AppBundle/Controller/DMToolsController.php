@@ -11,11 +11,11 @@ class DMToolsController extends Controller {
    *@Route("/dm", name="DM Tools")
    */
   public function indexAction(Request $request) {
-    return $this->render('dm/index.html.twig', array('pagetitle' => 'Dungeon Master\'s Toolset'));
+    return $this->render('AppBundle:dm:index.html.twig', array('pagetitle' => 'Dungeon Master\'s Toolset'));
   }
   
   /**
-   *@Route("/dm/initiative", name="Initiative Roller")
+   *@Route("AppBundle:dm:initiative", name="Initiative Roller")
    */
   public function initiativeAction(Request $request) {
     $counter = 1;

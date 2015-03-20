@@ -12,20 +12,20 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('default/index.html.twig');
+        return $this->render('AppBundle:default:index.html.twig');
     }
     /**
      * @Route("/about", name="about")
      */
     public function aboutAction()
     {
-        return $this->render('default/about.html.twig', array('pagetitle' => 'About the Author'));
+        return $this->render('AppBundle:default:about.html.twig', array('pagetitle' => 'About the Author'));
     }
     /**
      * @Route("/resume", name="resume")
      */
     public function resumeAction()
     {
-        return $this->render('default/resume.html.twig', array('pagetitle' => 'Resume of Joseph Harrison'));
+        return $this->render('AppBundle:default:resume.html.twig', array('pagetitle' => 'Resume of Joseph Harrison'));
     }
 }

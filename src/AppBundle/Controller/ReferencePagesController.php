@@ -15,21 +15,21 @@ class ReferencePagesController extends Controller
    */
   public function refHomeAction()
   {
-        return $this->render('ref/index.html.twig', array('pagetitle' => 'Reference Manual'));    
+        return $this->render('AppBundle:ref:index.html.twig', array('pagetitle' => 'Reference Manual'));    
   }
   /**
    * @Route("/ref/calendar")
    */
   public function refCalendarAction()
   {
-    return $this->render('ref/calendar.html.twig', array('pagetitle' => 'Calendar'));
+    return $this->render('AppBundle:ref:calendar.html.twig', array('pagetitle' => 'Calendar'));
   }
   /**
    *@Route("/ref/cosmology")
    */
   public function refCosmologyAction()
   {
-    return $this->render('ref/cosmology.html.twig', array('pagetitle' => 'Cosmology'));
+    return $this->render('AppBundle:ref:cosmology.html.twig', array('pagetitle' => 'Cosmology'));
   }
   
   private function loadGodList($xmlDoc) {
@@ -59,7 +59,7 @@ class ReferencePagesController extends Controller
       $godnames = $this->loadGodList($xmlDoc);
     }
 
-    return $this->render('ref/gods.html.twig', array('pagetitle' => 'Gods',
+    return $this->render('AppBundle:ref:gods.html.twig', array('pagetitle' => 'Gods',
                                                      'godnames' => $godnames));
   }
   /**
@@ -99,8 +99,20 @@ class ReferencePagesController extends Controller
       }
     }
 
-    return $this->render('ref/gods.html.twig', array('pagetitle' => 'Gods',
+    return $this->render('AppBundle:ref:gods.html.twig', array('pagetitle' => 'Gods',
                                                      'godnames' => $godnames,
                                                      'god' => $loadedgod ));
+  }
+  /**
+   *@Route("/ref/divines")
+   */
+  public function divinesAction() {
+    return $this->render('AppBundle:ref:divines.html.twig',array('pagetitle' => 'Divines'));
+  }
+  /**
+   *@Route("/ref/domains")
+   */
+  public function domainsActions() {
+    return $this->render('AppBundle:ref:domains.html.twig',array('pagetitle' => 'Domains'));
   }
 }
