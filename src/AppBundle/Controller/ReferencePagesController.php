@@ -43,13 +43,13 @@ class ReferencePagesController extends Controller
       return $godnames;
   }
   /**
-   *@Route("/ref/gods", name="show god")
+   *@Route("/ref/gods", name="show_god")
    */
   public function refGodsAction(Request $request)
   {
     if(null !== $request->get("god"))
     {
-      return $this->redirectToRoute('display god', array("god" => $request->get("god")));
+      return $this->redirectToRoute('display_god', array("god" => $request->get("god")));
     }
     $xmlDoc = new DOMDocument;
 		$xmlDoc->load("gods.xml");
@@ -63,7 +63,7 @@ class ReferencePagesController extends Controller
                                                      'godnames' => $godnames));
   }
   /**
-   *@Route("/ref/gods/{god}", name="display god")
+   *@Route("/ref/gods/{god}", name="display_god")
    */
   public function refGodAction($god, Request $request)
   {
@@ -104,13 +104,13 @@ class ReferencePagesController extends Controller
                                                      'god' => $loadedgod ));
   }
   /**
-   *@Route("/ref/divines")
+   *@Route("/ref/divines", name="ref_divines")
    */
   public function divinesAction() {
     return $this->render('AppBundle:ref:divines.html.twig',array('pagetitle' => 'Divines'));
   }
   /**
-   *@Route("/ref/domains")
+   *@Route("/ref/domains" name="ref_domains")
    */
   public function domainsActions() {
     return $this->render('AppBundle:ref:domains.html.twig',array('pagetitle' => 'Domains'));

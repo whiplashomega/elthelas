@@ -1,6 +1,6 @@
 {% extends 'AppBundle:ref:index.html.twig' %}
 {% block body %}
-	<form id='jumpform' name = 'godselectform' action = '/ref/gods' method = 'post'>
+	<form id='jumpform' name = 'godselectform' action = '{{ path('show_god')}}' method = 'post'>
     <label for='god'>Select a God</label><br />
     <select name = 'god' required='required'>
       <option value = ''>Select A God</option>
@@ -48,8 +48,8 @@
       </p>
     </article>
   {% endif %}
-	<h4><a href='/ref/domains'>Domains</a></h4>
-	<h4><a href='/ref/divines'>Angels, Demons, and others</a></h4>
+	<h4><a href='{{path("ref_domains")}}'>Domains</a></h4>
+	<h4><a href='{{path("ref_divines")}}'>Angels, Demons, and others</a></h4>
 
 
 {% endblock %}

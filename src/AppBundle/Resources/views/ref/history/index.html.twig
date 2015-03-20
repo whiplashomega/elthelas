@@ -1,0 +1,11 @@
+{% extends "AppBundle:ref:index.html.twig" %}
+{% block body %}
+	<p>
+		Select a category to browse the history of Elthelas.
+	</p>
+	<ul>
+		<li><a href='{{ path('history_current')}}'>Current Events</a></li>
+		<li><a href='majorevents.php'>Major Historical Events</a></li>
+		<li><a href='timeline.php'>See the timeline</a></li>
+	</ul>
+{% endblock %}
