@@ -15,7 +15,7 @@ class DMToolsController extends Controller {
   }
   
   /**
-   *@Route("AppBundle:dm:initiative", name="Initiative Roller")
+   *@Route("dm/initiative", name="Initiative Roller")
    */
   public function initiativeAction(Request $request) {
     $counter = 1;
@@ -35,6 +35,6 @@ class DMToolsController extends Controller {
       $chars = [["id" => 1, "name" => "", "init" => 0, "initcalc" => 0]];
     }
     
-    return $this->render('dm/initiative.html.twig', array('pagetitle' => 'Party Initiative Roll Tool', 'chars' => $chars));
+    return $this->render('AppBundle:dm:initiative.html.twig', array('pagetitle' => 'Party Initiative Roll Tool', 'chars' => $chars));
   }
 }
