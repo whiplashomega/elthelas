@@ -81,6 +81,9 @@ class ReferencePagesController extends Controller
       {
       $loadedgod = array();
 			$godXML = $xmlDoc->getElementById($god);
+      if($godXML == null) {
+        throw $this->createNotFoundException('The selected God does not exist');
+      }
 			$loadedgod['name'] = $godXML->getElementsByTagName('name')->item(0)->textContent;
 			$loadedgod['symbol'] = $godXML->getElementsByTagName('holysymbol')->item(0)->textContent;
 			$loadedgod['alignment'] = $godXML->getElementsByTagName('alignment')->item(0)->textContent;
