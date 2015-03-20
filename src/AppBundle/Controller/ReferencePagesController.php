@@ -67,7 +67,7 @@ class ReferencePagesController extends Controller
    */
   public function refGodAction($god, Request $request)
   {
-    if(null !== $request->get("god"))
+    if($god !== $request->get("god"))
     {
       return $this->redirectToRoute('display god', array("god" => $request->get("god")));
     }
