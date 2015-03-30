@@ -2,7 +2,7 @@
             <script src="{{asset('angularjs/1.3.14/angular.min.js', 'cdn')}}"></script>
             <script src="{{asset('jquery/2.1.3/jquery.min.js', 'cdn')}}"></script>
             <script src="{{asset('jqueryui/1.11.3/jquery-ui.min.js', 'cdn')}}"></script>
-            {% javascripts '@AppBundle/libraries/*' output='js/script.js'%}
+            {% javascripts '@AppBundle/libraries/*' '@AppBundle/js/initialize.js' output='js/script.js'%}
                 <script src="{{ asset_url }}"></script>
             {% endjavascripts %}
 

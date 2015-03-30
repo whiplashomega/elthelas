@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 class DMToolsController extends Controller {
   /**
-   *@Route("/dm", name="DM Tools")
+   *@Route("/dm", name="dmtools")
    */
   public function indexAction(Request $request) {
     return $this->render('AppBundle:dm:index.html.twig', array('pagetitle' => 'Dungeon Master\'s Toolset'));

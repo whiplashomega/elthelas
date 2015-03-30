@@ -9193,3 +9193,17 @@ table.dataTable td {
     margin-top: 0.5em;
   }
 }
+/* line 1, ../sass/_layout.scss */
+.logo {
+  height: 100%;
+  width: auto;
+}
+
+/* line 5, ../sass/_layout.scss */
+.header {
+  height: 75px;
+}
+/* line 7, ../sass/_layout.scss */
+.header h1 {
+  height: 70px;
+}

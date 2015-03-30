@@ -11,21 +11,21 @@ use DOMDocument;
 class ReferencePagesController extends Controller
 {
   /**
-   * @Route("/ref")
+   * @Route("/ref", name="ref_manual")
    */
   public function refHomeAction()
   {
         return $this->render('AppBundle:ref:index.html.twig', array('pagetitle' => 'Reference Manual'));    
   }
   /**
-   * @Route("/ref/calendar")
+   * @Route("/ref/calendar", name="calendar")
    */
   public function refCalendarAction()
   {
     return $this->render('AppBundle:ref:calendar.html.twig', array('pagetitle' => 'Calendar'));
   }
   /**
-   *@Route("/ref/cosmology")
+   *@Route("/ref/cosmology", name="cosmology")
    */
   public function refCosmologyAction()
   {
@@ -110,7 +110,7 @@ class ReferencePagesController extends Controller
     return $this->render('AppBundle:ref:divines.html.twig',array('pagetitle' => 'Divines'));
   }
   /**
-   *@Route("/ref/domains" name="ref_domains")
+   *@Route("/ref/domains", name="ref_domains")
    */
   public function domainsActions() {
     return $this->render('AppBundle:ref:domains.html.twig',array('pagetitle' => 'Domains'));
