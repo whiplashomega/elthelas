@@ -9207,3 +9207,8 @@ table.dataTable td {
 .header h1 {
   height: 70px;
 }
+
+/* line 12, ../sass/_layout.scss */
+.gsib_a, .gsc-input-box, .gstl_50 {
+  height: 20px;
+}
