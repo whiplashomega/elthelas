@@ -15,7 +15,7 @@ class DMToolsController extends Controller {
   }
   
   /**
-   *@Route("dm/initiative", name="Initiative Roller")
+   *@Route("dm/initiative", name="init_roller")
    */
   public function initiativeAction(Request $request) {
     $counter = 1;

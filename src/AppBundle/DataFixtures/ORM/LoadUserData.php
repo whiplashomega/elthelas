@@ -1,0 +1,28 @@
+<?php
+// src/Acme/HelloBundle/DataFixtures/ORM/LoadUserData.php
+
+namespace Acme\HelloBundle\DataFixtures\ORM;
+
+use Doctrine\Common\DataFixtures\FixtureInterface;
+use Doctrine\Common\Persistence\ObjectManager;
+use Acme\HelloBundle\Entity\User;
+
+class LoadUserData implements FixtureInterface
+{
+    /**
+     * {@inheritDoc}
+     */
+    public function load(ObjectManager $manager)
+    {
+        $userAdmin = new User();
+        $userAdmin->setUsername('whiplashomega');
+        $plainPassword = 'betgamma';
+        $encoder = $this->container->get('security.password_encoder');
+        $encoded = $encoder->encodePassword($user, $plainPassword);
+        $userAdmin->setPassword($encoded);
+
+        $manager->persist($userAdmin);
+        $manager->flush();
+    }
+}
+?>

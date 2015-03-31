@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
 {
@@ -27,5 +28,11 @@ class DefaultController extends Controller
     public function resumeAction()
     {
         return $this->render('AppBundle:default:resume.html.twig', array('pagetitle' => 'Resume of Joseph Harrison'));
+    }
+    /**
+     * @Route("/admin", name="admin")
+     */
+    public function adminAction() {
+        return new Response('Admin page!');
     }
 }
