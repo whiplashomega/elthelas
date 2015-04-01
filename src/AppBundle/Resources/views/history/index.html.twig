@@ -1,0 +1,26 @@
+{% extends "AppBundle:index.html.twig" %}
+
+
+{% block sidebar %}
+    <nav class="sidenav">
+      <ul class="nav nav-pills nav-stacked">
+        <li><a href="{{ path('history_index') }}">History Home</a></li>
+            <li><a href="{{ path('history_current')}}">Current Events</a></li>
+            <li><a href="{{ path('history_timeline')}}">Timeline of Major Events</a></li>
+						<li><a href="{{ path('history_major') }}">Major Historical Events</a></li>
+						<li class="divider"></li>
+      </ul>
+    </nav>
+
+{% endblock %}
+
+{% block body %}
+	<p>
+		Select a category to browse the history of Elthelas.
+	</p>
+	<ul>
+		<li><a href='{{ path('history_current') }}'>Current Events</a></li>
+		<li><a href='majorevents.php'>Major Historical Events</a></li>
+		<li><a href='{{ path('history_timeline') }}'>See the timeline</a></li>
+	</ul>
+{% endblock %}

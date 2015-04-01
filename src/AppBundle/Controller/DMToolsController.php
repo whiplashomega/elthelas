@@ -29,12 +29,23 @@ class DMToolsController extends Controller {
       $counter++;
     }
     
-
-    
     if (empty($chars)) {
       $chars = [["id" => 1, "name" => "", "init" => 0, "initcalc" => 0]];
     }
     
     return $this->render('AppBundle:dm:initiative.html.twig', array('pagetitle' => 'Party Initiative Roll Tool', 'chars' => $chars));
+  }
+  /**
+   *@Route("dm/dashboard", name="dashboard")
+   */
+  public function dashboardAction(Request $request) {
+    return $this->render("AppBundle:dm:dashboard.html.twig", array('pagetitle' => 'Dungeon Master\'s Encounter Dashboard'));
+  }
+  
+  /**
+   *@Route("dm/creator", name="creator")
+   */
+  public function creatorAction(Request $request) {
+    return $this->render("AppBundle:dm:creator.html.twig", array('pagetitle' => 'Dungeon Master\'s Creature Creator'));
   }
 }
