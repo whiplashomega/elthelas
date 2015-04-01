@@ -28,4 +28,10 @@ class HistoryPagesController extends Controller
   public function timelineAction() {
     return $this->render("AppBundle:history:timeline.html.twig");
   }
+  /**
+   *@Route("history/major", name="history_major")
+   */
+  public function majorAction() {
+    return $this->render("AppBundle:history:major.html.twig");
+  }
 }

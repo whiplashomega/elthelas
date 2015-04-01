@@ -10,7 +10,7 @@
       <tbody id="chartablebody">
         {% for char in chars %}
           <tr name="char{{char['id']}}" id="char{{char['id']}}">
-            <td><input type="text" name="char{{char['id']}}name" id="char{{char['id']}}name" value="{{char['name']}}" />{{char['name']}}</td>
+            <td><input type="text" name="char{{char['id']}}name" id="char{{char['id']}}name" value="{{char['name']}}" /></td>
             <td><input type="number" name="char{{char['id']}}init" id="char{{char['id']}}init" value="{{char['init']}}" /></td>
             <td>{{char['initcalc']}}</td>
           </tr>
