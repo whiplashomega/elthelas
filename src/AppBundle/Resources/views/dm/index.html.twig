@@ -7,14 +7,15 @@
       {% if app.user and is_granted('IS_AUTHENTICATED_REMEMBERED') %}
         <li><a href="#">Creature Creator</a></li>
         <li><a href="#">DM Dashboard</a></li>
-        <li><a href="#">My Account</a></li>
-        <li><a href="{{path('logout')}}">Log Out</a></li>
+        <li><a href="{{path('fos_user_profile_show')}}">My Account</a></li>
+        <li><a href="{{path('fos_user_change_password')}}">Change Password</a></li>
+        <li><a href="{{path('fos_user_security_logout')}}">Log Out</a></li>
       {% else %}
-        <li><a href="{{path('account_register')}}">Sign Up</a></li>
-        <li><a href="{{path('login_route')}}">Sign In</a></li>
+        <li><a href="{{path('fos_user_registration_register')}}">Sign Up</a></li>
+        <li><a href="{{path('fos_user_security_login')}}">Sign In</a></li>
       {% endif %}
       {% if app.user and is_granted('ROLE_ADMIN') %}
-        <li><a href="">User Administration</a></li>
+        <li><a href="#">User Administration</a></li>
       {% endif %}
       </ul>
     </nav>
