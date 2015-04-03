@@ -1,98 +1,76 @@
 <?php
-// src/AppBundle/Entity/User.php
+// src/Acme/UserBundle/Entity/User.php
+
 namespace AppBundle\Entity;
 
+use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * @ORM\Table(name="app_users")
- * @ORM\Entity(repositoryClass="AppBundle\Entity\UserRepository")
+ * @ORM\Entity
+ * @ORM\Table(name="fos_user")
  */
-class User implements UserInterface, \Serializable
+class User extends BaseUser
 {
     /**
-     * @ORM\Column(type="integer")
      * @ORM\Id
+     * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
-     * @ORM\Column(type="string", length=25, unique=true)
+     * @ORM\OneToMany(targetEntity="Journal", mappedBy="thisuser")
      */
-    private $username;
-
-    /**
-     * @ORM\Column(type="string", length=64)
-     */
-    private $password;
-
-    /**
-     * @ORM\Column(type="string", length=60, unique=true)
-     */
-    private $email;
-
-    /**
-     * @ORM\Column(name="is_active", type="boolean")
-     */
-    private $isActive;
-
+    protected $journals;
+    
     public function __construct()
     {
-        $this->isActive = true;
-        // may not be needed, see section on salt below
-        // $this->salt = md5(uniqid(null, true));
+        parent::__construct();
+        // your own logic
+        $this->journals = new ArrayCollection();
     }
 
-    public function getUsername()
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
     {
-        return $this->username;
+        return $this->id;
     }
 
-    public function getSalt()
+    /**
+     * Add journals
+     *
+     * @param \AppBundle\Entity\Journal $journals
+     * @return User
+     */
+    public function addJournal(\AppBundle\Entity\Journal $journals)
     {
-        // you *may* need a real salt depending on your encoder
-        // see section on salt below
-        return null;
+        $this->journals[] = $journals;
+
+        return $this;
     }
 
-    public function getPassword()
+    /**
+     * Remove journals
+     *
+     * @param \AppBundle\Entity\Journal $journals
+     */
+    public function removeJournal(\AppBundle\Entity\Journal $journals)
     {
-        return $this->password;
+        $this->journals->removeElement($journals);
     }
 
-    public function getRoles()
+    /**
+     * Get journals
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getJournals()
     {
-        return array('ROLE_USER');
-    }
-
-    public function eraseCredentials()
-    {
-    }
-
-    /** @see \Serializable::serialize() */
-    public function serialize()
-    {
-        return serialize(array(
-            $this->id,
-            $this->username,
-            $this->password,
-            // see section on salt below
-            // $this->salt,
-        ));
-    }
-
-    /** @see \Serializable::unserialize() */
-    public function unserialize($serialized)
-    {
-        list (
-            $this->id,
-            $this->username,
-            $this->password,
-            // see section on salt below
-            // $this->salt
-        ) = unserialize($serialized);
+        return $this->journals;
     }
 }
-?>

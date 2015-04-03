@@ -19,9 +19,58 @@ class User extends BaseUser
      */
     protected $id;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Journal", mappedBy="thisuser")
+     */
+    protected $journals;
+    
     public function __construct()
     {
         parent::__construct();
         // your own logic
+        $this->journals = new ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Add journals
+     *
+     * @param \AppBundle\Entity\Journal $journals
+     * @return User
+     */
+    public function addJournal(\AppBundle\Entity\Journal $journals)
+    {
+        $this->journals[] = $journals;
+
+        return $this;
+    }
+
+    /**
+     * Remove journals
+     *
+     * @param \AppBundle\Entity\Journal $journals
+     */
+    public function removeJournal(\AppBundle\Entity\Journal $journals)
+    {
+        $this->journals->removeElement($journals);
+    }
+
+    /**
+     * Get journals
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getJournals()
+    {
+        return $this->journals;
     }
 }
