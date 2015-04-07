@@ -34,7 +34,7 @@
       <input type="button" class="btn btn-default" value="Add to Initiative" />
     </div>
   </div>
-  <div id="initiative">
+  <div id="initiative" class="col-sm-12">
       <h3>Initiative</h3>
       <table class="datatable table table-hover table-responsive table-striped">
         <thead>
@@ -50,6 +50,57 @@
       </table>
       <input type="button" value="Add Character" id="addCharButton" />
       <input type="button" id="rollinit" value="roll initiative" />
+  </div>
+  <div id="journal" class="col-sm-12">
+    <script>
+      var userid = "{{ app.user.id }}"
+      var getallroute = "{{ path("get_journals", {'userid': app.user.id}) }}"
+      var addroute = "{{ path("add_journal", {'userid': app.user.id})}}"
+      var updateroute = "{{ path("update_journal", {'journalid': 1})}}"
+      var deleteroute = "{{ path("delete_journal", {'userid': app.user.id, 'journalid': 1})}}"
+      
+    </script>
+    <br />
+    <div id="createjournal">
+      <label>Date</label> <select id="month">
+        <option val="Dorunor">Dorunor</option>
+        <option val="Trimalan">Trimalan</option>
+        <option val="Sylvanus">Sylvanus</option>
+        <option val="Gaiana">Gaiana</option>
+        <option val="Maridia">Maridia</option>
+        <option val="Moltyr">Moltyr</option>
+        <option val="Saris">Saris</option>
+        <option val="Tockra">Tockra</option>
+        <option val="Amatherin">Amatherin</option>
+      </select>
+      <select id="day">
+        <option val="1">1</option><option val="1">2</option><option val="1">3</option><option val="1">4</option>
+        <option val="1">5</option><option val="1">6</option><option val="1">7</option><option val="1">8</option>
+        <option val="1">9</option><option val="1">10</option><option val="1">11</option><option val="1">12</option>
+        <option val="1">13</option><option val="1">14</option><option val="1">15</option><option val="1">16</option>
+        <option val="1">17</option><option val="1">18</option><option val="1">19</option><option val="1">20</option>
+        <option val="1">21</option><option val="1">22</option><option val="1">23</option><option val="1">24</option>
+        <option val="1">25</option><option val="1">26</option><option val="1">27</option><option val="1">28</option>
+        <option val="1">29</option><option val="1">30</option><option val="1">31</option><option val="1">32</option>
+        <option val="1">33</option><option val="1">34</option><option val="1">35</option><option val="1">36</option>
+        <option val="1">37</option><option val="1">38</option><option val="1">39</option><option val="1">40</option>
+      </select>
+      <select id="year">
+        <option val="1846">1846</option>
+        <option val="1845">1845</option>
+        <option val="1844" selected="selected">1844</option>
+        <option val="1843">1842</option>
+        <option val="1841">1841</option>
+        <option val="1840">1840</option>
+      </select>
+      <br />
+      <textarea id="text" class="col-sm-12">Journal Text</textarea>
+      <br />
+      <input type="button" id="addjournal" value="Add Journal" />
+    </div>
+    <div id="journalentries">
+      
+    </div>
   </div>
 </div>
 <div class="col-md-9 pull-right">

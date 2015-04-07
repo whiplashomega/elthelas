@@ -17,20 +17,24 @@
     protected $id;
     
     /**
-     *ORM\Column(type="string", length=100)
+     *@ORM\Column(type="string", length=100)
      */
     protected $date;
     
     /**
-     *ORM\Column(type="text")
+     *@ORM\Column(type="text")
      */
     protected $text;
     
     /**
+     *@ORM\ManyToOne(targetEntity="User", inversedBy="journals")
      *@ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     protected $thisuser;
   
+
+
+
     /**
      * Get id
      *
@@ -42,40 +46,71 @@
     }
 
     /**
-     *Get date
+     * Set date
      *
-     *@return string
+     * @param string $date
+     * @return Journal
      */
-    public function getDate() {
-      return $this->date;
-    }
-    /**
-     *Set date
-     *
-     *@param \string $date
-     *@return Journal
-     */
-    public function setDate(\string $date) {
-      $this->date = $date;
-      return $this;
-    }
-    /**
-     *Get text
-     *
-     *@return \string $text
-     */
-    public function getText() {
-      return $this->text;
-    }
-    /**
-     *Set text
-     *
-     *@param \string $text
-     *@return Journal
-     */
-    public function setText(\string $text) {
-      $this->text = $text;
-      return $this;
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+        return $this;
     }
 
+    /**
+     * Get date
+     *
+     * @return string 
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * Set text
+     *
+     * @param string $text
+     * @return Journal
+     */
+    public function setText($text)
+    {
+        $this->text = $text;
+
+        return $this;
+    }
+
+    /**
+     * Get text
+     *
+     * @return string 
+     */
+    public function getText()
+    {
+        return $this->text;
+    }
+
+    /**
+     * Set thisuser
+     *
+     * @param \AppBundle\Entity\User $thisuser
+     * @return Journal
+     */
+    public function setThisuser(\AppBundle\Entity\User $thisuser = null)
+    {
+        $this->thisuser = $thisuser;
+
+        return $this;
+    }
+
+    /**
+     * Get thisuser
+     *
+     * @return \AppBundle\Entity\User 
+     */
+    public function getThisuser()
+    {
+        return $this->thisuser;
+    }
 }

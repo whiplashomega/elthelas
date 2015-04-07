@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class DMToolsController extends Controller {
   /**
@@ -39,7 +40,12 @@ class DMToolsController extends Controller {
    *@Route("dm/dashboard", name="dashboard")
    */
   public function dashboardAction(Request $request) {
-    return $this->render("AppBundle:dm:dashboard.html.twig", array('pagetitle' => 'Dungeon Master\'s Encounter Dashboard'));
+    $securityContext = $this->container->get('security.context');
+    if($securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+      return $this->render("AppBundle:dm:dashboard.html.twig", array('pagetitle' => 'Dungeon Master\'s Encounter Dashboard'));      
+    } else {
+      return new Response("Access Denied", Response::HTTP_FORBIDDEN);
+    }
   }
   
   /**
