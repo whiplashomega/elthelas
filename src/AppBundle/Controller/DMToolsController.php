@@ -40,7 +40,7 @@ class DMToolsController extends Controller {
    *@Route("dm/dashboard", name="dashboard")
    */
   public function dashboardAction(Request $request) {
-    $securityContext = $this->container->get('security.context');
+    $securityContext = $this->container->get('security.token_storage');
     if($securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
       return $this->render("AppBundle:dm:dashboard.html.twig", array('pagetitle' => 'Dungeon Master\'s Encounter Dashboard'));      
     } else {
@@ -52,7 +52,7 @@ class DMToolsController extends Controller {
    *@Route("dm/creator", name="creator")
    */
   public function creatorAction(Request $request) {
-    $securityContext = $this->container->get('security.context');
+    $securityContext = $this->container->get('security.token_storage');
     if($securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
       return $this->render("AppBundle:dm:creator.html.twig", array('pagetitle' => 'Dungeon Master\'s Creature Creator'));
     } else {

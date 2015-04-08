@@ -19,7 +19,7 @@ class JournalController extends Controller {
    * @Route("/getjournals/{userid}", name="get_journals")
    */
   public function getJournalsAction($userid) {
-    $securityContext = $this->container->get('security.context');
+    $securityContext = $this->container->get('security.token_storage');
     if($securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
       $user = $this->getDoctrine()->getRepository('AppBundle:User')->find($userid);
       $journals = $user->getJournals();
@@ -38,7 +38,7 @@ class JournalController extends Controller {
    * @Route("/addjournal/{userid}", name="add_journal")
    */
   public function addJournalAction($userid, Request $request) {
-    $securityContext = $this->container->get('security.context');
+    $securityContext = $this->container->get('security.token_storage');
     if($securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
       $em = $this->getDoctrine()->getManager();
       $user = $em->getRepository('AppBundle:User')->find($userid);
@@ -61,26 +61,38 @@ class JournalController extends Controller {
    *@Route("/updatejournal/{journalid}", name="update_journal")
    */
   public function updateJournalAction($journalid, Request $request) {
+    $currentuser = $this->get('security.token_storage')->getToken()->getUser();
     $em = $this->getDoctrine()->getManager();
     $journal = $em->getRepository('AppBundle:Journal')->find($journalid);
-    $journal->setDate($request->get("date"))->setText($request->get("text"));
-    $em->persist($journal);
-    $em->flush();
-    return new Response("1");
+    if($journal->getThisuser() == $currentuser->getId()) {
+      $journal->setDate($request->get("date"))->setText($request->get("text"));
+      $em->persist($journal);
+      $em->flush();
+      return new Response("1");  
+    } else {
+       return new Response("Access Denied", Response::HTTP_FORBIDDEN);     
+    }
+    
   }
   
   /**
    *@Route("/deletejournal/{userid}/{journalid}", name="delete_journal")
    */
   public function deleteJournalAction($userid, $journalid, Request $request) {
-    $em = $this->getDoctrine()->getManager();
-    $user = $em->getRepository('AppBundle:User')->find($userid);
-    $journal = $em->getRepository('AppBundle:Journal')->find($journalid);
-    $userjournals = $user->getJournals();
-    $userjournals->removeElement($journal);
-    $em->remove($journal);
-    $em->flush();
-    return new Response("1");
+    $currentuser = $this->get('security.token_storage')->getToken()->getUser();
+    if($currentuser->getId() == $userid) {
+      $em = $this->getDoctrine()->getManager();
+      $user = $em->getRepository('AppBundle:User')->find($userid);
+      $journal = $em->getRepository('AppBundle:Journal')->find($journalid);
+      $userjournals = $user->getJournals();
+      $userjournals->removeElement($journal);
+      $em->remove($journal);
+      $em->flush(); 
+      return new Response("1");     
+    } else {
+      return new Response("Access Denied", Response::HTTP_FORBIDDEN);
+    }
+
   }
 }
 
