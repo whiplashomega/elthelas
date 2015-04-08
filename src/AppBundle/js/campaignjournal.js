@@ -5,9 +5,9 @@ function getJournals() {
 $.get(getallroute, function(journals) {
     var entries = $("#journalentries");
     entries.html(" ");
+    journals.sort(sortdate);
     for (var x = 0; x < journals.length; x++) {
       entries.append("<p>" + journals[x].date + "<br />\n" + journals[x].text + "</p>");
-      convertdatestring(journals[x].date);
       var deletebutton = $("<input type='button' value='Delete' />");
       deletebutton.attr("data-journal-id", journals[x].id);
       $(deletebutton).click(function() {
@@ -29,22 +29,30 @@ $.get(getallroute, function(journals) {
 function convertdatestring(date) {
   var chars = /^[a-zA-Z]+/;
   var month = date.match(chars);
-  month = String(months.indexOf(month[0]));
+  month = months.indexOf(month[0]);
   console.log(month);
   var year = date.substr(date.length - 4);
   console.log(year);
   var day = date.slice(-8, -5).match(/[0-9]+/);
   console.log(day);
-  console.log(year + month + day[0]);
+  return [Number(year), month, Number(day[0])];
 }
 
 function sortdate(date1, date2) {
-  var numdate1 = convertdatestring(date1);
-  var numdate2 = convertdatestring(date2);
-  if (numdate1 > numdate2) {
-    return 1;
-  } else if (numdate1 < numdate2) {
+  var numdate1 = convertdatestring(date1.date);
+  var numdate2 = convertdatestring(date2.date);
+  if (numdate1[0] > numdate2[0]) {
     return -1;
+  } else if (numdate1[0] < numdate2[0]) {
+    return 1;
+  } else if(numdate1[1] > numdate2[1]){
+    return -1;
+  } else if (numdate1[1] < numdate2[1]) {
+    return 1;
+  } else if (numdate1[2] > numdate2[2]) {
+    return -1;
+  } else if (numdate1[2] < numdate2[2]) {
+    return 1;
   } else {
     return 0;
   }
