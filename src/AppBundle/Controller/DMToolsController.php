@@ -52,6 +52,11 @@ class DMToolsController extends Controller {
    *@Route("dm/creator", name="creator")
    */
   public function creatorAction(Request $request) {
-    return $this->render("AppBundle:dm:creator.html.twig", array('pagetitle' => 'Dungeon Master\'s Creature Creator'));
+    $securityContext = $this->container->get('security.context');
+    if($securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+      return $this->render("AppBundle:dm:creator.html.twig", array('pagetitle' => 'Dungeon Master\'s Creature Creator'));
+    } else {
+      return new Response("Access Denied", Response::HTTP_FORBIDDEN);
+    }
   }
 }

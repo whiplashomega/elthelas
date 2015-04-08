@@ -5,7 +5,7 @@ namespace AppBundle\Entity;
 
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
-
+use Doctrine\Common\Collections\ArrayCollection;
 /**
  * @ORM\Entity
  * @ORM\Table(name="fos_user")
@@ -23,6 +23,11 @@ class User extends BaseUser
      * @ORM\OneToMany(targetEntity="Journal", mappedBy="thisuser")
      */
     protected $journals;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Creature", mappedBy="ownedby")
+     */
+    protected $creatures;
     
     public function __construct()
     {

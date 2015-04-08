@@ -23,6 +23,11 @@ class User extends BaseUser
      * @ORM\OneToMany(targetEntity="Journal", mappedBy="thisuser")
      */
     protected $journals;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Creature", mappedBy="ownedby")
+     */
+    protected $creatures;
     
     public function __construct()
     {
@@ -72,5 +77,38 @@ class User extends BaseUser
     public function getJournals()
     {
         return $this->journals;
+    }
+
+    /**
+     * Add creatures
+     *
+     * @param \AppBundle\Entity\Creature $creatures
+     * @return User
+     */
+    public function addCreature(\AppBundle\Entity\Creature $creatures)
+    {
+        $this->creatures[] = $creatures;
+
+        return $this;
+    }
+
+    /**
+     * Remove creatures
+     *
+     * @param \AppBundle\Entity\Creature $creatures
+     */
+    public function removeCreature(\AppBundle\Entity\Creature $creatures)
+    {
+        $this->creatures->removeElement($creatures);
+    }
+
+    /**
+     * Get creatures
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCreatures()
+    {
+        return $this->creatures;
     }
 }
