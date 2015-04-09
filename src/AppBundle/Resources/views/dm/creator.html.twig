@@ -1,1 +1,163 @@
 {% extends 'AppBundle:dm:index.html.twig' %}
+{% block title %} {{pagetitle}} {% endblock %}
+{% block body %}
+ <script type="text/javascript">
+  var loadallpath = "{{ path('get_creatures') }}";
+  var loadpath = "{{ path('get_creature', {'id': 1}) }}";
+  var updatepath = "{{ path('update_creature', {'id': 1})}}";
+  var addpath = "{{ path('add_creature')}}";
+  var deletepath = "{{ path('delete_creature', {'id': 1})}}";
+ </script>
+<div class="row">
+  <div class="form-group col-md-3">
+    <select id="charselect" class="form-control">
+    </select>
+  </div>
+  <div class="col-md-3 btn-group">
+    <input type="button" value="Load/Create" id="loadchar" class="btn btn-default"/>
+    <input type="button" value="Save" id="savechar" class="btn btn-default"/>
+    <input type="button" value="Delete" id="deletechar" class="btn btn-default" />
+  </div>
+</div>
+<div class="row hidden">
+  <input type="hidden" name="charid" id="charid" value="NOCHARLOADED" />
+  <div class="col-md-2 form-group">
+    <label>Name: <input type="text" class="form-control" /></label>
+  </div>
+  <div class="col-md-2 form-group">
+    <label>Class and Level: <input type="text" class="form-control" /></label>
+  </div>
+  <div class="col-md-2 form-group">
+  <label>Background: <input type="text" class="form-control" /></label>
+  </div>
+    
+  <div class="col-md-2 form-group">
+    <label>Race: <input type="text" class="form-control" /></label>
+  </div>
+  
+  <div class="col-md-2 form-group">
+    <label>Alignment: <input type="text" class="form-control" /></label>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-2 form-group">
+    <label>Experience: <input type="number" class="form-control" /></label>
+  </div>
+  
+  <div class="col-md-2 form-group">
+    <label>CR: <input type="text" class="form-control" /></label>
+  </div>
+  
+  <div class="col-md-2 form-group">
+    <label>Proficiency Bonus: <input type="number" class="form-control" /></label>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-4">
+    <h4>Attributes</h4>
+    <label for="strength">Strength: <input type="number" class="form-control" /></label>
+    <label for="strength">Dexterity: <input type="number" class="form-control" /></label>
+    <label for="strength">Constitution: <input type="number" class="form-control" /></label>
+    <label for="strength">Intelligence: <input type="number" class="form-control" /></label>
+    <label for="strength">Wisdom: <input type="number" class="form-control" /></label>
+    <label for="strength">Charisma: <input type="number" class="form-control" /></label>
+  </div>
+  <div class="col-md-4">
+    <h4>Abilities</h4>
+    <label for="hp">HP: <input type="number" class="form-control" /></label>
+    <label for="maxhp">Max HP: <input type="number" class="form-control" /></label>
+    <label for="hitdice">Hitdice: <input type="number" class="form-control" /></label>
+    <label for="maxhitdice"> Max Hitdice: <input type="number" class="form-control" /></label>
+    <label for="inspiration">Inspiration: <input type="number" class="form-control" /></label>
+    <label>Passive Perception <input type="number" class="form-control" /></label>
+  </div>
+  <div class="col-md-4">
+    <h4>Saves</h4>
+    <label>Strength: <input type="number" class="form-control" /></label>
+    <label>Dexterity: <input type="number" class="form-control" /></label>
+    <label>Constitution: <input type="number" class="form-control" /></label>
+    <label>Intelligence: <input type="number" class="form-control" /></label>
+    <label>Wisdom: <input type="number" class="form-control" /></label>
+    <label>Charisma: <input type="number" class="form-control" /></label>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-2">
+    <h4>Skills</h4>
+    <label>Acrobatics: <input type="number" class="form-control" /></label>
+    <label>Animal Handling: <input type="number" class="form-control" /></label>
+    <label>Arcana: <input type="number" class="form-control" /></label>
+    <label>Athletics: <input type="number" class="form-control" /></label>
+    <label>Deception: <input type="number" class="form-control" /></label>
+    <label>History: <input type="number" class="form-control" /></label>
+    <label>Insight: <input type="number" class="form-control" /></label>
+    <label>Intimidation: <input type="number" class="form-control" /></label>
+    <label>Investigation: <input type="number" class="form-control" /></label>
+
+  </div>
+  <div class="col-md-2">
+    <h4>&nbsp;</h4>
+    <label>Medicine: <input type="number" class="form-control" /></label>
+    <label>Nature: <input type="number" class="form-control" /></label>
+    <label>Perception: <input type="number" class="form-control" /></label>
+    <label>Performance: <input type="number" class="form-control" /></label>
+    <label>Persuasion: <input type="number" class="form-control" /></label>
+    <label>Religion: <input type="number" class="form-control" /></label>
+    <label>Slight of Hand: <input type="number" class="form-control" /></label>
+    <label>Stealth: <input type="number" class="form-control" /></label>
+    <label>Survival: <input type="number" class="form-control" /></label>
+  </div>
+<div class="col-md-8">
+  <div class="row">
+    <h4>Attacks</h4>
+    
+    <div class="col-md-4">
+      <label for="attackname1">Attack: <input type="text" class="form-control" /></label>
+    </div>
+    <div class="col-md-4">
+      <label for="attackbonus1">Bonus: <input type="number" class="form-control" /></label>
+    </div>  
+    <div class="col-md-4">
+      <label for="attackdamage1">Damage: <input type="text" class="form-control" /></label>
+    </div>   
+  </div>
+  <div class="row">
+    <div class="col-md-2 pull-right">
+      <input type="button" class="btn btn-default" value="Add Attack" />
+    </div>
+  </div>
+  <h4>Possessions</h4>
+  <label>Carry Weight: <input type="number" class="form-control" /></label>
+
+  <div class="form-group">
+    <h4>Equipment</h4>
+    <textarea class="form-control" rows="5"></textarea>
+  </div>
+
+  <div class="form-group">
+    <h4>Treasure</h4>
+    <textarea class="form-control" rows="5"></textarea>
+  </div>
+  <div class="form-group">
+    <h4>Proficiencies</h4>
+    <textarea class="form-control" rows="5"></textarea>
+  </div>
+
+  <div class="form-group">
+    <h4>Features and Traits</h4>
+    <textarea class="form-control" rows="5"></textarea>
+  </div>
+  </div>
+
+{% endblock %}
+
+      {% block javascripts %}
+        <script src="{{asset('angularjs/1.3.14/angular.min.js', 'cdn')}}"></script>
+        <script src="{{asset('jquery/2.1.3/jquery.min.js', 'cdn')}}"></script>
+        <script src="{{asset('jqueryui/1.11.3/jquery-ui.min.js', 'cdn')}}"></script>
+        {% javascripts '@AppBundle/libraries/*'
+                        '@AppBundle/js/creator.js'
+                       output='js/script-creator.js'%}
+        <script src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+        {% endblock %}

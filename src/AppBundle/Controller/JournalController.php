@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\Journal;
 use AppBundle\Entity\User;
 use Symfony\Component\HttpFoundation\Response;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class JournalController extends Controller {
   /*
@@ -17,11 +18,12 @@ class JournalController extends Controller {
   
   /**
    * @Route("/getjournals/{userid}", name="get_journals")
+   * @Security("has_role('ROLE_USER')")
    */
   public function getJournalsAction($userid) {
-    $securityContext = $this->container->get('security.token_storage');
-    if($securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
-      $user = $this->getDoctrine()->getRepository('AppBundle:User')->find($userid);
+    $currentuser = $this->get('security.token_storage')->getToken()->getUser();
+    $user = $this->getDoctrine()->getRepository('AppBundle:User')->find($userid);
+    if($currentuser->getId() == $userid) {
       $journals = $user->getJournals();
       $responsedata = [];
       for($x = 0; $x < $journals->count(); $x++) {
@@ -36,14 +38,13 @@ class JournalController extends Controller {
   
   /**
    * @Route("/addjournal/{userid}", name="add_journal")
+   * @Security("has_role('ROLE_USER')")
    */
   public function addJournalAction($userid, Request $request) {
-    $securityContext = $this->container->get('security.token_storage');
-    if($securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
       $em = $this->getDoctrine()->getManager();
       $user = $em->getRepository('AppBundle:User')->find($userid);
       if (!$user) {
-        return new Response("No user found");
+        return new Response("No user found", Response::HTTP_FORBIDDEN);
       } else {
         $journal = new Journal();
         $journal->setDate($request->get("date"))->setText($request->get("text"))->setThisuser($user);
@@ -53,9 +54,6 @@ class JournalController extends Controller {
         $em->flush();
         return new Response("1");
       }
-    } else {
-       return new Response("Access Denied", Response::HTTP_FORBIDDEN);     
-    }
   }
   /**
    *@Route("/updatejournal/{journalid}", name="update_journal")

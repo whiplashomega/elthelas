@@ -8,12 +8,14 @@ use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\Attack;
 use AppBundle\Entity\User;
 use Symfony\Component\HttpFoundation\Response;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 //Creatures should be obtained via JSON interface
 class CreatureController extends Controller {
   
   /**
-   *@Route("/creature/{id}", name="get_creature")
+   *@Route("/creature/get/{id}", name="get_creature")
+   *@Security("has_role('ROLE_USER')")
    */
   public function getAction($id) {
     $creature = $this->getDoctrine()->getManager()->getRepository("AppBundle:Creature")->find($id);
@@ -26,21 +28,17 @@ class CreatureController extends Controller {
   }
   
   /**
-   *@Route("/creature/all/{id}", name="get_creatures")
+   *@Route("/creature/all", name="get_creatures")
+   *@Security("has_role('ROLE_USER')")
    */
-  public function getAllAction($id) {
-    $currentuser = $this->get('security.token_storage')->getToken()->getUser();
-    $user = $this->getDoctrine()->getManager()->getRepository("AppBundle:User")->find($id);
-    if($currentuser->getId() == $user->getId()) {
+  public function getAllAction() {
+    $user = $this->get('security.token_storage')->getToken()->getUser();
       $creatures = $user->getCreatures();
       $creaturearray = [];
       foreach($creatures as $creature) {
         $creaturearray[] = $creature;
       }
       return new Response(json_encode($creaturearray), Response::HTTP_OK, array('content-type' => 'application/json'));
-    } else {
-      return new Response("Access Denied", Response::HTTP_FORBIDDEN);
-    }
   }
   
   /**

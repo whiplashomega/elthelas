@@ -23,6 +23,11 @@ class Creature implements JsonSerializable {
   /**
    *@ORM\Column(type="string")
    */
+  protected $name;
+  
+  /**
+   *@ORM\Column(type="string")
+   */
   protected $race;
   
   /**
@@ -53,7 +58,7 @@ class Creature implements JsonSerializable {
   /**
    *@ORM\Column(type="integer")
    */
-  protected $int;
+  protected $intel;
   
   /**
    *@ORM\Column(type="integer")
@@ -384,29 +389,6 @@ class Creature implements JsonSerializable {
     public function getCon()
     {
         return $this->con;
-    }
-
-    /**
-     * Set int
-     *
-     * @param integer $int
-     * @return Creature
-     */
-    public function setInt($int)
-    {
-        $this->int = $int;
-
-        return $this;
-    }
-
-    /**
-     * Get int
-     *
-     * @return integer 
-     */
-    public function getInt()
-    {
-        return $this->int;
     }
 
     /**
@@ -1229,5 +1211,51 @@ class Creature implements JsonSerializable {
     public function getOwnedby()
     {
         return $this->ownedby;
+    }
+
+    /**
+     * Set intel
+     *
+     * @param integer $intel
+     * @return Creature
+     */
+    public function setIntel($intel)
+    {
+        $this->intel = $intel;
+
+        return $this;
+    }
+
+    /**
+     * Get intel
+     *
+     * @return integer 
+     */
+    public function getIntel()
+    {
+        return $this->intel;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return Creature
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
     }
 }

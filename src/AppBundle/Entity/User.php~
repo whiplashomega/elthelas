@@ -78,4 +78,37 @@ class User extends BaseUser
     {
         return $this->journals;
     }
+
+    /**
+     * Add creatures
+     *
+     * @param \AppBundle\Entity\Creature $creatures
+     * @return User
+     */
+    public function addCreature(\AppBundle\Entity\Creature $creatures)
+    {
+        $this->creatures[] = $creatures;
+
+        return $this;
+    }
+
+    /**
+     * Remove creatures
+     *
+     * @param \AppBundle\Entity\Creature $creatures
+     */
+    public function removeCreature(\AppBundle\Entity\Creature $creatures)
+    {
+        $this->creatures->removeElement($creatures);
+    }
+
+    /**
+     * Get creatures
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCreatures()
+    {
+        return $this->creatures;
+    }
 }

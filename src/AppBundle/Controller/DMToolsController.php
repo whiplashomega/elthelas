@@ -6,6 +6,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class DMToolsController extends Controller {
   /**
@@ -38,25 +39,17 @@ class DMToolsController extends Controller {
   }
   /**
    *@Route("dm/dashboard", name="dashboard")
+   *@Security("has_role('ROLE_USER')")
    */
   public function dashboardAction(Request $request) {
-    $securityContext = $this->container->get('security.token_storage');
-    if($securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
-      return $this->render("AppBundle:dm:dashboard.html.twig", array('pagetitle' => 'Dungeon Master\'s Encounter Dashboard'));      
-    } else {
-      return new Response("Access Denied", Response::HTTP_FORBIDDEN);
-    }
+    return $this->render("AppBundle:dm:dashboard.html.twig", array('pagetitle' => 'Dungeon Master\'s Encounter Dashboard'));      
   }
   
   /**
    *@Route("dm/creator", name="creator")
+   *@Security("has_role('ROLE_USER')")
    */
   public function creatorAction(Request $request) {
-    $securityContext = $this->container->get('security.token_storage');
-    if($securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
       return $this->render("AppBundle:dm:creator.html.twig", array('pagetitle' => 'Dungeon Master\'s Creature Creator'));
-    } else {
-      return new Response("Access Denied", Response::HTTP_FORBIDDEN);
-    }
   }
 }
