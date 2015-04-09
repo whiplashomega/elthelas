@@ -19,7 +19,8 @@
     <input type="button" value="Delete" id="deletechar" class="btn btn-default" />
   </div>
 </div>
-<div class="row hidden">
+<section id="charform" class="hidden">
+<div class="row">
   <input type="hidden" name="charid" id="charid" value="NOCHARLOADED" />
   <div class="col-md-2 form-group">
     <label>Name: <input type="text" class="form-control" /></label>
@@ -148,7 +149,7 @@
     <textarea class="form-control" rows="5"></textarea>
   </div>
   </div>
-
+</section>
 {% endblock %}
 
       {% block javascripts %}
