@@ -61,8 +61,28 @@ class CreatureController extends Controller {
           $creature->__set($param, $value);
         }
       }
+      $attacks = $params["attacks"];
+      $creattacks = $creature->getAttacks();
+      $attacknum = count($creattacks);
+      $newcount;
+      
+      for ($x = 0; $x < count($attacks); $x++) {
+        if($x == count($attacks)) {
+          break;
+        }
+        if($x < $attacknum) {
+          $creattacks[$x]->setName($attacks[$x]["attack"])->setBonus($attacks[$x]["bonus"])->setDamage($attacks[$x]["damage"]);
+        } else {
+          //if we have more attacks than we did before, we need to add new attacks
+          $creattacks[] = new Attack();
+          $creattacks[$x]->setName($attacks[$x]["attack"])->setBonus($attacks[$x]["bonus"])->setDamage($attacks[$x]["damage"])->setCreature($creature);
+        }
+        $em->persist($creattacks[$x]);
+        $newcount = $x;
+      }
       $em->persist($creature);
       $em->flush();
+      //$params["creattacks"] = $creattacks;
       $printparams = print_r($params, true);
       return new Response($printparams, Response::HTTP_OK);
     } else {

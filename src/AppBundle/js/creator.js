@@ -7,14 +7,27 @@ function fillform(creature) {
     currentchar = creature;
   }
   $("#charid").val(creature["id"]);
-  
+  var row = $("#attacksdiv div:last-child");
+  var div = $("#attacksdiv");
+  var onerow = false;
+  $("#attacksdiv .attackrow").remove();
+  if (creature.attacks) {
+    for(var x = 0; x < creature.attacks.length; x++) {
+      var newrow = row.clone();
+      newrow.find(".attack").val(creature.attacks[x].attack);
+      newrow.find(".bonus").val(creature.attacks[x].bonus);
+      newrow.find(".damage").val(creature.attacks[x].damage);
+      div.append(newrow);
+      onerow = true;
+    }
+  }
 }
 
 
 function loadlist() {
   $.get(loadallpath, {}, function(characters) {
       var select = $("#charselect");
-      select.children().detach();
+      select.children().remove();
       for (var x = 0; x < characters.length; x++) {
         var option = $("<option></option>").val(characters[x].id).html(characters[x].name);
         option.appendTo(select);
@@ -31,6 +44,7 @@ function loadchar() {
         fillform(creature);
         loadlist();
       });
+  } else if(selected == "undefined") {
   } else {
     var correctpath = loadpath.slice(0, -1) + $("#charselect").find(":selected").val();
     $.get(correctpath, function(creature) {
@@ -49,7 +63,17 @@ function savechar() {
       newchar[trait] = $("#" + trait).val();
       console.log(newchar.trait);
     }
+    attacks = [];
+    $(".attackrow").each(function() {
+      row = $(this);
+      attacks.push({
+          "attack": row.find(".attack").val(),
+          "bonus": row.find(".bonus").val(),
+          "damage": row.find(".damage").val()
+        });   
+    });
     newchar.id = $("#charid").val();
+    newchar.attacks = attacks;
     var correctpath = updatepath.slice(0, -1) + newchar.id;
     $.post(correctpath, JSON.stringify(newchar), function() {
       $("#charform").addClass("hidden");        
@@ -69,12 +93,15 @@ function deletechar() {
   }
 }
 
-function addAttack() {
-  
+function addAttack() { 
+  var newrow = $("<div class='row attackrow'><div class='col-md-4'><label>Attack: <input type='text' class='form-control attack' /></label>" +
+        "</div><div class='col-md-2'><label for='attackbonus1'>Bonus: <input type='number' class='form-control bonus' /></label>" +
+        "</div><div class='col-md-3'><label for='attackdamage1'>Damage: <input type='text' class='form-control damage' /></label></div></div>");
+  $("#attacksdiv").append(newrow);
 }
 
 function deleteAttack(btn) {
-  
+  $(btn).parent().remove();
 }
 
 //implement our callbacks, then load the list
@@ -84,7 +111,7 @@ $("#loadchar").click(function() {
 $("#savechar").click(function() {
   savechar();  
 });
-$("#deletechar").click(function() {
+$("#deletechar").on("click", function() {
   deletechar();  
 });
 
@@ -92,7 +119,4 @@ $("#addattack").click(function() {
   addAttack();
 });
 
-$(".deleteattack").click(function() {
-  deleteAttack(this);
-});
 loadlist();

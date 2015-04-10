@@ -5,12 +5,13 @@ namespace AppBundle\Entity;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use JsonSerializable;
 
   /**
    *@ORM\Entity
    *@ORM\Table(name="attack")
    */
-class Attack {
+class Attack  implements JsonSerializable {
   
   /**
     *@ORM\Column(type="integer")
@@ -140,5 +141,14 @@ class Attack {
     public function getCreature()
     {
         return $this->creature;
+    }
+    public function jsonSerialize() {
+      $json = array();
+      foreach($this as $key => $value) {
+        if($key != "creature") {
+          $json[$key] = $value;
+        }
+      }
+      return $json;
     }
 }

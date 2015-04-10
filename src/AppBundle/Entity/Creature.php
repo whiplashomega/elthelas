@@ -1209,7 +1209,18 @@ class Creature implements JsonSerializable {
     public function jsonSerialize() {
       $json = array();
       foreach($this as $key => $value) {
-        $json[$key] = $value;
+        if($key != "attacks") {
+          $json[$key] = $value;
+        } else {
+          $json[$key] = array();
+          $x = 0;
+          foreach($this->attacks as $attack) {
+            $json[$key][$x] = array();
+            $json[$key][$x]["attack"] = $attack->getName();
+            $json[$key][$x]["bonus"] = $attack->getBonus();
+            $json[$key][$x]["damage"] = $attack->getDamage();
+          }
+        }
       }
       return $json;
     }
