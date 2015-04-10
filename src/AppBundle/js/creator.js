@@ -6,6 +6,7 @@ function fillform(creature) {
     $("#" + trait).val(creature[trait]);
     currentchar = creature;
   }
+  $("#charid").val(creature["id"]);
   
 }
 
@@ -39,15 +40,18 @@ function loadchar() {
 }
 
 function savechar() {
-  var charid = $("#id").val();
+  var charid = $("#charid").val();
   if (charid === "NOCHARLOADED") {
     alert("you must create a new character or load an existing character before you can save.");
   } else {
+    var newchar = {};
     for(trait in currentchar) {
-      currentchar.trait = $("#" + trait).val();
+      newchar[trait] = $("#" + trait).val();
+      console.log(newchar.trait);
     }
-    var correctpath = updatepath.slice(0, -1) + currentchar.id;
-    $.post(correctpath, JSON.stringify(currentchar), function() {
+    newchar.id = $("#charid").val();
+    var correctpath = updatepath.slice(0, -1) + newchar.id;
+    $.post(correctpath, JSON.stringify(newchar), function() {
       $("#charform").addClass("hidden");        
       loadlist();
     });
@@ -55,10 +59,23 @@ function savechar() {
 }
 
 function deletechar() {
-  //delete the character currently selected  in the dropdown.  CONFIRM WITH USER FIRST.
+  var charid = $("#charselect").find(":selected").val();
+  if (charid !== "new" && charid !== "") {
+    var correctpath = deletepath.slice(0, -1) + charid;
+    $.post(correctpath, function() {
+        loadlist();
+        $("#charform").addClass("hidden");
+      });
+  }
 }
 
+function addAttack() {
+  
+}
 
+function deleteAttack(btn) {
+  
+}
 
 //implement our callbacks, then load the list
 $("#loadchar").click(function() {
@@ -71,4 +88,11 @@ $("#deletechar").click(function() {
   deletechar();  
 });
 
+$("#addattack").click(function() {
+  addAttack();
+});
+
+$(".deleteattack").click(function() {
+  deleteAttack(this);
+});
 loadlist();

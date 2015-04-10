@@ -261,7 +261,12 @@ class Creature implements JsonSerializable {
     {
         $this->attacks = new \Doctrine\Common\Collections\ArrayCollection();
     }
-
+    
+    public function __set($name, $value) {
+        $this->$name = $value;
+        
+        return $this;
+    }
     /**
      * Get id
      *

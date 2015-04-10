@@ -57,7 +57,9 @@ class CreatureController extends Controller {
         $params = json_decode($content, true); // 2nd param to get as array
     }
       foreach($params as $param => $value) {
-        $creature->$param = $value;
+        if($param != "id" && $param != "attacks" && $param != "ownedby") {
+          $creature->__set($param, $value);
+        }
       }
       $em->persist($creature);
       $em->flush();
@@ -74,7 +76,7 @@ class CreatureController extends Controller {
     $currentuser = $this->get('security.token_storage')->getToken()->getUser();
     $em = $this->getDoctrine()->getManager();
     $creature = $em->getRepository("AppBundle:Creature")->find($id);
-    if($currentuser->getId() == $creature->getOwnedby()) {
+    if($currentuser->getId() == $creature->getOwnedby()->getId()) {
       $usercreatures = $currentuser->getCreatures();
       $usercreatures->removeElement($creature);
       $em->remove($creature);
