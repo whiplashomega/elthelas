@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\Attack;
 use AppBundle\Entity\User;
+use AppBundle\Entity\Creature;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
@@ -20,7 +21,7 @@ class CreatureController extends Controller {
   public function getAction($id) {
     $creature = $this->getDoctrine()->getManager()->getRepository("AppBundle:Creature")->find($id);
     $user = $this->get('security.token_storage')->getToken()->getUser();
-    if($user->getId() == $creature->getOwnedby()) {
+    if($user->getId() == $creature->getOwnedby()->getId()) {
       return new Response(json_encode($creature), Response::HTTP_OK, array('content-type' => 'application/json'));      
     } else {
       return new Response("Access Denied", Response::HTTP_FORBIDDEN);
@@ -45,11 +46,23 @@ class CreatureController extends Controller {
    *@Route("/creature/update/{id}", name="update_creature")
    */
   public function updateAction($id, Request $request) {
+    $em = $this->getDoctrine()->getManager();
     $currentuser = $this->get('security.token_storage')->getToken()->getUser();
     $creature = $this->getDoctrine()->getManager()->getRepository("AppBundle:Creature")->find($id);
-    if($currentuser->getId() == $creature->getOwnedby()) {
-      //TO_DO
-      return new Response("1", Response::HTTP_OK);
+    if($currentuser->getId() == $creature->getOwnedby()->getId()) {
+    $params = array();
+    $content = $request->getContent();
+    if (!empty($content))
+    {
+        $params = json_decode($content, true); // 2nd param to get as array
+    }
+      foreach($params as $param => $value) {
+        $creature->$param = $value;
+      }
+      $em->persist($creature);
+      $em->flush();
+      $printparams = print_r($params, true);
+      return new Response($printparams, Response::HTTP_OK);
     } else {
       return new Response("Access Denied", Response::HTTP_FORBIDDEN);
     }
@@ -78,7 +91,15 @@ class CreatureController extends Controller {
     $currentuser = $this->get('security.token_storage')->getToken()->getUser();
     $securityContext = $this->container->get('security.context');
     if($securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
-      //TO_DO
+      $em = $this->getDoctrine()->getManager();
+      $creature = new Creature();
+      $creature->setName("new creature");
+      $creature->setOwnedby($currentuser);
+      $currentuser->addCreature($creature);
+      $em->persist($currentuser);
+      $em->persist($creature);
+      $em->flush();
+      return new Response(json_encode($creature));
     } else {
       return new Response("Access Denied", Response::HTTP_FORBIDDEN);
     }

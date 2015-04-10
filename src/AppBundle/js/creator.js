@@ -1,6 +1,19 @@
+var currentchar;
+
+function fillform(creature) {
+  $("#charform").removeClass("hidden");
+  for(trait in creature) {
+    $("#" + trait).val(creature[trait]);
+    currentchar = creature;
+  }
+  
+}
+
+
 function loadlist() {
   $.get(loadallpath, {}, function(characters) {
       var select = $("#charselect");
+      select.children().detach();
       for (var x = 0; x < characters.length; x++) {
         var option = $("<option></option>").val(characters[x].id).html(characters[x].name);
         option.appendTo(select);
@@ -13,20 +26,31 @@ function loadlist() {
 function loadchar() {
   var selected = $("#charselect").find(":selected").val();
   if (selected == "new") {
-    //tell the server to create a new character for this user with name 'newchar' and get back the ID number, on success insert the name and id number
-    //into the form.
+    $.post(addpath, function(creature) {
+        fillform(creature);
+        loadlist();
+      });
   } else {
-    //retreive the selected character from the server and load the data into the form
+    var correctpath = loadpath.slice(0, -1) + $("#charselect").find(":selected").val();
+    $.get(correctpath, function(creature) {
+      fillform(creature);
+    });
   }
 }
 
 function savechar() {
-  var charid = $("#charid").val();
+  var charid = $("#id").val();
   if (charid === "NOCHARLOADED") {
     alert("you must create a new character or load an existing character before you can save.");
   } else {
-    //post the character to the server using update method
-    loadlist();
+    for(trait in currentchar) {
+      currentchar.trait = $("#" + trait).val();
+    }
+    var correctpath = updatepath.slice(0, -1) + currentchar.id;
+    $.post(correctpath, JSON.stringify(currentchar), function() {
+      $("#charform").addClass("hidden");        
+      loadlist();
+    });
   }
 }
 

@@ -21,212 +21,231 @@ class Creature implements JsonSerializable {
   protected $id;
   
   /**
-   *@ORM\Column(type="string")
+   *@ORM\Column(type="string", nullable=true)
    */
   protected $name;
   
   /**
-   *@ORM\Column(type="string")
+   *@ORM\Column(type="string", nullable=true)
    */
   protected $race;
   
   /**
-   *@ORM\Column(type="string")
+   *@ORM\Column(type="string", nullable=true)
    */
   protected $classlevel;
   
   /**
-   *@ORM\Column(type="string")
+   *@ORM\Column(type="string", nullable=true)
    */
   protected $background;
+  /**
+   *@ORM\Column(type="string", nullable=true)
+   */
+  protected $alignment;
   
   /**
-   *@ORM\Column(type="integer")
+   *ORM\Column(type="experience", nullable=true)
+   */
+  protected $experience;
+  
+  /**
+   *ORM\Column(type="CR", nullable=true)
+   */
+  protected $cr;
+  
+  /**
+   *ORM\Column(type="integer", nullable=true)
+   */
+  protected $proficiencybonus;
+  
+  /**
+   *@ORM\Column(type="integer", nullable=true)
    */
   protected $str;
 
   /**
-   *@ORM\Column(type="integer")
+   *@ORM\Column(type="integer", nullable=true)
    */
   protected $dex;
   
   /**
-   *@ORM\Column(type="integer")
+   *@ORM\Column(type="integer", nullable=true)
    */
   protected $con;
   
   /**
-   *@ORM\Column(type="integer")
+   *@ORM\Column(type="integer", nullable=true)
    */
   protected $intel;
   
   /**
-   *@ORM\Column(type="integer")
+   *@ORM\Column(type="integer", nullable=true)
    */
   protected $wis;
   
   /**
-   *@ORM\Column(type="integer")
+   *@ORM\Column(type="integer", nullable=true)
    */
   protected $cha;
   
   /**
-   *@ORM\Column(type="integer")
+   *@ORM\Column(type="integer", nullable=true)
    */
   protected $strsave;
 
   /**
-   *@ORM\Column(type="integer")
+   *@ORM\Column(type="integer", nullable=true)
    */
   protected $dexsave;
   
   /**
-   *@ORM\Column(type="integer")
+   *@ORM\Column(type="integer", nullable=true)
    */
   protected $consave;
   
   /**
-   *@ORM\Column(type="integer")
+   *@ORM\Column(type="integer", nullable=true)
    */
   protected $intsave;
   
   /**
-   *@ORM\Column(type="integer")
+   *@ORM\Column(type="integer", nullable=true)
    */
   protected $wissave;
   
   /**
-   *@ORM\Column(type="integer")
+   *@ORM\Column(type="integer", nullable=true)
    */
   protected $chasave;
   
   /**
-   *@ORM\Column(type="integer")
+   *@ORM\Column(type="integer", nullable=true)
    */
   protected $hpmax;
   
   /**
-   *@ORM\Column(type="integer")
+   *@ORM\Column(type="integer", nullable=true)
    */
   protected $hitdice;
   
   /**
-   *@ORM\Column(type="integer")
+   *@ORM\Column(type="integer", nullable=true)
    */
   protected $passiveperception;
   
   /**
-   *@ORM\Column(type="integer")
+   *@ORM\Column(type="integer", nullable=true)
    */
   protected $acrobatics;
   
   /**
-   *@ORM\Column(type="integer")
+   *@ORM\Column(type="integer", nullable=true)
    */
   protected $animalhandling; 
   
   /**
-   *@ORM\Column(type="integer")
+   *@ORM\Column(type="integer", nullable=true)
    */
   protected $arcana;
   
   /**
-   *@ORM\Column(type="integer")
+   *@ORM\Column(type="integer", nullable=true)
    */
   protected $athletics;
   
   /**
-   *@ORM\Column(type="integer")
+   *@ORM\Column(type="integer", nullable=true)
    */
   protected $deception;
   
   /**
-   *@ORM\Column(type="integer")
+   *@ORM\Column(type="integer", nullable=true)
    */
   protected $history;
   
   /**
-   *@ORM\Column(type="integer")
+   *@ORM\Column(type="integer", nullable=true)
    */
   protected $insight;
   
   /**
-   *@ORM\Column(type="integer")
+   *@ORM\Column(type="integer", nullable=true)
    */
   protected $intimidation;
   
   /**
-   *@ORM\Column(type="integer")
+   *@ORM\Column(type="integer", nullable=true)
    */
   protected $investigation;
   
   /**
-   *@ORM\Column(type="integer")
+   *@ORM\Column(type="integer", nullable=true)
    */
   protected $medicine;
   
   /**
-   *@ORM\Column(type="integer")
+   *@ORM\Column(type="integer", nullable=true)
    */
   protected $nature;
   
   /**
-   *@ORM\Column(type="integer")
+   *@ORM\Column(type="integer", nullable=true)
    */
   protected $perception;
   
   /**
-   *@ORM\Column(type="integer")
+   *@ORM\Column(type="integer", nullable=true)
    */
   protected $performance;
   
   /**
-   *@ORM\Column(type="integer")
+   *@ORM\Column(type="integer", nullable=true)
    */
   protected $persuasion;
   
   /**
-   *@ORM\Column(type="integer")
+   *@ORM\Column(type="integer", nullable=true)
    */
   protected $religion;
   
   /**
-   *@ORM\Column(type="integer")
+   *@ORM\Column(type="integer", nullable=true)
    */
   protected $slightofhand;
   
   /**
-   *@ORM\Column(type="integer")
+   *@ORM\Column(type="integer", nullable=true)
    */
   protected $stealth;
   
   /**
-   *@ORM\Column(type="integer")
+   *@ORM\Column(type="integer", nullable=true)
    */
   protected $survival;
   
   /**
-   * @ORM\OneToMany(targetEntity="Attack", mappedBy="thisuser")
+   * @ORM\OneToMany(targetEntity="Attack", mappedBy="creature")
    */
   protected $attacks;
 
   /**
-   *@ORM\Column(type="text")
+   *@ORM\Column(type="text", nullable=true)
    */
   protected $possessions;
 
   /**
-   *@ORM\Column(type="text")
+   *@ORM\Column(type="text", nullable=true)
    */
   protected $features;
 
   /**
-   *@ORM\Column(type="text")
+   *@ORM\Column(type="text", nullable=true)
    */
   protected $physicaldescription;
 
   /**
-   *@ORM\Column(type="string")
+   *@ORM\Column(type="string", nullable=true)
    */
   protected $imagepath;
   
@@ -1234,5 +1253,28 @@ class Creature implements JsonSerializable {
     public function getIntel()
     {
         return $this->intel;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return Creature
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
     }
 }
