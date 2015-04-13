@@ -88,9 +88,6 @@ fos_user:
     registration:
         confirmation:
             enabled:    true
-        approval:
-            enabled:    true
-            template:   FOSUserBundle:Registration:email.txt.twig
 
 # Swiftmailer Configuration
 swiftmailer:
