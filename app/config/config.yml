@@ -82,7 +82,15 @@ fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
     user_class: AppBundle\Entity\User
-
+    from_email:
+        address:    admin@elthelas.herokuapp.com
+        sender_name: DO_NOT_REPLY
+    registration:
+        confirmation:
+            enabled:    true
+        approval:
+            enabled:    true
+            template:   FOSUserBundle:Registration:email.txt.twig
 
 # Swiftmailer Configuration
 swiftmailer:
