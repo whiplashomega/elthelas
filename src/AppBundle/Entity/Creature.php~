@@ -45,21 +45,6 @@ class Creature implements JsonSerializable {
   protected $alignment;
   
   /**
-   *ORM\Column(type="experience", nullable=true)
-   */
-  protected $experience;
-  
-  /**
-   *ORM\Column(type="CR", nullable=true)
-   */
-  protected $cr;
-  
-  /**
-   *ORM\Column(type="integer", nullable=true)
-   */
-  protected $proficiencybonus;
-  
-  /**
    *@ORM\Column(type="integer", nullable=true)
    */
   protected $str;
@@ -248,6 +233,21 @@ class Creature implements JsonSerializable {
    *@ORM\Column(type="string", nullable=true)
    */
   protected $imagepath;
+
+  /**
+   *@ORM\Column(type="integer", nullable=true)
+   */
+  protected $experience;
+  
+  /**
+   *@ORM\Column(type="integer", nullable=true)
+   */
+  protected $cr;
+  
+  /**
+   *@ORM\Column(type="integer", nullable=true)
+   */
+  protected $proficiencybonus;
   
   /**
    *@ORM\ManyToOne(targetEntity="User", inversedBy="creatures")
@@ -261,6 +261,7 @@ class Creature implements JsonSerializable {
     {
         $this->attacks = new \Doctrine\Common\Collections\ArrayCollection();
     }
+    
 
     /**
      * Get id
@@ -340,7 +341,7 @@ class Creature implements JsonSerializable {
     {
         return $this->background;
     }
-
+    
     /**
      * Set str
      *
@@ -1201,13 +1202,7 @@ class Creature implements JsonSerializable {
     {
         return $this->attacks;
     }
-    public function jsonSerialize() {
-      $json = array();
-      foreach($this as $key => $value) {
-        $json[$key] = $value;
-      }
-      return $json;
-    }
+
 
     /**
      * Set ownedby
@@ -1276,5 +1271,52 @@ class Creature implements JsonSerializable {
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Set alignment
+     *
+     * @param string $alignment
+     * @return Creature
+     */
+    public function setAlignment($alignment)
+    {
+        $this->alignment = $alignment;
+
+        return $this;
+    }
+
+    /**
+     * Get alignment
+     *
+     * @return string 
+     */
+    public function getAlignment()
+    {
+        return $this->alignment;
+    }
+    
+        public function __set($name, $value) {
+        $this->$name = $value;
+        
+        return $this;
+    }
+
+    public function jsonSerialize() {
+      $json = array();
+      foreach($this as $key => $value) {
+        if($key != "attacks") {
+          $json[$key] = $value;
+        } else {
+          $json[$key] = array();
+          for($x = 0; $x < count($this->attacks); $x++) {
+            $json[$key][$x] = array();
+            $json[$key][$x]["attack"] = $this->attacks[$x]->getName();
+            $json[$key][$x]["bonus"] = $this->attacks[$x]->getBonus();
+            $json[$key][$x]["damage"] = $this->attacks[$x]->getDamage();
+          }
+        }
+      }
+      return $json;
     }
 }

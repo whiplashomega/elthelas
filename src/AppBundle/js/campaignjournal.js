@@ -30,11 +30,8 @@ function convertdatestring(date) {
   var chars = /^[a-zA-Z]+/;
   var month = date.match(chars);
   month = months.indexOf(month[0]);
-  console.log(month);
   var year = date.substr(date.length - 4);
-  console.log(year);
   var day = date.slice(-8, -5).match(/[0-9]+/);
-  console.log(day);
   return [Number(year), month, Number(day[0])];
 }
 
@@ -65,8 +62,6 @@ $("#addjournal").click(function() {
   var year = $("#year").find(":selected").val();
   var date = month + " " + day + ", " + year;
   var text = $("#text").val();
-  console.log(date);
-  console.log(text);
   $.post(addroute, {"date": date, "text": text }, function(t) {
     if (t == "1") {
       console.log("success");

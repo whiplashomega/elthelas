@@ -7,17 +7,13 @@ function fillform(creature) {
     currentchar = creature;
   }
   $("#charid").val(creature["id"]);
-  var row = $("#attacksdiv div:last-child");
-  var div = $("#attacksdiv");
-  var onerow = false;
   $("#attacksdiv .attackrow").remove();
   if (creature.attacks) {
     for(var x = 0; x < creature.attacks.length; x++) {
-      var newrow = row.clone();
+      var newrow = addAttack();
       newrow.find(".attack").val(creature.attacks[x].attack);
       newrow.find(".bonus").val(creature.attacks[x].bonus);
       newrow.find(".damage").val(creature.attacks[x].damage);
-      div.append(newrow);
       onerow = true;
     }
   }
@@ -98,6 +94,7 @@ function addAttack() {
         "</div><div class='col-md-2'><label for='attackbonus1'>Bonus: <input type='number' class='form-control bonus' /></label>" +
         "</div><div class='col-md-3'><label for='attackdamage1'>Damage: <input type='text' class='form-control damage' /></label></div></div>");
   $("#attacksdiv").append(newrow);
+  return newrow;
 }
 
 function deleteAttack(btn) {

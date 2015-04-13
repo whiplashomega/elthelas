@@ -45,21 +45,6 @@ class Creature implements JsonSerializable {
   protected $alignment;
   
   /**
-   *ORM\Column(type="experience", nullable=true)
-   */
-  protected $experience;
-  
-  /**
-   *ORM\Column(type="CR", nullable=true)
-   */
-  protected $cr;
-  
-  /**
-   *ORM\Column(type="integer", nullable=true)
-   */
-  protected $proficiencybonus;
-  
-  /**
    *@ORM\Column(type="integer", nullable=true)
    */
   protected $str;
@@ -248,6 +233,21 @@ class Creature implements JsonSerializable {
    *@ORM\Column(type="string", nullable=true)
    */
   protected $imagepath;
+
+  /**
+   *@ORM\Column(type="integer", nullable=true)
+   */
+  protected $experience;
+  
+  /**
+   *@ORM\Column(type="integer", nullable=true)
+   */
+  protected $cr;
+  
+  /**
+   *@ORM\Column(type="integer", nullable=true)
+   */
+  protected $proficiencybonus;
   
   /**
    *@ORM\ManyToOne(targetEntity="User", inversedBy="creatures")
@@ -262,11 +262,7 @@ class Creature implements JsonSerializable {
         $this->attacks = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
-    public function __set($name, $value) {
-        $this->$name = $value;
-        
-        return $this;
-    }
+
     /**
      * Get id
      *
@@ -345,7 +341,7 @@ class Creature implements JsonSerializable {
     {
         return $this->background;
     }
-
+    
     /**
      * Set str
      *
@@ -1206,24 +1202,7 @@ class Creature implements JsonSerializable {
     {
         return $this->attacks;
     }
-    public function jsonSerialize() {
-      $json = array();
-      foreach($this as $key => $value) {
-        if($key != "attacks") {
-          $json[$key] = $value;
-        } else {
-          $json[$key] = array();
-          $x = 0;
-          foreach($this->attacks as $attack) {
-            $json[$key][$x] = array();
-            $json[$key][$x]["attack"] = $attack->getName();
-            $json[$key][$x]["bonus"] = $attack->getBonus();
-            $json[$key][$x]["damage"] = $attack->getDamage();
-          }
-        }
-      }
-      return $json;
-    }
+
 
     /**
      * Set ownedby
@@ -1315,5 +1294,98 @@ class Creature implements JsonSerializable {
     public function getAlignment()
     {
         return $this->alignment;
+    }
+    
+        public function __set($name, $value) {
+        $this->$name = $value;
+        
+        return $this;
+    }
+
+    public function jsonSerialize() {
+      $json = array();
+      foreach($this as $key => $value) {
+        if($key != "attacks") {
+          $json[$key] = $value;
+        } else {
+          $json[$key] = array();
+          for($x = 0; $x < count($this->attacks); $x++) {
+            $json[$key][$x] = array();
+            $json[$key][$x]["attack"] = $this->attacks[$x]->getName();
+            $json[$key][$x]["bonus"] = $this->attacks[$x]->getBonus();
+            $json[$key][$x]["damage"] = $this->attacks[$x]->getDamage();
+          }
+        }
+      }
+      return $json;
+    }
+
+    /**
+     * Set experience
+     *
+     * @param integer $experience
+     * @return Creature
+     */
+    public function setExperience($experience)
+    {
+        $this->experience = $experience;
+
+        return $this;
+    }
+
+    /**
+     * Get experience
+     *
+     * @return integer 
+     */
+    public function getExperience()
+    {
+        return $this->experience;
+    }
+
+    /**
+     * Set cr
+     *
+     * @param integer $cr
+     * @return Creature
+     */
+    public function setCr($cr)
+    {
+        $this->cr = $cr;
+
+        return $this;
+    }
+
+    /**
+     * Get cr
+     *
+     * @return integer 
+     */
+    public function getCr()
+    {
+        return $this->cr;
+    }
+
+    /**
+     * Set proficiencybonus
+     *
+     * @param integer $proficiencybonus
+     * @return Creature
+     */
+    public function setProficiencybonus($proficiencybonus)
+    {
+        $this->proficiencybonus = $proficiencybonus;
+
+        return $this;
+    }
+
+    /**
+     * Get proficiencybonus
+     *
+     * @return integer 
+     */
+    public function getProficiencybonus()
+    {
+        return $this->proficiencybonus;
     }
 }
