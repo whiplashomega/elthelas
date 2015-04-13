@@ -239,6 +239,241 @@ _fnFilterData:yb,_fnFeatureHtmlInfo:rb,_fnUpdateInfo:Bb,_fnInfoMacros:Cb,_fnInit
 _fnSortAria:Jb,_fnSortListener:Ua,_fnSortAttachListener:Oa,_fnSortingClasses:xa,_fnSortData:Ib,_fnSaveState:ya,_fnLoadState:Kb,_fnSettingsFromNode:za,_fnLog:R,_fnMap:E,_fnBindAction:Va,_fnCallbackReg:z,_fnCallbackFire:w,_fnLengthOverflow:Sa,_fnRenderer:Pa,_fnDataSource:B,_fnRowAttributes:Ma,_fnCalculateEnd:function(){}});h.fn.dataTable=o;h.fn.dataTableSettings=o.settings;h.fn.dataTableExt=o.ext;h.fn.DataTable=function(a){return h(this).dataTable(a).api()};h.each(o,function(a,b){h.fn.DataTable[a]=
 b});return h.fn.dataTable};"function"===typeof define&&define.amd?define("datatables",["jquery"],O):"object"===typeof exports?module.exports=O(require("jquery")):jQuery&&!jQuery.fn.dataTable&&O(jQuery)})(window,document);
 
-$('.dropdown-toggle').dropdown();
+    //$(document).ready(function() {
+      /*var t = $(".datatable").DataTable({
+        "ordering": false,
+        "paging": false,
+        "search": false
+      });*/
 
-$('.accordion').accordion();
+    //});
+    function addrow() {
+      var numchars = Number($("#chartablebody tr:last-child").attr("name").replace(/\D/g,''));
+      var chartbody = $("#chartablebody");
+      var newrow = $("#chartablebody tr:last-child").clone();
+      $(newrow).attr("name", "char" + (numchars + 1));
+      $(newrow).attr("id", "char" + (numchars +1));
+      $(newrow).find("input[type='text']").attr("name", "char" + (numchars + 1) + "name");
+      $(newrow).find("input[type='number']").attr("name", "char" + (numchars + 1) + "init");
+      $(newrow).find("input[type='text']").attr("id", "char" + (numchars + 1) + "name");
+      $(newrow).find("input[type='number']").attr("id", "char" + (numchars + 1) + "init");
+      $(chartbody).append(newrow);
+    };
+    
+    $("#addCharButton").click(function() {
+      addrow();
+    });
+    var sort_rows = function(a, b) {
+      var val1 = Number($(a).find(".charroll").html());
+      var val2 = Number($(b).find(".charroll").html());
+      if (val1 > val2) {
+        return -1;
+      } else if (val2 > val1) {
+        return 1;
+      } else {
+        var val12 = Number($(a).find(".charinit").val());
+        var val22 = Number($(b).find(".charinit").val());
+        if (val12 > val22) {
+          return -1;
+        } else if (val22 > val12) {
+          return 1;
+        } else {
+          return 0;
+        }
+      }
+    }
+    $("#rollinit").click(function() {
+      $(".characterinit").each(function() {
+          var score = Number($(this).find(".charinit").val());
+          var roll = Math.floor((Math.random() * 20) + 1);
+          $(this).find(".charroll").html(score + roll);
+        });
+      var list = $(".characterinit").get();
+      list.sort(sort_rows);
+      for(var i = 0; i < list.length; i++) {
+        list[i].parentNode.appendChild(list[i]);
+      }
+    });
+var days = ["Godsday", "Elvesday", "Gnomesday", "Dragonsday", "Mansday", "Dwarvesday", "Trollsday", "Orcsday"];
+var months = ["Dorunor", "Trimalan", "Sylvanus", "Gaiana", "Maridia", "Moltyr", "Saris", "Tockra", "Amatherin"];
+
+function getJournals() {
+$.get(getallroute, function(journals) {
+    var entries = $("#journalentries");
+    entries.html(" ");
+    journals.sort(sortdate);
+    for (var x = 0; x < journals.length; x++) {
+      entries.append("<p>" + journals[x].date + "<br />\n" + journals[x].text + "</p>");
+      var deletebutton = $("<input type='button' value='Delete' />");
+      deletebutton.attr("data-journal-id", journals[x].id);
+      $(deletebutton).click(function() {
+        var thisdeleteroute = deleteroute.slice(0, -1) + $(this).attr("data-journal-id");
+        $.post(thisdeleteroute, function(t) {
+            if (t == "1") {
+              getJournals();
+            } else {
+              alert("Error: Could not Delete");
+            }
+          });
+      });
+      entries.append(deletebutton);
+      entries.append("<br /><hr />");
+    }
+  }, "json");
+}
+
+function convertdatestring(date) {
+  var chars = /^[a-zA-Z]+/;
+  var month = date.match(chars);
+  month = months.indexOf(month[0]);
+  var year = date.substr(date.length - 4);
+  var day = date.slice(-8, -5).match(/[0-9]+/);
+  return [Number(year), month, Number(day[0])];
+}
+
+function sortdate(date1, date2) {
+  var numdate1 = convertdatestring(date1.date);
+  var numdate2 = convertdatestring(date2.date);
+  if (numdate1[0] > numdate2[0]) {
+    return -1;
+  } else if (numdate1[0] < numdate2[0]) {
+    return 1;
+  } else if(numdate1[1] > numdate2[1]){
+    return -1;
+  } else if (numdate1[1] < numdate2[1]) {
+    return 1;
+  } else if (numdate1[2] > numdate2[2]) {
+    return -1;
+  } else if (numdate1[2] < numdate2[2]) {
+    return 1;
+  } else {
+    return 0;
+  }
+}
+getJournals();
+
+$("#addjournal").click(function() {
+  var month = $("#month").find(":selected").val();
+  var day = $("#day").find(":selected").val();
+  var year = $("#year").find(":selected").val();
+  var date = month + " " + day + ", " + year;
+  var text = $("#text").val();
+  $.post(addroute, {"date": date, "text": text }, function(t) {
+    if (t == "1") {
+      console.log("success");
+      getJournals();
+    }
+  }, "text");
+});
+
+
+
+
+function loadchar(location) {
+  var correctpath = loadpath.slice(0, -1) + $("#charselect").find(":selected").val();
+  $.get(correctpath, function(data) {
+      if (location !== "initiative") {
+        buildchar(data, location);
+      } else {
+        addinit(data);
+      }
+      
+    });
+}
+
+function buildchar(character, location) {
+  var chardiv = $("#templates .character").clone();
+  //TODO: Add data
+  chardiv.find(".acrobatics").text(character.acrobatics);
+  chardiv.find(".alignment").text(character.alignment);
+  chardiv.find(".animalhandling").text(character.animalhandling);
+  chardiv.find(".arcana").text(character.arcana);
+  chardiv.find(".athletics").text(character.athletics);
+  var attacks = character.attacks;
+  for (x in attacks) {
+    var attackrow = $("#templates .attack").clone();
+    attackrow.find(".attackname").text(attacks[x].attack);
+    attackrow.find(".bonus").text(attacks[x].bonus);
+    attackrow.find(".damage").text(attacks[x].damage);
+    chardiv.find(".attacks").append(attackrow);
+  }
+  chardiv.find(".background").text(character.background);
+  chardiv.find(".cha").text(character.cha);
+  chardiv.find(".chasave").text(character.chasave);
+  chardiv.find(".classlevel").text(character.classlevel);
+  chardiv.find(".con").text(character.con);
+  chardiv.find(".consave").text(character.consave);
+  chardiv.find(".cr").text(character.cr);
+  chardiv.find(".deception").text(character.deception);
+  chardiv.find(".dex").text(character.dex);
+  chardiv.find(".dexsave").text(character.dexsave);
+  chardiv.find(".experience").text(character.experience);
+  chardiv.find(".features").text(character.features);
+  chardiv.find(".history").text(character.history);
+  chardiv.find(".hitdice").text(character.hitdice);
+  chardiv.find(".hpmax").text(character.hpmax);
+  chardiv.find(".insight").text(character.insight);
+  chardiv.find(".intel").text(character.intel);
+  chardiv.find(".intimidation").text(character.intimidation);
+  chardiv.find(".intsave").text(character.intsave);
+  chardiv.find(".investigation").text(character.investigation);
+  chardiv.find(".medicine").text(character.medicine);
+  chardiv.find(".name").text(character.name);
+  chardiv.find(".nature").text(character.nature);
+  chardiv.find(".passiveperception").text(character.passiveperception);
+  chardiv.find(".perception").text(character.perception);
+  chardiv.find(".performance").text(character.performance);
+  chardiv.find(".persuasion").text(character.persuasion);
+  chardiv.find(".physicaldescription").text(character.physicaldescription);
+  chardiv.find(".possessions").text(character.possessions);
+  chardiv.find(".proficiencybonus").text(character.proficiencybonus);
+  chardiv.find(".race").text(character.race);
+  chardiv.find(".religion").text(character.religion);
+  chardiv.find(".slightofhand").text(character.slightofhand);
+  chardiv.find(".stealth").text(character.stealth);
+  chardiv.find(".str").text(character.str);
+  chardiv.find(".strsave").text(character.strsave);
+  chardiv.find(".survival").text(character.survival);
+  chardiv.find(".wis").text(character.wis);
+  chardiv.find(".wissave").text(character.wissave);
+  chardiv.find(".accordion").accordion({
+      heightStyle: "content",
+      collapsible: true
+    });
+  //Append
+  chardiv.find(".delete").click(function() {
+    $(this).parent().remove();
+  });
+  $("#" + location).append(chardiv);  
+}
+
+function addinit(character) {
+  addrow();
+  var initiative = Math.floor((character.dex - 10)/2);
+  $("#chartablebody tr:last-child .charname").val(character.name);
+  $("#chartablebody tr:last-child .charinit").val(initiative);
+}
+
+$(document).ready(function () {
+$.get(loadallpath, function(data) {
+  for (character in data) {
+    var option = $("<option></option>");    
+    option.text(data[character].name);
+    option.val(data[character].id);
+    $("#charselect").append(option);
+  }
+});
+
+$("#addparty").click(function(){
+  loadchar("party");
+  });
+
+$("#addencounter").click(function(){
+  loadchar("encounter");
+  });
+
+$("#addinitiative").click(function() {
+  loadchar("initiative");
+});
+
+});

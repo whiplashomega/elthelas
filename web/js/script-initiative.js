@@ -1,3 +1,70 @@
+<?php
+
+  namespace AppBundle\Entity;
+  use Doctrine\ORM\Mapping as ORM;
+  
+  /**
+   *@ORM\Entity
+   *@ORM\Table(name="journal")
+   */
+  class Journal {
+  
+    /**
+     *@ORM\Column(type="integer")
+     *@ORM\Id
+     *@ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+    
+    /**
+     *ORM\Column(type="string", length=100)
+     */
+    protected $date;
+    
+    /**
+     *ORM\Column(type="text")
+     */
+    protected $text;
+    
+    /**
+     *@ORM\Column(type="intenger")
+     */
+    protected $campaign;
+  
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set campaign
+     *
+     * @param \intenger $campaign
+     * @return Journal
+     */
+    public function setCampaign(\intenger $campaign)
+    {
+        $this->campaign = $campaign;
+
+        return $this;
+    }
+
+    /**
+     * Get campaign
+     *
+     * @return \intenger 
+     */
+    public function getCampaign()
+    {
+        return $this->campaign;
+    }
+}
+
 //     Underscore.js 1.8.2
 //     http://underscorejs.org
 //     (c) 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
@@ -173,9 +240,11 @@ _fnSortAria:Jb,_fnSortListener:Ua,_fnSortAttachListener:Oa,_fnSortingClasses:xa,
 b});return h.fn.dataTable};"function"===typeof define&&define.amd?define("datatables",["jquery"],O):"object"===typeof exports?module.exports=O(require("jquery")):jQuery&&!jQuery.fn.dataTable&&O(jQuery)})(window,document);
 
     //$(document).ready(function() {
-      $(".datatable").DataTable({
-        order: [[2, "desc"]]
-      });
+      /*var t = $(".datatable").DataTable({
+        "ordering": false,
+        "paging": false,
+        "search": false
+      });*/
 
     //});
     function addrow() {
@@ -193,4 +262,35 @@ b});return h.fn.dataTable};"function"===typeof define&&define.amd?define("datata
     
     $("#addCharButton").click(function() {
       addrow();
+    });
+    var sort_rows = function(a, b) {
+      var val1 = Number($(a).find(".charroll").html());
+      var val2 = Number($(b).find(".charroll").html());
+      if (val1 > val2) {
+        return -1;
+      } else if (val2 > val1) {
+        return 1;
+      } else {
+        var val12 = Number($(a).find(".charinit").val());
+        var val22 = Number($(b).find(".charinit").val());
+        if (val12 > val22) {
+          return -1;
+        } else if (val22 > val12) {
+          return 1;
+        } else {
+          return 0;
+        }
+      }
+    }
+    $("#rollinit").click(function() {
+      $(".characterinit").each(function() {
+          var score = Number($(this).find(".charinit").val());
+          var roll = Math.floor((Math.random() * 20) + 1);
+          $(this).find(".charroll").html(score + roll);
+        });
+      var list = $(".characterinit").get();
+      list.sort(sort_rows);
+      for(var i = 0; i < list.length; i++) {
+        list[i].parentNode.appendChild(list[i]);
+      }
     });
