@@ -19,6 +19,7 @@ framework:
             cdn:
                 base_urls:
                     http: ['https://ajax.googleapis.com/ajax/libs/']
+                    ssl: ['https://ajax.googleapis.com/ajax/libs/']
     default_locale:  "%locale%"
     trusted_hosts:   ~
     trusted_proxies: ~
