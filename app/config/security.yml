@@ -25,4 +25,3 @@ security:
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
         - { path: ^/dm, role: IS_AUTHENTICATED_REMEMBERED, requires_channel: https }
         - { path: ^/dm/*, role: IS_AUTHENTICATED_REMEMBERED, requires_channel: https }
-        - { path: ^/*, role: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
