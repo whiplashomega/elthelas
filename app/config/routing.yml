@@ -2,7 +2,7 @@ app:
     resource: @AppBundle/Controller/
     type:     annotation
     prefix: /
-    scheme: [https]
+    schemes: [https]
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
-    scheme: [https]
+    schemes: [https]
