@@ -3,7 +3,7 @@
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
 
-$_SERVER['HTTPS'] = true;
+$_SERVER['HTTPS'] = 'on';
 class AppKernel extends Kernel
 {
     public function registerBundles()
