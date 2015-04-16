@@ -21,7 +21,7 @@ security:
             anonymous:    true
 
     access_control:
-        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
-        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
-        - { path: ^/dm, role: IS_AUTHENTICATED_REMEMBERED, requires_channel: https }
-        - { path: ^/dm/*, role: IS_AUTHENTICATED_REMEMBERED, requires_channel: https }
+        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/dm, role: IS_AUTHENTICATED_REMEMBERED }
+        - { path: ^/dm/*, role: IS_AUTHENTICATED_REMEMBERED }
