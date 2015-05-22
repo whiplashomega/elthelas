@@ -174,4 +174,6 @@ b});return h.fn.dataTable};"function"===typeof define&&define.amd?define("datata
 
 $('.dropdown-toggle').dropdown();
 
-$('.accordion').accordion();
+$('.accordion').accordion({
+    active: false
+  });

@@ -1,3 +1,5 @@
 $('.dropdown-toggle').dropdown();
 
-$('.accordion').accordion();
+$('.accordion').accordion({
+    active: false
+  });
