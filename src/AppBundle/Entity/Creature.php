@@ -210,6 +210,16 @@ class Creature implements JsonSerializable {
   protected $survival;
   
   /**
+   *@ORM\Column(type="integer", nullable=true)
+   */
+  protected $ac;
+  
+  /**
+   *@ORM\Column(type="text", nullable=true)
+   */
+  protected $speed;
+  
+  /**
    * @ORM\OneToMany(targetEntity="Attack", mappedBy="creature")
    */
   protected $attacks;
