@@ -317,6 +317,8 @@ function loadchar(location) {
 function buildchar(character, location) {
   var chardiv = $("#templates .character").clone();
   //TODO: Add data
+  chardiv.find(".ac").text(character.ac);
+  chardiv.find(".speed").text(character.speed);
   chardiv.find(".acrobatics").text(character.acrobatics);
   chardiv.find(".alignment").text(character.alignment);
   chardiv.find(".animalhandling").text(character.animalhandling);
