@@ -115,4 +115,23 @@ class ReferencePagesController extends Controller
   public function domainsActions() {
     return $this->render('AppBundle:ref:domains.html.twig',array('pagetitle' => 'Domains'));
   }
+  
+  /**
+   *@Route("/ref/races", name="ref_races")
+   */
+  public function racesAction(Request $request) {
+    return $this->render('AppBundle:ref:races.html.twig',array('pagetitle' => 'Races'));
+  }
+  /**
+   *@Route("/ref/classes", name="ref_classes")
+   */
+  public function classesAction(Request $request) {
+    return $this->render('AppBundle:ref:classes.html.twig',array('pagetitle' => 'Classes'));
+  }
+  /**
+   *@Route("/ref/astronomy", name="astronomy")
+   */
+  public function astronomyAction(Request $request) {
+    return $this->render('AppBundle:ref:astronomy.html.twig',array('pagetitle' => 'Astronomy'));
+  }
 }
