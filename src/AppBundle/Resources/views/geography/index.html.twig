@@ -2,14 +2,18 @@
 {% block sidebar %}
 {% endblock %}
 {% block body %}
-  		<div id="map" style="width: 1100px; height: 800px;"></div>
 		<p>
 			Welcome to the world of Elthelas, feel free to browse the map at the right, or select one of the links below to lookup specific
 			information on an area or location.
 		</p>
-		<p>
-			<a href='full-screen-map.php'>See the map full screen</a>
-		</p>
+    <input type="button" value="Landmarks" id="landmarks" class="btn btn-default" />
+    <input type="button" value="Cities" id="cities" class="btn btn-default" />
+    <input type="button" value="Nations" id="nations" class="btn btn-default" />
+    <input type="button" value="Continents" id="continents" class="btn btn-default" />
+    <input type="button" value="Geographical Features" id="features" class="btn btn-default" />
+  		<div id="map" style="width: 1100px; height: 800px;"></div>
+
+
 		<p>
 			<a href='/world/campaign/index.php'>For minor locations referenced in campaigns click here</a>
 		</p>
@@ -101,5 +105,10 @@
 		    continuousWorld: true
 		    //noWrap: true
 		}).addTo(map);
+    var lightfortress = L.marker([17.5,90]).addTo(map);
+    lightfortress.bindPopup("<h2>Fortress of Light</h2>" +
+                            "<p>The Fortress of Light is a massive joint venture defensive fortress and staging facility manned by dwarves, humans, and elves from Gerasalim, Dormania, Kandor, Curinor, Demal Thor, and Eldoran. It is the central supply dump and gathering point for campaigns and troop movements in the defense against attacking orcs, trolls, gnolls, and various goblinoids coming across arid plain known as the Blighted Gap.</p>" +
+                            "<p>The fortress itself is built surrounding a small springfed lake, and covers nearly 3 square miles. It's outer wall extend up 150 feet of sheer stone braced with adamantium, without joint or crack, and they are nearly 15 foot thick. Several large inner keeps, built similarly to the outer wall, extend up some 200-250 feet. Large counterspelling crystals instantly counter any spell cast at or near the fortress. A dry moat, filled with thick steel spikes, extends out 25 feet from the edge of the wall.</p>"
+                            );
 	</script>
 {% endblock %}
