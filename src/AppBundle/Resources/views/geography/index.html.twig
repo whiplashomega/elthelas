@@ -1,0 +1,105 @@
+{% extends 'base.html.twig' %}
+{% block sidebar %}
+{% endblock %}
+{% block body %}
+  		<div id="map" style="width: 1100px; height: 800px;"></div>
+		<p>
+			Welcome to the world of Elthelas, feel free to browse the map at the right, or select one of the links below to lookup specific
+			information on an area or location.
+		</p>
+		<p>
+			<a href='full-screen-map.php'>See the map full screen</a>
+		</p>
+		<p>
+			<a href='/world/campaign/index.php'>For minor locations referenced in campaigns click here</a>
+		</p>
+		<ul>
+			<li><a href="continents/index.php">Continents</a></li>
+			<li>Nations
+				<ul>
+					<li><a href="nations/alfadir.php">Alfadir</a></li>
+					<li><a href="nations/arad.php">Arad</a></li>
+					<li><a href="nations/curinor.php">Curinor</a></li>
+					<li><a href="nations/degakta.php">Degak'Ta</a></li>
+					<li><a href="nations/demalthor.php">Demal Thor</a></li>
+					<li><a href="nations/dera.php">Dera</a></li>
+					<li><a href="nations/deradragorim.php">Dera'Dragorim</a></li>
+					<li><a href="nations/dormania.php">Dormania</a></li>
+					<li><a href="nations/eldoran.php">Eldoran</a></li>
+					<li><a href="nations/gerasalim.php">Gerasalim</a></li>
+					<li><a href="nations/gnarra.php">Gnarra</a></li>
+					<li><a href="nations/gorgro.php">Gorgro</a></li>
+					<li><a href="nations/hisrudetan.php">Hisru'de'tan</a></li>
+					<li><a href="nations/kandor.php">Kandor</a></li>
+					<li><a href="nations/malinval.php">Malinval</a></li>
+					<li><a href="nations/nerim.php">Nerim</a></li>
+					<li><a href="nations/olda.php">Olda</a></li>
+					<li><a href="nations/sage.php">Sage</a></li>
+					<li><a href="nations/seran.php">Seran</a></li>
+					<li><a href="nations/shendarel.php">Shendarel</a></li>
+					<li><a href="nations/staelia.php">Staelia</a></li>
+					<li><a href="nations/stagenheim.php">Stagenheim</a></li>
+					<li><a href="nations/terron.php">Terron</a></li>
+					<li><a href="nations/zelfir.php">Zelfir</a></li>
+				</ul>
+			</li>
+			<li>Major Landmarks
+				<ul>
+					<li><a href="landmarks/index.php?id=blackshardpass">Black Shard Pass</a></li>
+					<li><a href="landmarks/index.php?id=blightedgap">Blighted Gap</a></li>
+					<li><a href="landmarks/index.php?id=dalokra">Dal Okra</a></li>
+					<li><a href="landmarks/index.php?id=demonpeaks">Demon Peaks</a></li>
+					<li><a href="landmarks/index.php?id=desertofdespair">Desert of Despair</a></li>
+					<li><a href="landmarks/index.php?id=fang">Fang</a></li>
+					<li><a href="landmarks/index.php?id=fireislands">Fire Islands</a></li>
+					<li><a href="landmarks/index.php?id=fortressoflight">Fortress of Light</a></li>
+					<li><a href="landmarks/index.php?id=glasscliff">Glass Cliff</a></li>
+					<li><a href="landmarks/index.php?id=godspire">God Spire</a></li>
+					<li><a href="landmarks/index.php?id=goldenpass">Golden Pass</a></li>
+					<li><a href="landmarks/index.php?id=greatramp">Great Ramp</a></li>
+					<li><a href="landmarks/index.php?id=icewastes">Ice Wastes</a></li>
+					<li><a href="landmarks/index.php?id=irontriangle">Iron Triangle</a></li>
+					<li><a href="landmarks/index.php?id=mithrilhills">Mithril Hills</a></li>
+					<li><a href="landmarks/index.php?id=moonpass">Moon Pass</a></li>
+					<li><a href="landmarks/index.php?id=rustdesert">Rust Desert</a></li>
+					<li><a href="landmarks/index.php?id=sarialake">Saria Lake</a></li>
+					<li><a href="landmarks/index.php?id=serpentsspine">Serpent's Spine</a></li>
+					<li><a href="landmarks/index.php?id=smugglerspass">Smuggler's Pass</a></li>
+					<li><a href="landmarks/index.php?id=sorcerersprison">Sorcerer's Prison</a></li>
+					<li><a href="landmarks/index.php?id=titanspeaks">Titan's Peaks</a></li>
+					<li><a href="landmarks/index.php?id=trollpass">Troll Pass</a></li>
+					<li><a href="landmarks/index.php?id=undeadwoods">Undead Woods</a></li>
+					<li><a href="landmarks/index.php?id=veldt">Veldt</a></li>
+					<li><a href="landmarks/index.php?id=worldcrack">World Crack</a></li>
+				</ul>
+			</li>
+			<li>Major Rivers
+				<ul>
+					<li><a href="/world/landmarks/index.php?id=nadrak">River Nadrak</a></li>
+				</ul>
+			</li>
+		</ul>
+{% endblock %}
+{% block javascripts %}
+  <script src="{{asset('angularjs/1.3.14/angular.min.js', 'cdn')}}"></script>
+  <script src="{{asset('jquery/2.1.3/jquery.min.js', 'cdn')}}"></script>
+  <script src="{{asset('jqueryui/1.11.3/jquery-ui.min.js', 'cdn')}}"></script>
+  {% javascripts '@AppBundle/libraries/*' '@AppBundle/js/initialize.js' output='js/script.js'%}
+    <script src="{{ asset_url }}"></script>
+  {% endjavascripts %}
+  <script src='/js/endscripts.js'></script>
+  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+  <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+  <script>
+  
+		var map = L.map('map').setView([0, 0], 2);
+		L.tileLayer('/images/maps/tiles/{z}/{y}/{x}.png', {
+		    attribution: '|--------| = 320/160/80/40 miles by zoom | map image created by Heather Domaszek',
+			minZoom: 0,
+		    maxZoom: 4,
+		    tms: true,
+		    continuousWorld: true
+		    //noWrap: true
+		}).addTo(map);
+	</script>
+{% endblock %}
