@@ -1398,4 +1398,50 @@ class Creature implements JsonSerializable {
     {
         return $this->proficiencybonus;
     }
+
+    /**
+     * Set ac
+     *
+     * @param integer $ac
+     * @return Creature
+     */
+    public function setAc($ac)
+    {
+        $this->ac = $ac;
+
+        return $this;
+    }
+
+    /**
+     * Get ac
+     *
+     * @return integer 
+     */
+    public function getAc()
+    {
+        return $this->ac;
+    }
+
+    /**
+     * Set speed
+     *
+     * @param string $speed
+     * @return Creature
+     */
+    public function setSpeed($speed)
+    {
+        $this->speed = $speed;
+
+        return $this;
+    }
+
+    /**
+     * Get speed
+     *
+     * @return string 
+     */
+    public function getSpeed()
+    {
+        return $this->speed;
+    }
 }

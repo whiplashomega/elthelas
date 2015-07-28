@@ -94,19 +94,34 @@
   <script src='/js/endscripts.js'></script>
   <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
   <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
-  <script type="text/template" id="blackshardpass">
-	<h3>Black Shard Pass</h3>
+
+  <script type="text/template" id="dalokra">
+	<h4>Dal Okra</h4>
+  <p>
+		Literally in Orcish "Dal Okra" means Home of the Orcs. It is an ancient name for the place of legend where the orc race was first created. Whether that was
+		actually the huge black mountain called Dal Okra today is a question for debate, as that history was lost in the God's War. Dal Okra today is a huge tomb,
+		holding the Prince of Fiends, a dead Sorceron, who once commanded at least part of the orc legions in the God's War before he was struck down by Michael,
+		the Archangel of Alohim.
+	</p>
 	<p>
-		When Dorman I finished conquering the human kingdoms in the north, he wanted to move south into the orc
-		kingdoms. In order to provide an additional route of attack for his armies, he set his best engineers and
-		mages to building a new pass through the mountains. They chose a likely spot, and literally set about
-		destroying a mountain to create a low pass. They succeeded (as did Dorman's advance), but they discovered that
-		the heart of the mountain had been made of almost pure onyx.
+		Today it is known that the Prince of Fiends is alive and well, and was trapped for eons in what is believed to be a magically induced coma.  Dal Okra has
+		now become his palace and capitol in commanding the orc legions.
+	</p>
+  </script>
+
+
+  <script type="text/template" id="fang">
+	<h4>Fang</h4>
+  <p>
+		The white mountain, Fang, is the center of Sand Orc society. The mountain is home to an extensive system of natural caves, which they have greatly enlarged,
+		and several cool springs that supply an abundance of water. As such it serves as trading post and wintering location for the Sand Orcs. It is also the location
+		their chiefs meet in order to discuss any matters that involve all of the tribes. It is a place of peace, and no sand orc is allowed to raise a hand against
+		another while at or near Fang.
 	</p>
   </script>
   <script type="text/template" id="lightfortress">
-	<h3>Fortress of Light</h3>
-    <p>
+	<h4>Fortress of Light</h4>
+  <p>
 		The Fortress of Light is a massive joint venture defensive fortress and staging facility manned by dwarves,
 		humans, and elves from Gerasalim, Dormania, Kandor, Curinor, Demal Thor, and Eldoran. It is the central supply
 		dump and gathering point for campaigns and troop movements in the defense against attacking orcs, trolls,
@@ -120,7 +135,16 @@
 		thick steel spikes, extends out 25 feet from the edge of the wall.
 	</p>                    
   </script>
-
+  <script type="text/template" id="godspire">
+	<h4>God Spire</h4>
+  <p>
+		The God Spire is a relic of the age before the God's War located in north central Eldoran. It is a 500 foot tall metallic spire, with inscriptions covering it
+		written in an unknown heiroglyphic language. It is believed to be a shrine once dedicated to some now dead God, but no one really knows its purpose or what may
+		be inside.
+	</p>
+  </script>
+	Great Ramp
+	
   <script type="text/javascript">
   
 		var map = L.map('map').setView([0, 0], 2);
@@ -132,7 +156,7 @@
 		    continuousWorld: true
 		    //noWrap: true
 		}).addTo(map);
-    var blackshardpass = L.marker([17.5,100]).addTo(map);
+    var blackshardpass = L.marker([28,121]).addTo(map);
 	blackshardpass.bindPopup($("#blackshardpass").html());
 	var lightfortress = L.marker([17.5,90]).addTo(map);
     lightfortress.bindPopup($("#lightfortress").html());

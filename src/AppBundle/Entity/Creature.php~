@@ -210,6 +210,16 @@ class Creature implements JsonSerializable {
   protected $survival;
   
   /**
+   *@ORM\Column(type="integer", nullable=true)
+   */
+  protected $ac;
+  
+  /**
+   *@ORM\Column(type="text", nullable=true)
+   */
+  protected $speed;
+  
+  /**
    * @ORM\OneToMany(targetEntity="Attack", mappedBy="creature")
    */
   protected $attacks;
@@ -1318,5 +1328,74 @@ class Creature implements JsonSerializable {
         }
       }
       return $json;
+    }
+
+    /**
+     * Set experience
+     *
+     * @param integer $experience
+     * @return Creature
+     */
+    public function setExperience($experience)
+    {
+        $this->experience = $experience;
+
+        return $this;
+    }
+
+    /**
+     * Get experience
+     *
+     * @return integer 
+     */
+    public function getExperience()
+    {
+        return $this->experience;
+    }
+
+    /**
+     * Set cr
+     *
+     * @param integer $cr
+     * @return Creature
+     */
+    public function setCr($cr)
+    {
+        $this->cr = $cr;
+
+        return $this;
+    }
+
+    /**
+     * Get cr
+     *
+     * @return integer 
+     */
+    public function getCr()
+    {
+        return $this->cr;
+    }
+
+    /**
+     * Set proficiencybonus
+     *
+     * @param integer $proficiencybonus
+     * @return Creature
+     */
+    public function setProficiencybonus($proficiencybonus)
+    {
+        $this->proficiencybonus = $proficiencybonus;
+
+        return $this;
+    }
+
+    /**
+     * Get proficiencybonus
+     *
+     * @return integer 
+     */
+    public function getProficiencybonus()
+    {
+        return $this->proficiencybonus;
     }
 }
