@@ -11,7 +11,7 @@
     <input type="button" value="Nations" id="nations" class="btn btn-default" />
     <input type="button" value="Continents" id="continents" class="btn btn-default" />
     <input type="button" value="Geographical Features" id="features" class="btn btn-default" />
-  		<div id="map" style="width: 1100px; height: 800px;"></div>
+  		<div id="map" style="width: 1100px; height: 800px; margin: 10px;"></div>
 
 
 		<p>
@@ -94,56 +94,6 @@
   <script src='/js/endscripts.js'></script>
   <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
   <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
-
-  <script type="text/template" id="dalokra">
-	<h4>Dal Okra</h4>
-  <p>
-		Literally in Orcish "Dal Okra" means Home of the Orcs. It is an ancient name for the place of legend where the orc race was first created. Whether that was
-		actually the huge black mountain called Dal Okra today is a question for debate, as that history was lost in the God's War. Dal Okra today is a huge tomb,
-		holding the Prince of Fiends, a dead Sorceron, who once commanded at least part of the orc legions in the God's War before he was struck down by Michael,
-		the Archangel of Alohim.
-	</p>
-	<p>
-		Today it is known that the Prince of Fiends is alive and well, and was trapped for eons in what is believed to be a magically induced coma.  Dal Okra has
-		now become his palace and capitol in commanding the orc legions.
-	</p>
-  </script>
-
-
-  <script type="text/template" id="fang">
-	<h4>Fang</h4>
-  <p>
-		The white mountain, Fang, is the center of Sand Orc society. The mountain is home to an extensive system of natural caves, which they have greatly enlarged,
-		and several cool springs that supply an abundance of water. As such it serves as trading post and wintering location for the Sand Orcs. It is also the location
-		their chiefs meet in order to discuss any matters that involve all of the tribes. It is a place of peace, and no sand orc is allowed to raise a hand against
-		another while at or near Fang.
-	</p>
-  </script>
-  <script type="text/template" id="lightfortress">
-	<h4>Fortress of Light</h4>
-  <p>
-		The Fortress of Light is a massive joint venture defensive fortress and staging facility manned by dwarves,
-		humans, and elves from Gerasalim, Dormania, Kandor, Curinor, Demal Thor, and Eldoran. It is the central supply
-		dump and gathering point for campaigns and troop movements in the defense against attacking orcs, trolls,
-		gnolls, and various goblinoids coming across arid plain known as the Blighted Gap.
-	</p>
-	<p>
-		The fortress itself is built surrounding a small springfed lake, and covers nearly 3 square miles. It's outer
-		wall extend up 150 feet of sheer stone braced with adamantium, without joint or crack, and they are nearly 15
-		foot thick. Several large inner keeps, built similarly to the outer wall, extend up some 200-250 feet. Large
-		counterspelling crystals instantly counter any spell cast at or near the fortress. A dry moat, filled with
-		thick steel spikes, extends out 25 feet from the edge of the wall.
-	</p>                    
-  </script>
-  <script type="text/template" id="godspire">
-	<h4>God Spire</h4>
-  <p>
-		The God Spire is a relic of the age before the God's War located in north central Eldoran. It is a 500 foot tall metallic spire, with inscriptions covering it
-		written in an unknown heiroglyphic language. It is believed to be a shrine once dedicated to some now dead God, but no one really knows its purpose or what may
-		be inside.
-	</p>
-  </script>
-	Great Ramp
 	
   <script type="text/javascript">
   
@@ -156,10 +106,51 @@
 		    continuousWorld: true
 		    //noWrap: true
 		}).addTo(map);
-    var blackshardpass = L.marker([28,121]).addTo(map);
-	blackshardpass.bindPopup($("#blackshardpass").html());
-	var lightfortress = L.marker([17.5,90]).addTo(map);
-    lightfortress.bindPopup($("#lightfortress").html());
+		var markers = [];
+		function clearmarkers() {
+			for(i = 0;i<markers.length;i++) {
+				map.removeLayer(markers[i]);
+			}		
+			markers = [];
+    }
+		function addmarkers() {
+			for(i = 0;i<markers.length;i++) {
+				map.addLayer(markers[i]);
+			}			
+		}
+		function retreivemarker(name, type) {
+			html = name;
+			return html;
+		}
+		$("#landmarks").click(function() {
+			//clear the old markers
+			clearmarkers();
+			
+			//create new ones
+			var lightfortress = L.marker([17.5,90]);
+			markers.push(lightfortress);
+			lightfortress.bindPopup("Fortress of Light");
+			
+			//add them to the map
+			addmarkers();
+		});
+		$("#features").click(function() {
+			//clear the old markers
+			clearmarkers();
+			
+			//create new ones
+			var type = "Feature";
+			markers.push(L.marker([28,121]).bindPopup(retreivemarker("blackshardpass",type)));
+			markers.push(L.marker([16,85]).bindPopup(retreivemarker("blightedgap",type)));
+			markers.push(L.marker([-16,-160]).bindPopup(retreivemarker("demonpeaks",type)));
+			markers.push(L.marker([-22,55]).bindPopup(retreivemarker("desertdespair",type)));
+			markers.push(L.marker([-58,-61]).bindPopup(retreivemarker("fireislands",type)));
+			markers.push(L.marker([-15,45]).bindPopup(retreivemarker("glasscliff",type)));
+			markers.push(L.marker([5,68]).bindPopup(retreivemarker("goldenpass",type)));
+			
+			//add them to the map
+			addmarkers();
+		});
 	
 	</script>
 {% endblock %}
