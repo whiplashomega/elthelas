@@ -271,13 +271,258 @@ HTML;
       $nextfeature->setHtml($html);
       $manager->persist($nextfeature);
       $nextfeature = new Feature();
-      $nextfeature->setName("dragonhomemountains");
+      $nextfeature->setName("ruuriver");
       $html = <<<HTML
-	<h4>Dragonhome Mountains</h4>
+	<h4>Ruu River</h4>
   <p>
-		The Mountains that separate the wet coastal region of eastern Riftlan from the dry grasslands of the veldt beyond, the Dragonhome Mountains are named for the large population of dragons
-    that call it home.  The highest peaks contain great airies where the ancient dragons keep their nests and raise their young.  Devotees from Dera'Dragorim come to the many temples to Bahamut
-    and Tiamat located in these mountains to make offerings and provide services.  The first generations of many dragonborn families have come from these meetings.
+    The Ruu river runs near the eastern border of Hisru'de'tan, along the entire length of the country, with various tributaries pushing deep into hisru
+    territory.  The river provides much needed water for the Hisru's herds, and so access to it is a source of constant contention among the tribes.
+  </p>
+HTML;
+      $nextfeature->setHtml($html);
+      $manager->persist($nextfeature);
+      $nextfeature = new Feature();
+      $nextfeature->setName("alfriver");
+      $html = <<<HTML
+	<h4>Alf River</h4>
+  <p>
+    One of two rivers for which Alfadir is named, the Alf is the more northern of the two.  It is a well developed river that provides irrigation to large
+    swathes of countryside.  The rights to the water of the Alf are tightly controlled by the Alfadiran government, or more accurately, by the large
+    farmer barons who use the government to provide themselves large water subsidies and charge everyone else for access.
+	</p>
+HTML;
+      $nextfeature->setHtml($html);
+      $manager->persist($nextfeature);
+      $nextfeature = new Feature();
+      $nextfeature->setName("dirriver");
+      $html = <<<HTML
+	<h4>Dir River</h4>
+  <p>
+    One of two rivers for which Alfadir is named, the Dir is the more southern of the two.  It is a well developed river that provides irrigation to large
+    swathes of countryside.  The rights to the water of the Dir are tightly controlled by the Alfadiran government, or more accurately, by the large
+    farmer barons who use the government to provide themselves large water subsidies and charge everyone else for access.
+	</p>
+HTML;
+      $nextfeature->setHtml($html);
+      $manager->persist($nextfeature);
+      $nextfeature = new Feature();
+      $nextfeature->setName("staelicriver");
+      $html = <<<HTML
+	<h4>Staelic River</h4>
+  <p>
+    Running through the western woods of Staelia, the Staelic river serves as an important break point in their defense against the trolls and giants
+    who come down from the Gorgro plateau.  The river has fortified embankments all along the eastern shore, with fortresses hovering over irrigation
+    channels that run further east.
+	</p>
+HTML;
+      $nextfeature->setHtml($html);
+      $manager->persist($nextfeature);
+      $nextfeature = new Feature();
+      $nextfeature->setName("redriver");
+      $html = <<<HTML
+	<h4>Red River</h4>
+  <p>
+    Zelfir produces the best steel outside of Parakas, and the reason shows up in their famous red river.  The river gets its color from the iron ore
+    that lines its bed and washes down from the mines in the hills.  The ore is not special, but the quantity of untapped reserves means iron is cheap,
+    and so smelters have more leeway to experiment with alloys without wasting expensive raw materials.  While they have not been able to mimic the
+    famous red steel produced from the iron of the rust desert, the smelters of the red river valley are truly skilled artisans.
+  </p>
+  <p>
+    Outside of the steel industry, the red river also provides the bulk of water supplies for Zelfin and much of the countryside of Zelfir.
+  </p>
+HTML;
+      $nextfeature->setHtml($html);
+      $manager->persist($nextfeature);
+      $nextfeature = new Feature();
+      $nextfeature->setName("boundaryriver");
+      $html = <<<HTML
+	<h4>Boundary River</h4>
+  <p>
+    The Boundary River runs on a northeast - southwest course through Riftlan, some 80-100 miles north west of Last Watch and the official patrolled border
+    of Zelfir.  It is generally considered to mark the final boundary between civilization and the areas inhabited by man, and the wild, untamed central
+    Veldt.  Only the trading post and fortress Saldan is known to lie further north anywhere west of the Dragonhome Mountains.  Between the river and the
+    fort lies 150 miles of grassland without a single human inhabitant outside of the occasional hermit.
+  </p>
+HTML;
+      $nextfeature->setHtml($html);
+      $manager->persist($nextfeature);
+      $nextfeature = new Feature();
+      $nextfeature->setName("mashashanariver");
+      $html = <<<HTML
+	<h4>Mashashana River</h4>
+  <p>
+    The Mashashana River, the second longest in the world and by far the largest by volume, draws water from two massive mountain ranges, and pulls in
+    additional flow from the Elemental Plane of Water at Mirage Lake.  Running north through the great expanse of the Veldt, it's headwaters lie
+    in the dragonhome mountains above Saldan, while it's mouth flows into a massive delta system on the northwestern shores of Riftlan.
+  </p>
+HTML;
+      $nextfeature->setHtml($html);
+      $manager->persist($nextfeature);
+      $nextfeature = new Feature();
+      $nextfeature->setName("sindiokra");
+      $html = <<<HTML
+	<h4>Sindi Okra</h4>
+  <p>
+    Sindi Okra, when considered together with the Ara River (which really is the same river on the other side of Saria Lake), is the longest river system
+    in the world.  The Sindi Okra branch, literally translated from Elvish to mean Orc Waters, runs from Saria Lake south through the blighted gap, past
+    Makir, Marinval, and Gulutheim to finally flow into the south sea some 2000 miles south of the headwaters of the Ara.  Despite crossing through a
+    major war zone, the river acts as a primary conduit for trade across large swaths of the continent, although by the time it reaches Gulutheim the
+    water is so poluted as to be completely undrinkable.
+  </p>
+HTML;
+      $nextfeature->setHtml($html);
+      $manager->persist($nextfeature);
+      $nextfeature = new Feature();
+      $nextfeature->setName("sindisilmeranna");
+      $html = <<<HTML
+	<h4>Sindi Silme-Ranna</h4>
+  <p>
+    Flowing westward from it's headwaters above Aridhem to its final termination at Estapor, The River of the Moon Elves was the migration route for
+    the eastward flowing settlers from Eldoran who settled Demal Thor.  The river's route points in the direction of the largest moon of Elthelas, Ara,
+    giving the moon elves their original name, 'those who follow the moon'.  Today it provides an avenue for trade for the two elven nations, and an
+    important connection to the sea for Demal Thor.
+  </p>
+HTML;
+      $nextfeature->setHtml($html);
+      $manager->persist($nextfeature);
+      $nextfeature = new Feature();
+      $nextfeature->setName("sindidalelda");
+      $html = <<<HTML
+	<h4>Sindi Dal'Elda</h4>
+  <p>
+    The 'River of Elf Home' was the site of the first elven settlements after the Gods War, most notably, at its mouth sits the great city of Loridesa,
+    capitol of Eldoran, and seat of the largest kingdom by land area in the world.
+	</p>
+HTML;
+      $nextfeature->setHtml($html);
+      $manager->persist($nextfeature);
+      $nextfeature = new Feature();
+      $nextfeature->setName("sindiohta");
+      $html = <<<HTML
+	<h4>Sindi Ohta</h4>
+  <p>
+    Literally translated 'War River', Sindi Ohta was for many years the semi-official boundary between Eldoran and Curinor, with the dwarves controlling
+    the Mithril Hills beyond.  As the elves continued to gain power and the dwarves military might slowly receded, the border pushed further and further to
+    the north and east, beyond the river, until today it sits 50-100 miles beyond, running through the northern part of the mithril hills and terminating
+    at the Fortress of Light, with the western part of the border changing from Eldoran to Demal Thor half way between.
+	</p>
+  <p>
+    The land surrounding the river is sparsely populated, with the only settlement of any size being Storvel, a minor elvish city that sits astride the
+    trade routes coming west from Gerasalim and Curinor.
+  </p>
+HTML;
+      $nextfeature->setHtml($html);
+      $manager->persist($nextfeature);
+      $nextfeature = new Feature();
+      $nextfeature->setName("rockriver");
+      $html = <<<HTML
+	<h4>Rock River</h4>
+  <p>
+    The rock river runs through the heart of curinor, pulling its source waters from the Runic Mountains and the Mithril Hills.  It feeds farms and
+    communities of plains dwarves all along its length, who named it 'Rock' so they could claim to live close to the 'Rock', raising their status among
+    their peers.  This reinforced the increased wealth and opportunity that access to fresh water provided them, and meshed with the traditional dwarven
+    caste system, allowing the surface living plains dwarves to have their own system of status despite being the lowest outcasts among dwarven society
+    as a whole.
+  </p>
+HTML;
+      $nextfeature->setHtml($html);
+      $manager->persist($nextfeature);
+      $nextfeature = new Feature();
+      $nextfeature->setName("runicmountains");
+      $html = <<<HTML
+	<h4>Runic Mountains</h4>
+  <p>
+    After the Gods War, a group of dwarves led by a young warrior named Curin found themselves living in an unusual natural cave system deep in the
+    mountains of central Elathia.  The walls of the caves were covered in a script that none alive could read, but which the dwarves called 'runes'.
+    The mountains themselves soon took the name, becoming the 'Runic Mountains', and over time dwarven scholars would learn to decipher the writings,
+    and discovered their magical import.
+  </p>
+  <p>
+    Today that original cave system is lost, perhaps destroyed to make room for some dwarven hold or other, but the name remains as a herald that
+    'here there be dwarves', and pointing the way to the largest, most imposing natural mountain formation in the world.
+  </p>
+HTML;
+      $nextfeature->setHtml($html);
+      $manager->persist($nextfeature);
+      $nextfeature = new Feature();
+      $nextfeature->setName("blackpeaks");
+      $html = <<<HTML
+	<h4>Black Peaks</h4>
+  <p>
+    The imposing mountain range blocking the way between Gerasalim and Malinval gets its name from the black specked granite, onyx, and other volcanic rock
+    that make up much of the rock in the area.  It is theorized that the mountains were created during the Gods War by the Gods themselves pulling magma
+    and rock up from the heart of the earth to destroy each others armies.  Regardless of how they were created, the mountains today serve as an imposing
+    border and stopgap from orcish invasion for Gerasalim.
+	</p>
+HTML;
+      $nextfeature->setHtml($html);
+      $manager->persist($nextfeature);
+      $nextfeature = new Feature();
+      $nextfeature->setName("arururiver");
+      $html = <<<HTML
+	<h4>Aruru River</h4>
+  <p>
+    Named for the moon of the same name, the Aruru River is one of three inlets to Lake Saria.  The easternmost and shortest of the three, it carries
+    massive amounts of water down from the Black Peaks into Saria Lake, carrying grain and other trade goods from Southeast Gerasalim with it.
+	</p>
+HTML;
+      $nextfeature->setHtml($html);
+      $manager->persist($nextfeature);
+      $nextfeature = new Feature();
+      $nextfeature->setName("arariver");
+      $html = <<<HTML
+	<h4>Ara River</h4>
+  <p>
+    The Ara river, like the Sindi Silme-Ranna, runs for much of its length directly under the orbit of the moon Ara.  Feeding into Saria Lake at it's
+    southwest termination, it combines with the Sindi Okra to form the longest river system in the world.  It brings a variety of goods down from the heart
+    of Gerasalim down to Saria Lake and the capitol at Strovenguard, and forms an important leg in the trade routes with Dormania.
+  </p>
+HTML;
+      $nextfeature->setHtml($html);
+      $manager->persist($nextfeature);
+      $nextfeature = new Feature();
+      $nextfeature->setName("dinariver");
+      $html = <<<HTML
+	<h4>Dina River</h4>
+  <p>
+    The Dina River has its head waters in the Runic Mountains, running east and south from there into the northern tip of Saria Lake.  The exact origin of
+    the river is unknown outside of the Deep Dwarves, as the head waters run out of massive fortified dwarven fortresses, although it is known that the
+    underground river runs as far as Highhammer on the far side of the mountains, allowing the dwarves to send their trade goods east as well as west.
+	</p>
+HTML;
+      $nextfeature->setHtml($html);
+      $manager->persist($nextfeature);
+      $nextfeature = new Feature();
+      $nextfeature->setName("kandorriver");
+      $html = <<<HTML
+	<h4>Kandor River</h4>
+  <p>
+    The Kandor River later gave its name to the kingdom it runs through.  The city of Northport sits astride its head waters in the south, and it flows
+    northwest to Kaland in the north, crossing the kingdom of Kandor, both east to west and south to north in the process.
+	</p>
+HTML;
+      $nextfeature->setHtml($html);
+      $manager->persist($nextfeature);
+      $nextfeature = new Feature();
+      $nextfeature->setName("yellowriver");
+      $html = <<<HTML
+	<h4>Yellow River</h4>
+  <p>
+    A silty, oft-flooding mess of a river, the yellow river is named for the yellow color it gets every time it floods (which it does at least once every
+    spring).  These floods provide fertile soil for the eastern farming communities of Dormania.  The river in fact, is two rivers that meet a mere 30
+    miles from the coast, named, appropriately, the West Yellow River and the East Yellow River.
+	</p>
+HTML;
+      $nextfeature->setHtml($html);
+      $manager->persist($nextfeature);
+      $nextfeature = new Feature();
+      $nextfeature->setName("dormanriver");
+      $html = <<<HTML
+	<h4>Dorman River</h4>
+  <p>
+    Running northeast from the mountains above Desadorel, the imperial capitol of Dormania, to the northeast coast of Elathia, the original name of the
+    river was lost years ago.  After Dorman's assencion to godhood was confirmed by imperial priests, the river was renamed in his honor, and all records
+    of the original name were altered or expunged.
 	</p>
 HTML;
       $nextfeature->setHtml($html);

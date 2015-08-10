@@ -134,4 +134,10 @@ class ReferencePagesController extends Controller
   public function astronomyAction(Request $request) {
     return $this->render('AppBundle:ref:astronomy.html.twig',array('pagetitle' => 'Astronomy'));
   }
+    /**
+   *@Route("/ref/lang", name="ref_lang")
+   */
+  public function languagesAction(Request $request) {
+    return $this->render('AppBundle:ref:astronomy.html.twig',array('pagetitle' => 'Astronomy'));
+  }
 }
