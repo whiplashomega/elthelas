@@ -91,7 +91,20 @@ HTML;
 HTML;
       $nextlandmark->setHtml($html);
       $manager->persist($nextlandmark);
-      
+      /*
+Abyssal Gate of Dera
+Abyssal Gate of Marinda
+Cur'Estan
+Dal Okra
+Dera
+Fang
+Fortress of Light
+Gaia's Grove
+God Spire
+Great Ramp
+Iron Triangle
+Sorcerer's Prison
+       */
       $manager->flush();
       }
   }
