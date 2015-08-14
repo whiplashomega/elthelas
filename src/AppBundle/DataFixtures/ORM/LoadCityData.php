@@ -3,7 +3,7 @@
   
   use Doctrine\Common\DataFixtures\FixtureInterface;
   use Doctrine\Common\Persistence\ObjectManager;
-  use AppBundle\Entity\Feature;
+  use AppBundle\Entity\City;
   
   class LoadCityData implements FixtureInterface {
     /**
@@ -285,31 +285,8 @@ HTML;
 HTML;
       $nextcity->setHtml($html);
       $manager->persist($nextcity);
-      $nextcity = new City();
-      $nextcity->setName("peloria");
-      $html = <<<HTML
-  <h4>Peloria</h4>
-    	<p>
-		Population: 0 
-	</p>
-	<p>
-		National Allegience: none
-	</p>
-	<p>Majority Racial Group: Undead</p>
-	<p>Ruling Group: Undead</p>
-  <p>
-    The city of peloria was a rowdy bustling trading hub before the Nerim Cataclysm.  It was, at the time, one of the wealthiest and most cosmopolitan
-    cities of Malinval, even elves could walk the streets with a reasonable expectation of going unmolested.
-  </p>
-  <p>
-    After the cataclysm, armies of undead poured out of the subcontinent of Nerim, across what was then a relatively narrow channel between it and
-    Elathia. The unwalled and poorly defended city, far from the war fronts the orcs were used to fighting on, was quickly overrun.  Those who did not
-    escape were killed, and while the undead were driven back and eventually destroyed, the Champions of Cora who led the charge felt no pity for the
-    Mat'raktha worshipping orcs, and bypassed the city on their way to Nerim.  The city remains a nest of the undead to this day.
-  </p>
-HTML;
-      $nextcity->setHtml($html);
-      $manager->persist($nextcity);
+
+      $manager->flush();
       
     }
   }

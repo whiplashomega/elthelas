@@ -138,6 +138,6 @@ class ReferencePagesController extends Controller
    *@Route("/ref/lang", name="ref_lang")
    */
   public function languagesAction(Request $request) {
-    return $this->render('AppBundle:ref:astronomy.html.twig',array('pagetitle' => 'Astronomy'));
+    return $this->render('AppBundle:ref:languages.html.twig',array('pagetitle' => 'Languages'));
   }
 }
