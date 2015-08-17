@@ -9,11 +9,11 @@
     <input type="button" value="Landmarks" id="landmarks" class="btn btn-default" />
     <input type="button" value="Cities" id="cities" class="btn btn-default" />
     <input type="button" value="Nations" id="nations" class="btn btn-default" />
-    <input type="button" value="Continents" id="continents" class="btn btn-default" />
+    <input type="button" value="Continents and Oceans" id="continents" class="btn btn-default" />
     <input type="button" value="Geographical Features" id="features" class="btn btn-default" />
     <input type="button" value="Clear" id="clear" class="btn btn-default" />
-  		<div id="map" style="width: 1100px; height: 800px; margin: 10px;"></div>
-
+  		<div id="map" style="width: 100%; height: 800px; margin: 10px; float: right;"></div>
+    
 {% endblock %}
 {% block javascripts %}
   <script src="{{asset('angularjs/1.3.14/angular.min.js', 'cdn')}}"></script>
@@ -27,7 +27,8 @@
   <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
 	
   <script type="text/javascript">
-  
+    $("#main").removeClass("col-md-10").addClass("col-md-9");
+    $("#sidebar").removeClass("col-md-9").addClass("col-md-3");
 		var map = L.map('map').setView([0, 0], 2);
 		L.tileLayer('/images/maps/tiles/{z}/{y}/{x}.png', {
 		    attribution: '|--------| = 320/160/80/40 miles by zoom | map image created by Heather Domaszek',
@@ -44,90 +45,127 @@
 			}		
 			markers = [];
     }
-		function addmarkers() {
-			for(i = 0;i<markers.length;i++) {
-				map.addLayer(markers[i]);
-			}			
+
+		function addmarker(markers, name, coordinates, type) {
+			$.get("/world/" + type + "/" + name + ".html", function(data) {
+          marker = L.marker(coordinates);
+          $(marker).click(function() {
+            $("#sidebar").html(data);
+          });
+          markers.push(marker);
+          map.addLayer(marker);
+        });
 		}
-		function retreivemarker(name, type) {
-			html = name;
-			return html;
-		}
+    $("#nations").click(function() {
+      clearmarkers();
+      var type="nations";
+      addmarker(markers, "alfadir", [-56,-94], type);
+      addmarker(markers, "arad", [5,132], type);
+      addmarker(markers, "curinor", [50,55], type);
+      addmarker(markers, "degakta", [-60,60], type);
+      addmarker(markers, "demalthor", [20,55], type);
+      addmarker(markers, "dera", [26,-125], type);
+      addmarker(markers, "deradragorim", [30,-85], type);
+      addmarker(markers, "dormania", [60,135], type);
+      addmarker(markers, "dragonhome", [0,-130], type);
+      addmarker(markers, "eldoran", [30,-10], type);
+      addmarker(markers, "gerasalim", [40,110], type);
+      addmarker(markers, "gnarra", [-5,-30], type);
+      addmarker(markers, "gorgro", [-70,-100], type);
+      addmarker(markers, "hisrudetan", [-34,-92], type);
+      addmarker(markers, "kandor", [65,91], type);
+      addmarker(markers, "malinval", [-10,90], type);
+      addmarker(markers, "morrindim", [-45,-20], type);
+      addmarker(markers, "nerim", [-60,125], type);
+      addmarker(markers, "olda", [-17,-2], type);
+      addmarker(markers, "riftlanwilds", [-22,-145], type);
+      addmarker(markers, "sage", [-34,-70], type);
+      addmarker(markers, "seran", [-43,140], type);
+      addmarker(markers, "shendarel", [-2,-4], type);
+      addmarker(markers, "staelia", [-67,-75], type);
+      addmarker(markers, "stagenheim", [-56,-70], type);
+      addmarker(markers, "terron", [-5,146], type);
+      addmarker(markers, "zelfir", [-54,-127], type);
+      
+    });
 		$("#landmarks").click(function() {
 			//clear the old markers
 			clearmarkers();
 			
 			//create new ones
-			var type = "Landmark";
-			markers.push(L.marker([65,102]).bindPopup(retreivemarker("curestan",type)));
-			markers.push(L.marker([27,-134]).bindPopup(retreivemarker("abyssalgateofdera",type)));
-			markers.push(L.marker([-60,84.5]).bindPopup(retreivemarker("abyssalgateofmarinda",type)));
-			markers.push(L.marker([0,79.5]).bindPopup(retreivemarker("dalokra",type)));
-			markers.push(L.marker([26,-125]).bindPopup(retreivemarker("dera",type)));
-			markers.push(L.marker([-65,114]).bindPopup(retreivemarker("fang",type)));
-			markers.push(L.marker([17.5,90]).bindPopup(retreivemarker("fortressoflight",type)));
-			markers.push(L.marker([-5,-30]).bindPopup(retreivemarker("gaiasgrove",type)));
-			markers.push(L.marker([40,-5]).bindPopup(retreivemarker("godspire",type)));
-			markers.push(L.marker([36.5,144]).bindPopup(retreivemarker("greatramp",type)));
-			markers.push(L.marker([-53,143.5]).bindPopup(retreivemarker("irontraingle",type)));
-			markers.push(L.marker([-60,125]).bindPopup(retreivemarker("nerim",type)));
-			markers.push(L.marker([-20,118]).bindPopup(retreivemarker("peloria",type)));
-			markers.push(L.marker([-43,-158]).bindPopup(retreivemarker("sorcerersprison",type)));
-			
-			//add them to the map
-			addmarkers();
+			var type = "landmarks";
+      addmarker(markers, "curestan", [65,102], type);
+      addmarker(markers, "abyssalgateofdera", [27,-134], type);
+			addmarker(markers, "abyssalgateofmarinda", [-60,84.5], type);
+			addmarker(markers, "dalokra", [0,79.5], type);
+			addmarker(markers, "dera", [26,-125], type);
+			addmarker(markers, "fang", [-65,114], type);
+			addmarker(markers, "fortressoflight", [17.5,90], type);
+			addmarker(markers, "gaiasgrove", [-5,-30], type);
+			addmarker(markers, "godspire", [40,-5], type);
+			addmarker(markers, "greatramp", [36.5,144], type);
+			addmarker(markers, "irontriangle", [-53,143.5], type);
+			addmarker(markers, "nerim", [-60,125], type);
+			addmarker(markers, "peloria", [-20,118], type);
+			addmarker(markers, "sorcerersprison", [-43,-158], type);
+
 		});
+    $("#continents").click(function() {
+      clearmarkers();
+      var type = "continents";
+    });
+    $("#cities").click(function() {
+      clearmarkers();
+      var type = "cities";
+    });
 		$("#features").click(function() {
 			//clear the old markers
 			clearmarkers();
 			
 			//create new ones
-			var type = "Feature";
-			markers.push(L.marker([28,121]).bindPopup(retreivemarker("blackshardpass",type)));
-			markers.push(L.marker([16,85]).bindPopup(retreivemarker("blightedgap",type)));
-			markers.push(L.marker([-16,-160]).bindPopup(retreivemarker("demonpeaks",type)));
-			markers.push(L.marker([-22,55]).bindPopup(retreivemarker("desertdespair",type)));
-			markers.push(L.marker([-58,-61]).bindPopup(retreivemarker("fireislands",type)));
-			markers.push(L.marker([-15,45]).bindPopup(retreivemarker("glasscliff",type)));
-			markers.push(L.marker([5,68]).bindPopup(retreivemarker("goldenpass",type)));
-			markers.push(L.marker([-74,-110]).bindPopup(retreivemarker("icewastes",type)));
-			markers.push(L.marker([42,45]).bindPopup(retreivemarker("mithrilhills",type)));
-			markers.push(L.marker([22,45]).bindPopup(retreivemarker("moonpass",type)));
-			markers.push(L.marker([0,115.5]).bindPopup(retreivemarker("nadrakriver",type)));
-			markers.push(L.marker([10,100]).bindPopup(retreivemarker("rustdesert",type)));
-			markers.push(L.marker([37,103]).bindPopup(retreivemarker("sarialake",type)));
-			markers.push(L.marker([-40,-44]).bindPopup(retreivemarker("serpentsspine",type)));
-			markers.push(L.marker([-55,123]).bindPopup(retreivemarker("titanspeaks",type)));
-			markers.push(L.marker([-68,-95]).bindPopup(retreivemarker("trollpass",type)));
-			markers.push(L.marker([37,0]).bindPopup(retreivemarker("undeadwoods",type)));
-			markers.push(L.marker([0,-145]).bindPopup(retreivemarker("veldt",type)));
-			markers.push(L.marker([32,143]).bindPopup(retreivemarker("worldcrack",type)));
-			markers.push(L.marker([16,-128]).bindPopup(retreivemarker("smugglerspass",type)));
-			markers.push(L.marker([14,-143]).bindPopup(retreivemarker("miragelake",type)));
-			markers.push(L.marker([-10,-132]).bindPopup(retreivemarker("dragonhomemountains",type)));
-			markers.push(L.marker([-36,-82]).bindPopup(retreivemarker("ruuriver",type)));
-			markers.push(L.marker([-54.5,-95]).bindPopup(retreivemarker("alfriver",type)));
-			markers.push(L.marker([-56.5,-90]).bindPopup(retreivemarker("dirriver",type)));
-			markers.push(L.marker([-66,-81]).bindPopup(retreivemarker("staelicriver",type)));
-			markers.push(L.marker([-54,-136]).bindPopup(retreivemarker("redriver",type)));
-			markers.push(L.marker([-41.5,-147]).bindPopup(retreivemarker("boundaryriver",type)));
-			markers.push(L.marker([-11,-145.5]).bindPopup(retreivemarker("mashashanariver",type)));
-			markers.push(L.marker([-4,90.5]).bindPopup(retreivemarker("sindiokra",type)));
-			markers.push(L.marker([6,46]).bindPopup(retreivemarker("sindisilmeranna",type)));
-			markers.push(L.marker([40,-28]).bindPopup(retreivemarker("sindidalelda",type)));
-			markers.push(L.marker([35,47]).bindPopup(retreivemarker("sindiohta",type)));
-			markers.push(L.marker([52,50]).bindPopup(retreivemarker("rockriver",type)));
-			markers.push(L.marker([55,75]).bindPopup(retreivemarker("runicmountains",type)));
-			markers.push(L.marker([22,110]).bindPopup(retreivemarker("blackpeaks",type)));
-			markers.push(L.marker([35,112.5]).bindPopup(retreivemarker("arururiver",type)));
-			markers.push(L.marker([44,115]).bindPopup(retreivemarker("arariver",type)));
-			markers.push(L.marker([43,96]).bindPopup(retreivemarker("dinariver",type)));
-			markers.push(L.marker([62,94]).bindPopup(retreivemarker("kandorriver",type)));
-			markers.push(L.marker([66.5,122]).bindPopup(retreivemarker("yellowriver",type)));
-			markers.push(L.marker([62,150]).bindPopup(retreivemarker("dormanriver",type)));
-			
-			//add them to the map
-			addmarkers();
+			var type = "features";
+			addmarker(markers, "blackshardpass", [28,121], type);
+			addmarker(markers, "blightedgap", [16,85], type);
+			addmarker(markers, "demonpeaks", [-16,-160], type);
+			addmarker(markers, "desertdespair", [-22,55], type);
+			addmarker(markers, "fireislands", [-58,-61], type);
+			addmarker(markers, "glasscliff", [-15,45], type);
+			addmarker(markers, "goldenpass", [5,68], type);
+			addmarker(markers, "icewastes", [-74,-110], type);
+			addmarker(markers, "mithrilhills", [42,45], type);
+			addmarker(markers, "moonpass", [22,45], type);
+			addmarker(markers, "nadrakriver", [0,115.5], type);
+			addmarker(markers, "rustdesert", [10,100], type);
+			addmarker(markers, "sarialake", [37,103], type);
+			addmarker(markers, "serpentsspine", [-40,-46], type);
+			addmarker(markers, "titanspeaks", [-55,123], type);
+			addmarker(markers, "trollpass", [-68,-95], type);
+			addmarker(markers, "undeadwoods", [37,0], type);
+			addmarker(markers, "veldt", [0,-145], type);
+			addmarker(markers, "worldcrack", [32,143], type);
+			addmarker(markers, "smugglerspass", [16,-128], type);
+			addmarker(markers, "miragelake", [14,-143], type);
+			addmarker(markers, "dragonhomemountains", [-10,-132], type);
+			addmarker(markers, "ruuriver", [-36,-82], type);
+			addmarker(markers, "alfriver", [-54.5,-95], type);
+			addmarker(markers, "dirriver", [-56.5,-90], type);
+			addmarker(markers, "staelicriver", [-66,-81], type);
+			addmarker(markers, "redriver", [-54,-136], type);
+			addmarker(markers, "boundaryriver", [-41.5,-147], type);
+			addmarker(markers, "mashashanariver", [-11,-145.5], type);
+			addmarker(markers, "sindiokra", [-4,90.5], type);
+			addmarker(markers, "sindidalelda", [40,-28], type);
+			addmarker(markers, "sindisilmeranna", [6,46], type);
+			addmarker(markers, "sindiohta", [35,47], type);
+			addmarker(markers, "rockriver", [52,50], type);
+			addmarker(markers, "runicmountains", [55,75], type);
+			addmarker(markers, "blackpeaks", [22,110], type);
+			addmarker(markers, "arururiver", [35,112.5], type);
+			addmarker(markers, "arariver", [44,115], type);
+			addmarker(markers, "dinariver", [43,96], type);
+			addmarker(markers, "kandorriver", [62,94], type);
+			addmarker(markers, "yellowriver", [66.5,122], type);
+			addmarker(markers, "dormanriver", [62,150], type);
 		});
 		$("#clear").click(function() {
 			clearmarkers();

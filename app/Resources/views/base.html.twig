@@ -11,10 +11,10 @@
         <div class="container-fluid">
             {% include "::header.html.twig" %}
             {% include "::topnav.html.twig" %}
-            <aside class="col-md-2">
+            <aside id="sidebar" class="col-md-2">
                 {% block sidebar %} {% endblock %}
             </aside>
-            <main class="col-md-10">
+            <main id="main" class="col-md-10">
                 {% block body %}{% endblock %}
             </main>
             {% include "::footer.html.twig" %}
