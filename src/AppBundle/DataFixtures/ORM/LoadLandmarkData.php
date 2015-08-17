@@ -66,7 +66,7 @@ HTML;
       $nextlandmark->setHtml($html);
       $manager->persist($nextlandmark);
       $nextlandmark = new Landmark();
-      $nextlandmark->setName("Dera");
+      $nextlandmark->setName("dera");
       $html = <<<HTML
   <h4>Dera</h4>
   <p>
@@ -104,23 +104,6 @@ HTML;
     braced with adamantium, without joint or crack, and they are nearly 15 foot thick. Several large inner keeps, built similarly to the outer wall,
     extend up some 200-250 feet. Large counterspelling crystals instantly counter any spell cast at or near the fortress. A dry moat, filled with thick
     steel spikes, extends out 25 feet from the edge of the wall.
-  </p>
-HTML;
-      $nextlandmark->setHtml($html);
-      $manager->persist($nextlandmark);
-      $nextlandmark = new Landmark();
-      $nextlandmark->setName("gaiasgrove");
-      $html = <<<HTML
-  <h4>Gaia's Grove</h4>
-  <p>
-    The Dreaming Goddess, Gaia, Who Dreams No More.  Such is the line the druids have told in recent months, encouraging pilgrims to come to the
-    wild island of Gnarra to see the hidden grove where Gaia, until recently, slept.  About 20 miles in from the south coast of Gnarra the grove is
-    guarded by the Faelin, who speak little about the events that led to the Goddess awakening, only saying she was 'saved' by a group of adventurers
-    and a mighty druid.  No one will say what she was saved from.
-  </p>
-  <p>
-    The grove itself has only 1 small entrance, with no other path through the tangle of branches and trees that form an impenetrable dome around the
-    living altar.
   </p>
 HTML;
       $nextlandmark->setHtml($html);

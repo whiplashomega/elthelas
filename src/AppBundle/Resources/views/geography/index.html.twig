@@ -11,6 +11,7 @@
     <input type="button" value="Nations" id="nations" class="btn btn-default" />
     <input type="button" value="Continents" id="continents" class="btn btn-default" />
     <input type="button" value="Geographical Features" id="features" class="btn btn-default" />
+    <input type="button" value="Clear" id="clear" class="btn btn-default" />
   		<div id="map" style="width: 1100px; height: 800px; margin: 10px;"></div>
 
 
@@ -127,9 +128,21 @@
 			clearmarkers();
 			
 			//create new ones
-			var lightfortress = L.marker([17.5,90]);
-			markers.push(lightfortress);
-			lightfortress.bindPopup("Fortress of Light");
+			var type = "Landmark";
+			markers.push(L.marker([65,102]).bindPopup(retreivemarker("curestan",type)));
+			markers.push(L.marker([27,-134]).bindPopup(retreivemarker("abyssalgateofdera",type)));
+			markers.push(L.marker([-60,84.5]).bindPopup(retreivemarker("abyssalgateofmarinda",type)));
+			markers.push(L.marker([0,79.5]).bindPopup(retreivemarker("dalokra",type)));
+			markers.push(L.marker([26,-125]).bindPopup(retreivemarker("dera",type)));
+			markers.push(L.marker([-65,114]).bindPopup(retreivemarker("fang",type)));
+			markers.push(L.marker([17.5,90]).bindPopup(retreivemarker("fortressoflight",type)));
+			markers.push(L.marker([-5,-30]).bindPopup(retreivemarker("gaiasgrove",type)));
+			markers.push(L.marker([40,-5]).bindPopup(retreivemarker("godspire",type)));
+			markers.push(L.marker([36.5,144]).bindPopup(retreivemarker("greatramp",type)));
+			markers.push(L.marker([-53,143.5]).bindPopup(retreivemarker("irontraingle",type)));
+			markers.push(L.marker([-60,125]).bindPopup(retreivemarker("nerim",type)));
+			markers.push(L.marker([-20,118]).bindPopup(retreivemarker("peloria",type)));
+			markers.push(L.marker([-43,-158]).bindPopup(retreivemarker("sorcerersprison",type)));
 			
 			//add them to the map
 			addmarkers();
@@ -186,6 +199,8 @@
 			//add them to the map
 			addmarkers();
 		});
-	
+		$("#clear").click(function() {
+			clearmarkers();
+		});
 	</script>
 {% endblock %}
