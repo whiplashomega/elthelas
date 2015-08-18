@@ -189,16 +189,30 @@
   <god id="sara">
     <name>Sara</name>
     <holysymbol>a cornucopia</holysymbol>
-    <alignment>chaotic good</alignment>
-    <domains>balance, chaos, community, earth, good, halfling, plant, renewal</domains>
+    <alignment>neutral good</alignment>
+    <domains>balance, community, earth, good, halfling, plant, renewal</domains>
     <domains5>Life, Nature</domains5>
     <interfaithblessing>+1 on attack rolls and skill checks</interfaithblessing>
     <worshippers>farmers and agrarian communities</worshippers>
-    <allowedalignments>neutral good, chaotic good, chaotic neutral</allowedalignments>
+    <allowedalignments>neutral, neutral good, chaotic good, lawful good</allowedalignments>
     <weapon>scythe or sling</weapon>
     <appearance>Sara appears as a halfling with short golden brown curly hair.  She wears simple brown dresses and garb with green embroidered runes a straw hat and a basket on her arm filled with the fruits of the harvest.</appearance>
     <dogma>Any person who nurtures a plants growth is considered to be worshiping Sara. In the spring and in the fall the priests of Sara perform rituals to garner Sara's blessings on the planting and harvest in which the entire community usually participates. These rituals tend to be holidays for the entire community. Sara's blessings are usually subtle, such as more grain in the granary than was growing in the field, or plants that produce past the frost or more fruit than is typical. She rewards her most devout with an unusual knowledge of plants and how to achieve the best harvest possible.</dogma>
     <clergy>Clergy of Sara are typically humble men and women who live in small communities or wander from community to community spreading both the worship of Sara and planting fruit trees or other producing plants along the way from which everyone can benefit. Their dress is typically crude, often simple linen, cotton, or flaxen robes, but they never go hungry.</clergy>
+  </god>
+  <god id="sylvan">
+    <name>Sylvan</name>
+    <holysymbol>an oak tree in midsummer</holysymbol>
+    <alignment>chaotic good</alignment>
+    <domains>chaos, good, air, elf, plant, animal</domains>
+    <domains5>Life, Nature</domains5>
+    <interfaithblessing>+1 on attack rolls and skill checks</interfaithblessing>
+    <worshippers>elves, rangers, and woodsmen</worshippers>
+    <allowedalignments>neutral good, chaotic good, chaotic neutral</allowedalignments>
+    <weapon>longbow, longsword</weapon>
+    <appearance>Sylvan appears as a tall elf, silver haired and blue eyed.  Sylvan does not have a set gender, and often appears as a man, a woman, or even a hermaphrodite.</appearance>
+    <dogma>Sylvan is worshipped in the planting of trees, frolicking in the wind, and the caring of animals.  Sylvan differs from Gaian, however, in that its dogma focuses on the preservation of nature for the use of mortals and creatures, rather than as a foil to them.</dogma>
+    <clergy>Clergy of Sylvan are well regarded in elven society, although they are rare elsewhere.  Their ceremonial dress is robes made of pure spider silk that cling to the skin, and crowns of laurels or leaves.  Their work typically involves the nurturing of the great trees, huge and ancient, in whose branches many elven settlements are built.  A work they take very seriously.</clergy>
   </god>
   <god id="tiamat">
     <name>Tiamat</name>

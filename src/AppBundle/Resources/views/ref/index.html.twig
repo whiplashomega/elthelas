@@ -21,38 +21,72 @@
 {% endblock %}
 
 {% block body %}
-	<p>
-		Welcome to Elthelas.  Elthelas is a world of fantasy, full of strange creatures, wondrous places, dark evils, and 
-		grand adventures.  In Elthelas, Gods and magic are a part of day to day life, but are often as much things to be
-		feared or shunned as anything else.
-	</p>
-	<p>
-		The world of Elthelas was first conceived sometime around 1998.  The game Baldur's Gate had just come out, introducing
-		me and many of my friends to the world of Dungeons and Dragons for the first time. Role playing was a new and
-		interesting concept, but without access to source materials or rules we had to create our own.  The original game we
-		played was largely a very loose LARP, but then again, we were in 7th grade. 
-	</p>
-  	<p>
-		After a couple of years we all moved on with our lives and stopped playing the game, but the world lived on in my head.
-		In high school I wrote a short story and then a (bad) novel taking place in the setting, with the main characters being
-		the ones my friends and I had conceived of back in middle school.  These materials will likely never again see the
-		light of day, although I believe I still have the manuscript somewhere on my hard drive, transferred from computer to
-		computer over the years.
-	</p>
-	<p>
-		In college I undertook to rework the source material, and rewrite the book, hoping to use my somewhat increased
-		experience both in the genre and in writing to improve the work.  The source material took a decent shape from this
-		effort, but the rewrite never got past chapter 3.
-	</p>
-	<p>
-		It was a couple years after college that I played my first game of Dungeons and Dragons, the real pen and paper variety.
-		It was only a matter of time then until I reworked the source material back into the format that had originally
-		inspired it, a Dungeons and Dragons campaign setting.  So far I have DMed 1 successful campaign in the setting, and I
-		hope to do more.  In the meantime, I will use this site to store the most up-to-date version of the source materials
-		as I come up with them.
-	</p>
-	<p>
-		Please feel free to browse the site, and if you feel inspired to play a campaign with the material, go for it! Have
-		fun! That is, after all, the whole point.
-	</p>
+  <p>
+    Welcome to the Reference Manual for the Elthelas Campaign Setting.  This section, in conjunction with the Player's Handbook, should give you all the
+    information you need to create a fully fleshed out character within the campaign setting.  It is of note that the campaign setting includes a lot of
+    options that are not part of the Players Handbook, however, most every character you could create with the Player's Handbook alone could find a place
+    in the setting, the additional information, options, and other peculiarities contained here should help you make a character that fits, with a
+    history that will tie into your campaign.
+  </p>
+  <p>
+    Of note also are the <a href="{{path("history_index")}}" target="_blank">History</a> and
+    <a href="{{ path('geography') }}" target="_blank">Geography</a> sections, which contain a wealth of additional information about the world you will be playing in.
+    Feel free to explore, and have fun!
+  </p>
+  <h3>Step by Step Character Creation</h3>
+  <p>
+    The first thing to remember when building a character is that first and foremost you are creating a person, with a personality and a past.  As such,
+    the first things you may want to review are the <a href="{{path("history_index")}}" target="_blank">history</a> and
+    <a href="{{ path('geography') }}" target="_blank">geography</a>
+    sections, to seek inspiration on who this person is.  Then you can look closer into the particulars of how that character will be built for the game.
+  </p>
+  <ol>
+    <li><a href="{{ path('ref_races') }}" target="_blank">Choose a Race</a>
+      <p>
+        You don't need to worry about the racial traits yet, they'll come later.  Also, note that languages in Elthelas are not determined by Race
+        (and there is no common tongue).  Rather they are determined by ones country of origin, which should be whatever country your character was raised
+        in.
+      </p>
+    </li>
+    <li><a href="{{ path('ref_classes') }}" target="_blank">Choose a Class</a>
+      <p>Make note of the classes abilities, particularly what stats it relies on (for example wizards are reliant on intelligence).  Also as part of
+      this step determine your level based on the experience point total the DM gives you to start at.  If you are level 4 or higher, make note of
+      any feats you might want.</p>
+    </li>
+    <li>Determine Ability Scores
+      <p>
+        The method for this will be determined by your DM.  The preferred method is to roll 4d6 and drop the lowest number.  Make note of the total,
+        and repeat until you have 6 numbers.  Assign each number to one of the six statistics, strength, dexterity, constitution, intelligence, wisdom,
+        and charisma.  Finally, add any modifiers due to your race or class levels.
+      </p>
+    </li>
+    <li>Choose a background
+    </li>
+    <li>Pick skills and proficiencies (based on race, class, and background selections)
+    </li>
+    <li><a href="{{path('ref_lang')}}" target="_blank">Determine languages known</a></li>
+    <li>Add racial traits and class abilities, pick feats if applicable
+      <p>
+        You may also at this step want to determine what <a href="{{ path('show_god')}}">God</a> your character worships.  Warlocks, sorcerers, druids,
+        paladins, and others may also have associations with various <a href="{{ path('ref_divines')}}" target="_blank">Lesser divines</a>, such as
+        angels, powerful fey, demons, and eldritch horrors.  Clerics should choose their <a href="{{ path('ref_domains')}}" target="_blank">domain</a>.
+      </p>
+    </li>
+    <li>Determine hit point maximum
+      <p>
+        Either roll a hit die or pick the average roll (as specified in the PHB) for each level beyond first.  Add your constitution modifier once for
+        each class level.
+      </p>
+    </li>
+    <li>Pick equipment
+      <p>
+        Ask the DM for how to do this.
+      </p>
+    </li>
+    <li>Pick spells known (if applicable)</li>
+    <li>Describe your character
+      <p>What do they look like? What is their past?  This is all wrapped up in what you've been doing all along, but now commit it to paper.</p>
+    </li>
+    <li>Fill out remaining portions of the character sheet</li>
+  </ol>
 {% endblock %}
