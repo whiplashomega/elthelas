@@ -369,8 +369,8 @@ th {
 }
 @font-face {
   font-family: 'Glyphicons Halflings';
-  src: url("../fonts/bootstrap/glyphicons-halflings-regular.eot");
-  src: url("../fonts/bootstrap/glyphicons-halflings-regular.eot?#iefix") format("embedded-opentype"), url("../fonts/bootstrap/glyphicons-halflings-regular.woff2") format("woff2"), url("../fonts/bootstrap/glyphicons-halflings-regular.woff") format("woff"), url("../fonts/bootstrap/glyphicons-halflings-regular.ttf") format("truetype"), url("../fonts/bootstrap/glyphicons-halflings-regular.svg#glyphicons_halflingsregular") format("svg");
+  src: url("../../fonts/bootstrap/glyphicons-halflings-regular.eot");
+  src: url("../../fonts/bootstrap/glyphicons-halflings-regular.eot?#iefix") format("embedded-opentype"), url("../../fonts/bootstrap/glyphicons-halflings-regular.woff2") format("woff2"), url("../../fonts/bootstrap/glyphicons-halflings-regular.woff") format("woff"), url("../../fonts/bootstrap/glyphicons-halflings-regular.ttf") format("truetype"), url("../../fonts/bootstrap/glyphicons-halflings-regular.svg#glyphicons_halflingsregular") format("svg");
 }
 /* line 22, ../sass/bootstrap/_glyphicons.scss */
 .glyphicon {
@@ -8592,27 +8592,27 @@ table.dataTable thead .sorting {
 
 /* line 41, ../sass/_dataTables.scss */
 table.dataTable thead .sorting {
-  background: url("../images/sort_both.png") no-repeat center right;
+  background: url("../../images/sort_both.png") no-repeat center right;
 }
 
 /* line 44, ../sass/_dataTables.scss */
 table.dataTable thead .sorting_asc {
-  background: url("../images/sort_asc.png") no-repeat center right;
+  background: url("../../images/sort_asc.png") no-repeat center right;
 }
 
 /* line 47, ../sass/_dataTables.scss */
 table.dataTable thead .sorting_desc {
-  background: url("../images/sort_desc.png") no-repeat center right;
+  background: url("../../images/sort_desc.png") no-repeat center right;
 }
 
 /* line 50, ../sass/_dataTables.scss */
 table.dataTable thead .sorting_asc_disabled {
-  background: url("../images/sort_asc_disabled.png") no-repeat center right;
+  background: url("../../images/sort_asc_disabled.png") no-repeat center right;
 }
 
 /* line 53, ../sass/_dataTables.scss */
 table.dataTable thead .sorting_desc_disabled {
-  background: url("../images/sort_desc_disabled.png") no-repeat center right;
+  background: url("../../images/sort_desc_disabled.png") no-repeat center right;
 }
 
 /* line 56, ../sass/_dataTables.scss */
@@ -9187,24 +9187,31 @@ table.dataTable td {
 .logo {
   height: 100%;
   width: auto;
+  float: left;
 }
 
-/* line 5, ../sass/_layout.scss */
+/* line 6, ../sass/_layout.scss */
 .header {
   height: 75px;
+  margin-bottom: 5px;
 }
-/* line 7, ../sass/_layout.scss */
+/* line 9, ../sass/_layout.scss */
 .header h1 {
-  height: 70px;
+  width: auto;
+  float: left;
+}
+/* line 12, ../sass/_layout.scss */
+.header h1 a {
+  color: black;
 }
 
-/* line 12, ../sass/_layout.scss */
+/* line 18, ../sass/_layout.scss */
 .gsc-search-button {
   background-color: #1a4195;
   border-radius: 5px;
 }
 
-/* line 19, ../sass/_layout.scss */
+/* line 25, ../sass/_layout.scss */
 input.gsc-search-button, input.gsc-search-button:hover, input.gsc-search-button:focus {
   background-color: #1a4195 !important;
   background-image: url("http://www.google.com/uds/css/v2/search_box_icon.png") !important;
@@ -9215,14 +9222,51 @@ input.gsc-search-button, input.gsc-search-button:hover, input.gsc-search-button:
   filter: none;
 }
 
-/* line 29, ../sass/_layout.scss */
+@media screen and (max-width: 550px) {
+  /* line 36, ../sass/_layout.scss */
+  .header h1 {
+    font-size: 26px;
+  }
+}
+@media screen and (max-width: 430px) {
+  /* line 42, ../sass/_layout.scss */
+  .header h1 {
+    font-size: 18px;
+  }
+}
+/* line 47, ../sass/_layout.scss */
 #gsc-iw-id1 {
   height: 30px !important;
 }
 
-/* line 33, ../sass/_layout.scss */
+/* line 51, ../sass/_layout.scss */
 .hidden {
   display: none;
+}
+
+/* line 55, ../sass/_layout.scss */
+.racebutton {
+  margin: 8px;
+}
+
+/* line 1, ../sass/_topnav.scss */
+nav.navbar {
+  clear: both;
+}
+
+/* line 1, ../sass/_sidenav.scss */
+.nav-pills {
+  margin-bottom: 10px;
+}
+/* line 3, ../sass/_sidenav.scss */
+.nav-pills li {
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  background-color: #cccccc;
+}
+/* line 7, ../sass/_sidenav.scss */
+.nav-pills li a {
+  color: black;
 }
 
 /* line 1, ../sass/_fonts.scss */
