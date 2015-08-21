@@ -112,11 +112,89 @@
 		});
     $("#continents").click(function() {
       clearmarkers();
+      
       var type = "continents";
+      addmarker(markers,"amatheranocean", [-70, -145], type);
+      addmarker(markers, "atyrea", [-56, -82], type);
+      addmarker(markers, "dragonsea", [-37, -115], type);
+      addmarker(markers, "easternocean", [55, 174], type);
+      addmarker(markers, "elathia", [20, 90], type);
+      addmarker(markers, "iceocean", [75, 50], type);
+      addmarker(markers, "mermaidsea", [-58, -112], type);
+      addmarker(markers, "riftlan", [-15, -145], type);
+      addmarker(markers, "southsea", [-75, 50], type);
+      addmarker(markers, "tradesea", [5,-40], type);
+      
     });
     $("#cities").click(function() {
       clearmarkers();
       var type = "cities";
+      addmarker(markers, "alados", [0, 0], type);
+      addmarker(markers, "albeliath", [0, 0], type);
+      addmarker(markers, "aridhem", [13,63.5], type);
+      addmarker(markers, "atyrao", [0, 0], type);
+      addmarker(markers, "barak", [0, 0], type);
+      addmarker(markers, "craftheim", [0, 0], type);
+      addmarker(markers, "curinkeep", [60.5, 64.5], type);
+      addmarker(markers, "damat", [0, 0], type);
+      addmarker(markers, "dera", [0, 0], type);
+      addmarker(markers, "desadorel", [0, 0], type);
+      addmarker(markers, "dieel", [0, 0], type);
+      addmarker(markers, "dima", [0, 0], type);
+      addmarker(markers, "diya", [0, 0], type);
+      addmarker(markers, "eastguard", [31.5,119.5], type);
+      addmarker(markers, "estapor", [0, 0], type);
+      addmarker(markers, "falak", [0, 0], type);
+      addmarker(markers, "faran", [0, 0], type);
+      addmarker(markers, "farengar", [0, 0], type);
+      addmarker(markers, "forbel", [0, 0], type);
+      addmarker(markers, "fradae", [0, 0], type);
+      addmarker(markers, "gnoma", [0, 0], type);
+      addmarker(markers, "granitebluff", [0, 0], type);
+      addmarker(markers, "gulutheim", [0, 0], type);
+      addmarker(markers, "highhammer", [0, 0], type);
+      addmarker(markers, "ifritan", [0, 0], type);
+      addmarker(markers, "instar", [0, 0], type);
+      addmarker(markers, "kaland", [0, 0], type);
+      addmarker(markers, "kelas", [0, 0], type);
+      addmarker(markers, "kimly", [0, 0], type);
+      addmarker(markers, "lastwatch", [0, 0], type);
+      addmarker(markers, "loridesa", [0, 0], type);
+      addmarker(markers, "makhol", [0, 0], type);
+      addmarker(markers, "makir", [0, 0], type);
+      addmarker(markers, "malgeth", [0, 0], type);
+      addmarker(markers, "malidal", [0, 0], type);
+      addmarker(markers, "mandon", [0, 0], type);
+      addmarker(markers, "marinda", [-60,84.5], type);
+      addmarker(markers, "marinval", [0, 0], type);
+      addmarker(markers, "milan", [0, 0], type);
+      addmarker(markers, "mordaserekhai", [-14.5, 116], type);
+      addmarker(markers, "morrind", [-52,-16], type);
+      addmarker(markers, "nerim", [-60,125], type);
+      addmarker(markers, "northport", [0, 0], type);
+      addmarker(markers, "ochreken", [0, 0], type);
+      addmarker(markers, "parakas", [18, 105], type);
+      addmarker(markers, "pelgan", [0, 0], type);
+      addmarker(markers, "peloria", [0, 0], type);
+      addmarker(markers, "poron", [0, 0], type);
+      addmarker(markers, "portsmith", [0, 0], type);
+      addmarker(markers, "punbar", [0, 0], type);
+      addmarker(markers, "purs", [0, 0], type);
+      addmarker(markers, "sage", [0, 0], type);
+      addmarker(markers, "seldan", [0, 0], type);
+      addmarker(markers, "shodal", [0, 0], type);
+      addmarker(markers, "sofala", [0, 0], type);
+      addmarker(markers, "sreppe", [0, 0], type);
+      addmarker(markers, "storval", [0, 0], type);
+      addmarker(markers, "stromforde", [0, 0], type);
+      addmarker(markers, "strovenguard", [0, 0], type);
+      addmarker(markers, "sunra", [0, 0], type);
+      addmarker(markers, "swava", [0, 0], type);
+      addmarker(markers, "tarum", [0, 0], type);
+      addmarker(markers, "tenecha", [0, 0], type);
+      addmarker(markers, "torinhammer", [0, 0], type);
+      addmarker(markers, "westport", [0, 0], type);
+      addmarker(markers, "zelfin", [0, 0], type);
     });
 		$("#features").click(function() {
 			//clear the old markers
@@ -166,6 +244,7 @@
 			addmarker(markers, "kandorriver", [62,94], type);
 			addmarker(markers, "yellowriver", [66.5,122], type);
 			addmarker(markers, "dormanriver", [62,150], type);
+      addmarker(markers, "exodusisthmus", [-51,-110], type);
 		});
 		$("#clear").click(function() {
 			clearmarkers();

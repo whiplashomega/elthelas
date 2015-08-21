@@ -8,5 +8,7 @@ $(".racebutton").click(function() {
   var race = $(this).attr("href");
   $(".racediv").fadeOut();
   $(race).fadeIn();
-  $(".datatable").DataTable();
 });
+
+
+$(".datatable").DataTable();
