@@ -140,4 +140,10 @@ class ReferencePagesController extends Controller
   public function languagesAction(Request $request) {
     return $this->render('AppBundle:ref:languages.html.twig',array('pagetitle' => 'Languages'));
   }
+    /**
+   *@Route("/ref/magic", name="ref_magic")
+   */
+  public function magicAction(Request $request) {
+    return $this->render('AppBundle:ref:magic.html.twig',array('pagetitle' => 'Magic'));
+  }
 }
