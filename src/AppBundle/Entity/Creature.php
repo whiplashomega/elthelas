@@ -258,7 +258,22 @@ class Creature implements JsonSerializable {
    *@ORM\Column(type="integer", nullable=true)
    */
   protected $proficiencybonus;
-  
+  /**
+   *@ORM\Column(type="string", nullable=true)
+   */
+  protected $damageresistances;
+  /**
+   *@ORM\Column(type="string", nullable=true)
+   */
+  protected $immunities;
+  /**
+   *@ORM\Column(type="string", nullable=true)
+   */
+  protected $senses;
+  /**
+   *@ORM\Column(type="string", nullable=true)
+   */
+  protected $languages;
   /**
    *@ORM\ManyToOne(targetEntity="User", inversedBy="creatures")
    *@ORM\JoinColumn(name="user_id", referencedColumnName="id")
@@ -1443,5 +1458,97 @@ class Creature implements JsonSerializable {
     public function getSpeed()
     {
         return $this->speed;
+    }
+
+    /**
+     * Set damageresistances
+     *
+     * @param string $damageresistances
+     * @return Creature
+     */
+    public function setDamageresistances($damageresistances)
+    {
+        $this->damageresistances = $damageresistances;
+
+        return $this;
+    }
+
+    /**
+     * Get damageresistances
+     *
+     * @return string 
+     */
+    public function getDamageresistances()
+    {
+        return $this->damageresistances;
+    }
+
+    /**
+     * Set immunities
+     *
+     * @param string $immunities
+     * @return Creature
+     */
+    public function setImmunities($immunities)
+    {
+        $this->immunities = $immunities;
+
+        return $this;
+    }
+
+    /**
+     * Get immunities
+     *
+     * @return string 
+     */
+    public function getImmunities()
+    {
+        return $this->immunities;
+    }
+
+    /**
+     * Set senses
+     *
+     * @param string $senses
+     * @return Creature
+     */
+    public function setSenses($senses)
+    {
+        $this->senses = $senses;
+
+        return $this;
+    }
+
+    /**
+     * Get senses
+     *
+     * @return string 
+     */
+    public function getSenses()
+    {
+        return $this->senses;
+    }
+
+    /**
+     * Set languages
+     *
+     * @param string $languages
+     * @return Creature
+     */
+    public function setLanguages($languages)
+    {
+        $this->languages = $languages;
+
+        return $this;
+    }
+
+    /**
+     * Get languages
+     *
+     * @return string 
+     */
+    public function getLanguages()
+    {
+        return $this->languages;
     }
 }

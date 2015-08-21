@@ -258,7 +258,22 @@ class Creature implements JsonSerializable {
    *@ORM\Column(type="integer", nullable=true)
    */
   protected $proficiencybonus;
-  
+  /**
+   *@ORM\Column(type="string", nullable=true)
+   */
+  protected $damageresistances;
+  /**
+   *@ORM\Column(type="string", nullable=true)
+   */
+  protected $immunities;
+  /**
+   *@ORM\Column(type="string", nullable=true)
+   */
+  protected $senses;
+  /**
+   *@ORM\Column(type="string", nullable=true)
+   */
+  protected $languages;
   /**
    *@ORM\ManyToOne(targetEntity="User", inversedBy="creatures")
    *@ORM\JoinColumn(name="user_id", referencedColumnName="id")
@@ -1397,5 +1412,51 @@ class Creature implements JsonSerializable {
     public function getProficiencybonus()
     {
         return $this->proficiencybonus;
+    }
+
+    /**
+     * Set ac
+     *
+     * @param integer $ac
+     * @return Creature
+     */
+    public function setAc($ac)
+    {
+        $this->ac = $ac;
+
+        return $this;
+    }
+
+    /**
+     * Get ac
+     *
+     * @return integer 
+     */
+    public function getAc()
+    {
+        return $this->ac;
+    }
+
+    /**
+     * Set speed
+     *
+     * @param string $speed
+     * @return Creature
+     */
+    public function setSpeed($speed)
+    {
+        $this->speed = $speed;
+
+        return $this;
+    }
+
+    /**
+     * Get speed
+     *
+     * @return string 
+     */
+    public function getSpeed()
+    {
+        return $this->speed;
     }
 }

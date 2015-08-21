@@ -9271,16 +9271,21 @@ nav.navbar {
 }
 
 /* line 1, ../sass/_sidenav.scss */
+#sidebar {
+  margin-bottom: 65px;
+}
+
+/* line 5, ../sass/_sidenav.scss */
 .nav-pills {
   margin-bottom: 10px;
 }
-/* line 3, ../sass/_sidenav.scss */
+/* line 7, ../sass/_sidenav.scss */
 .nav-pills li {
   border: 1px solid #cccccc;
   border-radius: 5px;
   background-color: #cccccc;
 }
-/* line 7, ../sass/_sidenav.scss */
+/* line 11, ../sass/_sidenav.scss */
 .nav-pills li a {
   color: black;
 }

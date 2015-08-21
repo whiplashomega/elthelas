@@ -66,6 +66,10 @@ function buildchar(character, location) {
   chardiv.find(".strsave").text(character.strsave);
   chardiv.find(".survival").text(character.survival);
   chardiv.find(".wis").text(character.wis);
+  chardiv.find(".damageresistances").text(character.damageresistances);
+  chardiv.find(".immunities").text(character.immunities);
+  chardiv.find(".senses").text(character.senses);
+  chardiv.find(".languages").text(character.languages);
   chardiv.find(".wissave").text(character.wissave);
   chardiv.find(".accordion").accordion({
       heightStyle: "content",

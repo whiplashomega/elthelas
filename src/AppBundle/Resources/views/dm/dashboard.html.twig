@@ -49,6 +49,18 @@
             <tr>
               <th colspan="5">Proficiency Bonus</th><td class="proficiencybonus"></td>
             </tr>
+            <tr>
+              <th colspan="2">Resistances</th><td colspan="4" class="damageresistances"></td>
+            </tr>
+            <tr>
+              <th colspan="2">Immunities</th><td colspan="4" class="immunities"></td>
+            </tr>
+            <tr>
+              <th colspan="2">Senses</th><td colspan="4" class="senses"></td>
+            </tr>
+            <tr>
+              <th colspan="2">Languages</th><td colspan="4" class="languages"></td>
+            </tr>
           </table>
           <div class="accordion">
             <h3>
@@ -103,7 +115,7 @@
         {% include "::topnav.html.twig" %}
         <main class="row">
           {% block body %}
-<div class="col-md-3">
+<div id="sidebar" class="col-md-3">
   <div class="row">
     <div class="col-sm-6">
       <a href="{{ path('creator') }}">Creature Creator</a>
@@ -186,7 +198,7 @@
     </div>
   </div>
 </div>
-<div class="col-md-9 pull-right">
+<div id="main" class="col-md-9 pull-right">
   <div class="row" id="party">
     <h3>Party</h3>
 
