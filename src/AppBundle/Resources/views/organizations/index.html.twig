@@ -18,15 +18,17 @@
       read more about it below.
 		</p>
     <div id="orgdiv"></div>
-    
-{% endblock %}
 
-   	{% if org is defined %}
-        $.get("/world/" + "organizations/" + "{{org}}" + ".html", function(data) {
-            $("#orgdiv").html(data);
-        });
-      {% endif %}
-    {% endif %}
-	</script>
+
   
 {% endblock %}
+    {% block javascripts %}
+      {% include "::javascripts.html.twig" %}
+      <script>
+        {% if org is defined %}
+            $.get("/world/" + "organizations/" + "{{org}}" + ".html", function(data) {
+                $("#orgdiv").html(data);
+            });
+        {% endif %}
+      </script>
+    {% endblock %}

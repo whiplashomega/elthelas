@@ -19,7 +19,7 @@ class OrganizationsController extends Controller
   /**
    * @Route("/orgs/{org}", name="org")
   */
-  public function orgAction($type, $location, Request $request) {
+  public function orgAction($org, Request $request) {
     return $this->render('AppBundle:organizations:index.html.twig',array('pagetitle' => 'Organizations', 'org' => $org));     
   }
 }
