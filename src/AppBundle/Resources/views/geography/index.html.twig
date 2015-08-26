@@ -1,5 +1,6 @@
 {% extends 'base.html.twig' %}
 {% block sidebar %}
+
 {% endblock %}
 {% block body %}
 		<p>
@@ -249,5 +250,13 @@
 		$("#clear").click(function() {
 			clearmarkers();
 		});
+   	{% if type is defined %}
+      {% if location is defined %}
+        $.get("/world/" + "{{ type}}" + "/" + "{{location}}" + ".html", function(data) {
+            $("#sidebar").html(data);
+        });
+      {% endif %}
+    {% endif %}
 	</script>
+  
 {% endblock %}

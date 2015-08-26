@@ -16,4 +16,10 @@ class GeographyPagesController extends Controller
   public function geographyAction() {
     return $this->render('AppBundle:geography:index.html.twig',array('pagetitle' => 'Geography'));    
   }
+  /**
+   * @Route("/geo/{type}/{location}", name="location")
+  */
+  public function locationAction($type, $location, Request $request) {
+    return $this->render('AppBundle:geography:index.html.twig',array('pagetitle' => 'Geography', 'type' => $type, 'location' => $location ));     
+  }
 }

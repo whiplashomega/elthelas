@@ -5,6 +5,7 @@
         <meta name="MobileOptimized" content="width">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta charset="UTF-8" />
+        {% block seo %}{% endblock %}
         <title>{% block title %}{{ pagetitle|default("Elthelas Campaign Setting")}}{% endblock %}</title>
         {% include "::stylesheets.html.twig" %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
