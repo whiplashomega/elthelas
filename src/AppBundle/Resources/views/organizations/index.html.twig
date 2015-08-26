@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+{% block sidebar %}
+    <nav class="sidenav">
+      <ul class="nav nav-pills nav-stacked">
+        <li><a href="{{path('org', {"org":"allianceof6nations" })}}">Alliance of 6 Nations</a></li>
+        <li><a href="{{path('org', {"org":"blacksun" })}}">Black Sun</a></li>
+        <li><a href="{{path('org', {"org":"blackwolfirregulars" })}}">Black Wolf Irregulars</a></li>
+        <li><a href="{{path('org', {"org":"championsofcora" })}}">Champions of Cora</a></li>
+        <li><a href="{{path('org', {"org":"gerasalinealliance" })}}">Gerasaline Alliance</a></li>
+        <li><a href="{{path('org', {"org":"illustriousguildmerchants" })}}">Illustrius Guild of Merchants and Fine Artisans</a></li>
+        <li><a href="{{path('org', {"org":"morrindbrewers" })}}">Morrind Brewers Club</a></li>
+      </ul>
+    </nav>
+{% endblock %}
+{% block body %}
+		<p>
+			There are a variety of multi-national or non-national organizations in Elthelas, both historical and contemporary.  Choose one in the sidebar on the left to
+      read more about it below.
+		</p>
+    <div id="orgdiv"></div>
+    
+{% endblock %}
+
+   	{% if org is defined %}
+        $.get("/world/" + "organizations/" + "{{org}}" + ".html", function(data) {
+            $("#orgdiv").html(data);
+        });
+      {% endif %}
+    {% endif %}
+	</script>
+  
+{% endblock %}
