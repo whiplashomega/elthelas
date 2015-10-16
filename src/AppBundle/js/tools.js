@@ -10,13 +10,6 @@
         $("#loadCreatureCreator").addClass("btn-primary");
       }
       
-      $scope.loadNpcBuilder = function() {
-        $(".app").hide();
-        $("#npcBuilder").toggle('slide', {direction: 'right', duration: 500});
-        $(".AppMenuButton").removeClass("btn-primary");
-        $("#loadNpcBuilder").addClass("btn-primary");
-      }
-      
       $scope.loadEncounterBuilder = function() {
         $(".app").hide();
         $("#encounterBuilder").toggle('slide', {direction: 'right', duration: 500});
@@ -64,7 +57,6 @@
         $("#sidebar").addClass('hidden');
         $("#main").removeClass('col-md-10').addClass('col-md-12');
         $("#loadCreatureCreator").click($scope.loadCreatureCreator);
-        $("#loadNpcBuilder").click($scope.loadNpcBuilder);
         $("#loadEncounterBuilder").click($scope.loadEncounterBuilder);
         $("#loadReferenceManual").click($scope.loadReferenceManual);
         $("#loadInitTracker").click($scope.loadInitTracker);
@@ -75,11 +67,7 @@
     });
     
     dmTools.controller('creatureCreator', function($scope, $http) {
-      
-    });
-    
-    dmTools.controller('npcBuilder', function($scope, $http) {
-      
+      $scope.creature = {};
     });
     
     dmTools.controller('encounterBuilder', function($scope, $http) {
