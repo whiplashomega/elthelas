@@ -3,25 +3,98 @@
 	<meta name="description" content="Dungeon Master's Toolset designed with the Elthelas Campaign Setting in mind.
   Includes initiative roller, dungeon master's dashboard, campaign journal, and character creator tool (for use with the dashboard)" />
 	<meta name="keywords" content="dungeons, dragons, elthelas, campaign, setting, 5th edition, custom, tools, initiative, dashboard, journal, creator" />
+  <style type="text/css">
+    .btn.AppMenuButton {
+      display: block;
+      width: 100%;
+      margin-bottom: 15px;
+    }
+    .app {
+      width: 98%;
+      padding: 0.5% 1% 0.5% 1%;
+      border: 1px outset gray;
+      box-shadow: 10px 10px 5px black;
+    }
+    #appmenulist {
+      list-style-type: none;
+      margin: 0px;
+      padding: 0px;
+    }
+    #appmenulist li {
+      width: 100%;
+    }
+    #appmenulist li a {
+      width: 100%;
+      background-color: rgb(221,221,221);
+      color: black;
+    }
+  </style>
 {% endblock %}
-{% block sidebar %}
-    <nav class="sidenav">
-      <ul class="nav nav-pills nav-stacked">
-        <li><a href="{{path("init_roller")}}">Initiative Roll Tool</a></li>
-      {% if app.user and is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-        <li><a href="{{path('creator')}}">Creature Creator</a></li>
-        <li><a href="{{path('dashboard')}}">DM Dashboard</a></li>
-        <li><a href="{{path('fos_user_profile_show')}}">My Account</a></li>
-        <li><a href="{{path('fos_user_change_password')}}">Change Password</a></li>
-        <li><a href="{{path('fos_user_security_logout')}}">Log Out</a></li>
-      {% else %}
-        <li><a href="{{path('fos_user_registration_register')}}">Sign Up</a></li>
-        <li><a href="{{path('fos_user_security_login')}}">Sign In</a></li>
-      {% endif %}
-      {% if app.user and is_granted('ROLE_ADMIN') %}
-        <li><a href="#">User Administration</a></li>
-      {% endif %}
-      </ul>
-    </nav>
 
+{% block body %}
+<div data-ng-app="dmTools" class="container-fluid">
+  <div class="row">
+    <div id="content" class="col-sm-10">    
+      <div class="app" id="creatureCreator" data-ng-controller="creatureCreator" style="display: none">
+        <h3>Creature Creator</h3>
+      </div>
+      <div class="app" id="npcBuilder" data-ng-controller="npcBuilder" style="display: none">
+        <h3>NPC Builder</h3>
+      </div>
+      <div class="app" id="encounterBuilder" data-ng-controller="encounterBuilder" style="display: none">
+        <h3>Encounter Builder</h3>
+      </div>
+      <div class="app" id="referenceManual" data-ng-controller="referenceManual" style="display: none">
+        <h3>Reference Manual</h3>
+        <!--Conditions, Injuries, Spells, Actions-->
+      </div>
+      <div class="app" id="initTracker" data-ng-controller="initTracker" style="display: none">
+        <h3>NPC Builder</h3>
+      </div>
+      <div class="app" id="dmJournal" data-ng-controller="dmJournal" style="display: none">
+        <h3>NPC Builder</h3>
+      </div>
+      <div class="app" id="diceRoller" data-ng-controller="diceRoller" style="display: none">
+        <h3>Dice Roller</h3>
+      </div>
+      <div class="app" id="dungeonMap" data-ng-controller="dungeonMap" style="display: none">
+        <h3>Dungeon Map</h3>
+      </div>
+    </div>
+    <div id="appmenu" class="col-sm-2" data-ng-controller="appMenu" data-ng-init="init()">
+      <ul id="appmenulist">
+        <li><button class="AppMenuButton btn btn-lg" id="loadCreatureCreator">Creature Creator</button></li>
+        <li><button class="AppMenuButton btn btn-lg" id="loadNpcBuilder">NPC Builder</button></li>
+        <li><button class="AppMenuButton btn btn-lg" id="loadEncounterBuilder">Encounter Builder</button></li>
+        <li><button class="AppMenuButton btn btn-lg" id="loadReferenceManual">Reference Manual</button></li>
+        <li><button class="AppMenuButton btn btn-lg" id="loadInitTracker">Init Tracker</button></li>
+        <li><button class="AppMenuButton btn btn-lg" id="loadDmJournal">DM Journal</button></li>
+        <li><button class="AppMenuButton btn btn-lg" id="loadDiceRoller">Dice Roller</button></li>
+        <li><button class="AppMenuButton btn btn-lg" id="loadDungeonMap">Dungeon Map</button></li>
+        {% if app.user and is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+          <li><a class="AppMenuButton btn btn-lg" href="{{path('fos_user_profile_show')}}">My Account</a></li>
+          <li><a class="AppMenuButton btn btn-lg" href="{{path('fos_user_change_password')}}">Change Password</a></li>
+          <li><a class="AppMenuButton btn btn-lg" href="{{path('fos_user_security_logout')}}">Log Out</a></li>
+        {% else %}
+          <li><a class="AppMenuButton btn btn-lg" href="{{path('fos_user_registration_register')}}">Sign Up</a></li>
+          <li><a class="AppMenuButton btn btn-lg" href="{{path('fos_user_security_login')}}">Sign In</a></li>
+        {% endif %}
+        {% if app.user and is_granted('ROLE_ADMIN') %}
+          <li><a class="AppMenuButton btn btn-lg" href="#">User Administration</a></li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</div>
 {% endblock %}
+
+      {% block javascripts %}
+        <script src="{{asset('jquery/2.1.4/jquery.min.js', 'cdn')}}"></script>
+        <script src="{{asset('jqueryui/1.11.4/jquery-ui.min.js', 'cdn')}}"></script>
+        <script src="{{asset('angularjs/1.4.2/angular.min.js', 'cdn')}}"></script>
+        {% javascripts '@AppBundle/libraries/*'
+                       '@AppBundle/js/tools.js'
+                       output='js/script-tools.js'%}
+        <script src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+        {% endblock %}
