@@ -67,7 +67,20 @@
     });
     
     dmTools.controller('creatureCreator', function($scope, $http) {
+      $scope.creatures = [];
       $scope.creature = {};
+      
+      $scope.getAllCreatures = function() {
+        $http.get(loadallpath).success(function(data) {
+            $scope.creatures = JSON.parse(data);
+            $("#creatureLoad").dataTable({
+                    'data': $scope.creatures,
+                });
+        });
+      }
+      $scope.init = function() {
+        $scope.getAllCreatures();
+      }
     });
     
     dmTools.controller('encounterBuilder', function($scope, $http) {
