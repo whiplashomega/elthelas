@@ -72,9 +72,29 @@
       
       $scope.getAllCreatures = function() {
         $http.get(loadallpath).success(function(data) {
-            $scope.creatures = JSON.parse(data);
-            $("#creatureLoad").dataTable({
-                    'data': $scope.creatures,
+            $scope.creatures = data;
+            var tabledata = [];
+            for(var x = 0; x < $scope.creatures.length; x++) {
+                tabledata.push([
+                        "<input type='radio' name='creature' data-ng-model='creatureSelect' value='" + $scope.creatures[x].id + "' />",
+                        $scope.creatures[x].name,
+                        $scope.creatures[x].race,
+                        $scope.creatures[x].classlevel,
+                        $scope.creatures[x].background,
+                        $scope.creatures[x].alignment
+                ]);
+            }
+            var x = 0;
+            $("#creatureLoad").DataTable({
+                    'data': tabledata,
+                    'columns': [
+                        { title: "select" },
+                        { title: "name" },
+                        { title: "race" },
+                        { title: "class/level" },
+                        { title: "background" },
+                        { title: "alignment" }
+                    ]
                 });
         });
       }
