@@ -32,164 +32,200 @@
 {% endblock %}
 
 {% block body %}
+        <script type="text/javascript">
+          var loadallpath = "{{ path('get_creatures') }}";
+          var loadpath = "{{ path('get_creature', {'id': 1}) }}";
+          var updatepath = "{{ path('update_creature', {'id': 0})}}";
+          var addpath = "{{ path('add_creature')}}";
+          var deletepath = "{{ path('delete_creature', {'id': 0})}}";
+        </script>  
 <div data-ng-app="dmTools" class="container-fluid">
   <div class="row">
     <div id="content" class="col-sm-10">    
       <div class="app" id="creatureCreator" data-ng-controller="creatureCreator" data-ng-init="init()" style="display: none">
         <h3>Creature Creator</h3>
-         <script type="text/javascript">
-  var loadallpath = "{{ path('get_creatures') }}";
-  var loadpath = "{{ path('get_creature', {'id': 1}) }}";
-  var updatepath = "{{ path('update_creature', {'id': 1})}}";
-  var addpath = "{{ path('add_creature')}}";
-  var deletepath = "{{ path('delete_creature', {'id': 1})}}";
- </script>
-<div class="row">
-  <div class="form-group col-sm-12">
-    <table id="creatureLoad"></table>
-  </div>
-  <div class="col-md-3 btn-group">
-    <input type="button" value="Load" id="loadchar" class="btn btn-default"/>
-    <input type="button" value="Save" id="savechar" class="btn btn-default"/>
-    <input type="button" value="Delete" id="deletechar" class="btn btn-default" />
-  </div>
-</div>
-<section id="charform">
-<div class="row">
-  <input type="hidden" name="charid" data-ng-model="id" id="charid" value="NOCHARLOADED" />
-  <div class="col-md-2 form-group">
-    <label>Name: <input type="text" id="name" class="form-control" /></label>
-  </div>
-  <div class="col-md-2 form-group">
-    <label>Class and Level: <input type="text" id="classlevel" class="form-control" /></label>
-  </div>
-  <div class="col-md-2 form-group">
-  <label>Background: <input type="text" id="background" class="form-control" /></label>
-  </div>
-    
-  <div class="col-md-2 form-group">
-    <label>Race: <input type="text" id="race" class="form-control" /></label>
-  </div>
-  
-  <div class="col-md-2 form-group">
-    <label>Alignment: <input type="text" id="alignment" class="form-control" /></label>
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-2 form-group">
-    <label>Experience: <input type="number" id="experience" class="form-control" /></label>
-  </div>
-  
-  <div class="col-md-2 form-group">
-    <label>CR: <input type="number" id="cr" class="form-control" /></label>
-  </div>
-  
-  <div class="col-md-2 form-group">
-    <label>Proficiency Bonus: <input type="number" id="proficiencybonus" class="form-control" /></label>
-  </div>
-  <div class="col-md-2 form-group">
-    <label>AC <input type="number" id="ac" class="form-control" /></label>
-  </div>
-  <div class="col-md-2 form-group">
-    <label>Speed <input type="text" id="speed" class="form-control" /></label>
-  </div> 
-</div>
-<div class="row">
-  <div class="col-md-4">
-    <h4>Attributes</h4>
-    <label for="str">Strength: <input type="number" id="str" class="form-control" /></label>
-    <label for="dex">Dexterity: <input type="number" id="dex" class="form-control" /></label>
-    <label for="con">Constitution: <input type="number" id="con" class="form-control" /></label>
-    <label for="intel">Intelligence: <input type="number" id="intel" class="form-control" /></label>
-    <label for="wis">Wisdom: <input type="number" id="wis" class="form-control" /></label>
-    <label for="cha">Charisma: <input type="number" id="cha" class="form-control" /></label>
-  </div>
-  <div class="col-md-4">
-    <h4>Abilities</h4>
-    <label for="hpmax">Max HP: <input type="number" id="hpmax" class="form-control" /></label>
-    <label for="hitdice"> Max Hitdice: <input id="hitdice" type="number" class="form-control" /></label>
-    <label>Passive Perception <input type="number" id="passiveperception" class="form-control" /></label>
-    <label>Damage Resistances <input type="text" id="damageresistances" class="form-control" /></label>
-    <label>Immunities <input type="text" id="immunities" class="form-control" /></label>
-    <label>Senses <input type="text" id="senses" class="form-control" /></label>
-    <label>Languages <input type="text" id="languages" class="form-control" /></label>
-  </div>
-  <div class="col-md-4">
-    <h4>Saves</h4>
-    <label>Strength: <input type="number" id="strsave" class="form-control" /></label>
-    <label>Dexterity: <input type="number" id="dexsave" class="form-control" /></label>
-    <label>Constitution: <input type="number" id="consave" class="form-control" /></label>
-    <label>Intelligence: <input type="number" id="intsave" class="form-control" /></label>
-    <label>Wisdom: <input type="number" id="wissave" class="form-control" /></label>
-    <label>Charisma: <input type="number" id="chasave" class="form-control" /></label>
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-2">
-    <h4>Skills</h4>
-    <label>Acrobatics: <input type="number" id="acrobatics" class="form-control" /></label>
-    <label>Animal Handling: <input type="number" id="animalhandling" class="form-control" /></label>
-    <label>Arcana: <input type="number" id="arcana" class="form-control" /></label>
-    <label>Athletics: <input type="number" id="athletics" class="form-control" /></label>
-    <label>Deception: <input type="number" id="deception" class="form-control" /></label>
-    <label>History: <input type="number" id="history" class="form-control" /></label>
-    <label>Insight: <input type="number" id="insight" class="form-control" /></label>
-    <label>Intimidation: <input type="number" id="intimidation" class="form-control" /></label>
-    <label>Investigation: <input type="number" id="investigation" class="form-control" /></label>
 
-  </div>
-  <div class="col-md-2">
-    <h4>&nbsp;</h4>
-    <label>Medicine: <input type="number" id="medicine" class="form-control" /></label>
-    <label>Nature: <input type="number" id="nature" class="form-control" /></label>
-    <label>Perception: <input type="number" id="perception" class="form-control" /></label>
-    <label>Performance: <input type="number" id="performance" class="form-control" /></label>
-    <label>Persuasion: <input type="number" id="persuasion" class="form-control" /></label>
-    <label>Religion: <input type="number" id="religion" class="form-control" /></label>
-    <label>Slight of Hand: <input type="number" id="slightofhand" class="form-control" /></label>
-    <label>Stealth: <input type="number" id="stealth" class="form-control" /></label>
-    <label>Survival: <input type="number" id="survival" class="form-control" /></label>
-  </div>
-<div class="col-md-8">
-  <div class="row" id="attacksdiv">
-    <h4>Attacks</h4>
-    <div class="row attackrow">    
-        <div class="col-md-4">
-          <label for="attackname1">Attack: <input type="text" class="form-control attack" /></label>
+        <div class="row">
+          <div class="form-group col-sm-12">
+            <table class="creatureLoad"></table>
+          </div>
+          <div class="col-md-3 btn-group">
+            <input type="button" value="New" id="newchar" ng-click="newChar()" class="btn btn-default" />
+            <input type="button" value="Load" id="loadchar" ng-click="loadCreature()" class="btn btn-default"/>
+            <input type="button" value="Save" id="savechar" ng-click="saveCreature()" class="btn btn-default"/>
+            <input type="button" value="Delete" id="deletechar" ng-click="deleteCreature()" class="btn btn-default" />
+          </div>
         </div>
-        <div class="col-md-2">
-          <label for="attackbonus1">Bonus: <input type="number" class="form-control bonus" /></label>
-        </div>  
-        <div class="col-md-3">
-          <label for="attackdamage1">Damage: <input type="text" class="form-control damage" /></label>
-        </div>
-    </div>
-  </div>
-  <div class="row">
-      <div class="col-md-2 pull-right btn-group">
-        <input type="button" class="btn btn-default" id="addattack" value="Add Attack" />
+        <section id="charform">
+          <div class="row">
+            <input type="hidden" name="charid" data-ng-model="creature.id" id="charid" value="NOCHARLOADED" />
+            <div class="col-md-2 form-group">
+              <label>Name: <input type="text" id="name" data-ng-model="creature.name" class="form-control" /></label>
+            </div>
+            <div class="col-md-2 form-group">
+              <label>Class and Level: <input type="text" data-ng-model="creature.classlevel" id="classlevel" class="form-control" /></label>
+            </div>
+            <div class="col-md-2 form-group">
+            <label>Background: <input type="text" id="background" data-ng-model="creature.background" class="form-control" /></label>
+            </div>
+              
+            <div class="col-md-2 form-group">
+              <label>Race: <input type="text" id="race" data-ng-model="creature.race" class="form-control" /></label>
+            </div>
+            
+            <div class="col-md-2 form-group">
+              <label>Alignment: <input type="text" data-ng-model="creature.alignment" id="alignment" class="form-control" /></label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-2 form-group">
+              <label>Experience: <input type="number" data-ng-model="creature.experience" id="experience" class="form-control" /></label>
+            </div>
+            
+            <div class="col-md-2 form-group">
+              <label>CR: <input type="number" id="cr" data-ng-model="creature.cr" class="form-control" /></label>
+            </div>
+            
+            <div class="col-md-2 form-group">
+              <label>Proficiency Bonus: <input type="number" data-ng-model="creature.proficiencybonus" id="proficiencybonus" class="form-control" /></label>
+            </div>
+            <div class="col-md-2 form-group">
+              <label>AC <input type="number" id="ac" data-ng-model="creature.ac" class="form-control" /></label>
+            </div>
+            <div class="col-md-2 form-group">
+              <label>Speed <input type="text" id="speed" data-ng-model="creature.speed" class="form-control" /></label>
+            </div> 
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <h4>Attributes</h4>
+              <label for="str">Strength: <input type="number" id="str" data-ng-model="creature.str" class="form-control" /></label>
+              <label for="dex">Dexterity: <input type="number" id="dex" data-ng-model="creature.dex" class="form-control" /></label>
+              <label for="con">Constitution: <input type="number" id="con" data-ng-model="creature.con" class="form-control" /></label>
+              <label for="intel">Intelligence: <input type="number" data-ng-model="creature.intel" id="intel" class="form-control" /></label>
+              <label for="wis">Wisdom: <input type="number" id="wis" data-ng-model="creature.wis" class="form-control" /></label>
+              <label for="cha">Charisma: <input type="number" id="cha" data-ng-model="creature.cha" class="form-control" /></label>
+            </div>
+            <div class="col-md-4">
+              <h4>Abilities</h4>
+              <label for="hpmax">Max HP: <input type="number" id="hpmax" data-ng-model="creature.hpmax" class="form-control" /></label>
+              <label for="hitdice"> Max Hitdice: <input id="hitdice" data-ng-model="creature.hitdice" type="number" class="form-control" /></label>
+              <label>Passive Perception <input type="number" data-ng-model="creature.passiveperception" id="passiveperception" class="form-control" /></label>
+              <label>Damage Resistances <input type="text" data-ng-model="creature.damageresistances" id="damageresistances" class="form-control" /></label>
+              <label>Immunities <input type="text" id="immunities" data-ng-model="creature.immunities" class="form-control" /></label>
+              <label>Senses <input type="text" id="senses" data-ng-model="creature.senses" class="form-control" /></label>
+              <label>Languages <input type="text" id="languages" data-ng-model="creature.languages" class="form-control" /></label>
+            </div>
+            <div class="col-md-4">
+              <h4>Saves</h4>
+              <label>Strength: <input type="number" id="strsave" data-ng-model="creature.strsave" class="form-control" /></label>
+              <label>Dexterity: <input type="number" id="dexsave" data-ng-model="creature.dexsave" class="form-control" /></label>
+              <label>Constitution: <input type="number" id="consave" data-ng-model="creature.consave" class="form-control" /></label>
+              <label>Intelligence: <input type="number" id="intsave" data-ng-model="creature.intsave" class="form-control" /></label>
+              <label>Wisdom: <input type="number" id="wissave" data-ng-model="creature.wissave" class="form-control" /></label>
+              <label>Charisma: <input type="number" id="chasave" data-ng-model="creature.chasave" class="form-control" /></label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-2">
+              <h4>Skills</h4>
+              <label>Acrobatics: <input type="number" id="acrobatics" data-ng-model="creature.acrobatics" class="form-control" /></label>
+              <label>Animal Handling: <input type="number" id="animalhandling" data-ng-model="creature.animalhandling" class="form-control" /></label>
+              <label>Arcana: <input type="number" id="arcana" data-ng-model="creature.arcana" class="form-control" /></label>
+              <label>Athletics: <input type="number" id="athletics" data-ng-model="creature.athletics" class="form-control" /></label>
+              <label>Deception: <input type="number" id="deception" data-ng-model="creature.deception" class="form-control" /></label>
+              <label>History: <input type="number" id="history" data-ng-model="creature.history" class="form-control" /></label>
+              <label>Insight: <input type="number" id="insight" data-ng-model="creature.insight" class="form-control" /></label>
+              <label>Intimidation: <input type="number" id="intimidation" data-ng-model="creature.intimidation" class="form-control" /></label>
+              <label>Investigation: <input type="number" id="investigation" data-ng-model="creature.investigation" class="form-control" /></label>
+          
+            </div>
+            <div class="col-md-2">
+              <h4>&nbsp;</h4>
+              <label>Medicine: <input type="number" id="medicine" data-ng-model="creature.medicine" class="form-control" /></label>
+              <label>Nature: <input type="number" id="nature" data-ng-model="creature.nature" class="form-control" /></label>
+              <label>Perception: <input type="number" id="perception" data-ng-model="creature.perception" class="form-control" /></label>
+              <label>Performance: <input type="number" id="performance" data-ng-model="creature.performance" class="form-control" /></label>
+              <label>Persuasion: <input type="number" id="persuasion" data-ng-model="creature.persuasion" class="form-control" /></label>
+              <label>Religion: <input type="number" id="religion" data-ng-model="creature.religion" class="form-control" /></label>
+              <label>Slight of Hand: <input type="number" id="slightofhand" data-ng-model="creature.slightofhand" class="form-control" /></label>
+              <label>Stealth: <input type="number" id="stealth" data-ng-model="creature.stealth" class="form-control" /></label>
+              <label>Survival: <input type="number" id="survival" data-ng-model="creature.survival" class="form-control" /></label>
+            </div>
+            <div class="col-md-8">
+              <div class="row" id="attacksdiv">
+                <h4>Attacks</h4>
+                <div class="row attackrow" data-ng-repeat="attack in creature.attacks">    
+                    <div class="col-md-4">
+                      <label for="attackname1">Attack: <input type="text" data-ng-model="attack.attack" class="form-control attack" /></label>
+                    </div>
+                    <div class="col-md-2">
+                      <label for="attackbonus1">Bonus: <input type="number" data-ng-model="attack.bonus" class="form-control bonus" /></label>
+                    </div>  
+                    <div class="col-md-3">
+                      <label for="attackdamage1">Damage: <input type="text" data-ng-model="attack.damage" class="form-control damage" /></label>
+                    </div>
+                    <div class="col-md-2">
+                      <input type="button" value="Delete" ng-click="creature.attacks.splice($index, 1)" style="margin-top:10px;" class="btn btn-default" />
+                    </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-2 pull-right btn-group">
+                  <input type="button" class="btn btn-default" ng-click="addAttack()" id="addattack" value="Add Attack" />
+                  
+                </div>
+              </div>
+              <div class="form-group">
+                <h4>Possessions</h4>
+                <textarea id="possessions" data-ng-model="creature.possessions" class="form-control" rows="5"></textarea>
+              </div>
         
+              <div class="form-group">
+                <h4>Physical Description</h4>
+                <textarea class="form-control" data-ng-model="creature.physicaldescription" id="physicaldescription" rows="5"></textarea>
+              </div>
+        
+              <div class="form-group">
+                <h4>Proficiencies, Features and Traits</h4>
+                <textarea class="form-control" data-ng-model="creature.features" id="features" rows="5"></textarea>
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
-    </div>
-  <div class="form-group">
-  <h4>Possessions</h4>
-    <textarea id="possessions" class="form-control" rows="5"></textarea>
-  </div>
-
-  <div class="form-group">
-    <h4>Physical Description</h4>
-    <textarea class="form-control" id="physicaldescription" rows="5"></textarea>
-  </div>
-
-  <div class="form-group">
-    <h4>Proficiencies, Features and Traits</h4>
-    <textarea class="form-control" id="features" rows="5"></textarea>
-  </div>
-  </div>
-</section>
-      </div>
-      <div class="app" id="encounterBuilder" data-ng-controller="encounterBuilder" style="display: none">
+      <div class="app" id="encounterBuilder" data-ng-controller="encounterBuilder" data-ng-init="init()" style="display: none">
         <h3>Encounter Builder</h3>
+        <div class="row">
+          <div class="form-group col-sm-12">
+            <table class="creatureLoad"></table>
+          </div>
+          <div class="button-group col-md-3">
+            <input type="button" value="Add to Encounter" data-ng-click="addCreature()" />
+          </div>
+        </div>
+        <div id="encounter" class="row">
+          {% verbatim %}
+          <div class="statblock col-md-3" data-ng-repeat="creature in creatures">
+            <ul>
+              <li><a href="{{'#statblock' + creature.id }}">Stats</a></li>
+              <li><a href="{{'#attacks' + creature.id }}">Attacks</a></li>
+              <li><a href="{{'#description' + creature.id }}">Description</a></li>
+            </ul>
+            <div id="{{'statblock' + creature.id }}">
+                  <h4>{{ creature.name }}</h4>
+                  <h5>{{ creature.race }} {{creature.classlevel}}</h5>
+            </div>
+            <div id="{{'attacks' + creature.id }}">
+              
+            </div>
+            <div id="{{'description' + creature.id }}">
+              
+            </div>
+            <input type="button" value="Remove from Encounter" data-ng-click="removeCreature(creature.id)" />
+          </div>
+          {% endverbatim %}
+        </div>
       </div>
       <div class="app" id="referenceManual" data-ng-controller="referenceManual" style="display: none">
         <h3>Reference Manual</h3>
@@ -235,7 +271,7 @@
 {% endblock %}
 
       {% block javascripts %}
-        <script src="{{asset('jquery/2.1.4/jquery.min.js', 'cdn')}}"></script>
+        <script src="{{asset('jquery/1.11.3/jquery.min.js', 'cdn')}}"></script>
         <script src="{{asset('jqueryui/1.11.4/jquery-ui.min.js', 'cdn')}}"></script>
         <script src="{{asset('angularjs/1.4.2/angular.min.js', 'cdn')}}"></script>
         {% javascripts '@AppBundle/libraries/*'
@@ -243,4 +279,5 @@
                        output='js/script-tools.js'%}
         <script src="{{ asset_url }}"></script>
         {% endjavascripts %}
+
         {% endblock %}
