@@ -74,14 +74,18 @@
         };
       $scope.creature = new $scope.creatureModel();
       $scope.creatureSelect = 0;
-      
+      $scope.alertcontent = "";
       $scope.loadCreature = function(id) {
         if (id == undefined) {
           id = $("input[name='creature']:checked").val();
         }
         var load = loadpath.slice(0,-1) + id;
         $http.get(load).success(function(data) {
+          $scope.alertcontent = "Loaded Successfully!";
           $scope.creature = data;
+          SetTimeout(function() {
+            $scope.alertcontent = "";
+          }, 10000);
         });
       }
       
@@ -92,7 +96,11 @@
       $scope.saveCreature = function() {
         var update = updatepath.slice(0,-1) + $scope.creature.id;
         $http.post(update, $scope.creature).success(function() {
+          $scope.alertcontent = "Saved Successfully!";
           $scope.getAllCreatures();
+          SetTimeout(function() {
+            $scope.alertcontent = "";
+          }, 10000);
         });
       }
       
@@ -102,7 +110,11 @@
         }
         var del = deletepath.slice(0,-1) + id;
         $http.get(del).success(function() {
+          $scope.alertcontent = "Deleted Successfully!";
           $scope.getAllCreatures();
+          SetTimeout(function() {
+              $scope.alertcontent = "";
+            }, 10000);
         });
       }
       
@@ -170,14 +182,76 @@
         setTimeout($scope.tabify,3000);
       }
       
+      $scope.refreshList = function() {
+        $http.get(loadallpath).success(function (creatures) {
+            var tabledata = [];
+            for(var x = 0; x < creatures.length; x++) {
+                tabledata.push([
+                        "<input type='radio' name='creature' value='" + creatures[x].id + "' />",
+                        creatures[x].name,
+                        creatures[x].race,
+                        creatures[x].classlevel,
+                        creatures[x].background,
+                        creatures[x].alignment
+                ]);
+            }
+          var table = $("#encounterTable").dataTable();
+          table.fnClearTable();
+          table.fnAddData(tabledata);          
+        })
+
+      }
+      
       $scope.init = function() {
         $scope.tabify();          
       }
 
     });
-    
+
     dmTools.controller('referenceManual', function($scope, $http) {
-      
+      $scope.spelllist = [];
+      $scope.content = "";
+
+      $scope.loadtaglist = function(tag) {
+        
+      }
+      $scope.loadspells = function() {
+        function process(response, spelllocation) {
+          var title = response.slice(response.indexOf("title:")+6,response.indexOf("\n",response.indexOf("title:"))).replace(/\"/g,"");
+          var tagx = response.indexOf("tags: [")+7;
+          if (tagx == 6) {
+            tagx = response.indexOf("tags:   [")+9;
+          }
+          var tags = response.slice(tagx,response.indexOf("]",tagx));
+          tags = tags.split(',');
+          $scope.spelllist.push([title, tags]);
+          if ($.fn.dataTable.isDataTable('#spelltable')) {
+            var table = $('#spelltable').dataTable();
+            table.fnClearTable();
+            table.fnAddData($scope.spelllist);
+          }
+          else {
+            var table = $("#spelltable").dataTable({
+              'data': $scope.spelllist,
+              'columns': [
+                { title: "title" },
+                { title: "tags" }
+              ]
+            });
+          }
+        }
+
+        for(x in spells) {
+          var spelllocation = "/spells/" + spells[x];
+          $http.get(spelllocation).success(function(response) {
+            process(response,spelllocation);
+          });
+        }
+      };
+      $scope.init = function() {
+        $("#refdiv").tabs();
+        $scope.loadspells();
+      };
     });
     
     dmTools.controller('initTracker', function($scope, $http) {

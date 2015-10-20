@@ -38,6 +38,8 @@
           var updatepath = "{{ path('update_creature', {'id': 0})}}";
           var addpath = "{{ path('add_creature')}}";
           var deletepath = "{{ path('delete_creature', {'id': 0})}}";
+          var spells = {{spells | raw }};
+          spells.splice(0,2);
         </script>  
 <div data-ng-app="dmTools" class="container-fluid">
   <div class="row">
@@ -54,6 +56,9 @@
             <input type="button" value="Load" id="loadchar" ng-click="loadCreature()" class="btn btn-default"/>
             <input type="button" value="Save" id="savechar" ng-click="saveCreature()" class="btn btn-default"/>
             <input type="button" value="Delete" id="deletechar" ng-click="deleteCreature()" class="btn btn-default" />
+          </div>
+          <div id="creatoralerts" class="hidden col-md-4 alert alert-success" data-ng-bind="alertcontent">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
           </div>
         </div>
         <section id="charform">
@@ -198,10 +203,11 @@
         <h3>Encounter Builder</h3>
         <div class="row">
           <div class="form-group col-sm-12">
-            <table class="creatureLoad"></table>
+            <table id="encounterTable" class="creatureLoad"></table>
           </div>
           <div class="button-group col-md-3">
             <input type="button" value="Add to Encounter" data-ng-click="addCreature()" />
+            <input type="button" value="Refresh List" data-ng-click="refreshList()" />
           </div>
         </div>
         <div id="encounter" class="row">
@@ -209,33 +215,120 @@
           <div class="statblock col-md-3" data-ng-repeat="creature in creatures">
             <ul>
               <li><a href="{{'#statblock' + creature.id }}">Stats</a></li>
-              <li><a href="{{'#attacks' + creature.id }}">Attacks</a></li>
+              <li><a href="{{'#skills' + creature.id }}">Skills</a></li>
+              <li><a href="{{'#attacks' + creature.id }}">Actions</a></li>
               <li><a href="{{'#description' + creature.id }}">Description</a></li>
             </ul>
             <div id="{{'statblock' + creature.id }}">
                   <h4>{{ creature.name }}</h4>
-                  <h5>{{ creature.race }} {{creature.classlevel}}</h5>
+                  <h5>{{ creature.race }} {{creature.classlevel}} {{creature.alignment}}</h5>
+                  <h5><strong>Armor Class</strong> {{ creature.ac }}</h5>
+                  <h5><strong>Hit Points</strong> <input type="number" min="0" max="1000" style="width: 50px"/> / {{ creature.hpmax }} ({{creature.hitdice}} hitdice)</h5>
+                  <h5><strong>Speed</strong> {{creature.speed}}</h5>
+                  <table class="table">
+                    <tr><td>STR</td><td>DEX</td><td>CON</td><td>INT</td><td>WIS</td><td>CHA</td></tr>
+                    <tr>
+                      <td>{{creature.str}}</td><td>{{creature.dex}}</td><td>{{creature.con}}</td><td>{{creature.intel}}</td>
+                      <td>{{creature.wis}}</td><td>{{creature.cha}}</td>
+                    </tr>
+                  </table>
+                  <h5>
+                    <strong>Saves</strong> Str +{{creature.strsave}} Dex +{{creature.dexsave}} Con +{{creature.consave}}
+                    Int +{{creature.intsave}} Wis +{{creature.wissave}} Cha {{creature.chasave}}
+                  </h5>
+                  <h5><strong>Proficiency Bonus</strong> {{creature.proficiencybonus}}</h5>
+                  
+                  <h5><strong>Damage Resistances</strong> {{creature.damageresistances}}</h5>
+                  <h5><strong>Immunities</strong> {{creature.immunities}}</h5>
+                  <h5><strong>Senses</strong> {{creature.senses}}</h5>
+                  <h5><strong>Languages</strong> {{creature.languages}}</h5>
+                  <h5><strong>Challenges</strong> {{creature.cr}} ({{creature.experience}} XP)</h5>
+            </div>
+            <div id="{{'skills' + creature.id }}">
+              <h4>Skills</h4>
+              <h5>Acrobatics: {{creature.acrobatics}}</h5>
+              <h5>Animal Handling: {{creature.animalhandling}}</h5>
+              <h5>Arcana: {{creature.arcana}}</h5>
+              <h5>Athletics: {{creature.athletics}}</h5>
+              <h5>Deception: {{creature.deception}}</h5>
+              <h5>History: {{creature.history}}</h5>
+              <h5>Insight: {{creature.insight}}</h5>
+              <h5>Intimidation: {{creature.intimidation}}</h5>
+              <h5>Investigation: {{creature.investigation}}</h5>
+              <h5>Medicine: {{creature.medicine}}</h5>
+              <h5>Nature: {{creature.nature}}</h5>
+              <h5>Perception: {{creature.perception}}</h5>
+              <h5>Performance: {{creature.performance}}</h5>
+              <h5>Persuasion: {{creature.persuasion}}</h5>
+              <h5>Religion: {{creature.religion}}</h5>
+              <h5>Slight of Hand: {{creature.slightofhand}}</h5>
+              <h5>Stealth: {{creature.stealth}}</h5>
+              <h5>Survival: {{creature.survival}}</h5>
             </div>
             <div id="{{'attacks' + creature.id }}">
-              
+              <h4>Attacks</h4>
+              <h5 ng-repeat="attack in creature.attacks">
+                {{attack.attack}} +{{attack.bonus}} ({{attack.damage}})
+              </h5>
+              <h4>Other Actions and Traits</h4>
+              <p>
+                {{creature.features}}
+              </p>
             </div>
             <div id="{{'description' + creature.id }}">
-              
+              <h5><strong>Background</strong> {{creature.background}} </h5>
+              <p>
+                <strong>Physical Description</strong> {{creature.physicaldescription}}
+              </p>
+              <p>
+                <strong>Possessions</strong> {{creature.possessions}}
+              </p>
             </div>
-            <input type="button" value="Remove from Encounter" data-ng-click="removeCreature(creature.id)" />
+            <input type="button" value="Remove from Encounter" data-ng-click="removeCreature($index)" />
           </div>
           {% endverbatim %}
         </div>
       </div>
-      <div class="app" id="referenceManual" data-ng-controller="referenceManual" style="display: none">
+      <div class="app" id="referenceManual" data-ng-controller="referenceManual" data-ng-init="init()" style="display: none">
         <h3>Reference Manual</h3>
-        <!--Conditions, Injuries, Spells, Actions-->
+        <div id="refdiv">
+          <ul>
+            <li><a href="#refspells">Spells</a></li>
+            <li><a href="#refconditions">Conditions</a></li>
+            <li><a href="#refinjuries">Injuries</a></li>
+            <li><a href="#refactions">Actions</a></li>
+            <li><a href="#refequipment">Equipment</a></li>
+            <li><a href="#refvarious">Other</a></li>
+          </ul>
+          <div id="refspells">
+            <table id="spelltable"></table>
+            <div id="selectedspell" data-ng-bind="content">
+              
+            </div>
+          </div>
+          <div id="refconditions">
+            
+          </div>
+          <div id="refinjuries">
+            
+          </div>
+          <div id="refactions">
+            
+          </div>
+          <div id="refequipment">
+            
+          </div>
+          <div id="refvarious">
+            
+          </div>
+        </div>
+        <!--Conditions, Injuries, Spells, Actions, Cover-->
       </div>
       <div class="app" id="initTracker" data-ng-controller="initTracker" style="display: none">
         <h3>NPC Builder</h3>
       </div>
       <div class="app" id="dmJournal" data-ng-controller="dmJournal" style="display: none">
-        <h3>NPC Builder</h3>
+        <h3>DM Journal</h3>
       </div>
       <div class="app" id="diceRoller" data-ng-controller="diceRoller" style="display: none">
         <h3>Dice Roller</h3>

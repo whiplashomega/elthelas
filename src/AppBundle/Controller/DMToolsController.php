@@ -14,6 +14,8 @@ class DMToolsController extends Controller {
    *@Security("has_role('ROLE_USER')")
    */
   public function indexAction(Request $request) {
-    return $this->render('AppBundle:dm:index.html.twig', array('pagetitle' => 'Dungeon Master\'s Toolset'));
+    $dir = $_SERVER['DOCUMENT_ROOT']."\spells";
+    $spells = scandir($dir);
+    return $this->render('AppBundle:dm:index.html.twig', array('pagetitle' => 'Dungeon Master\'s Toolset', 'spells' => json_encode($spells)));
   }
 }
