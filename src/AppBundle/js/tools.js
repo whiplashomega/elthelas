@@ -24,6 +24,13 @@
         $("#loadReferenceManual").addClass("btn-primary");
       }
       
+      $scope.loadCharBuilder = function() {
+        $(".app").hide();
+        $("#charBuilder").toggle('slide', {direction: 'right', duration: 500});
+        $(".AppMenuButton").removeClass("btn-primary");
+        $("#loadCharBuilder").addClass("btn-primary");
+      }
+      
       $scope.loadInitTracker = function() {
         $(".app").hide();
         $("#initTracker").toggle('slide', {direction: 'right', duration: 500});
@@ -59,6 +66,7 @@
         $("#loadCreatureCreator").click($scope.loadCreatureCreator);
         $("#loadEncounterBuilder").click($scope.loadEncounterBuilder);
         $("#loadReferenceManual").click($scope.loadReferenceManual);
+        $("#loadCharBuilder").click($scope.loadCharBuilder);
         $("#loadInitTracker").click($scope.loadInitTracker);
         $("#loadDmJournal").click($scope.loadDmJournal);
         $("#loadDiceRoller").click($scope.loadDiceRoller);
@@ -244,6 +252,1086 @@
         $("#refdiv").tabs();
         $scope.loadspells();
       };
+    });
+    
+    dmTools.controller('charBuilder', function($scope, $http) {
+      $scope.character = {
+        name: "",
+        charclass: {
+            name: "",
+            hitdie: 6,
+            saves: [],
+            features: [
+              { level: 1, text: "" }
+            ]
+          },
+        special: {
+            name: "",
+            features: [
+              { level: 1, text: "" }
+            ]
+          },
+        race: {
+          name: "",
+          str: 0,
+          dex: 0,
+          con: 0,
+          intel: 0,
+          wis: 0,
+          cha: 0,
+          size: "",
+          speed: 0,
+          otherspeed: 0,
+          otherspeedtype: "",
+          senses: "",
+          traits: [
+            ""
+          ]          
+        },
+        background: {
+          name: "",
+          features: [
+            ""
+          ]
+        },
+        level: 1,
+        str: 0,
+        dex: 0,
+        con: 0,
+        intel: 0,
+        wis: 0,
+        cha: 0
+      };
+      $scope.races = [
+        {
+          id: 0,
+          name: "Celestial Aasimar",
+          race: {
+            name: "Celestial Aasimar",
+            str: 0,
+            dex: 0,
+            con: 0,
+            intel: 0,
+            wis: 2,
+            cha: 1,
+            size: "medium",
+            speed: 30,
+            otherspeed: 0,
+            otherspeedtype: "",
+            senses: "Darkvision 60ft",
+            traits: [
+              "6th Sense: Your connection to angelic beings gives you a sense for evil, like an itch at the back of your mind. Whenever someone within 60 ft of you is planning an evil deed to happen within the next 10 minutes, you can sense that such thoughts are taking place. However, you cannot tell who is thinking said thoughts or what they are planning from this sense alone. You do not need to be able to see or perceive the person thinking those thoughts to get the sense, and you do not get these feelings from creatures with an intelligence score of less than 3.",
+              "Keen senses: You have advantage on perception checks.",
+              "Godly Connection: You know the light cantrip from the cleric list, and can cast it at will. You also know one first level spell from the cleric list, after you cast it, you must complete a short or long rest before you can cast it again. Wisdom is your casting stat for this spell."
+            ]
+          }
+        },
+        {
+          id: 1,
+          name: "Child of Molton",
+          race: {
+            name: "Child of Molton",
+            str: 0,
+            dex: 2,
+            con: 0,
+            intel: 0,
+            wis: 0,
+            cha: 2,
+            size: "medium",
+            speed: 30,
+            otherspeed: 0,
+            otherspeedtype: "",
+            senses: "Darkvision 120ft",
+            traits: [
+              "Embodiment of Lust: You have advantage on charisma checks involved in a romantic encounter.",
+              "You have resistance to fire damage."
+            ]
+          }
+        },
+        {
+          id: 2,
+          name: "Sorceron Blooded",
+          race: {
+            name: "Sorceron Blooded",
+            str: 0,
+            dex: 0,
+            con: 0,
+            intel: 2,
+            wis: 0,
+            cha: 1,
+            size: "medium",
+            speed: 30,
+            otherspeed: 0,
+            otherspeedtype: "",
+            senses: "",
+            traits: [
+              "Natural Spellcaster: Choose two cantrips from the wizard spell list, you can cast these cantrips at will using Intelligence as your spellcasting stat. Additionally choose one 1st level spell from the wizard spell list, you know that spell inherently, however, once you cast it you must complete a short rest before you can cast it again.",
+              "Master of the Arcane: You have advantage on Intelligence (Arcana) and Intelligence (History) checks."
+            ]
+          }
+        },
+        {
+          id: 3,
+          name: "Black/Copper Dragonborn",
+          race: {
+            name: "Black/Copper Dragonborn",
+            str: 2,
+            dex: 0,
+            con: 0,
+            intel: 0,
+            wis: 0,
+            cha: 1,
+            size: "medium",
+            speed: 30,
+            otherspeed: 0,
+            otherspeedtype: "",
+            senses: "",
+            traits: [
+              "Draconic Ancestry: You have draconic ancestry. Choose one type of dragon from the Draconic Ancestry table. Your breath weapon and damage resistance are determined by the dragon type, as shown in the table.",
+              "Acid Breath Weapon: 5 by 30ft line, Dex Save.  You can use your action to exhale destructive energy. Your draconic ancestry determines the size, shape, and damage type of an exhalation. When you use your breath weapon, each creature in the area of the exhalation must make a saving throw, the type of which is determined by your draconic ancestry. The DC for this saving throw equals 8 + your Constitution modifier + your proficiency bonus. A creature takes 2d6 damage on a failed save, and half as much damage on a successful one. The damage increases to 3d6 at 6th level, 4d6 at 11th level, and 5d6 at 16th level. After you use your breath weapon you cannot use it again until after you complete a short or long rest.",
+              "Acid Damage Resistence: You have resistence to the damage type associated with your draconic ancestry.",
+            ]
+          }
+        },
+        {
+          id: 4,
+          name: "Blue/Bronze Dragonborn",
+          race: {
+            name: "Blue/Bronze Dragonborn",
+            str: 2,
+            dex: 0,
+            con: 0,
+            intel: 0,
+            wis: 0,
+            cha: 1,
+            size: "medium",
+            speed: 30,
+            otherspeed: 0,
+            otherspeedtype: "",
+            senses: "",
+            traits: [
+              "Draconic Ancestry: You have draconic ancestry. Choose one type of dragon from the Draconic Ancestry table. Your breath weapon and damage resistance are determined by the dragon type, as shown in the table.",
+              "Lightning Breath Weapon: 5 by 30ft line, Dex Save.  You can use your action to exhale destructive energy. Your draconic ancestry determines the size, shape, and damage type of an exhalation. When you use your breath weapon, each creature in the area of the exhalation must make a saving throw, the type of which is determined by your draconic ancestry. The DC for this saving throw equals 8 + your Constitution modifier + your proficiency bonus. A creature takes 2d6 damage on a failed save, and half as much damage on a successful one. The damage increases to 3d6 at 6th level, 4d6 at 11th level, and 5d6 at 16th level. After you use your breath weapon you cannot use it again until after you complete a short or long rest.",
+              "Lightning Damage Resistence: You have resistence to the damage type associated with your draconic ancestry.",
+            ]
+          }
+        },
+        {
+          id: 5,
+          name: "Brass Dragonborn",
+          race: {
+            name: "Brass Dragonborn",
+            str: 2,
+            dex: 0,
+            con: 0,
+            intel: 0,
+            wis: 0,
+            cha: 1,
+            size: "medium",
+            speed: 30,
+            otherspeed: 0,
+            otherspeedtype: "",
+            senses: "",
+            traits: [
+              "Draconic Ancestry: You have draconic ancestry. Choose one type of dragon from the Draconic Ancestry table. Your breath weapon and damage resistance are determined by the dragon type, as shown in the table.",
+              "Fire Breath Weapon: 5 by 30ft line, Dex Save.  You can use your action to exhale destructive energy. Your draconic ancestry determines the size, shape, and damage type of an exhalation. When you use your breath weapon, each creature in the area of the exhalation must make a saving throw, the type of which is determined by your draconic ancestry. The DC for this saving throw equals 8 + your Constitution modifier + your proficiency bonus. A creature takes 2d6 damage on a failed save, and half as much damage on a successful one. The damage increases to 3d6 at 6th level, 4d6 at 11th level, and 5d6 at 16th level. After you use your breath weapon you cannot use it again until after you complete a short or long rest.",
+              "Fire Damage Resistence: You have resistence to the damage type associated with your draconic ancestry.",
+            ]
+          }
+        },
+        {
+          id: 6,
+          name: "Gold/Red Dragonborn",
+          race: {
+            name: "Gold/Red Dragonborn",
+            str: 2,
+            dex: 0,
+            con: 0,
+            intel: 0,
+            wis: 0,
+            cha: 1,
+            size: "medium",
+            speed: 30,
+            otherspeed: 0,
+            otherspeedtype: "",
+            senses: "",
+            traits: [
+              "Draconic Ancestry: You have draconic ancestry. Choose one type of dragon from the Draconic Ancestry table. Your breath weapon and damage resistance are determined by the dragon type, as shown in the table.",
+              "Fire Breath Weapon: 15 ft cone, Dex Save.  You can use your action to exhale destructive energy. Your draconic ancestry determines the size, shape, and damage type of an exhalation. When you use your breath weapon, each creature in the area of the exhalation must make a saving throw, the type of which is determined by your draconic ancestry. The DC for this saving throw equals 8 + your Constitution modifier + your proficiency bonus. A creature takes 2d6 damage on a failed save, and half as much damage on a successful one. The damage increases to 3d6 at 6th level, 4d6 at 11th level, and 5d6 at 16th level. After you use your breath weapon you cannot use it again until after you complete a short or long rest.",
+              "Fire Damage Resistence: You have resistence to the damage type associated with your draconic ancestry.",
+            ]
+          }
+        },
+        {
+          id: 7,
+          name: "Green Dragonborn",
+          race: {
+            name: "Green Dragonborn",
+            str: 2,
+            dex: 0,
+            con: 0,
+            intel: 0,
+            wis: 0,
+            cha: 1,
+            size: "medium",
+            speed: 30,
+            otherspeed: 0,
+            otherspeedtype: "",
+            senses: "",
+            traits: [
+              "Draconic Ancestry: You have draconic ancestry. Choose one type of dragon from the Draconic Ancestry table. Your breath weapon and damage resistance are determined by the dragon type, as shown in the table.",
+              "Poison Breath Weapon: 15 ft cone, Con Save.  You can use your action to exhale destructive energy. Your draconic ancestry determines the size, shape, and damage type of an exhalation. When you use your breath weapon, each creature in the area of the exhalation must make a saving throw, the type of which is determined by your draconic ancestry. The DC for this saving throw equals 8 + your Constitution modifier + your proficiency bonus. A creature takes 2d6 damage on a failed save, and half as much damage on a successful one. The damage increases to 3d6 at 6th level, 4d6 at 11th level, and 5d6 at 16th level. After you use your breath weapon you cannot use it again until after you complete a short or long rest.",
+              "Poison Damage Resistence: You have resistence to the damage type associated with your draconic ancestry.",
+            ]
+          }
+        },
+        {
+          id: 8,
+          name: "Silver/White Dragonborn",
+          race: {
+            name: "Silver/White Dragonborn",
+            str: 2,
+            dex: 0,
+            con: 0,
+            intel: 0,
+            wis: 0,
+            cha: 1,
+            size: "medium",
+            speed: 30,
+            otherspeed: 0,
+            otherspeedtype: "",
+            senses: "",
+            traits: [
+              "Draconic Ancestry: You have draconic ancestry. Choose one type of dragon from the Draconic Ancestry table. Your breath weapon and damage resistance are determined by the dragon type, as shown in the table.",
+              "Cold Breath Weapon: 15 ft cone, Con Save.  You can use your action to exhale destructive energy. Your draconic ancestry determines the size, shape, and damage type of an exhalation. When you use your breath weapon, each creature in the area of the exhalation must make a saving throw, the type of which is determined by your draconic ancestry. The DC for this saving throw equals 8 + your Constitution modifier + your proficiency bonus. A creature takes 2d6 damage on a failed save, and half as much damage on a successful one. The damage increases to 3d6 at 6th level, 4d6 at 11th level, and 5d6 at 16th level. After you use your breath weapon you cannot use it again until after you complete a short or long rest.",
+              "Cold Damage Resistence: You have resistence to the damage type associated with your draconic ancestry.",
+            ]
+          }
+        },
+        {
+          id: 9,
+          name: "Deep Dwarf",
+          race: {
+            name: "Deep Dwarf",
+            str: 0,
+            dex: 0,
+            con: 1,
+            intel: 0,
+            wis: 2,
+            cha: 0,
+            size: "medium",
+            speed: 25,
+            otherspeed: 0,
+            otherspeedtype: "",
+            senses: "Darkvision 90 ft",
+            traits: [
+              "Your speed is not reduced by wearing heavy armor",
+              "Dwarven Resilience: You have advantage on saving throws against poison, and you have resistance against poison damage.",
+              "Dwarven Combat Training: You have proficiency with the battleaxe, handaxe, throwing hammer, and warhammer.",
+              "Tool Proficiency: You gain proficiency with the artisan's tools of your choice: smith's tools, brewer's supplies, or mason's tools.",
+              "Stonecunning: Whenever you make an intelligence(history) check related to the origin of stonework, you are considered proficient in the history skill and add double your proficiency bonus to the check, instead of your normal proficiency bonus.",
+              "Noble Blood: You gain proficiency in one skill of your choice choosing from persuasion, performance, intimidation, or deception."
+            ]
+          }
+        },
+        {
+          id: 10,
+          name: "Hill Dwarf",
+          race: {
+            name: "Hill Dwarf",
+            str: 0,
+            dex: 0,
+            con: 2,
+            intel: 0,
+            wis: 1,
+            cha: 0,
+            size: "medium",
+            speed: 25,
+            otherspeed: 0,
+            otherspeedtype: "",
+            senses: "Darkvision 60 ft",
+            traits: [
+              "Your speed is not reduced by wearing heavy armor",
+              "Dwarven Resilience: You have advantage on saving throws against poison, and you have resistance against poison damage.",
+              "Dwarven Combat Training: You have proficiency with the battleaxe, handaxe, throwing hammer, and warhammer.",
+              "Tool Proficiency: You gain proficiency with the artisan's tools of your choice: smith's tools, brewer's supplies, or mason's tools.",
+              "Stonecunning: Whenever you make an intelligence(history) check related to the origin of stonework, you are considered proficient in the history skill and add double your proficiency bonus to the check, instead of your normal proficiency bonus.",
+              "Dwarven Toughness: Your hit point maximum increases by 1 per character level."
+            ]
+          }
+        },
+        {
+          id: 11,
+          name: "Morrind Dwarf",
+          race: {
+            name: "Morrind Dwarf",
+            str: 0,
+            dex: 0,
+            con: 2,
+            intel: 0,
+            wis: 0,
+            cha: 1,
+            size: "medium",
+            speed: 30,
+            otherspeed: 0,
+            otherspeedtype: "",
+            senses: "Darkvision 60 ft",
+            traits: [
+              "Your speed is not reduced by wearing heavy armor",
+              "Dwarven Resilience: You have advantage on saving throws against poison, and you have resistance against poison damage.",
+              "Dwarven Combat Training: You have proficiency with the battleaxe, handaxe, throwing hammer, and warhammer.",
+              "Tool Proficiency: You gain proficiency with the artisan's tools of your choice: smith's tools, brewer's supplies, or carpenter's tools.",
+              "Seacunning: Whenever you make an intelligence(nature) check related to the sea, you are considered proficient in the history skill and add double your proficiency bonus to the check, instead of your normal proficiency bonus.",
+              "Natural Sailor: You are considered proficient and may add double your proficiency bonus to any acrobatics check on board a ship, a survival check made to navigate a sea, or an athletics check made to swim, you also gain proficiency with water based vehicles."
+            ]
+          }
+        },
+        {
+          id: 12,
+          name: "Plains Dwarf",
+          race: {
+            name: "Plains Dwarf",
+            str: 2,
+            dex: 0,
+            con: 2,
+            intel: 0,
+            wis: 0,
+            cha: 0,
+            size: "medium",
+            speed: 25,
+            otherspeed: 0,
+            otherspeedtype: "",
+            senses: "Darkvision 60 ft",
+            traits: [
+              "Your speed is not reduced by wearing heavy armor",
+              "Dwarven Resilience: You have advantage on saving throws against poison, and you have resistance against poison damage.",
+              "Dwarven Combat Training: You have proficiency with the battleaxe, handaxe, throwing hammer, and warhammer.",
+              "Tool Proficiency: You gain proficiency with the artisan's tools of your choice: smith's tools, brewer's supplies, or mason's tools.",
+              "Stonecunning: Whenever you make an intelligence(history) check related to the origin of stonework, you are considered proficient in the history skill and add double your proficiency bonus to the check, instead of your normal proficiency bonus.",
+              "Dwarven Armor Training: You have proficiency with light and medium armor."
+            ]
+          }
+        },
+        {
+          id: 13,
+          name: "High Elf",
+          race: {
+            name: "High Elf",
+            str: 0,
+            dex: 2,
+            con: 0,
+            intel: 1,
+            wis: 0,
+            cha: 0,
+            size: "medium",
+            speed: 30,
+            otherspeed: 0,
+            otherspeedtype: "",
+            senses: "Darkvision 60 ft",
+            traits: [
+              "Keen Senses: You have proficiency in the perception skill.",
+              "Fey Ancestry: You have advantage on saving throws against being charmed, and magic can't put you to sleep.",
+              "Trance: Elves don't need to sleep. Instead they meditate deeply, remaining semiconscious, for 4 hours a day. (The Common word for such meditation is 'trance') While meditating, you can dream after a fashion; such dreams are actually mental exercises that have become reflexive through years of practice. After resting in this way, you gain the same benefit that a human does from 8 hours of sleep.",
+              "Elf Weapon Training: You have proficiency with the longsword, shortsword, shortbow, and longbow.",
+              "Cantrip: You know one cantrip of your choice from the wizard spell list. Intelligence is your spellcasting ability for it.",
+              "Extra Language: You can speak, read, and write one extra language of your choice."
+            ]
+          }
+        },
+        {
+          id: 14,
+          name: "Moon Elf",
+          race: {
+            name: "Moon Elf",
+            str: 0,
+            dex: 2,
+            con: 1,
+            intel: 0,
+            wis: 0,
+            cha: 0,
+            size: "medium",
+            speed: 35,
+            otherspeed: 0,
+            otherspeedtype: "",
+            senses: "Darkvision 60 ft",
+            traits: [
+              "Keen Senses: You have proficiency in the perception skill.",
+              "Fey Ancestry: You have advantage on saving throws against being charmed, and magic can't put you to sleep.",
+              "Trance: Elves don't need to sleep. Instead they meditate deeply, remaining semiconscious, for 4 hours a day. (The Common word for such meditation is 'trance') While meditating, you can dream after a fashion; such dreams are actually mental exercises that have become reflexive through years of practice. After resting in this way, you gain the same benefit that a human does from 8 hours of sleep.",
+              "Elf Weapon Training: You have proficiency with the longsword, shortsword, shortbow, and longbow.",
+              "Nomad: You have proficiency with the survival skill, and add double your proficiency bonus to Wisdom(survival) checks."
+            ]
+          }
+        },
+        {
+          id: 15,
+          name: "Wild Elf",
+          race: {
+            name: "Wild Elf",
+            str: 0,
+            dex: 2,
+            con: 0,
+            intel: 0,
+            wis: 0,
+            cha: 1,
+            size: "medium",
+            speed: 35,
+            otherspeed: 0,
+            otherspeedtype: "",
+            senses: "Darkvision 60 ft",
+            traits: [
+              "Keen Senses: You have proficiency in the perception skill.",
+              "Fey Ancestry: You have advantage on saving throws against being charmed, and magic can't put you to sleep.",
+              "Trance: Elves don't need to sleep. Instead they meditate deeply, remaining semiconscious, for 4 hours a day. (The Common word for such meditation is 'trance') While meditating, you can dream after a fashion; such dreams are actually mental exercises that have become reflexive through years of practice. After resting in this way, you gain the same benefit that a human does from 8 hours of sleep.",
+              "Elf Weapon Training: You have proficiency with the longsword, shortsword, shortbow, and longbow.",
+              "Cantrip: You know one cantrip of your choice from the wizard spell list. Charisma is your spellcasting ability for it."
+            ]
+          }
+        },
+        {
+          id: 16,
+          name: "Wood Elf",
+          race: {
+            name: "Wood Elf",
+            str: 0,
+            dex: 2,
+            con: 0,
+            intel: 0,
+            wis: 1,
+            cha: 0,
+            size: "medium",
+            speed: 35,
+            otherspeed: 0,
+            otherspeedtype: "",
+            senses: "Darkvision 60 ft",
+            traits: [
+              "Keen Senses: You have proficiency in the perception skill.",
+              "Fey Ancestry: You have advantage on saving throws against being charmed, and magic can't put you to sleep.",
+              "Trance: Elves don't need to sleep. Instead they meditate deeply, remaining semiconscious, for 4 hours a day. (The Common word for such meditation is 'trance') While meditating, you can dream after a fashion; such dreams are actually mental exercises that have become reflexive through years of practice. After resting in this way, you gain the same benefit that a human does from 8 hours of sleep.",
+              "Elf Weapon Training: You have proficiency with the longsword, shortsword, shortbow, and longbow.",
+              "Mask of the Wild: You can attempt to hide even when you are only lightly obscured by foliage, heavy rain, falling snow, mist, and and other natural phenomena."
+            ]
+          }
+        },
+        {
+          id: 17,
+          name: "Faelin",
+          race: {
+            name: "Faelin",
+            str: 0,
+            dex: 2,
+            con: 0,
+            intel: 0,
+            wis: 0,
+            cha: 2,
+            size: "small",
+            speed: 30,
+            otherspeed: 0,
+            otherspeedtype: "",
+            senses: "",
+            traits: [
+              "you can also climb up rough surfaces such as trees and rough-hewn walls without making Athletics checks at a speed of 20 feet.",
+              "Fey: You have advantage on saving throws against being charmed, and magic can't put you to sleep.",
+              "Cantrip: choose one cantrip from the druid spell list. Charisma is your stat for casting this spell.",
+            ]
+          }
+        },
+        {
+          id: 18,
+          name: "Fey'ri",
+          race: {
+            name: "Fey'ri",
+            str: 0,
+            dex: 1,
+            con: 0,
+            intel: 2,
+            wis: 0,
+            cha: 0,
+            size: "medium",
+            speed: 30,
+            otherspeed: 40,
+            otherspeedtype: "fly",
+            senses: "Darkvision 60 ft",
+            traits: [
+              "You also have wings and starting at 6th level you have a base fly speed of 40 ft",
+              "Fey Ancestry: You have advantage on saving throws against being charmed, and magic can't put you to sleep.",
+              "Trance: Fey'ri don't need to sleep. Instead they meditate deeply, remaining semiconscious, for 4 hours a day. (The Common word for such meditation is 'trance') While meditating, you can dream after a fashion; such dreams are actually mental exercises that have become reflexive through years of practice. After resting in this way, you gain the same benefit that a human does from 8 hours of sleep.",
+              "Hellish Resistance: You have resistance to fire damage.",
+            ]
+          }
+        },
+        {
+          id: 19,
+          name: "Air Genasi",
+          race: {
+            name: "Air Genasi",
+            str: 0,
+            dex: 1,
+            con: 2,
+            intel: 0,
+            wis: 0,
+            cha: 0,
+            size: "medium",
+            speed: 30,
+            otherspeed: 0,
+            otherspeedtype: "",
+            senses: "",
+            traits: [
+              "Unending Breath. You can hold your breath indefinitely while you’re not incapacitated.",
+              "Mingle with the Wind. You can cast the levitate spell once with this trait, requiring no material components, and you regain the ability to cast it this way when you finish a long rest. Constitution is your spellcasting ability for this spell."
+            ]
+          }
+        },
+        {
+          id: 20,
+          name: "Earth Genasi",
+          race: {
+            name: "Earth Genasi",
+            str: 1,
+            dex: 0,
+            con: 2,
+            intel: 0,
+            wis: 0,
+            cha: 0,
+            size: "medium",
+            speed: 30,
+            otherspeed: 0,
+            otherspeedtype: "",
+            senses: "",
+            traits: [
+              "Earth Walk. You can move across difficult terrain made of earth or stone without expending extra movement.",
+              "Merge with Stone. You can cast the pass without trace spell once with this trait, requiring no material components, and you regain the ability to cast it this way when you finish a long rest. Constitution is your spellcasting ability for this spell."
+            ]
+          }
+        },
+        {
+          id: 21,
+          name: "Fire Genasi",
+          race: {
+            name: "Fire Genasi",
+            str: 0,
+            dex: 0,
+            con: 2,
+            intel: 1,
+            wis: 0,
+            cha: 0,
+            size: "medium",
+            speed: 30,
+            otherspeed: 0,
+            otherspeedtype: "",
+            senses: "Darkvision 60ft",
+            traits: [
+              "Fire Resistance. You have resistance to fire damage.",
+              "Reach to the Blaze. You know the produce flame cantrip. Once you reach 3rd level, you can cast the burning hands spell once with this trait as a 1st-level spell, and you regain the ability to cast it this way when you finish a long rest. Constitution is your spellcasting ability for these spells."
+            ]
+          }
+        },
+        {
+          id: 22,
+          name: "Water Genasi",
+          race: {
+            name: "Water Genasi",
+            str: 0,
+            dex: 0,
+            con: 2,
+            intel: 0,
+            wis: 1,
+            cha: 0,
+            size: "medium",
+            speed: 30,
+            otherspeed: 30,
+            otherspeedtype: "swim",
+            senses: "",
+            traits: [
+              "Acid Resistance. You have resistance to acid damage",
+              "Amphibious. You can breathe air and water.",
+              "Call to the Wave. You know the shape water cantrip (see chapter 2). When you reach 3rd level, you can cast the create or destroy water spell as a 2nd-level spell once with this trait, and you regain the ability to cast it this way when you finish a long rest. Constitution is your spellcasting ability for these spells."
+            ]
+          }
+        },
+        {
+          id: 23,
+          name: "Elathian Gnome",
+          race: {
+            name: "Elathian Gnome",
+            str: 0,
+            dex: 1,
+            con: 0,
+            intel: 2,
+            wis: 0,
+            cha: 0,
+            size: "small",
+            speed: 25,
+            otherspeed: 0,
+            otherspeedtype: "",
+            senses: "Darkvision: 60 feet",
+            traits: [
+              "Gnome Cunning: You have advantage on all Intelligence, Wisdom, and Charisma saving throws against magic.",
+              "Natural Illusionist: You know the minor illusion cantrip. Intelligence is your magic ability for it.",
+              "Speak with Small Beasts: Through sounds and gestures, you can communicate simple ideas with Small or smaller beasts."
+            ]
+          }
+        },
+        {
+          id: 24,
+          name: "Stagen Gnome",
+          race: {
+            name: "Stagen Gnome",
+            str: 0,
+            dex: 0,
+            con: 1,
+            intel: 2,
+            wis: 0,
+            cha: 0,
+            size: "small",
+            speed: 25,
+            otherspeed: 0,
+            otherspeedtype: "",
+            senses: "Darkvision: 60 feet",
+            traits: [
+              "Gnome Cunning: You have advantage on all Intelligence, Wisdom, and Charisma saving throws against magic.",
+              "Artificer's Lore: You have advantage on Intelligence checks related to alchemy, magic items, and technological devices.",
+              "Tinker: You have artisan's tools. Using those tools, you can spend 10 minutes to construct a Tiny clockwork device (AC 5, 1 hp). The device ceases to function after 24 hours. You can have up to three such devices active at a time. When you create a device, choose one of the following options: Clockwork Toy: This toy is a clockwork animal or person, such as a frog, mouse, bird, or soldier. When placed on the ground, the toy moves 5 feet across the ground on each of your turns in a random direction. It makes noise as appropriate to the creature it represents. Fire Starter: The device produces a miniature flame, which you can use to light something like a candle, torch, or campfire. Using the device requires your action. Music Box: When opened, this music box plays a single song at a moderate volume. The box stops playing when it reaches the song's end or when it is closed."
+            ]
+          }
+        },
+        {
+          id: 25,
+          name: "Goblin",
+          race: {
+            name: "Goblin",
+            str: 1,
+            dex: 2,
+            con: 0,
+            intel: 0,
+            wis: 0,
+            cha: 0,
+            size: "small",
+            speed: 30,
+            otherspeed: 0,
+            otherspeedtype: "",
+            senses: "Darkvision: 60 feet",
+            traits: [
+              "Powerful Build: You count as one size larger when determining your carrying capacity and the weight you can push, drag, or lift.",
+              "Big Weapons: You can wield heavy weapons without penalty, and otherwise wield weapons as a medium size character.",
+              "Nimble Escape: The goblin can take the Disengage or Hide action as a bonus action on each of its turns."
+            ]
+          }
+        },
+        {
+          id: 26,
+          name: "Goliath",
+          race: {
+            name: "Goliath",
+            str: 2,
+            dex: 0,
+            con: 1,
+            intel: 0,
+            wis: 0,
+            cha: 0,
+            size: "medium",
+            speed: 30,
+            otherspeed: 0,
+            otherspeedtype: "",
+            senses: "",
+            traits: [
+              "Powerful Build: You count as one size larger when determining your carrying capacity and the weight you can push, drag, or lift.",
+              "Natural Athlete: You have proficiency in the athletics skill.",
+              "Stone's Endurance: You can focus yourself to occasionally shrug off injury. When you take damage, you can use your reaction to roll a d12. Add your Constitution modifier to the number rolled, and reduce the damage by that total. After you use this trait, you can’t use it again until you finish a short or long rest.",
+              "Mountain Born: You’re acclimated to high altitude, including elevations above 20,000 feet. You’re also naturally adapted to cold climates, as described in chapter 5 of the Dungeon Master’s Guide."
+            ]
+          }
+        },
+        {
+          id: 27,
+          name: "Half-Dwarf",
+          race: {
+            name: "Half-Dwarf",
+            str: 0,
+            dex: 0,
+            con: 1,
+            intel: 0,
+            wis: 0,
+            cha: 0,
+            size: "medium",
+            speed: 25,
+            otherspeed: 0,
+            otherspeedtype: "",
+            senses: "Darkvision: 60 feet",
+            traits: [
+              "make one additional ability score increase of your choice",
+              "Your speed is not reduced by wearing heavy armor.",
+              "Dwarven Resilience: You have advantage on saving throws against poison, and you have resistance against poison damage.",
+              "Feat: You gain one feat of your choice."
+            ]
+          }
+        },
+        {
+          id: 28,
+          name: "Half-Elf",
+          race: {
+            name: "Half-Elf",
+            str: 0,
+            dex: 0,
+            con: 0,
+            intel: 0,
+            wis: 0,
+            cha: 2,
+            size: "medium",
+            speed: 30,
+            otherspeed: 0,
+            otherspeedtype: "",
+            senses: "Darkvision: 60 feet",
+            traits: [
+              "two other ability scores of your choice increase by 1",
+              "Fey Ancestry: You have advantage on saving throws against being charmed, and magic can't put you to sleep.",
+              "Skill Versatility: You gain proficiency in two skills of your choice.",
+            ]
+          }
+        },
+        {
+          id: 29,
+          name: "Lightfoot Halfling",
+          race: {
+            name: "Lightfoot Halfling",
+            str: 0,
+            dex: 2,
+            con: 0,
+            intel: 0,
+            wis: 0,
+            cha: 1,
+            size: "small",
+            speed: 25,
+            otherspeed: 0,
+            otherspeedtype: "",
+            senses: "Darkvision: 60 feet",
+            traits: [
+              "Lucky: When you roll a 1 on an attack roll, ability check, or saving throw, you can reroll the die and must use the new roll.",
+              "Brave: You have advantage on saving throws against being frightened.",
+              "Hafling Nimbleness: You can move through the space of any creature of a size larger than yours. You can attempt to hide even when you are obscured only by a creature that is at least one size larger than you.",
+            ]
+          }
+        },
+        {
+          id: 30,
+          name: "Strongheart Halfling",
+          race: {
+            name: "Strongheart Halfling",
+            str: 0,
+            dex: 2,
+            con: 1,
+            intel: 0,
+            wis: 0,
+            cha: 0,
+            size: "small",
+            speed: 25,
+            otherspeed: 0,
+            otherspeedtype: "",
+            senses: "Darkvision: 60 feet",
+            traits: [
+              "Lucky: When you roll a 1 on an attack roll, ability check, or saving throw, you can reroll the die and must use the new roll.",
+              "Brave: You have advantage on saving throws against being frightened.",
+              "Hafling Nimbleness: You can move through the space of any creature of a size larger than yours.",
+              "You have advantage on saving throws against poison, and you have resistance against poison damage."
+            ]
+          }
+        },
+        {
+          id: 31,
+          name: "Tallfellow Halfling",
+          race: {
+            name: "Tallfellow Halfling",
+            str: 1,
+            dex: 2,
+            con: 0,
+            intel: 0,
+            wis: 0,
+            cha: 1,
+            size: "medium",
+            speed: 30,
+            otherspeed: 0,
+            otherspeedtype: "",
+            senses: "Darkvision: 60 feet",
+            traits: [
+              "Lucky: When you roll a 1 on an attack roll, ability check, or saving throw, you can reroll the die and must use the new roll.",
+              "Brave: You have advantage on saving throws against being frightened.",
+            ]
+          }
+        },
+        {
+          id: 32,
+          name: "Deran Human",
+          race: {
+            name: "Deran Human",
+            str: 0,
+            dex: 0,
+            con: 0,
+            intel: 0,
+            wis: 0,
+            cha: 0,
+            size: "medium",
+            speed: 30,
+            otherspeed: 0,
+            otherspeedtype: "",
+            senses: "",
+            traits: [
+              "Ability Score Increase: Three different ability scores of your choice each increase by 1.",
+              "Skills: You gain proficiency in one skill of your choice",
+              "Draconic Heritage: You gain resistance to damage of one type: electric, fire, or cold.",
+              "Trust of Dragons: You have a +5 bonus to Charisma checks made against a dragon."
+            ]
+          }
+        },
+        {
+          id: 33,
+          name: "Hisru Human",
+          race: {
+            name: "Hisru Human",
+            str: 0,
+            dex: 0,
+            con: 0,
+            intel: 0,
+            wis: 0,
+            cha: 0,
+            size: "medium",
+            speed: 30,
+            otherspeed: 0,
+            otherspeedtype: "",
+            senses: "",
+            traits: [
+              "Ability Score Increase: Two different ability scores of your choice each increase by 1.",
+              "Skills: You gain proficiency in Animal Handling. You have advantage on Animal Handling checks made to ride or train mounts.",
+              "Enchantment Resistance: The hisru people, after centuries of living under the effects of enchantment, have developed a natural resistance to magic of the enchantment school. You have advantage on saving throws against enchantment spells.",
+              "Feat: You gain one feat of your choice from the following list: Athlete, Charger, Heavy Armor Master, Mageslayer, Magic Initiate, Medium Armor Master, Mobile, Polearm Master, Savage Attacker, Sharpshooter, Skilled, Tough, War Caster, or Weapon Master."
+            ]
+          }
+        },
+        {
+          id: 34,
+          name: "Imperial Human",
+          race: {
+            name: "Imperial Human",
+            str: 1,
+            dex: 1,
+            con: 1,
+            intel: 1,
+            wis: 1,
+            cha: 1,
+            size: "medium",
+            speed: 30,
+            otherspeed: 0,
+            otherspeedtype: "",
+            senses: "",
+            traits: [
+              ""
+            ]
+          }
+        },
+        {
+          id: 35,
+          name: "Neran Human",
+          race: {
+            name: "Neran Human",
+            str: 0,
+            dex: 0,
+            con: 0,
+            intel: 0,
+            wis: 0,
+            cha: 0,
+            size: "medium",
+            speed: 30,
+            otherspeed: 0,
+            otherspeedtype: "",
+            senses: "",
+            traits: [
+              "Ability Score Increase: Three different ability scores of your choice each increase by 1.",
+              "Affinity for the Dead: +1 to the saving throw DC of all necromancy spells you cast, you always add your proficiency bonus to the saving throw DC and attack rolls for necromancy spells, even if you do not have your spell focus.",
+              "Skills: You gain proficiency in one skill of your choice.",
+              "Extra Channel Divinity: Clerics and paladins gain 1 extra use of channel divinity before they need to rest.",
+              "Undead Fighting Training: You have advantage on attack rolls, skill checks, and saving throws, made against or relating to the undead."
+            ]
+          }
+        },
+        {
+          id: 36,
+          name: "Staelic Human",
+          race: {
+            name: "Staelic Human",
+            str: 0,
+            dex: 0,
+            con: 0,
+            intel: 0,
+            wis: 0,
+            cha: 0,
+            size: "medium",
+            speed: 30,
+            otherspeed: 0,
+            otherspeedtype: "",
+            senses: "",
+            traits: [
+              "Ability Score Increase: Two different ability scores of your choice each increase by 1.",
+              "Skills: You gain proficiency in one skill of your choice.",
+              "Feat: You gain one feat of your choice.",              
+            ]
+          }
+        },
+        {
+          id: 37,
+          name: "Grunt Orc",
+          race: {
+            name: "Grunt Orc",
+            str: 2,
+            dex: 0,
+            con: 1,
+            intel: 0,
+            wis: 0,
+            cha: 0,
+            size: "medium",
+            speed: 30,
+            otherspeed: 0,
+            otherspeedtype: "",
+            senses: "Darkvision: 60 feet",
+            traits: [
+              "Menacing: You gain proficiency in the intimidation skill.",
+              "Relentless Endurance: When you are reduced to 0 hit points but not killed outright, you can drop to 1 hit point instead. You can't use this feature again until you finish a long rest.",
+              "Savage Attacks: When you score a critical hit with a melee weapon attack, you can roll one of the weapon's damage dice one additional time and add it to the extra damage of the critical hit.",
+              "Blood Scent: When an opponent is reduced to half or fewer hitpoints, the scent of the blood can send you into a sort of frenzy. Attacks against foes with half or fewer hit points do an extra 2 damage."
+            ]
+          }
+        },
+        {
+          id: 38,
+          name: "High Orc",
+          race: {
+            name: "High Orc",
+            str: 2,
+            dex: 0,
+            con: 0,
+            intel: 0,
+            wis: 0,
+            cha: 1,
+            size: "medium",
+            speed: 30,
+            otherspeed: 0,
+            otherspeedtype: "",
+            senses: "Darkvision: 60 feet",
+            traits: [
+              "Menacing: You gain proficiency in the intimidation skill.",
+              "Relentless Endurance: When you are reduced to 0 hit points but not killed outright, you can drop to 1 hit point instead. You can't use this feature again until you finish a long rest.",
+              "Commanding Presence: You have been born and bred for leadership. You have advantage on all Charisma (Persuasion) and Charisma (Intimidation) checks."
+            ]
+          }
+        },
+        {
+          id: 39,
+          name: "Sand Orc",
+          race: {
+            name: "Sand Orc",
+            str: 2,
+            dex: 0,
+            con: 2,
+            intel: 0,
+            wis: 0,
+            cha: 0,
+            size: "medium",
+            speed: 30,
+            otherspeed: 0,
+            otherspeedtype: "",
+            senses: "Darkvision: 60 feet",
+            traits: [
+              "Menacing: You gain proficiency in the intimidation skill.",
+              "Relentless Endurance: When you are reduced to 0 hit points but not killed outright, you can drop to 1 hit point instead. You can't use this feature again until you finish a long rest.",
+              "Fire Resistance: You have resistance to fire damage."
+            ]
+          }
+        },
+        {
+          id: 40,
+          name: "Tiefling",
+          race: {
+            name: "Tiefling",
+            str: 0,
+            dex: 0,
+            con: 0,
+            intel: 1,
+            wis: 0,
+            cha: 2,
+            size: "medium",
+            speed: 30,
+            otherspeed: 0,
+            otherspeedtype: "",
+            senses: "Darkvision: 60 feet",
+            traits: [
+              "Hellish Resistance: You have resistance to fire damage.",
+              "Infernal Legacy: You know the thaumatergy cantrip. Once you reach 3rd level, you can cast the hellish rebuke spell once per day as a 2nd-level spell. Once you reach 5th level you can cast the darkness spell once per day. Charisma is your spellcasting ability for these spells."
+            ]
+          }
+        },
+        {
+          id: 41,
+          name: "Trollkin",
+          race: {
+            name: "Trollkin",
+            str: 1,
+            dex: 0,
+            con: 2,
+            intel: 0,
+            wis: 0,
+            cha: 0,
+            size: "medium",
+            speed: 30,
+            otherspeed: 0,
+            otherspeedtype: "",
+            senses: "",
+            traits: [
+              "Styptic Skin: You have advantage on checks to become stable when you are at 0 hit points.",
+              "Tough as Nails: Your hit point maximum increases by 1 per character level.",
+              "Face of a Troll: Trollkin have disadvantage on any charisma check except intimidation checks made to influence an NPC who is not a Trollkin or Troll.",
+              "Clawed Hands: Your unarmed strikes naturally do 1d4 slashing damage. Trollkin Monks can choose to do bludgeoning or slashing damage with their unarmed strikes",
+              "Powerful Build: You count as one size larger when determining your carrying capacity and the weight you can push, drag, or lift.",
+              "Trollkin Weaponry: You start with one of the following weapons: Greatclub, Mace, Spear, Battleaxe, Flail, Longsword, Morningstar, War pick, or Warhammer. This weapon is too big for most medium creatures to wield, but for you can be treated as a medium size weapon. It does an extra damage die of damage, so if it would do 1d6 damage, it instead does 2d6, and if it would do 1d8 it instead does 2d8 damage. You cannot wield large weapons created for truly large creatures, but it is possible to obtain a new Trollkin weapon (of a type listed above) from a smith trained in making them, or any trollkin weapon smith. A trollkin weapon costs and weighs twice as much as a medium sized weapon of that type."
+            ]
+          }
+        },
+      ];
+      $scope.classes = [
+        {
+          id: 0,
+          name: "Barbarian",
+          charclass: {
+            name: "Barbarian",
+            hitdie: 12,
+            saves: ["str", "con"],
+            features: [
+              { level: 1, text: "" }
+            ]
+          }
+        }
+      ];
+      $scope.specials = [
+        {
+          id: 0,
+          name: "Totem Barbarian",
+          special: {
+            name: "Totem",
+            features: [
+              { level: 1, text: "" }
+            ]
+          }
+        }
+      ];
+      $scope.backgrounds = [
+        {
+          id: 0,
+          name: "Soldier",
+          background: {
+            name: "",
+            features: [
+              ""
+            ]
+          }
+        }
+      ];
     });
     
     dmTools.controller('initTracker', function($scope, $http) {
