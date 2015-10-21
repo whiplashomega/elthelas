@@ -209,44 +209,36 @@
     });
 
     dmTools.controller('referenceManual', function($scope, $http) {
-      $scope.spelllist = [];
-      $scope.content = "";
+      $scope.spelllist = spells;
 
+      $scope.loadspell = function() {
+        var index = $("input[name='spellselect']:checked").val();
+        $scope.content = $("#selectedspell").html(marked($scope.spelllist[index][2]));
+      }
       $scope.loadtaglist = function(tag) {
         
       }
       $scope.loadspells = function() {
-        function process(response, spelllocation) {
-          var title = response.slice(response.indexOf("title:")+6,response.indexOf("\n",response.indexOf("title:"))).replace(/\"/g,"");
-          var tagx = response.indexOf("tags: [")+7;
-          if (tagx == 6) {
-            tagx = response.indexOf("tags:   [")+9;
-          }
-          var tags = response.slice(tagx,response.indexOf("]",tagx));
-          tags = tags.split(',');
-          $scope.spelllist.push([title, tags]);
-          if ($.fn.dataTable.isDataTable('#spelltable')) {
-            var table = $('#spelltable').dataTable();
-            table.fnClearTable();
-            table.fnAddData($scope.spelllist);
-          }
-          else {
-            var table = $("#spelltable").dataTable({
-              'data': $scope.spelllist,
-              'columns': [
-                { title: "title" },
-                { title: "tags" }
-              ]
-            });
-          }
+        var tabledata = [];
+        for(x in $scope.spelllist) {
+            $scope.spelllist[x][1] = $scope.spelllist[x][1].replace("[","").replace("]","");
+            $scope.spelllist[x][1] = $scope.spelllist[x][1].split(',');
+            tabledata.push([
+               "<input type='radio' name='spellselect' value='" + x + "' />",
+               $scope.spelllist[x][0],
+               $scope.spelllist[x][1].join(),
+               $scope.spelllist[x][1][$scope.spelllist[x][1].length-1]
+            ]);
         }
-
-        for(x in spells) {
-          var spelllocation = "/spells/" + spells[x];
-          $http.get(spelllocation).success(function(response) {
-            process(response,spelllocation);
-          });
-        }
+        var table = $("#spelltable").dataTable({
+            'data': tabledata,
+            'columns': [
+                { width: '10%', title: "select" },
+                { width: '40%', title: "title" },
+                { width: '25%', title: "tags" },
+                { width: '15%', title: "level"}
+            ]
+        });
       };
       $scope.init = function() {
         $("#refdiv").tabs();
