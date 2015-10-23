@@ -91,7 +91,7 @@
         $http.get(load).success(function(data) {
           $scope.alertcontent = "Loaded Successfully!";
           $scope.creature = data;
-          SetTimeout(function() {
+          setTimeout(function() {
             $scope.alertcontent = "";
           }, 10000);
         });
@@ -256,7 +256,6 @@
     
     dmTools.controller('charBuilder', function($scope, $http) {
       $scope.character = {
-        name: "",
         charclass: {
             name: "",
             hitdie: 6,
@@ -283,6 +282,8 @@
           speed: 0,
           otherspeed: 0,
           otherspeedtype: "",
+          damageresistances: "",
+          immunities: "",
           senses: "",
           traits: [
             ""
@@ -300,8 +301,69 @@
         con: 0,
         intel: 0,
         wis: 0,
-        cha: 0
+        cha: 0,
+        skillproficiencies: [],
+        armor: {
+            name: "None",
+            ac: 10,
+            type: "light",          
+        },
+        shield: false,
       };
+        $scope.creatureentry = {
+          id: 0,
+          name: "",
+          race: "",
+          classlevel: "",
+          background: "",
+          alignment: "",
+          str: 0,
+          dex: 0,
+          con: 0,
+          intel: 0,
+          wis: 0,
+          cha: 0,
+          strsave: 0,
+          dexsave: 0,
+          consave: 0,
+          intsave: 0,
+          wissave: 0,
+          chasave: 0,
+          hpmax: 0,
+          hitdice: 0,
+          passiveperception: 0,
+          acrobatics: 0,
+          animalhandling: 0,
+          arcana: 0,
+          athletics: 0,
+          deception: 0,
+          history: 0,
+          insight: 0,
+          intimidation: 0,
+          investigation: 0,
+          medicine: 0,
+          nature: 0,
+          perception: 0,
+          performance: 0,
+          persuasion: 0,
+          religion: 0,
+          slightofhand: 0,
+          stealth: 0,
+          survival: 0,
+          ac: 0,
+          speed: "",
+          attacks: [],
+          possessions: "",
+          features: "",
+          physicaldescription: "",
+          experience: 0,
+          cr: 0,
+          proficiencybonus: 0,
+          damageresistances: "",
+          immunities: "",
+          senses: "",
+          languages: ""
+        }
       $scope.races = [
         {
           id: 0,
@@ -318,6 +380,8 @@
             speed: 30,
             otherspeed: 0,
             otherspeedtype: "",
+            damageresistances: "",
+            immunities: "",
             senses: "Darkvision 60ft",
             traits: [
               "6th Sense: Your connection to angelic beings gives you a sense for evil, like an itch at the back of your mind. Whenever someone within 60 ft of you is planning an evil deed to happen within the next 10 minutes, you can sense that such thoughts are taking place. However, you cannot tell who is thinking said thoughts or what they are planning from this sense alone. You do not need to be able to see or perceive the person thinking those thoughts to get the sense, and you do not get these feelings from creatures with an intelligence score of less than 3.",
@@ -341,10 +405,11 @@
             speed: 30,
             otherspeed: 0,
             otherspeedtype: "",
+            damageresistances: "fire",
+            immunities: "",
             senses: "Darkvision 120ft",
             traits: [
               "Embodiment of Lust: You have advantage on charisma checks involved in a romantic encounter.",
-              "You have resistance to fire damage."
             ]
           }
         },
@@ -363,6 +428,8 @@
             speed: 30,
             otherspeed: 0,
             otherspeedtype: "",
+            damageresistances: "",
+            immunities: "",
             senses: "",
             traits: [
               "Natural Spellcaster: Choose two cantrips from the wizard spell list, you can cast these cantrips at will using Intelligence as your spellcasting stat. Additionally choose one 1st level spell from the wizard spell list, you know that spell inherently, however, once you cast it you must complete a short rest before you can cast it again.",
@@ -385,11 +452,12 @@
             speed: 30,
             otherspeed: 0,
             otherspeedtype: "",
+            damageresistances: "acid",
+            immunities: "",
             senses: "",
             traits: [
               "Draconic Ancestry: You have draconic ancestry. Choose one type of dragon from the Draconic Ancestry table. Your breath weapon and damage resistance are determined by the dragon type, as shown in the table.",
               "Acid Breath Weapon: 5 by 30ft line, Dex Save.  You can use your action to exhale destructive energy. Your draconic ancestry determines the size, shape, and damage type of an exhalation. When you use your breath weapon, each creature in the area of the exhalation must make a saving throw, the type of which is determined by your draconic ancestry. The DC for this saving throw equals 8 + your Constitution modifier + your proficiency bonus. A creature takes 2d6 damage on a failed save, and half as much damage on a successful one. The damage increases to 3d6 at 6th level, 4d6 at 11th level, and 5d6 at 16th level. After you use your breath weapon you cannot use it again until after you complete a short or long rest.",
-              "Acid Damage Resistence: You have resistence to the damage type associated with your draconic ancestry.",
             ]
           }
         },
@@ -408,11 +476,12 @@
             speed: 30,
             otherspeed: 0,
             otherspeedtype: "",
+            damageresistances: "lightning",
+            immunities: "",
             senses: "",
             traits: [
               "Draconic Ancestry: You have draconic ancestry. Choose one type of dragon from the Draconic Ancestry table. Your breath weapon and damage resistance are determined by the dragon type, as shown in the table.",
               "Lightning Breath Weapon: 5 by 30ft line, Dex Save.  You can use your action to exhale destructive energy. Your draconic ancestry determines the size, shape, and damage type of an exhalation. When you use your breath weapon, each creature in the area of the exhalation must make a saving throw, the type of which is determined by your draconic ancestry. The DC for this saving throw equals 8 + your Constitution modifier + your proficiency bonus. A creature takes 2d6 damage on a failed save, and half as much damage on a successful one. The damage increases to 3d6 at 6th level, 4d6 at 11th level, and 5d6 at 16th level. After you use your breath weapon you cannot use it again until after you complete a short or long rest.",
-              "Lightning Damage Resistence: You have resistence to the damage type associated with your draconic ancestry.",
             ]
           }
         },
@@ -431,11 +500,12 @@
             speed: 30,
             otherspeed: 0,
             otherspeedtype: "",
+            damageresistances: "fire",
+            immunities: "",
             senses: "",
             traits: [
               "Draconic Ancestry: You have draconic ancestry. Choose one type of dragon from the Draconic Ancestry table. Your breath weapon and damage resistance are determined by the dragon type, as shown in the table.",
               "Fire Breath Weapon: 5 by 30ft line, Dex Save.  You can use your action to exhale destructive energy. Your draconic ancestry determines the size, shape, and damage type of an exhalation. When you use your breath weapon, each creature in the area of the exhalation must make a saving throw, the type of which is determined by your draconic ancestry. The DC for this saving throw equals 8 + your Constitution modifier + your proficiency bonus. A creature takes 2d6 damage on a failed save, and half as much damage on a successful one. The damage increases to 3d6 at 6th level, 4d6 at 11th level, and 5d6 at 16th level. After you use your breath weapon you cannot use it again until after you complete a short or long rest.",
-              "Fire Damage Resistence: You have resistence to the damage type associated with your draconic ancestry.",
             ]
           }
         },
@@ -454,11 +524,12 @@
             speed: 30,
             otherspeed: 0,
             otherspeedtype: "",
+            damageresistances: "fire",
+            immunities: "",
             senses: "",
             traits: [
               "Draconic Ancestry: You have draconic ancestry. Choose one type of dragon from the Draconic Ancestry table. Your breath weapon and damage resistance are determined by the dragon type, as shown in the table.",
               "Fire Breath Weapon: 15 ft cone, Dex Save.  You can use your action to exhale destructive energy. Your draconic ancestry determines the size, shape, and damage type of an exhalation. When you use your breath weapon, each creature in the area of the exhalation must make a saving throw, the type of which is determined by your draconic ancestry. The DC for this saving throw equals 8 + your Constitution modifier + your proficiency bonus. A creature takes 2d6 damage on a failed save, and half as much damage on a successful one. The damage increases to 3d6 at 6th level, 4d6 at 11th level, and 5d6 at 16th level. After you use your breath weapon you cannot use it again until after you complete a short or long rest.",
-              "Fire Damage Resistence: You have resistence to the damage type associated with your draconic ancestry.",
             ]
           }
         },
@@ -477,11 +548,12 @@
             speed: 30,
             otherspeed: 0,
             otherspeedtype: "",
+            damageresistances: "poison",
+            immunities: "",
             senses: "",
             traits: [
               "Draconic Ancestry: You have draconic ancestry. Choose one type of dragon from the Draconic Ancestry table. Your breath weapon and damage resistance are determined by the dragon type, as shown in the table.",
               "Poison Breath Weapon: 15 ft cone, Con Save.  You can use your action to exhale destructive energy. Your draconic ancestry determines the size, shape, and damage type of an exhalation. When you use your breath weapon, each creature in the area of the exhalation must make a saving throw, the type of which is determined by your draconic ancestry. The DC for this saving throw equals 8 + your Constitution modifier + your proficiency bonus. A creature takes 2d6 damage on a failed save, and half as much damage on a successful one. The damage increases to 3d6 at 6th level, 4d6 at 11th level, and 5d6 at 16th level. After you use your breath weapon you cannot use it again until after you complete a short or long rest.",
-              "Poison Damage Resistence: You have resistence to the damage type associated with your draconic ancestry.",
             ]
           }
         },
@@ -500,11 +572,12 @@
             speed: 30,
             otherspeed: 0,
             otherspeedtype: "",
+            damageresistances: "cold",
+            immunities: "",
             senses: "",
             traits: [
               "Draconic Ancestry: You have draconic ancestry. Choose one type of dragon from the Draconic Ancestry table. Your breath weapon and damage resistance are determined by the dragon type, as shown in the table.",
               "Cold Breath Weapon: 15 ft cone, Con Save.  You can use your action to exhale destructive energy. Your draconic ancestry determines the size, shape, and damage type of an exhalation. When you use your breath weapon, each creature in the area of the exhalation must make a saving throw, the type of which is determined by your draconic ancestry. The DC for this saving throw equals 8 + your Constitution modifier + your proficiency bonus. A creature takes 2d6 damage on a failed save, and half as much damage on a successful one. The damage increases to 3d6 at 6th level, 4d6 at 11th level, and 5d6 at 16th level. After you use your breath weapon you cannot use it again until after you complete a short or long rest.",
-              "Cold Damage Resistence: You have resistence to the damage type associated with your draconic ancestry.",
             ]
           }
         },
@@ -523,6 +596,8 @@
             speed: 25,
             otherspeed: 0,
             otherspeedtype: "",
+            damageresistances: "poison",
+            immunities: "",
             senses: "Darkvision 90 ft",
             traits: [
               "Your speed is not reduced by wearing heavy armor",
@@ -549,6 +624,8 @@
             speed: 25,
             otherspeed: 0,
             otherspeedtype: "",
+            damageresistances: "poison",
+            immunities: "",
             senses: "Darkvision 60 ft",
             traits: [
               "Your speed is not reduced by wearing heavy armor",
@@ -575,6 +652,8 @@
             speed: 30,
             otherspeed: 0,
             otherspeedtype: "",
+            damageresistances: "poison",
+            immunities: "",
             senses: "Darkvision 60 ft",
             traits: [
               "Your speed is not reduced by wearing heavy armor",
@@ -601,6 +680,8 @@
             speed: 25,
             otherspeed: 0,
             otherspeedtype: "",
+            damageresistances: "poison",
+            immunities: "",
             senses: "Darkvision 60 ft",
             traits: [
               "Your speed is not reduced by wearing heavy armor",
@@ -627,6 +708,8 @@
             speed: 30,
             otherspeed: 0,
             otherspeedtype: "",
+            damageresistances: "",
+            immunities: "",
             senses: "Darkvision 60 ft",
             traits: [
               "Keen Senses: You have proficiency in the perception skill.",
@@ -653,6 +736,8 @@
             speed: 35,
             otherspeed: 0,
             otherspeedtype: "",
+            damageresistances: "",
+            immunities: "",
             senses: "Darkvision 60 ft",
             traits: [
               "Keen Senses: You have proficiency in the perception skill.",
@@ -678,6 +763,8 @@
             speed: 35,
             otherspeed: 0,
             otherspeedtype: "",
+            damageresistances: "",
+            immunities: "",
             senses: "Darkvision 60 ft",
             traits: [
               "Keen Senses: You have proficiency in the perception skill.",
@@ -703,6 +790,8 @@
             speed: 35,
             otherspeed: 0,
             otherspeedtype: "",
+            damageresistances: "",
+            immunities: "",
             senses: "Darkvision 60 ft",
             traits: [
               "Keen Senses: You have proficiency in the perception skill.",
@@ -728,6 +817,8 @@
             speed: 30,
             otherspeed: 0,
             otherspeedtype: "",
+            damageresistances: "",
+            immunities: "",
             senses: "",
             traits: [
               "you can also climb up rough surfaces such as trees and rough-hewn walls without making Athletics checks at a speed of 20 feet.",
@@ -751,12 +842,13 @@
             speed: 30,
             otherspeed: 40,
             otherspeedtype: "fly",
+            damageresistances: "fire",
+            immunities: "",
             senses: "Darkvision 60 ft",
             traits: [
               "You also have wings and starting at 6th level you have a base fly speed of 40 ft",
               "Fey Ancestry: You have advantage on saving throws against being charmed, and magic can't put you to sleep.",
               "Trance: Fey'ri don't need to sleep. Instead they meditate deeply, remaining semiconscious, for 4 hours a day. (The Common word for such meditation is 'trance') While meditating, you can dream after a fashion; such dreams are actually mental exercises that have become reflexive through years of practice. After resting in this way, you gain the same benefit that a human does from 8 hours of sleep.",
-              "Hellish Resistance: You have resistance to fire damage.",
             ]
           }
         },
@@ -775,6 +867,8 @@
             speed: 30,
             otherspeed: 0,
             otherspeedtype: "",
+            damageresistances: "",
+            immunities: "",
             senses: "",
             traits: [
               "Unending Breath. You can hold your breath indefinitely while you’re not incapacitated.",
@@ -797,6 +891,8 @@
             speed: 30,
             otherspeed: 0,
             otherspeedtype: "",
+            damageresistances: "",
+            immunities: "",
             senses: "",
             traits: [
               "Earth Walk. You can move across difficult terrain made of earth or stone without expending extra movement.",
@@ -819,9 +915,10 @@
             speed: 30,
             otherspeed: 0,
             otherspeedtype: "",
+            damageresistances: "fire",
+            immunities: "",
             senses: "Darkvision 60ft",
             traits: [
-              "Fire Resistance. You have resistance to fire damage.",
               "Reach to the Blaze. You know the produce flame cantrip. Once you reach 3rd level, you can cast the burning hands spell once with this trait as a 1st-level spell, and you regain the ability to cast it this way when you finish a long rest. Constitution is your spellcasting ability for these spells."
             ]
           }
@@ -841,9 +938,10 @@
             speed: 30,
             otherspeed: 30,
             otherspeedtype: "swim",
+            damageresistances: "acid",
+            immunities: "",
             senses: "",
             traits: [
-              "Acid Resistance. You have resistance to acid damage",
               "Amphibious. You can breathe air and water.",
               "Call to the Wave. You know the shape water cantrip (see chapter 2). When you reach 3rd level, you can cast the create or destroy water spell as a 2nd-level spell once with this trait, and you regain the ability to cast it this way when you finish a long rest. Constitution is your spellcasting ability for these spells."
             ]
@@ -864,6 +962,8 @@
             speed: 25,
             otherspeed: 0,
             otherspeedtype: "",
+            damageresistances: "",
+            immunities: "",
             senses: "Darkvision: 60 feet",
             traits: [
               "Gnome Cunning: You have advantage on all Intelligence, Wisdom, and Charisma saving throws against magic.",
@@ -887,6 +987,8 @@
             speed: 25,
             otherspeed: 0,
             otherspeedtype: "",
+            damageresistances: "",
+            immunities: "",
             senses: "Darkvision: 60 feet",
             traits: [
               "Gnome Cunning: You have advantage on all Intelligence, Wisdom, and Charisma saving throws against magic.",
@@ -910,6 +1012,8 @@
             speed: 30,
             otherspeed: 0,
             otherspeedtype: "",
+            damageresistances: "",
+            immunities: "",
             senses: "Darkvision: 60 feet",
             traits: [
               "Powerful Build: You count as one size larger when determining your carrying capacity and the weight you can push, drag, or lift.",
@@ -933,6 +1037,8 @@
             speed: 30,
             otherspeed: 0,
             otherspeedtype: "",
+            damageresistances: "",
+            immunities: "",
             senses: "",
             traits: [
               "Powerful Build: You count as one size larger when determining your carrying capacity and the weight you can push, drag, or lift.",
@@ -957,6 +1063,8 @@
             speed: 25,
             otherspeed: 0,
             otherspeedtype: "",
+            damageresistances: "poison",
+            immunities: "",
             senses: "Darkvision: 60 feet",
             traits: [
               "make one additional ability score increase of your choice",
@@ -981,6 +1089,8 @@
             speed: 30,
             otherspeed: 0,
             otherspeedtype: "",
+            damageresistances: "",
+            immunities: "",
             senses: "Darkvision: 60 feet",
             traits: [
               "two other ability scores of your choice increase by 1",
@@ -1004,6 +1114,8 @@
             speed: 25,
             otherspeed: 0,
             otherspeedtype: "",
+            damageresistances: "",
+            immunities: "",
             senses: "Darkvision: 60 feet",
             traits: [
               "Lucky: When you roll a 1 on an attack roll, ability check, or saving throw, you can reroll the die and must use the new roll.",
@@ -1027,6 +1139,8 @@
             speed: 25,
             otherspeed: 0,
             otherspeedtype: "",
+            damageresistances: "poison",
+            immunities: "",
             senses: "Darkvision: 60 feet",
             traits: [
               "Lucky: When you roll a 1 on an attack roll, ability check, or saving throw, you can reroll the die and must use the new roll.",
@@ -1051,6 +1165,8 @@
             speed: 30,
             otherspeed: 0,
             otherspeedtype: "",
+            damageresistances: "",
+            immunities: "",
             senses: "Darkvision: 60 feet",
             traits: [
               "Lucky: When you roll a 1 on an attack roll, ability check, or saving throw, you can reroll the die and must use the new roll.",
@@ -1073,6 +1189,8 @@
             speed: 30,
             otherspeed: 0,
             otherspeedtype: "",
+            damageresistances: "",
+            immunities: "",
             senses: "",
             traits: [
               "Ability Score Increase: Three different ability scores of your choice each increase by 1.",
@@ -1097,6 +1215,8 @@
             speed: 30,
             otherspeed: 0,
             otherspeedtype: "",
+            damageresistances: "",
+            immunities: "",
             senses: "",
             traits: [
               "Ability Score Increase: Two different ability scores of your choice each increase by 1.",
@@ -1121,6 +1241,8 @@
             speed: 30,
             otherspeed: 0,
             otherspeedtype: "",
+            damageresistances: "",
+            immunities: "",
             senses: "",
             traits: [
               ""
@@ -1142,6 +1264,8 @@
             speed: 30,
             otherspeed: 0,
             otherspeedtype: "",
+            damageresistances: "",
+            immunities: "",
             senses: "",
             traits: [
               "Ability Score Increase: Three different ability scores of your choice each increase by 1.",
@@ -1167,6 +1291,8 @@
             speed: 30,
             otherspeed: 0,
             otherspeedtype: "",
+            damageresistances: "",
+            immunities: "",
             senses: "",
             traits: [
               "Ability Score Increase: Two different ability scores of your choice each increase by 1.",
@@ -1190,6 +1316,8 @@
             speed: 30,
             otherspeed: 0,
             otherspeedtype: "",
+            damageresistances: "",
+            immunities: "",
             senses: "Darkvision: 60 feet",
             traits: [
               "Menacing: You gain proficiency in the intimidation skill.",
@@ -1214,6 +1342,8 @@
             speed: 30,
             otherspeed: 0,
             otherspeedtype: "",
+            damageresistances: "",
+            immunities: "",
             senses: "Darkvision: 60 feet",
             traits: [
               "Menacing: You gain proficiency in the intimidation skill.",
@@ -1237,11 +1367,12 @@
             speed: 30,
             otherspeed: 0,
             otherspeedtype: "",
+            damageresistances: "fire",
+            immunities: "",
             senses: "Darkvision: 60 feet",
             traits: [
               "Menacing: You gain proficiency in the intimidation skill.",
               "Relentless Endurance: When you are reduced to 0 hit points but not killed outright, you can drop to 1 hit point instead. You can't use this feature again until you finish a long rest.",
-              "Fire Resistance: You have resistance to fire damage."
             ]
           }
         },
@@ -1260,9 +1391,10 @@
             speed: 30,
             otherspeed: 0,
             otherspeedtype: "",
+            damageresistances: "fire",
+            immunities: "",
             senses: "Darkvision: 60 feet",
             traits: [
-              "Hellish Resistance: You have resistance to fire damage.",
               "Infernal Legacy: You know the thaumatergy cantrip. Once you reach 3rd level, you can cast the hellish rebuke spell once per day as a 2nd-level spell. Once you reach 5th level you can cast the darkness spell once per day. Charisma is your spellcasting ability for these spells."
             ]
           }
@@ -1282,6 +1414,8 @@
             speed: 30,
             otherspeed: 0,
             otherspeedtype: "",
+            damageresistances: "",
+            immunities: "",
             senses: "",
             traits: [
               "Styptic Skin: You have advantage on checks to become stable when you are at 0 hit points.",
@@ -1332,6 +1466,335 @@
           }
         }
       ];
+      $scope.armors = [
+        {
+          id: 0,
+          name: "Padded",
+          armor: {
+            name: "Padded",
+            ac: 11,
+            type: "light",
+          }
+        },
+        {
+          id: 1,
+          name: "Leather",
+          armor: {
+            name: "Leather",
+            ac: 11,
+            type: "light",
+          }
+        },
+        {
+          id: 2,
+          name: "Studded Leather",
+          armor: {
+            name: "Studded Leather",
+            ac: 12,
+            type: "light",
+          }
+        },
+        {
+          id: 3,
+          name: "Hide",
+          armor: {
+            name: "Hide",
+            ac: 12,
+            type: "medium",
+          }
+        },
+        {
+          id: 4,
+          name: "Chain shirt",
+          armor: {
+            name: "Chain shirt",
+            ac: 13,
+            type: "medium",
+          }
+        },
+        {
+          id: 5,
+          name: "Scale mail",
+          armor: {
+            name: "Scale mail",
+            ac: 13,
+            type: "medium",
+          }
+        },
+        {
+          id: 6,
+          name: "Breastplate",
+          armor: {
+            name: "Breastplate",
+            ac: 14,
+            type: "medium",
+          }
+        },
+        {
+          id: 7,
+          name: "Half plate",
+          armor: {
+            name: "Half plate",
+            ac: 15,
+            type: "medium",
+          }
+        },
+        {
+          id: 8,
+          name: "Ring mail",
+          armor: {
+            name: "Ring mail",
+            ac: 14,
+            type: "heavy",
+          }
+        },
+        {
+          id: 9,
+          name: "Chain mail",
+          armor: {
+            name: "Chain mail",
+            ac: 16,
+            type: "heavy",
+          }
+        },
+        {
+          id: 10,
+          name: "Splint",
+          armor: {
+            name: "Splint",
+            ac: 17,
+            type: "heavy",
+          }
+        },
+        {
+          id: 11,
+          name: "Plate",
+          armor: {
+            name: "Plate",
+            ac: 18,
+            type: "heavy",
+          }
+        },
+      ];
+      $scope.updatechar = function() {
+        $scope.creatureentry.classlevel = $scope.character.special.name + $scope.character.charclass.name + $scope.character.level;
+        $scope.creatureentry.race = $scope.character.race.size + $scope.character.race.name;
+        $scope.creatureentry.background = $scope.character.background.name;
+        $scope.creatureentry.str = $scope.character.str + $scope.character.race.str;
+        $scope.creatureentry.dex = $scope.character.dex + $scope.character.race.dex;
+        $scope.creatureentry.con = $scope.character.con + $scope.character.race.con;
+        $scope.creatureentry.intel = $scope.character.intel + $scope.character.race.intel;
+        $scope.creatureentry.wis = $scope.character.wis + $scope.character.race.wis;
+        $scope.creatureentry.cha = $scope.character.cha + $scope.character.race.cha;
+        $scope.creatureentry.proficiencybonus = Math.ceil($scope.character.level / 4.0) + 1;
+        var strbonus = (Math.floor($scope.creatureentry.str / 2) - 5);
+        var dexbonus = (Math.floor($scope.creatureentry.dex / 2) - 5);
+        var conbonus = (Math.floor($scope.creatureentry.con / 2) - 5);
+        var intbonus = (Math.floor($scope.creatureentry.intel / 2) - 5);
+        var wisbonus = (Math.floor($scope.creatureentry.wis / 2) - 5);
+        var chabonus = (Math.floor($scope.creatureentry.cha / 2) - 5);
+        if ($scope.character.charclass.saves.indexOf("str") != -1) {
+          $scope.creatureentry.strsave = $scope.creatureentry.proficiencybonus + strbonus;
+        }
+        else {
+          $scope.creatureentry.strsave = strbonus;        
+        }
+        if ($scope.character.charclass.saves.indexOf("dex") != -1) {
+          $scope.creatureentry.dexsave = $scope.creatureentry.proficiencybonus + dexbonus;
+        }
+        else {
+          $scope.creatureentry.dexsave = dexbonus;       
+        }
+        if ($scope.character.charclass.saves.indexOf("con") != -1) {
+          $scope.creatureentry.consave = $scope.creatureentry.proficiencybonus + conbonus;
+        }
+        else {
+          $scope.creatureentry.consave = conbonus;        
+        }
+        if ($scope.character.charclass.saves.indexOf("int") != -1) {
+          $scope.creatureentry.intsave = $scope.creatureentry.proficiencybonus + intbonus;
+        }
+        else {
+          $scope.creatureentry.intsave = intbonus;        
+        }
+        if ($scope.character.charclass.saves.indexOf("wis") != -1) {
+          $scope.creatureentry.wissave = $scope.creatureentry.proficiencybonus + wisbonus;
+        }
+        else {
+          $scope.creatureentry.wissave = wisbonus;        
+        }
+        if ($scope.character.charclass.saves.indexOf("cha") != -1) {
+          $scope.creatureentry.chasave = $scope.creatureentry.proficiencybonus + chabonus;
+        }
+        else {
+          $scope.creatureentry.chasave = chabonus;        
+        }
+        if ($scope.character.skillproficiencies.indexOf("acrobatics") != -1) {
+          $scope.creatureentry.acrobatics = $scope.creatureentry.proficiencybonus + dexbonus;
+        }
+        else {
+          $scope.creatureentry.acrobatics = dexbonus;        
+        }
+        if ($scope.character.skillproficiencies.indexOf("animalhandling") != -1) {
+          $scope.creatureentry.animalhandling = $scope.creatureentry.proficiencybonus + wisbonus;
+        }
+        else {
+          $scope.creatureentry.animalhandling = wisbonus;        
+        }
+        if ($scope.character.skillproficiencies.indexOf("arcana") != -1) {
+          $scope.creatureentry.arcana = $scope.creatureentry.proficiencybonus + intbonus;
+        }
+        else {
+          $scope.creatureentry.arcana = intbonus;        
+        }
+        if ($scope.character.skillproficiencies.indexOf("athletics") != -1) {
+          $scope.creatureentry.athletics = $scope.creatureentry.proficiencybonus + strbonus;
+        }
+        else {
+          $scope.creatureentry.athletics = strbonus;        
+        }
+        if ($scope.character.skillproficiencies.indexOf("deception") != -1) {
+          $scope.creatureentry.deception = $scope.creatureentry.proficiencybonus + chabonus;
+        }
+        else {
+          $scope.creatureentry.deception = chabonus;        
+        }
+        if ($scope.character.skillproficiencies.indexOf("history") != -1) {
+          $scope.creatureentry.history = $scope.creatureentry.proficiencybonus + intbonus;
+        }
+        else {
+          $scope.creatureentry.history = intbonus;        
+        }
+        if ($scope.character.skillproficiencies.indexOf("insight") != -1) {
+          $scope.creatureentry.insight = $scope.creatureentry.proficiencybonus + wisbonus;
+        }
+        else {
+          $scope.creatureentry.insight = wisbonus;        
+        }
+        if ($scope.character.skillproficiencies.indexOf("intimidation") != -1) {
+          $scope.creatureentry.intimidation = $scope.creatureentry.proficiencybonus + chabonus;
+        }
+        else {
+          $scope.creatureentry.intimidation = chabonus;        
+        }
+        if ($scope.character.skillproficiencies.indexOf("investigation") != -1) {
+          $scope.creatureentry.investigation = $scope.creatureentry.proficiencybonus + intbonus;
+        }
+        else {
+          $scope.creatureentry.investigation = intbonus;        
+        }
+        if ($scope.character.skillproficiencies.indexOf("medicine") != -1) {
+          $scope.creatureentry.medicine = $scope.creatureentry.proficiencybonus + wisbonus;
+        }
+        else {
+          $scope.creatureentry.medicine = wisbonus;        
+        }
+        if ($scope.character.skillproficiencies.indexOf("nature") != -1) {
+          $scope.creatureentry.nature = $scope.creatureentry.proficiencybonus + intbonus;
+        }
+        else {
+          $scope.creatureentry.nature = intbonus;        
+        }
+        if ($scope.character.skillproficiencies.indexOf("perception") != -1) {
+          $scope.creatureentry.perception = $scope.creatureentry.proficiencybonus + wisbonus;
+        }
+        else {
+          $scope.creatureentry.perception = wisbonus;        
+        }
+        if ($scope.character.skillproficiencies.indexOf("performance") != -1) {
+          $scope.creatureentry.performance = $scope.creatureentry.proficiencybonus + chabonus;
+        }
+        else {
+          $scope.creatureentry.performance = chabonus;        
+        }
+        if ($scope.character.skillproficiencies.indexOf("persuasion") != -1) {
+          $scope.creatureentry.persuasion = $scope.creatureentry.proficiencybonus + chabonus;
+        }
+        else {
+          $scope.creatureentry.persuasion = chabonus;        
+        } 
+        if ($scope.character.skillproficiencies.indexOf("religion") != -1) {
+          $scope.creatureentry.religion = $scope.creatureentry.proficiencybonus + intbonus;
+        }
+        else {
+          $scope.creatureentry.religion = intbonus;        
+        }
+        if ($scope.character.skillproficiencies.indexOf("slightofhand") != -1) {
+          $scope.creatureentry.slightofhand = $scope.creatureentry.proficiencybonus + dexbonus;
+        }
+        else {
+          $scope.creatureentry.slightofhand = dexbonus;        
+        }
+        if ($scope.character.skillproficiencies.indexOf("stealth") != -1) {
+          $scope.creatureentry.stealth = $scope.creatureentry.proficiencybonus + dexbonus;
+        }
+        else {
+          $scope.creatureentry.stealth = dexbonus;        
+        }
+        if ($scope.character.skillproficiencies.indexOf("survival") != -1) {
+          $scope.creatureentry.survival = $scope.creatureentry.proficiencybonus + wisbonus;
+        }
+        else {
+          $scope.creatureentry.survival = wisbonus;
+        }
+        var speed = $scope.character.race.speed + " ft" + $scope.character.race.otherspeed + " " + $scope.character.race.otherspeedtype;
+        if ($scope.character.charclass.name === "Monk" && $scope.character.level > 1) {
+          speed += (Math.ceil(($scope.character.level - 1)/4) * 5) + 5;
+        } else if ($scope.character.charclass.name === "Barbarian" && scope.character.level >= 5) {
+          speed += 10;
+        }
+        $scope.creatureentry.speed = speed;
+        $scope.creatureentry.hpmax = $scope.character.charclass.hitdie + ($scope.character.level-1)*Math.ceil($scope.character.charclass.hitdie/2) + ($scope.character.level * conbonus);
+        //TODO add racial hit point bonuses
+        $scope.creatureentry.hitdice = $scope.character.level;
+        $scope.creatureentry.passiveperception = 10 + $scope.creatureentry.perception;
+        $scope.creatureentry.senses = $scope.character.race.senses;
+        var featurestring = "";
+        for(var x = 0; x < $scope.character.race.traits.length; x++) {
+          featurestring += $scope.character.race.traits[x] + "\n";
+        }
+        for(var x = 0; x < $scope.character.background.features.length; x++) {
+          featurestring += $scope.character.background.features[x] + "\n";
+        }
+        for(var x = 0; x < $scope.character.charclass.features.length; x++) {
+          if ($scope.character.charclass.features[x].level <= $scope.character.level) {           
+            featurestring += $scope.character.charclass.features[x].text + "\n";
+          }
+        }
+        for(var x = 0; x < $scope.character.special.features.length; x++) {
+          if ($scope.character.special.features[x].level <= $scope.character.level) {           
+            featurestring += $scope.character.special.features[x].text + "\n";
+          }
+        }
+        $scope.creatureentry.features = featurestring;
+        $scope.creatureentry.damageresistances = $scope.character.race.damageresistances;
+        $scope.creatureentry.immunities = $scope.character.race.immunities;
+        $scope.creatureentry.ac = $scope.character.armor.ac;
+        if ($scope.character.armor.type === "light") {
+          $scope.creatureentry.ac += dexbonus;
+        }
+        else if ($scope.character.armor.type === "medium") {
+          if (dexbonus < 2) {
+            $scope.creatureentry.ac += dexbonus;
+          }
+          else {
+            $scope.creatureentry.ac += 2;
+          }
+        }
+        if ($scope.character.shield) {
+          $scope.creatureentry.ac += 2;
+        }
+        if ($scope.creatureentry.ac < 5) {
+          $scope.creatureentry.ac = 10 + dexbonus;
+        }
+      }
+      $scope.savechar = function() {
+        var update = updatepath.slice(0,-1) + $scope.creature.id;
+        $http.post(update, $scope.creature).success(function() {
+        });
+      }
+      $scope.$watch("character",$scope.updatechar());
+
     });
     
     dmTools.controller('initTracker', function($scope, $http) {
