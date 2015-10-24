@@ -296,12 +296,12 @@
           ]
         },
         level: 1,
-        str: 0,
-        dex: 0,
-        con: 0,
-        intel: 0,
-        wis: 0,
-        cha: 0,
+        str: 8,
+        dex: 8,
+        con: 8,
+        intel: 8,
+        wis: 8,
+        cha: 8,
         skillproficiencies: [],
         armor: {
             name: "None",
@@ -1577,8 +1577,8 @@
         },
       ];
       $scope.updatechar = function() {
-        $scope.creatureentry.classlevel = $scope.character.special.name + $scope.character.charclass.name + $scope.character.level;
-        $scope.creatureentry.race = $scope.character.race.size + $scope.character.race.name;
+        $scope.creatureentry.classlevel = $scope.character.special.name + " " + $scope.character.charclass.name + " " + $scope.character.level;
+        $scope.creatureentry.race = $scope.character.race.size + " " + $scope.character.race.name;
         $scope.creatureentry.background = $scope.character.background.name;
         $scope.creatureentry.str = $scope.character.str + $scope.character.race.str;
         $scope.creatureentry.dex = $scope.character.dex + $scope.character.race.dex;
@@ -1737,10 +1737,13 @@
         else {
           $scope.creatureentry.survival = wisbonus;
         }
-        var speed = $scope.character.race.speed + " ft" + $scope.character.race.otherspeed + " " + $scope.character.race.otherspeedtype;
+        var speed = $scope.character.race.speed + " ft"
+        if($scope.character.race.otherspeedtype !== "") {
+          speed += $scope.character.race.otherspeed + " " + $scope.character.race.otherspeedtype;
+        }
         if ($scope.character.charclass.name === "Monk" && $scope.character.level > 1) {
           speed += (Math.ceil(($scope.character.level - 1)/4) * 5) + 5;
-        } else if ($scope.character.charclass.name === "Barbarian" && scope.character.level >= 5) {
+        } else if ($scope.character.charclass.name === "Barbarian" && $scope.character.level >= 5) {
           speed += 10;
         }
         $scope.creatureentry.speed = speed;
@@ -1787,13 +1790,16 @@
         if ($scope.creatureentry.ac < 5) {
           $scope.creatureentry.ac = 10 + dexbonus;
         }
+        setTimeout($scope.updatechar, 5000);
       }
       $scope.savechar = function() {
         var update = updatepath.slice(0,-1) + $scope.creature.id;
         $http.post(update, $scope.creature).success(function() {
         });
       }
-      $scope.$watch("character",$scope.updatechar());
+      $scope.init = function() {
+        $scope.updatechar();
+      }
 
     });
     
