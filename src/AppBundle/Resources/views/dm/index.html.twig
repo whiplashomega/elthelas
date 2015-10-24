@@ -32,15 +32,7 @@
 {% endblock %}
 
 {% block body %}
-        <script type="text/javascript">
-          var loadallpath = "{{ path('get_creatures') }}";
-          var loadpath = "{{ path('get_creature', {'id': 1}) }}";
-          var updatepath = "{{ path('update_creature', {'id': 0})}}";
-          var addpath = "{{ path('add_creature')}}";
-          var deletepath = "{{ path('delete_creature', {'id': 0})}}";
-          var spells = {{spells | raw }};
-          spells.splice(0,2);
-        </script>  
+{% include "::spells.html.twig" %}  
 <div data-ng-app="dmTools" class="container-fluid">
   <div class="row">
     <div id="content" class="col-sm-10">    
