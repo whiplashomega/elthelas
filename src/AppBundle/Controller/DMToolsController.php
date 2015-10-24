@@ -14,13 +14,13 @@ class DMToolsController extends Controller {
    *@Security("has_role('ROLE_USER')")
    */
   public function indexAction(Request $request) {
-    $dir = $_SERVER['DOCUMENT_ROOT']."\spells";
+    $dir = "/spells";
     $spells = scandir($dir);
     unset($spells[1]);
     unset($spells[0]);
     $spellarray = array();
     foreach($spells as $spell) {
-      $spelldesc = file($dir . '\\' . $spell );
+      $spelldesc = file($dir . '/' . $spell );
       $spelltitle = str_replace("\"","",substr($spelldesc[2],strpos($spelldesc[2],"\"")));
       $spelltags = str_replace("tags:","",$spelldesc[4]);
       $spellentry = implode($spelldesc);
