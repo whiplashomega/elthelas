@@ -149,12 +149,12 @@
               var table = $(".creatureLoad").dataTable({
                 'data': tabledata,
                 'columns': [
-                  { title: "select" },
-                  { title: "name" },
-                  { title: "race" },
-                  { title: "class/level" },
-                  { title: "background" },
-                  { title: "alignment" }
+                  { width: '10%', title: "select" },
+                  { width: '20%', title: "name" },
+                  { width: '20%', title: "race" },
+                  { width: '20%', title: "class/level" },
+                  { width: '15%', title: "background" },
+                  { width: '15%', title: "alignment" }
                 ]
               });              
             }
