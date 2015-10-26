@@ -4,30 +4,7 @@
   Includes initiative roller, dungeon master's dashboard, campaign journal, and character creator tool (for use with the dashboard)" />
 	<meta name="keywords" content="dungeons, dragons, elthelas, campaign, setting, 5th edition, custom, tools, initiative, dashboard, journal, creator" />
   <style type="text/css">
-    .btn.AppMenuButton {
-      display: block;
-      width: 100%;
-      margin-bottom: 15px;
-    }
-    .app {
-      width: 98%;
-      padding: 0.5% 1% 0.5% 1%;
-      border: 1px outset gray;
-      box-shadow: 10px 10px 5px black;
-    }
-    #appmenulist {
-      list-style-type: none;
-      margin: 0px;
-      padding: 0px;
-    }
-    #appmenulist li {
-      width: 100%;
-    }
-    #appmenulist li a {
-      width: 100%;
-      background-color: rgb(221,221,221);
-      color: black;
-    }
+
   </style>
 {% endblock %}
 
@@ -35,8 +12,18 @@
 {% include "::spells.html.twig" %}  
 <div data-ng-app="dmTools" class="container-fluid">
   <div class="row">
-    <div id="content" class="col-sm-10">    
-      <div class="app" id="creatureCreator" data-ng-controller="creatureCreator" data-ng-init="init()" style="display: none">
+    <div id="content" class="col-sm-12">
+      <ul>
+        <li><a href="#creatureCreator">Creature Creator</a></li>
+        <li><a href="#encounterBuilder">Encounter Builder</a></li>
+        <li><a href="#referenceManual">Reference Manual</a></li>
+        <li><a href="#charBuilder">Character Builder</a></li>
+        <li><a href="#initTracker">Init Tracker</a></li>
+        <li><a href="#dmJournal">DM Journal</a></li>
+        <li><a href="#diceRoller">Dice Roller</a></li>
+        <li><a href="#dungeonMap">Dungeon Map</a></li>
+      </ul>
+      <div class="app" id="creatureCreator" data-ng-controller="creatureCreator" data-ng-init="init()">
         <h3>Creature Creator</h3>
 
         <div class="row">
@@ -191,7 +178,7 @@
           </div>
         </section>
       </div>
-      <div class="app" id="encounterBuilder" data-ng-controller="encounterBuilder" data-ng-init="init()" style="display: none">
+      <div class="app" id="encounterBuilder" data-ng-controller="encounterBuilder" data-ng-init="init()">
         <h3>Encounter Builder</h3>
         <div class="row">
           <div class="form-group col-sm-12">
@@ -269,19 +256,17 @@
             </div>
             <div id="{{'description' + creature.id }}">
               <h5><strong>Background</strong> {{creature.background}} </h5>
-              <p>
-                <strong>Physical Description</strong> {{creature.physicaldescription}}
-              </p>
-              <pre>
-                <strong>Possessions</strong> {{creature.possessions}}
-              </pre>
+              <div>
+                <h5>Physical Description</h5> <pre>{{creature.physicaldescription}}</pre>
+              </div>
+                <h5>Possessions</h5> <pre>{{creature.possessions}}</pre>
             </div>
             <input type="button" value="Remove from Encounter" data-ng-click="removeCreature($index)" />
           </div>
           {% endverbatim %}
         </div>
       </div>
-      <div class="app" id="referenceManual" data-ng-controller="referenceManual" data-ng-init="init()" style="display: none">
+      <div class="app" id="referenceManual" data-ng-controller="referenceManual" data-ng-init="init()">
         <h3>Reference Manual</h3>
         <div id="refdiv">
           <ul>
@@ -396,7 +381,123 @@
             </ul>
           </div>
           <div id="refinjuries">
-            
+            <table class="table">
+              <tr><th>d20</th><th>Injury</th></tr>
+              <tr>
+                <td>1</td>
+                <td>
+                  Lose an Eye. You have disadvantage on Wisdom
+                  (Perception) checks that rely on sight and on
+                  ranged attack rolls. Magic such as the regenerate
+                  spell can restore the lost eye. If you have no eyes
+                  left after sustaining this injury, you're blinded.
+                </td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>
+                  Lose an Arm or a Hand. You can no longer hold
+                  anything with two hands, and you can hold only a
+                  single object at a time. Magic such as the regenerate
+                  spell can restore the lost appendage.
+                </td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>
+                  Lose a Foot or Leg. Your speed on foot is halved,
+                  and you must use a cane or crutch to move unless
+                  you have a peg leg or other prosthesis. You fall
+                  prone after using the Dash action. You have
+                  disadvantage on Dexterity checks made to balance.
+                  Magic such as the regenerate spell can restore the
+                  lost appendage.
+                </td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>
+                  Limp. Your speed on foot is reduced by 5 feet. You
+                  must make a DC 10 Dexterity saving throw after
+                  using the Dash action. If you fail the save, you fall
+                  prone. Magical healing of 3rd level or higher removes the limp.
+                </td>
+              </tr>
+              <tr>
+                <td>5-6</td>
+                <td>
+                  Internal Injury. Whenever you attempt an action
+                  in combat, you must make a DC 15 Constitution
+                  saving throw. On a failed save, you lose your action
+                  and can't use reactions until the start of your next
+                  turn. The injury heals if you receive magical healing of 3rd level or higher,
+                  or if you spend ten days doing nothing but resting.
+                </td>
+              </tr>
+              <tr>
+                <td>7</td>
+                <td>
+                  Brain Damage. Your intelligence score is permanently reduced by 1 and you have
+                  disadvantage on intelligence saving throws.  Magic such as the regenerate
+                  spell can restore the damaged brain tissue.
+                </td>
+              </tr>
+              <tr>
+                <td>8-9</td>
+                <td>
+                  Broken Ribs. This has the same effect as Internal
+                  Injury above, except that the save DC is 10.
+                </td>
+              </tr>
+              <tr>
+                <td>10</td>
+                <td>
+                  Crushed vocal chords.  You have disadvantage on all charisma checks that involve speaking
+                  or singing.  Magical healing of 3rd level or higher can heal the damage.
+                </td>
+              </tr>
+              <tr>
+                <td>11-12</td>
+                <td>
+                  Horrible Scar. You are disfigured to the extent that
+                  the wound can't be easily concealed . You have
+                  disadvantage on Charisma (Persuasion) checks
+                  and advantage on Charisma (Intimidation) checks.
+                  Magical healing of 6th level or higher, such as heal
+                  and regenerate, removes the scar.
+                </td>
+              </tr>
+              <tr>
+                <td>13</td>
+                <td>
+                  Blood Infection.  Your wound became infected and later turned into a chronic blood infection.  You
+                  appear ill to all those around you, and can become delirious at moments of stress.  You are effectively
+                  poisoned, and have disadvantage on all attack rolls and ability checks.  Additionally, your constitution score
+                  is permanently reduced by 1 each day that the infection continues.  If it reaches 0, you die. The infection can be
+                  cured with a remove disease effect from a paladin's lay-on-hands ability, or with magical healing of 3rd level or higher.
+                </td>
+              </tr>
+              <tr>
+                <td>14-16</td>
+                <td>
+                  Festering Wound. Your hit point maximum is
+                  reduced by 1 every 24 hours the wound persists.
+                  If your hit point maximum drops to 0, you die.
+                  The wound heals if you receive magical healing of 3rd level or higher.
+                  Alternatively, someone can tend to the wound and
+                  make a DC 15 Wisdom (Medicine) check once every
+                  24 hours. After ten successes, the wound heals.
+                </td>
+              </tr>
+              <tr>
+                <td>17-20</td>
+                <td>
+                  Minor Scar. The scar doesn't have any adverse
+                  effect. Magical healing of 6th level or higher, such
+                  as heal and regenerate, removes the scar.
+                </td>
+              </tr>
+            </table>
           </div>
           <div id="refactions">
             
@@ -410,7 +511,7 @@
         </div>
         <!--Conditions, Injuries, Spells, Actions, Cover-->
       </div>
-      <div class="app" id="charBuilder" data-ng-controller="charBuilder" data-ng-init="init()" style="display:none">
+      <div class="app" id="charBuilder" data-ng-controller="charBuilder" data-ng-init="init()">
         <h3>Character Builder</h3>
         <p>
           Use this tool to create a ready to go NPC or character for use in the encounter builder, without having to do manual calculations.
@@ -502,7 +603,7 @@
             </div>
             <div class="form-group">
               <label>Shield <input type="checkbox" ng-model="character.shield"</label>
-						</div>
+					</div>
 					{% verbatim %}
 					
 					<div class="statblock">
@@ -578,45 +679,60 @@
             </div>
           </div>
 				{% endverbatim %}
-          </div>
-
         </div>
+
       </div>
-      <div class="app" id="initTracker" data-ng-controller="initTracker" style="display: none">
+      </div>
+      <div class="app" id="initTracker" data-ng-controller="initTracker">
         <h3>Initiative Tracker</h3>
       </div>
-      <div class="app" id="dmJournal" data-ng-controller="dmJournal" style="display: none">
+      <div class="app" id="dmJournal" data-ng-controller="dmJournal">
         <h3>DM Journal</h3>
       </div>
-      <div class="app" id="diceRoller" data-ng-controller="diceRoller" style="display: none">
+      <div class="app" id="diceRoller" data-ng-controller="diceRoller">
         <h3>Dice Roller</h3>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>d2<input type="number" class="form-control" data-ng-model="numD2" /></label>
+            </div>        
+            <div class="form-group">
+              <label>d4 <input type="number" class="form-control" data-ng-model="numD4" /></label>
+            </div>        
+            <div class="form-group">
+              <label>d6 <input type="number" class="form-control" data-ng-model="numD6" /></label>
+            </div>        
+            <div class="form-group">
+              <label>d8 <input type="number" class="form-control" data-ng-model="numD8" /></label>
+            </div>
+            <div class="form-group">
+              <label>+ <input type="number" class="form-control" data-ng-model="staticMod" />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>d10 <input type="number" class="form-control" data-ng-model="numD10" /></label>
+            </div>
+            <div class="form-group">
+              <label>d12 <input type="number" class="form-control" data-ng-model="numD12" /></label>
+            </div>
+            <div class="form-group">
+              <label>d20 <input type="number" class="form-control" data-ng-model="numD20" /></label>
+            </div>
+            <div class="form-group">
+              <label>d100 <input type="number" class="form-control" data-ng-model="numD100" /></label>
+            </div>
+            <div class="btn-group">
+              <input type="button" class="btn btn-default" value="Roll" data-ng-click="rollDice()" />
+              <input type="button" class="btn btn-default" value="Roll Character Ability Scores" data-ng-click="rollChar()" />
+            </div>
+          </div>
+        </div>
+        <h5 data-ng-bind="results"></h5>
       </div>
       <div class="app" id="dungeonMap" data-ng-controller="dungeonMap" style="display: none">
         <h3>Dungeon Map</h3>
       </div>
-    </div>
-    <div id="appmenu" class="col-sm-2" data-ng-controller="appMenu" data-ng-init="init()">
-      <ul id="appmenulist">
-        <li><button class="AppMenuButton btn btn-lg" id="loadCreatureCreator">Creature Creator</button></li>
-        <li><button class="AppMenuButton btn btn-lg" id="loadEncounterBuilder">Encounter Builder</button></li>
-        <li><button class="AppMenuButton btn btn-lg" id="loadReferenceManual">Reference Manual</button></li>
-        <li><button class="AppMenuButton btn btn-lg" id="loadCharBuilder">Character Builder</button></li>
-        <li><button class="AppMenuButton btn btn-lg" id="loadInitTracker">Init Tracker</button></li>
-        <li><button class="AppMenuButton btn btn-lg" id="loadDmJournal">DM Journal</button></li>
-        <li><button class="AppMenuButton btn btn-lg" id="loadDiceRoller">Dice Roller</button></li>
-        <li><button class="AppMenuButton btn btn-lg" id="loadDungeonMap">Dungeon Map</button></li>
-        {% if app.user and is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-          <li><a class="AppMenuButton btn btn-lg" href="{{path('fos_user_profile_show')}}">My Account</a></li>
-          <li><a class="AppMenuButton btn btn-lg" href="{{path('fos_user_change_password')}}">Change Password</a></li>
-          <li><a class="AppMenuButton btn btn-lg" href="{{path('fos_user_security_logout')}}">Log Out</a></li>
-        {% else %}
-          <li><a class="AppMenuButton btn btn-lg" href="{{path('fos_user_registration_register')}}">Sign Up</a></li>
-          <li><a class="AppMenuButton btn btn-lg" href="{{path('fos_user_security_login')}}">Sign In</a></li>
-        {% endif %}
-        {% if app.user and is_granted('ROLE_ADMIN') %}
-          <li><a class="AppMenuButton btn btn-lg" href="#">User Administration</a></li>
-        {% endif %}
-      </ul>
     </div>
   </div>
 </div>

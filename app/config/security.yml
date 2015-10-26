@@ -19,6 +19,9 @@ security:
                 default_target_path: /dm
             logout: true
             anonymous:    true
+            remember_me:
+              key: "%secret%"
+              always_remember_me: true
 
     access_control:
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }

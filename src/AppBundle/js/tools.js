@@ -1,78 +1,10 @@
 (function($, ng) {
     var dmTools = ng.module('dmTools', []);
-  
-    dmTools.controller('appMenu', function($scope, $http) {
     
-      $scope.loadCreatureCreator = function() {
-        $(".app").hide();
-        $("#creatureCreator").toggle('slide', {direction: 'right', duration: 500});
-        $(".AppMenuButton").removeClass("btn-primary");
-        $("#loadCreatureCreator").addClass("btn-primary");
-      }
-      
-      $scope.loadEncounterBuilder = function() {
-        $(".app").hide();
-        $("#encounterBuilder").toggle('slide', {direction: 'right', duration: 500});
-        $(".AppMenuButton").removeClass("btn-primary");
-        $("#loadEncounterBuilder").addClass("btn-primary");
-      }
-      
-      $scope.loadReferenceManual = function() {
-        $(".app").hide();
-        $("#referenceManual").toggle('slide', {direction: 'right', duration: 500});
-        $(".AppMenuButton").removeClass("btn-primary");
-        $("#loadReferenceManual").addClass("btn-primary");
-      }
-      
-      $scope.loadCharBuilder = function() {
-        $(".app").hide();
-        $("#charBuilder").toggle('slide', {direction: 'right', duration: 500});
-        $(".AppMenuButton").removeClass("btn-primary");
-        $("#loadCharBuilder").addClass("btn-primary");
-      }
-      
-      $scope.loadInitTracker = function() {
-        $(".app").hide();
-        $("#initTracker").toggle('slide', {direction: 'right', duration: 500});
-        $(".AppMenuButton").removeClass("btn-primary");
-        $("#loadInitTracker").addClass("btn-primary");
-      }
-      
-      $scope.loadDmJournal = function() {
-        $(".app").hide();
-        $("#dmJournal").toggle('slide', {direction: 'right', duration: 500});
-        $(".AppMenuButton").removeClass("btn-primary");
-        $("#loadDmJournal").addClass("btn-primary");
-      }
-      
-      $scope.loadDiceRoller = function() {
-        $(".app").hide();
-        $("#diceRoller").toggle('slide', {direction: 'right', duration: 500});
-        $(".AppMenuButton").removeClass("btn-primary");
-        $("#loadDiceRoller").addClass("btn-primary");
-      }
-      
-      $scope.loadDungeonMap = function() {
-        $(".app").hide();
-        $("#dungeonMap").toggle('slide', {direction: 'right', duration: 500});
-        $(".AppMenuButton").removeClass("btn-primary");
-        $("#loadDungeonMap").addClass("btn-primary");
-      }
-      
-      $scope.init = function() {
-        //Assign callbacks
-        $("#sidebar").addClass('hidden');
-        $("#main").removeClass('col-md-10').addClass('col-md-12');
-        $("#loadCreatureCreator").click($scope.loadCreatureCreator);
-        $("#loadEncounterBuilder").click($scope.loadEncounterBuilder);
-        $("#loadReferenceManual").click($scope.loadReferenceManual);
-        $("#loadCharBuilder").click($scope.loadCharBuilder);
-        $("#loadInitTracker").click($scope.loadInitTracker);
-        $("#loadDmJournal").click($scope.loadDmJournal);
-        $("#loadDiceRoller").click($scope.loadDiceRoller);
-        $("#loadDungeonMap").click($scope.loadDungeonMap);
-      }
-    });
+    //We'll go ahead and use jQuery and jQuery UI to initialize our layout space before we get into the meat of the various angular controllers.
+    $("#content").tabs();
+    $("#main").addClass("col-md-12").removeClass("col-md-10");
+    $("#sidebar").addClass("hidden");
     
     dmTools.controller('creatureCreator', function($scope, $http) {
       $scope.creatures = [];
@@ -1812,7 +1744,58 @@
     });
     
     dmTools.controller('diceRoller', function($scope, $http) {
+      $scope.numD2 = 0;
+      $scope.numD4 = 0;
+      $scope.numD6 = 0;
+      $scope.numD8 = 0;
+      $scope.numD10 = 0;
+      $scope.numD12 = 0;
+      $scope.numD20 = 0;
+      $scope.numD100 = 0;
+      $scope.staticMod = 0;
+      $scope.results = "";
       
+      $scope.rollDice = function() {
+        var total = 0;
+        for(var x = 0; x < $scope.numD2; x++) {
+          total += Math.floor(Math.random()*2)+1;
+        }
+        for(var x = 0; x < $scope.numD4; x++) {
+          total += Math.floor(Math.random()*4)+1;
+        }
+        for(var x = 0; x < $scope.numD6; x++) {
+          total += Math.floor(Math.random()*6)+1;
+        }
+        for(var x = 0; x < $scope.numD8; x++) {
+          total += Math.floor(Math.random()*8)+1;
+        }
+        for(var x = 0; x < $scope.numD10; x++) {
+          total += Math.floor(Math.random()*10)+1;
+        }
+        for(var x = 0; x < $scope.numD12; x++) {
+          total += Math.floor(Math.random()*12)+1;
+        }
+        for(var x = 0; x < $scope.numD20; x++) {
+          total += Math.floor(Math.random()*20)+1;
+        }
+        for(var x = 0; x < $scope.numD100; x++) {
+          total += Math.floor(Math.random()*100)+1;
+        }
+        $scope.results = total + $scope.staticMod;
+      }
+      $scope.rollChar = function() {
+        var result = "";
+        for(var x = 0; x < 6; x++) {
+          var dice = [0, 0, 0, 0];
+          for(var y = 0; y < dice.length; y++) {
+            dice[y] = Math.floor(Math.random()*6)+1;
+          }
+          dice.sort();
+          var num = dice[1] + dice[2] + dice[3];
+          result += num.toString() + " ";
+        }
+        $scope.results = result;
+      }
     });
     
     dmTools.controller('dungeonMap', function($scope, $http) {
