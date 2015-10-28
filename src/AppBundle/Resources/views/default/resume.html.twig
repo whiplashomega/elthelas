@@ -2,37 +2,45 @@
 <html>
 	<head>
 		<meta charset="UTF-8" />
-		<link href='http://fonts.googleapis.com/css?family=Montez|Lusitana:400,700|Oregano:400,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css' />
-		<link href='/css/resume.css' rel='stylesheet' type='text/css' />
-		<link href='/css/resumeprint.css' rel='stylesheet' type='text/css' media='print' />
+		<title>Resume for Joseph Harrison</title>
+    {% include "::stylesheets.html.twig" %}
+		<style>
+			.notopmargin {
+				margin-top: 0px;
+			}
+		</style>
 	</head>
 	<body>
-	<div id='container'>
-		<section id='nameaddress'>
-			Joseph C. Harrison<br/>
-			113 Violet Circle<br/>
-			Madison, WI 53714<br/>
-			(608)239-5790<br/>
-			<a href='mailto:josephcharrison2@gmail.com'>
-				josephcharrison2@gmail.com
-			</a>
+	<div id='container' class="container">
+		<section class="row jumbotron">
+			<aside id='nameaddress' class="col-md-3">
+				Joseph C. Harrison<br/>
+				113 Violet Circle<br/>
+				Madison, WI 53714<br/>
+				(608)239-5790<br/>
+				<a href='mailto:josephcharrison2@gmail.com'>
+					josephcharrison2@gmail.com
+				</a>
+			</aside>
+			<section id='summary' class='col-md-9'>
+				<h3 class="notopmargin">Professional Summary</h3>
+				<p>
+					I am an experienced full-stack web developer with a focus on front end technologies.
+					I am proficient in Javascript, several server
+					side languages, and in modern standards of HTML
+					and CSS based web design.  Most of all, I am a friendly
+					organized person who can interact with customers to build
+					requirement sets, solve problems, and maintain a positive rapport
+					between the web team and business areas.
+				</p>
+			</section>
 		</section>
-		<section id='summary' class='sectionhead'>
-			<h2>Professional Summary</h2>
-			<p>
-				I am an experienced web developer. I am proficient in Javascript, several server
-				side languages, and in modern standards of HTML
-				and CSS based web design.  Most of all, I am a friendly
-				organized person who can interact with customers to build
-				requirement sets, solve problems, and maintain a positive rapport
-				between the web team and business areas.
-			</p>
-		</section>
-		<table>
-			<caption class='sectionhead'>Skills and Proficiencies</caption>
+
+		<h3>Skills and Proficiencies</h3>
+		<table class="table table-bordered">
 			<tr>
 				<td class="firstcol">Programming Languages</td>
-				<td>Javascript, PHP, Python, C#, Scala, Java, Ruby, HTML 5, CSS 3</td>
+				<td>Javascript, PHP, Python, C#, Ruby, HTML 5, CSS 3</td>
 			</tr>
 			<tr>
 				<td class="firstcol">Database Management</td>
@@ -41,7 +49,7 @@
 			<tr>
 				<td class="firstcol">Frameworks and Libraries</td>
 				<td>
-					JQuery, JQuery UI, Drupal 7+, Rails, Backbone.js, Angular.js 
+					JQuery, JQuery UI, Bootstrap, ASP.NET MVC, Symfony, SharePoint, Drupal 7+, Rails, ReactJS, AngularJS 
 				</td>
 			</tr>
 			<tr>
@@ -53,28 +61,29 @@
 			<tr>
 				<td class="firstcol">Developer Tools</td>
 				<td>
-					Git, Adobe Photoshop, Firebug, VIM, Bash, Apache, IIS
+					Git, Team Foundation Server, Adobe Photoshop, VIM, Bash, Apache, IIS
 				</td>
 			</tr>
 						<tr>
 				<td class="firstcol">Other Technical Skills</td>
 				<td>
-					Microsoft Office Suite, Linux, Active Directory, Technical Writing, Organization, Time Management, Problem Solving
+					Microsoft Office Suite, Linux, Active Directory, LDAP, Technical Writing, Organization, Time Management, Problem Solving
 				</td>
 			</tr>
 		</table>
 		<section id='employment'>
-		<h2 class='sectionhead'>Employment and Education</h2>
-		<section id="dcf2" class="projects">
-			<span class='date'>IT Collaboration Technician May 2014 - present</span>
-			<aside>
+		<h3 class='sectionhead'>Employment and Education</h3>
+		<section id="dcf2" class="row">
+			<aside class="col-md-3">
+				IT Collaboration Technician <br />
+				May 2014 - present<br />
 				State of Wisconsin<br />
 				Department of Children and Families<br />
 				201 East Washington Avenue<br />
 				Madison, WI 53708<br />
 			</aside>
-			<article>
-				<h4>DCF Website Redesign</h4>
+			<article class="col-md-9">
+				<h4 class="notopmargin">DCF Website Redesign</h4>
 				<p>
 					The scope of this project was a complete redesign of the Departments website, a task we undertook with
 					no funding beyond staff hours, and at a time when taking on new staff was out of the question due to
@@ -131,7 +140,6 @@
 						Design a solution for web forms that could not be migrated to SharePoint as is.
 					</li>
 				</ul>
-				<p>Joseph Harrison</p>
 				<h4>YoungStar Website Redesign</h4>
 				<p>
 					The YoungStar program, one of the departments most visable areas, contracted with the advertising agency
@@ -159,16 +167,17 @@
 				</ul>
 			</article>
 		</section>
-		<section id="dcf" class="projects">
-			<span class='date'>Web Administrator Intern November 2013 - May 2014</span>
-			<aside>
+		<section id="dcf" class="projects row">
+			<aside class="col-md-3">
+				Web Administrator Intern<br />
+				November 2013 - May 2014<br />
 				State of Wisconsin<br/>
 				Department of Children and Families<br/>
 				201 East Washington Avenue<br/>
 				Madison, WI 53708<br/>
 			</aside>
-			<article>
-				<h4>Lean Government Website</h4>
+			<article class="col-md-9">
+				<h4 class="notopmargin">Lean Government Website</h4>
 				<ul>
 					<li>
 						I worked with a committee from different business areas 
@@ -222,18 +231,17 @@
 				</ul>
 			</article>
 		</section>
-		<section id='matc' class='projects'>
-			<span class='date'>
-				IT Web Analyst/Programmer August 2012 - Present
-			</span>
-			<aside>
+		<section id='matc' class='projects row'>
+			<aside class="col-md-3">
+				IT Web Analyst/Programmer <br />
+				August 2013 - Present<br />
 				Associates Degree Program<br/>
 				Madison College<br/>
 				1701 Wright Street<br/>
 				Madison, WI 53704
 			</aside>
-			<article>
-				<h4>Classroom Instruction</h4>
+			<article class="col-md-9">
+				<h4 class="notopmargin">Classroom Instruction</h4>
 				<ul>
 					<li>
 						The degree program focuses on building modern dynamic
@@ -250,23 +258,21 @@
 						working full time.
 					</li>
 					<li>Classroom instruction also included Linux Server, and project management related coursework.</li>
-					<li>I will be graduating in May of 2015.</li>
+					<li>I will be graduating in May of 2016.</li>
 				</ul>
-				<p>Joseph Harrison</p>
 			</article>
 		</section>
-		<section id='captel' class='projects'>
-			<span class='date'>
-				Captioning Assistant November 2011 - November 2013
-			</span>
-			<aside>
+		<section id='captel' class='row'>
+			<aside class="col-md-3">
+				Captioning Assistant <br />
+				November 2011 - November 2013<br />
 				CapTel Call Center<br/>
 				Ultratech Incorporated<br/>
 				5801 Research Park Boulevard<br/>
 				Madison, WI 53715
 			</aside>
-			<article>
-				<h4>Telephone Captions</h4>
+			<article class="col-md-9">
+				<h4 class="notopmargin">Telephone Captions</h4>
 				<ul>
 					<li>
 						I used Voice Recognition software to caption telephone 
@@ -286,33 +292,22 @@
 					</li>
 					<li>
 						Over the course of a year of independent study, I learned
-						Java, Scala, and PHP programming languages.
-					</li>
-					<li>
-						I obtained certifications of accomplishment with 
-						distinction in Functional Programming with Scala and 
-						Natural Language Processing from Coursera, available 
-						on request or online at <br/>
-						<a href="http://elthelas-josephharrison.rhcloud.com/downloads/NLPcertificate.pdf">
-						http://elthelas-josephharrison.rhcloud.com/downloads/NLPcertificate.pdf</a>
-						and <br/> <a href="http://elthelas-josephharrison.rhcloud.com/downloads/Scalacertificate.pdf">
-						http://elthelas-josephharrison.rhcloud.com/downloads/Scalacertificate.pdf</a>.
+						the Java, Scala, and PHP programming languages.
 					</li>
 				</ul>
 			</article>
 		</section>
-		<section id='uw' class='projects'>
-			<span class='date'>
-				Laboratory Manager November 2009 - November 2011
-			</span>
-			<aside>
-				University of Wisconsin - Madison
-				Knowledge and Concepts Laboratory
-				1202 West Johnson Street
+		<section id='uw' class='row'>
+			<aside class="col-md-3">
+				Laboratory Manager <br />
+				November 2009 - November 2011 <br />
+				University of Wisconsin - Madison<br />
+				Knowledge and Concepts Laboratory<br />
+				1202 West Johnson Street<br />
 				Madison, WI 53706
 			</aside>
-			<article>
-				<h4>Semi-Supervised Learning in Humans and Machines</h4>
+			<article class="col-md-9">
+				<h4 class="notopmargin">Semi-Supervised Learning in Humans and Machines</h4>
 				<ul>
 					<li>
 						I performed a variety of experiments exploring the
@@ -370,23 +365,15 @@
 				</ul>
 			</article>
 		</section>
-		<section class='projects'>
-			<span class='date'>
-				Bachelor of Psychology and Philosophy August 2005 - December 2008
-			</span>
-			<aside>
+		<section class='row'>
+			<aside class="col-md-3">
+				Bachelor of Science<br />
+				Psychology and Philosophy Major<br />
+				August 2005 - December 2008<br />
 				University of Wisconsin - Madison<br/>
-				College of Letters and Sciences<br/>
-				Department of Psychology<br/>
-				1202 West Johnson Street<br/>
-				Madison, WI 53706<br/>
-				Department of Philosophy<br/>
-				5185 Helen C White Hall<br/>
-				600 N Park Street<br/>
-				Madison, WI 53706
 			</aside>
-			<article>
-				<h4>Full Time Student, Part Time Worker</h4>
+			<article class="col-md-9">
+				<h4 class="notopmargin">Full Time Student, Part Time Worker</h4>
 				<ul>
 					<li>
 						I worked approximately 20 hours a week throughout my
@@ -413,15 +400,13 @@
 						Subjective perception.
 					</li>
 				</ul>
-			</article>
-			<h2 class="sectionhead">References Available Upon Request</h2>	
-		</section>
-		
-		</section>
+			</article>			
+		</section>		
+	</section>
 
 		
 	<footer>
-		
+		<h3>References Available Upon Request</h3>		
 	</footer>
 	</div>
 	</body>

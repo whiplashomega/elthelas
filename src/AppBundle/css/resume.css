@@ -1,7 +1,3 @@
-/* line 1, ../sass/resume.scss */
-body {
-  background-color: #eeeeee;
-}
 
 /* line 5, ../sass/resume.scss */
 #container {
@@ -11,8 +7,6 @@ body {
 /* line 9, ../sass/resume.scss */
 #nameaddress {
   font-family: 'Oregano' serif;
-  border: 4px solid #dddd99;
-  background: #ffffaa;
   display: block;
   float: left;
   width: 160px;
