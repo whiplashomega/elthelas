@@ -6,12 +6,25 @@
 {% endif %}
 <form action="{{ path("fos_user_security_check") }}" method="post">
 <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
-<label for="username">Username</label>
-<input type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
-<label for="password">Password</label>
-<input type="password" id="password" name="_password" required="required" />
-<input type="checkbox" id="remember_me" name="_remember_me" value="on" />
-<label for="remember_me">Remember Me</label>
-<input type="submit" id="_submit" name="_submit" value="Login" />
+<div class="form-group">
+  <label for="username">Username</label>
+  <input type="text" class="form-control" id="username" name="_username" value="{{ last_username }}" required="required" />
+</div>
+<div class="form-group">
+  <label for="password">Password</label>
+  <input type="password" class="form-control" id="password" name="_password" required="required" />
+</div>
+<div class="form-group">
+  <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+  <label for="remember_me">Remember Me</label>  
+</div>
+
+<input class="btn btn-primary" type="submit" id="_submit" name="_submit" value="Login" />
 </form>
+<p>
+  If you do not have a user account, please <a href="{{path('fos_user_registration_register')}}">Go to the Registration Page</a>  
+</p>
+<p>
+  <a href="{{path('fos_user_resetting_request')}}">Reset password</a>
+</p>
 {% endblock fos_user_content %}
