@@ -16,10 +16,6 @@ if(getenv('CLEARDB_DATABASE_URL')) {
     $container->setParameter('database_password', $db['pass']);
     $container->setParameter('secret', getenv('SECRET'));
     $container->setParameter('locale', 'en');
-    $container->setParameter('mailer_transport', null);
-    $container->setParameter('mailer_host', null);
-    $container->setParameter('mailer_user', null);
-    $container->setParameter('mailer_password', null);
     }
     else { //we are not on production, so we'll use our defaults for development servers
     $container->setParameter('database_driver', 'pdo_mysql');
@@ -29,9 +25,5 @@ if(getenv('CLEARDB_DATABASE_URL')) {
     $container->setParameter('database_user', 'elthelas');
     $container->setParameter('database_password', 'elthelas');
     $container->setParameter('secret', 'elthelas');
-    $container->setParameter('locale', 'en');
-    $container->setParameter('mailer_transport', null);
-    $container->setParameter('mailer_host', null);
-    $container->setParameter('mailer_user', null);
-    $container->setParameter('mailer_password', null);      
+    $container->setParameter('locale', 'en');     
     }
