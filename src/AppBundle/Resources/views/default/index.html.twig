@@ -32,12 +32,27 @@
 	<p>
 		It was a couple years after college that I played my first game of Dungeons and Dragons, the real pen and paper variety.
 		It was only a matter of time then until I reworked the source material back into the format that had originally
-		inspired it, a Dungeons and Dragons campaign setting.  So far I have DMed 1 successful campaign in the setting, and I
-		hope to do more.  In the meantime, I will use this site to store the most up-to-date version of the source materials
-		as I come up with them.
+		inspired it, a Dungeons and Dragons campaign setting.  So far I have DMed 1 successful campaign in the setting, and am in
+		the middle of another campaign that has now been underway for more than a year.  This site is used
+		to store the most up-to-date version of the source materials as I come up with them.
+	</p>
+	<p>
+		In addition, I have built a suite of DM Tools, which include a quick-access reference manual, an encounter builder, a
+		DM journal, dice roller, and initiative tracker.  These tools are meant for use during play, effectively turning your
+		browser window into an interactive DM screen and tracking tool.  Use requires registration, but if you are looking to
+		start off a campaign in the setting, go for it!
 	</p>
 	<p>
 		Please feel free to browse the site, and if you feel inspired to play a campaign with the material, go for it! Have
 		fun! That is, after all, the whole point.
 	</p>
+
+{% endblock %}
+{%  block localscripts %}
+	<script>
+		(function() {
+			$('#sidebar').hide();
+			$('#main').addClass('col-md-12').removeClass('col-md-10');
+		})();
+	</script>
 {% endblock %}
