@@ -684,9 +684,31 @@
 
       </div>
       </div>
-      <div class="app" id="initTracker" data-ng-controller="initTracker">
+      <div class="app" id="initTracker" data-ng-controller="initTracker" >
         <h3>Initiative Tracker</h3>
+        <div class="form-group">
+          <label>Name <input type="text" data-ng-model="character.name" class="form-control"/></label>
+        </div>
+        <div class="form-group">
+          <label>Mod <input type="number" data-ng-model="character.mod" class="form-control" /></label>
+        </div>
+        <div>
+          <input class="btn btn-primary" style="margin:5px;" data-ng-click="addChar()" type="button" value="Add Character" />
+          <input class="btn btn-warning" style="margin: 5px;" data-ng-click="addAndRoll()" type="button" value="Add to Existing Initiative" />
+          <input class="btn btn-success" style="margin:5px;" data-ng-click="rollInit()" type="button" value="Roll Initiative" />     
+        </div>
 
+        <table class="table table-striped">
+          <tr>
+            <th>Name</th><th>Modifier</th><th>Initiative</th><th>Delete</th>
+          </tr>
+          <tr data-ng-repeat="character in characters">
+            <td data-ng-bind="character.name"></td><td data-ng-bind="character.mod"></td><td data-ng-bind="character.init"></td>
+            <td>
+              <input type="button" class="btn btn-danger" value="Delete" data-ng-click="deleteChar(character)" />
+            </td>
+          </tr>
+        </table>
       </div>
       <div class="app" id="dmJournal" data-ng-controller="dmJournal" data-ng-init="init()">
         <h3>DM Journal</h3>

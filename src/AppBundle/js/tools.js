@@ -1737,6 +1737,68 @@
     
     dmTools.controller('initTracker', function($scope, $http) {
       
+      var charInit = function() {
+        this.name = "";
+        this.mod =  0;
+        this.init = 0;        
+      }
+      
+      $scope.characters = [];
+      
+      $scope.character = new charInit();
+      
+      $scope.addChar = function() {
+        $scope.characters.push($scope.character);
+        $scope.character = new charInit();
+      }
+      
+      $scope.deleteChar = function(character) {
+        $scope.characters.splice($scope.characters.indexOf(character), 1);
+      }
+      $scope.charSort = function(a, b) {
+            //first we go by initiative roll
+            if (a.init < b.init) {
+              return 1;
+            }
+            if (a.init > b.init) {
+              return -1;
+            }
+            //if initiative rolls are the same, go by initiative mod
+            if (a.mod < b.mod) {
+              return 1;
+            }
+            if (a.mod > b.mod) {
+              return -1;
+            }
+            //if both are the same, roll off until one gets a higher roll than the other.
+            var aRoll = 0;
+            var bRoll = 0;
+            while(aRoll == bRoll) {
+              aRoll = Math.floor(Math.random() * 20) + 1;
+              bRoll = Math.floor(Math.random() * 20) + 1;
+              if (aRoll < bRoll) {
+                return 1;
+              }
+              if (aRoll > bRoll) {
+                return -1;
+              }
+            }
+            //while this should not be possible to reach, we'll put it in for safeties sake.
+            return 0;
+      };
+      $scope.addAndRoll = function() {
+        $scope.character.init = Math.floor(Math.random() * 20) + 1 + $scope.character.mod;
+        $scope.characters.push($scope.character);
+        $scope.characters.sort($scope.charSort);
+        $scope.character = new charInit();
+      }
+      
+      $scope.rollInit = function() {
+        for(x in $scope.characters) {
+          $scope.characters[x].init = Math.floor(Math.random() * 20) + 1 + $scope.characters[x].mod;
+        }
+        $scope.characters.sort($scope.charSort);
+      }
     });
     
     dmTools.controller('dmJournal', function($scope, $http) {
