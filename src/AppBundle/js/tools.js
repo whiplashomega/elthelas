@@ -1737,10 +1737,161 @@
     
     dmTools.controller('initTracker', function($scope, $http) {
       
+      var charInit = function() {
+        this.name = "";
+        this.mod =  0;
+        this.init = 0;        
+      }
+      
+      $scope.characters = [];
+      
+      $scope.character = new charInit();
+      
+      $scope.addChar = function() {
+        $scope.characters.push($scope.character);
+        $scope.character = new charInit();
+      }
+      
+      $scope.deleteChar = function(character) {
+        $scope.characters.splice($scope.characters.indexOf(character), 1);
+      }
+      $scope.charSort = function(a, b) {
+            //first we go by initiative roll
+            if (a.init < b.init) {
+              return 1;
+            }
+            if (a.init > b.init) {
+              return -1;
+            }
+            //if initiative rolls are the same, go by initiative mod
+            if (a.mod < b.mod) {
+              return 1;
+            }
+            if (a.mod > b.mod) {
+              return -1;
+            }
+            //if both are the same, roll off until one gets a higher roll than the other.
+            var aRoll = 0;
+            var bRoll = 0;
+            while(aRoll == bRoll) {
+              aRoll = Math.floor(Math.random() * 20) + 1;
+              bRoll = Math.floor(Math.random() * 20) + 1;
+              if (aRoll < bRoll) {
+                return 1;
+              }
+              if (aRoll > bRoll) {
+                return -1;
+              }
+            }
+            //while this should not be possible to reach, we'll put it in for safeties sake.
+            return 0;
+      };
+      $scope.addAndRoll = function() {
+        $scope.character.init = Math.floor(Math.random() * 20) + 1 + $scope.character.mod;
+        $scope.characters.push($scope.character);
+        $scope.characters.sort($scope.charSort);
+        $scope.character = new charInit();
+      }
+      
+      $scope.rollInit = function() {
+        for(x in $scope.characters) {
+          $scope.characters[x].init = Math.floor(Math.random() * 20) + 1 + $scope.characters[x].mod;
+        }
+        $scope.characters.sort($scope.charSort);
+      }
     });
     
     dmTools.controller('dmJournal', function($scope, $http) {
       
+      $scope.journals = [];
+      
+      var Month = function(id, name) {
+        this.id = id,
+        this.name = name
+      }
+      
+      $scope.months =  [
+        new Month(1, 'Dorunor'),
+        new Month(2, 'Trimalan'),
+        new Month(3, 'Sylvanus'),
+        new Month(4, 'Gaiana'),
+        new Month(5, 'Maridia'),
+        new Month(6, 'Moltyr'),
+        new Month(7, 'Saris'),
+        new Month(8, 'Tockra'),
+        new Month(9, 'Amatherin')
+      ];
+      
+      $scope.elDate = function(day, month, year) {
+        this.day = Number(day);
+        this.month = month;
+        this.year = Number(year);
+        this.toString = function() {
+          return this.month.name + " " + this.day + ", " + this.year;
+        }
+      }
+      
+      $scope.thisJournal = {
+        date: new $scope.elDate(1, $scope.months[1], 1844),
+        text: ""
+      };
+      
+      function convertdatestring(date) {
+        var months = ["Dorunor", "Trimalan", "Sylvanus", "Gaiana", "Maridia", "Moltyr", "Saris", "Tockra", "Amatherin"];
+        var chars = /^[a-zA-Z]+/;
+        var month = date.match(chars);
+        month = months.indexOf(month[0]);
+        var year = date.substr(date.length - 4);
+        var day = date.slice(-8, -5).match(/[0-9]+/);
+        return [Number(year), month, Number(day[0])];
+      }
+      
+      function sortdate(date1, date2) {
+        var numdate1 = convertdatestring(date1.date);
+        var numdate2 = convertdatestring(date2.date);
+        if (numdate1[0] > numdate2[0]) {
+          return -1;
+        } else if (numdate1[0] < numdate2[0]) {
+          return 1;
+        } else if(numdate1[1] > numdate2[1]){
+          return -1;
+        } else if (numdate1[1] < numdate2[1]) {
+          return 1;
+        } else if (numdate1[2] > numdate2[2]) {
+          return -1;
+        } else if (numdate1[2] < numdate2[2]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      }
+      
+      $scope.deleteJournal = function(id) {
+        var path = deleteJournalRoute.slice(0, -1) + id;
+        $http.get(path).success(function() {
+          $scope.getJournals();
+        });
+        var journalId = $scope.journals.indexOf()
+        $scope.journals.splice($scope.journals.map(function(e) { return e.id; }).indexOf(id), 1);
+      }
+      
+      $scope.getJournals = function() {
+        $http.get(getJournalsRoute).success(function(data) {
+          $scope.journals = data.sort(sortdate);
+        });
+      }
+    
+      
+      $scope.addJournal = function() {
+        var date = $scope.thisJournal.date.toString();
+        $http.post(addJournalRoute, {"date": date, "text": $scope.thisJournal.text }).success(function() {
+          $scope.getJournals();
+        });
+      }
+      
+      $scope.init = function() {
+        $scope.getJournals();
+      }
     });
     
     dmTools.controller('diceRoller', function($scope, $http) {

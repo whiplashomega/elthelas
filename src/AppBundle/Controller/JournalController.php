@@ -47,7 +47,10 @@ class JournalController extends Controller {
         return new Response("No user found", Response::HTTP_FORBIDDEN);
       } else {
         $journal = new Journal();
-        $journal->setDate($request->get("date"))->setText($request->get("text"))->setThisuser($user);
+        $params = json_decode($request->getContent(), true);
+        $journal->setDate($params["date"]);
+        $journal->setText($params["text"]);
+        $journal->setThisuser($user);
         $user->addJournal($journal);
         $em->persist($user);
         $em->persist($journal);
@@ -69,8 +72,7 @@ class JournalController extends Controller {
       return new Response("1");  
     } else {
        return new Response("Access Denied", Response::HTTP_FORBIDDEN);     
-    }
-    
+    } 
   }
   
   /**
