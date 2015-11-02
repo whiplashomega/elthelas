@@ -2,34 +2,35 @@
 
 {% block body %}
 <h4>Standard Player Races</h4>
-<a href="#aasimar" class="racebutton btn btn-default">Aasimar</a>
-<a href="#dragonborn" class="racebutton btn btn-default">Dragonborn</a>
-<a href="#dwarves" class="racebutton btn btn-default">Dwarves</a>
-<a href="#elves" class="racebutton btn btn-default">Elves</a>
-<a href="#faelin" class="racebutton btn btn-default">Faelin</a>
-<a href="#feyri" class="racebutton btn btn-default">Fey'ri</a>
-<a href="#genasi" class="racebutton btn btn-default">Genasi</a>
-<a href="#gnomes" class="racebutton btn btn-default">Gnomes</a>
-<a href="#goblins" class="racebutton btn btn-default">Goblins</a>
-<a href="#goliaths" class="racebutton btn btn-default">Goliaths</a>
-<a href="#halfdwarves" class="racebutton btn btn-default">Half-Dwarves</a>
-<a href="#halfelves" class="racebutton btn btn-default">Half-Elves</a>
-<a href="#halflings" class="racebutton btn btn-default">Halflings</a>
-<a href="#humans" class="racebutton btn btn-default">Humans</a>
-<a href="#orcs" class="racebutton btn btn-default">Orcs</a>
-<a href="#tieflings" class="racebutton btn btn-default">Tieflings</a>
-<a href="#trollkin" class="racebutton btn btn-default">Trollkin</a>
+<a href="#" data-race="aasimar" class="racebutton btn btn-default">Aasimar</a>
+<a href="#" data-race="dragonborn" class="racebutton btn btn-default">Dragonborn</a>
+<a href="#" data-race="dwarves" class="racebutton btn btn-default">Dwarves</a>
+<a href="#" data-race="elves" class="racebutton btn btn-default">Elves</a>
+<a href="#" data-race="faelin" class="racebutton btn btn-default">Faelin</a>
+<a href="#" data-race="feyri" class="racebutton btn btn-default">Fey'ri</a>
+<a href="#" data-race="genasi" class="racebutton btn btn-default">Genasi</a>
+<a href="#" data-race="gnomes" class="racebutton btn btn-default">Gnomes</a>
+<a href="#" data-race="goblins" class="racebutton btn btn-default">Goblins</a>
+<a href="#" data-race="goliaths" class="racebutton btn btn-default">Goliaths</a>
+<a href="#" data-race="halfdwarves" class="racebutton btn btn-default">Half-Dwarves</a>
+<a href="#" data-race="halfelves" class="racebutton btn btn-default">Half-Elves</a>
+<a href="#" data-race="halflings" class="racebutton btn btn-default">Halflings</a>
+<a href="#" data-race="humans" class="racebutton btn btn-default">Humans</a>
+<a href="#" data-race="orcs" class="racebutton btn btn-default">Orcs</a>
+<a href="#" data-race="tieflings" class="racebutton btn btn-default">Tieflings</a>
+<a href="#" data-race="trollkin" class="racebutton btn btn-default">Trollkin</a>
 <h4>Other Races</h4>
-<a href="#bugbears" class="racebutton btn btn-default">Bugbears</a>
-<a href="#centaurs" class="racebutton btn btn-default">Centaurs</a>
-<a href="#gnolls" class="racebutton btn btn-default">Gnolls</a>
-<a href="#hobgoblins" class="racebutton btn btn-default">Hobgoblins</a>
-<a href="#kobolds" class="racebutton btn btn-default">Kobolds</a>
-<a href="#lizardfolk" class="racebutton btn btn-default">Lizardfolk</a>
+<a href="#" data-race="bugbears" class="racebutton btn btn-default">Bugbears</a>
+<a href="#" data-race="centaurs" class="racebutton btn btn-default">Centaurs</a>
+<a href="#" data-race="gnolls" class="racebutton btn btn-default">Gnolls</a>
+<a href="#" data-race="hobgoblins" class="racebutton btn btn-default">Hobgoblins</a>
+<a href="#" data-race="kobolds" class="racebutton btn btn-default">Kobolds</a>
+<a href="#" data-race="lizardfolk" class="racebutton btn btn-default">Lizardfolk</a>
 <p>
   Note that for all PC races, starting languages are determined by country of origin, not race, although classes or backgrounds may provide bonus
   languages as specified in their descriptions.
 </p>
+<div id="raceDetails"></div>
 <div class="racediv" id="aasimar">
   <h2>Aasimar</h2>
   <p>
@@ -958,7 +959,6 @@
       </li>
     </ul>
   </div>
-
 	<h3>Age</h3>
 	<p>
 		Age in Elthelas differs from default D&amp;D, particularly in that none of the major races differ from humans in max age by more than an order
