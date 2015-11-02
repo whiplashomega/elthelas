@@ -151,7 +151,7 @@
       addmarker(markers, "fradae", [0, 0], type);
       addmarker(markers, "gnoma", [0, 0], type);
       addmarker(markers, "granitebluff", [0, 0], type);
-      addmarker(markers, "gulutheim", [0, 0], type);
+      addmarker(markers, "gulutheim", [-60,84.5], type);
       addmarker(markers, "highhammer", [0, 0], type);
       addmarker(markers, "ifritan", [0, 0], type);
       addmarker(markers, "instar", [0, 0], type);
@@ -251,7 +251,7 @@
 		});
    	{% if type is defined %}
       {% if location is defined %}
-        $.get("/world/" + "{{ type}}" + "/" + "{{location}}" + ".html", function(data) {
+        $.get("/world/" + "{{ type}}" + "/" + "{{location}}", function(data) {
             $("#sidebar").html(data);
         });
       {% endif %}
