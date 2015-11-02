@@ -15148,9 +15148,10 @@ $('.accordion').accordion({
   });
 $(".racediv").hide();
 $(".racebutton").click(function() {
-  var race = $(this).attr("href");
-  $(".racediv").fadeOut();
-  $(race).fadeIn();
+  var race = $(this).attr("data-race");
+  var racecontent = $("#" + race).html();
+  $("#raceDetails").html(racecontent);
+  ga('send','pageview',location.pathname + "/" + race);
 });
 
 
