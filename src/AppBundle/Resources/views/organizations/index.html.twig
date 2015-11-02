@@ -2,13 +2,13 @@
 {% block sidebar %}
     <nav class="sidenav">
       <ul class="nav nav-pills nav-stacked">
-        <li><a href="{{path('org', {"org":"allianceof6nations" })}}">Alliance of 6 Nations</a></li>
-        <li><a href="{{path('org', {"org":"blacksun" })}}">Black Sun</a></li>
-        <li><a href="{{path('org', {"org":"blackwolfirregulars" })}}">Black Wolf Irregulars</a></li>
-        <li><a href="{{path('org', {"org":"championsofcora" })}}">Champions of Cora</a></li>
-        <li><a href="{{path('org', {"org":"gerasalinealliance" })}}">Gerasaline Alliance</a></li>
-        <li><a href="{{path('org', {"org":"illustriousguildmerchants" })}}">Illustrius Guild of Merchants and Fine Artisans</a></li>
-        <li><a href="{{path('org', {"org":"morrindbrewers" })}}">Morrind Brewers Club</a></li>
+        <li><a href="#" id="allianceof6nations" class="orglink" >Alliance of 6 Nations</a></li>
+        <li><a href="#" id="blacksun" class="orglink" >Black Sun</a></li>
+        <li><a href="#" id="blackwolfirregulars" class="orglink">Black Wolf Irregulars</a></li>
+        <li><a href="#" id="championsofcora" class="orglink" >Champions of Cora</a></li>
+        <li><a href="#" id="gerasalinealliance" class="orglink" >Gerasaline Alliance</a></li>
+        <li><a href="#" id="illustriousguildmerchants" class="orglink" >Illustrius Guild of Merchants and Fine Artisans</a></li>
+        <li><a href="#" id="morrindbrewers" class="orglink" >Morrind Brewers Club</a></li>
       </ul>
     </nav>
 {% endblock %}
@@ -25,10 +25,20 @@
     {% block javascripts %}
       {% include "::javascripts.html.twig" %}
       <script>
+        var loc = "{{ path('locdata', {"type": "organizations", "location": "blacksun"}) }}";
         {% if org is defined %}
-            $.get("/world/" + "organizations/" + "{{org}}", function(data) {
+            var thisloc = loc.slice(0,-8) + "{{org}}";
+            $.get(thisloc, function(data) {
                 $("#orgdiv").html(data);
             });
         {% endif %}
+            $(".orglink").click(function() {
+              var orgname = $(this).attr("id");
+              var thisloc = loc.slice(0,-8) + orgname;
+              $.get(thisloc, function(data) {
+                $("#orgdiv").html(data);
+                ga('send', 'pageview', thisloc);
+              });
+            });
       </script>
     {% endblock %}
