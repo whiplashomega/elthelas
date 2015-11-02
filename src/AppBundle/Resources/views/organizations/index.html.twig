@@ -26,7 +26,7 @@
       {% include "::javascripts.html.twig" %}
       <script>
         {% if org is defined %}
-            $.get("/world/" + "organizations/" + "{{org}}" + ".html", function(data) {
+            $.get("/world/" + "organizations/" + "{{org}}", function(data) {
                 $("#orgdiv").html(data);
             });
         {% endif %}

@@ -27,6 +27,6 @@ class GeographyPagesController extends Controller
    */
   public function locdataAction($type, $location, Request $request) {
     
-    return $this->render('AppBundle:geography:'.$type.':'.$location.'.html.twig');
+    return $this->render('AppBundle:geography:'.$type.'/'.$location.'.html.twig');
   }
 }
