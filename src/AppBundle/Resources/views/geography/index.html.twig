@@ -31,6 +31,7 @@
     $("#main").removeClass("col-md-10").addClass("col-md-9");
     $("#sidebar").removeClass("col-md-9").addClass("col-md-3");
 		var map = L.map('map').setView([0, 0], 2);
+    //Uncomment this code to enable getting lattitude and longitude figures by clicking on the map, useful for placing new markers
     map.on('click', function(e) {
       alert("Lat, Lon : " + e.latlng.lat + ", " + e.latlng.lng);
     });
@@ -67,32 +68,151 @@
       clearmarkers();
       var type="nations";
       addmarker(markers, "alfadir", [-56,-94], type);
-      addmarker(markers, "arad", [5,132], type);
-      addmarker(markers, "curinor", [50,55], type);
-      addmarker(markers, "degakta", [-60,60], type);
-      addmarker(markers, "demalthor", [20,55], type);
-      addmarker(markers, "dera", [26,-125], type);
-      addmarker(markers, "deradragorim", [30,-85], type);
-      addmarker(markers, "dormania", [60,135], type);
-      addmarker(markers, "dragonhome", [0,-130], type);
-      addmarker(markers, "eldoran", [30,-10], type);
-      addmarker(markers, "gerasalim", [40,110], type);
-      addmarker(markers, "gnarra", [-5,-30], type);
+      var alfadir = L.polygon([ new L.LatLng(-59.9, -107.2), new L.LatLng(-57.3, -103.6),
+                               new L.LatLng(-54, -104),
+                               new L.LatLng(-47.5, -81.7),
+                               new L.LatLng(-59.6, -85.4),
+                               new L.LatLng(-59, -97.6),
+                               ],
+                              {stroke: false, color: '#FFFF00'});
+      markers.push(alfadir);
+      map.addLayer(alfadir);
+      addmarker(markers, "tiaovcoast", [-64.6, -109], type);
+      var tiaovcoast = L.polygon([ new L.LatLng(-70.7, -115.3), new L.LatLng(-64.2, -103.1), new L.LatLng(-59.6, -85.4),
+                                  new L.LatLng(-59, -97.6),
+                                  new L.LatLng(-59.9, -107.2),
+                                  new L.LatLng(-62.2, -109.9),
+                                  new L.LatLng(-62.9, -113),
+                                  new L.LatLng(-66.2, -117.2)
+                                  ],
+                                 {stroke: false, color: '#222200'});
+      markers.push(tiaovcoast);
+      map.addLayer(tiaovcoast);
       addmarker(markers, "gorgro", [-70,-100], type);
-      addmarker(markers, "hisrudetan", [-34,-92], type);
-      addmarker(markers, "kandor", [65,91], type);
-      addmarker(markers, "malinval", [-10,90], type);
-      addmarker(markers, "morrindim", [-45,-20], type);
-      addmarker(markers, "nerim", [-60,125], type);
-      addmarker(markers, "olda", [-17,-2], type);
-      addmarker(markers, "riftlanwilds", [-22,-145], type);
-      addmarker(markers, "sage", [-34,-70], type);
-      addmarker(markers, "seran", [-43,140], type);
-      addmarker(markers, "shendarel", [-2,-4], type);
+      var gorgro = L.polygon([ new L.LatLng(-65.8,-97.8), new L.LatLng(-70.9,-106.7),
+                              new L.LatLng(-71.9, -101.9),
+                              new L.LatLng(-70.3, -94.9),
+                              new L.LatLng(-65.2, -92.6)
+                              ],
+                              {stroke: false, color: '#222200'});
+      markers.push(gorgro);
+      map.addLayer(gorgro);
+			addmarker(markers, "icewastes", [-74,-110], type);
+      var icewastes = L.polygon([new L.LatLng(-71.8, -116.5), new L.LatLng(-73, -122.5),
+                                 new L.LatLng(-74.2, -123.2), new L.LatLng(-74.8, -121.2),
+                                 new L.LatLng(-75.4, -116), new L.LatLng(-75.3, -98),
+                                 new L.LatLng(-74.7, -94.5), new L.LatLng(-73.9, -92.6),
+                                 new L.LatLng(-73.1, -89.1), new L.LatLng(-71.8, -90),
+                                 new L.LatLng(-72.5, -105.7)], {stroke: false, color: '#222200'});
+      markers.push(icewastes);
+      map.addLayer(icewastes);
       addmarker(markers, "staelia", [-67,-75], type);
+      var staelia = L.polygon([ new L.LatLng(-73.1,-89.1), new L.LatLng(-71.8,-90),
+                               new L.LatLng(-68.3, -89.0), new L.LatLng(-65.5, -85.8),
+                               new L.LatLng(-61.4, -77.6), new L.LatLng(-61.6, -75),
+                               new L.LatLng(-61.6, -65.6), new L.LatLng(-67.4, -70.1),
+                               new L.LatLng(-68.3, -73.2), new L.LatLng(-70, -77.4),
+                               new L.LatLng(-70.3, -81.6), new L.LatLng(-71.9, -86.2)],
+                              {stroke: false, color: '#FF0000'});
+      markers.push(staelia);
+      map.addLayer(staelia);
+      addmarker(markers, "arad", [5,132], type);
+      var arad = L.polygon([ new L.LatLng(0,0), new L.LatLng(0,0)],
+                              {stroke: false, color: '#222200'});
+      map.addLayer(arad);
+      addmarker(markers, "curinor", [50,55], type);
+      var curinor = L.polygon([ new L.LatLng(0,0), new L.LatLng(0,0)],
+                              {stroke: false, color: '#FFFF00'});
+      map.addLayer(curinor);
+      addmarker(markers, "degakta", [-60,60], type);
+      var degakta = L.polygon([ new L.LatLng(0,0), new L.LatLng(0,0)],
+                              {stroke: false, color: '#FFFF00'});
+      map.addLayer(degakta);
+      addmarker(markers, "demalthor", [20,55], type);
+      var demalthor = L.polygon([ new L.LatLng(0,0), new L.LatLng(0,0)],
+                              {stroke: false, color: '#FFFF00'});
+      map.addLayer(demalthor);
+      addmarker(markers, "dera", [26,-125], type);
+      var dera = L.polygon([ new L.LatLng(0,0), new L.LatLng(0,0)],
+                              {stroke: false, color: '#FFFF00'});
+      map.addLayer(dera);
+      addmarker(markers, "deradragorim", [30,-85], type);
+      var deradragorim = L.polygon([ new L.LatLng(0,0), new L.LatLng(0,0)],
+                              {stroke: false, color: '#FFFF00'});
+      map.addLayer(deradragorim);
+      addmarker(markers, "dormania", [60,135], type);
+      var dormania = L.polygon([ new L.LatLng(0,0), new L.LatLng(0,0)],
+                              {stroke: false, color: '#FFFF00'});
+      map.addLayer(dormania);
+      addmarker(markers, "dragonhome", [0,-130], type);
+      var dragonhome = L.polygon([ new L.LatLng(0,0), new L.LatLng(0,0)],
+                              {stroke: false, color: '#FFFF00'});
+      map.addLayer(dragonhome);
+      addmarker(markers, "eldoran", [30,-10], type);
+      var eldoran = L.polygon([ new L.LatLng(0,0), new L.LatLng(0,0)],
+                              {stroke: false, color: '#FFFF00'});
+      map.addLayer(eldoran);
+      addmarker(markers, "gerasalim", [40,110], type);
+      var gerasalim = L.polygon([ new L.LatLng(0,0), new L.LatLng(0,0)],
+                              {stroke: false, color: '#FFFF00'});
+      map.addLayer(gerasalim);
+      addmarker(markers, "gnarra", [-5,-30], type);
+      var gnarra = L.polygon([ new L.LatLng(0,0), new L.LatLng(0,0)],
+                              {stroke: false, color: '#FFFF00'});
+      map.addLayer(gnarra);
+
+      addmarker(markers, "hisrudetan", [-34,-92], type);
+      var hisrudetan = L.polygon([ new L.LatLng(0,0), new L.LatLng(0,0)],
+                              {stroke: false, color: '#FFFF00'});
+      map.addLayer(hisrudetan);
+      addmarker(markers, "kandor", [65,91], type);
+      var kandor = L.polygon([ new L.LatLng(0,0), new L.LatLng(0,0)],
+                              {stroke: false, color: '#FFFF00'});
+      map.addLayer(kandor);
+      addmarker(markers, "malinval", [-10,90], type);
+      var malinval = L.polygon([ new L.LatLng(0,0), new L.LatLng(0,0)],
+                              {stroke: false, color: '#FFFF00'});
+      map.addLayer(malinval);
+      addmarker(markers, "morrindim", [-45,-20], type);
+      var morrindim = L.polygon([ new L.LatLng(0,0), new L.LatLng(0,0)],
+                              {stroke: false, color: '#FFFF00'});
+      map.addLayer(morrindim);
+      addmarker(markers, "nerim", [-60,125], type);
+      var nerim = L.polygon([ new L.LatLng(0,0), new L.LatLng(0,0)],
+                              {stroke: false, color: '#FFFF00'});
+      map.addLayer(nerim);
+      addmarker(markers, "olda", [-17,-2], type);
+      var olda = L.polygon([ new L.LatLng(0,0), new L.LatLng(0,0)],
+                              {stroke: false, color: '#FFFF00'});
+      map.addLayer(olda);
+      addmarker(markers, "riftlanwilds", [-22,-145], type);
+      var riftlanwilds = L.polygon([ new L.LatLng(0,0), new L.LatLng(0,0)],
+                              {stroke: false, color: '#FFFF00'});
+      map.addLayer(riftlanwilds);
+      addmarker(markers, "sage", [-34,-70], type);
+      var sage = L.polygon([ new L.LatLng(0,0), new L.LatLng(0,0)],
+                              {stroke: false, color: '#FFFF00'});
+      map.addLayer(sage);
+      addmarker(markers, "seran", [-43,140], type);
+      var seran = L.polygon([ new L.LatLng(0,0), new L.LatLng(0,0)],
+                              {stroke: false, color: '#FFFF00'});
+      map.addLayer(seran);
+      addmarker(markers, "shendarel", [-2,-4], type);
+      var shendarel = L.polygon([ new L.LatLng(0,0), new L.LatLng(0,0)],
+                              {stroke: false, color: '#FFFF00'});
+      map.addLayer(shendarel);
       addmarker(markers, "stagenheim", [-56,-70], type);
+      var stagenheim = L.polygon([ new L.LatLng(0,0), new L.LatLng(0,0)],
+                              {stroke: false, color: '#FFFF00'});
+      map.addLayer(stagenheim);
       addmarker(markers, "terron", [-5,146], type);
+      var terron = L.polygon([ new L.LatLng(0,0), new L.LatLng(0,0)],
+                              {stroke: false, color: '#FFFF00'});
+      map.addLayer(terron);
       addmarker(markers, "zelfir", [-54,-127], type);
+      var zelfir = L.polygon([ new L.LatLng(0,0), new L.LatLng(0,0)],
+                              {stroke: false, color: '#FFFF00'});
+      map.addLayer(zelfir);
       
     });
 		$("#landmarks").click(function() {
@@ -219,7 +339,6 @@
 			addmarker(markers, "fireislands", [-58,-61], type);
 			addmarker(markers, "glasscliff", [-15,45], type);
 			addmarker(markers, "goldenpass", [5,68], type);
-			addmarker(markers, "icewastes", [-74,-110], type);
 			addmarker(markers, "mithrilhills", [42,45], type);
 			addmarker(markers, "moonpass", [22,45], type);
 			addmarker(markers, "nadrakriver", [0,115.5], type);
@@ -255,6 +374,7 @@
 			addmarker(markers, "yellowriver", [66.5,122], type);
 			addmarker(markers, "dormanriver", [62,150], type);
       addmarker(markers, "exodusisthmus", [-51,-110], type);
+      addmarker(markers, "isleofpeaks", [-46.8,93.8], type);
 		});
 		$("#clear").click(function() {
 			clearmarkers();
