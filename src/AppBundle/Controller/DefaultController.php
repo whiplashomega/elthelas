@@ -35,4 +35,10 @@ class DefaultController extends Controller
     public function adminAction() {
         return new Response('Admin page!');
     }
+    /**
+     * @Route("/blogroll", name="blog")
+     */
+    public function blogAction() {
+      return $this->render('AppBundle:default:blog.html.twig', array('pagetitle' => 'News and Changes'));
+    }
 }
