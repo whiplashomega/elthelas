@@ -36,9 +36,21 @@ class DefaultController extends Controller
         return new Response('Admin page!');
     }
     /**
-     * @Route("/blogroll", name="blog")
+     * @Route("/blog", name="blog")
      */
     public function blogAction() {
-      return $this->render('AppBundle:default:blog.html.twig', array('pagetitle' => 'News and Changes'));
+      $items = array();
+      foreach (glob("blogentries/*.php") as $filename)
+      {
+          include $filename;
+      }
+      return $this->render('AppBundle:default:blog.html.twig', array('pagetitle' => 'News and Changes', 'items' => $items));
+    }
+    /**
+     * @Route("/blog.xml", name="blogrss")
+     */
+    public function blogrssAction() {
+      $items = array();
+      return $this->render('AppBundle:default:blogrss.html.twig', array('pagetitle' => 'News and Changes', 'items' => $items));
     }
 }
