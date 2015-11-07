@@ -51,6 +51,18 @@ class DefaultController extends Controller
      */
     public function blogrssAction() {
       $items = array();
-      return $this->render('AppBundle:default:blogrss.html.twig', array('pagetitle' => 'News and Changes', 'items' => $items));
+            foreach (glob("blogentries/*.php") as $filename)
+      {
+          include $filename;
+      }
+      return $this->render('AppBundle:default:blogrss.xml.twig', array('pagetitle' => 'News and Changes', 'items' => $items));
+    }
+    /**
+     * @Route("/blog/{date}", name="thisblog")
+     */
+    public function thisblogAction($date) {
+      $items = array();
+      include "blogentries/blog".$date.".php";
+      return $this->render('AppBundle:default:blog.html.twig', array('pagetitle' => $items[0]["title"], 'items' => $items));
     }
 }

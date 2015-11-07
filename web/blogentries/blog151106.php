@@ -2,10 +2,10 @@
   $item = array("title" => "It begins!",
                    "date" => "11/6/2015",
                    "description" => "This isn't a real blog yet, but it will be!  Soon I will create the RSS feed, and then from there this will host a description
-      of changes I've made to the site over time.  As for todays changes? I added this of course!");
-  ob_start();
-  ?>
-
+      of changes I've made to the site over time.  As for todays changes? I added this of course!",
+                "link" => "https://elthelas.com/blog/151106"
+      );
+  $item["text"] = <<<EOD
     <p>
       This isn't a real blog yet, but it will be!  Soon I will create the RSS feed, and then from there this will host a description
       of changes I've made to the site over time.  As for todays changes? I added this of course!
@@ -26,8 +26,6 @@
       Expect more work on these things in the coming days/weeks.  Most of the cities don't have descriptions on the geo page yet, so
       that alone will be hours of work for me.
     </p>
-    <?php
-    $item["text"] = ob_get_contents();
-    ob_end_flush();
+EOD;
     $items[] = $item;
   ?>

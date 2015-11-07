@@ -13,7 +13,8 @@
     <h3>{{item.title}}</h3>
     <h4>{{item.date}}</h4>
 
-    {{ item.text }}
+    {{ item.text | raw }}
   </div>
-  {% endfor %}
+{% endfor %}
+<a href="{{ path('blogrss')}}"><img src="/images/rss.png" alt="rss feed" style="width:25px; height: 25px;" /></a>
 {% endblock %}
