@@ -46,6 +46,9 @@
         <li>
             <a href="{{ path('organizations') }}" >Organizations</a>
         </li>
+        <li>
+          <a href="{{ path('blog')}}">Blog</a>
+        </li>
         {% if app.user and is_granted('IS_AUTHENTICATED_REMEMBERED') %}
           <li><a href="{{path('fos_user_profile_show')}}">My Account</a></li>
           <li><a href="{{path('fos_user_change_password')}}">Change Password</a></li>
