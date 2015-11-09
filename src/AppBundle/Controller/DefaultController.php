@@ -51,7 +51,7 @@ class DefaultController extends Controller
      */
     public function blogrssAction() {
       $items = array();
-            foreach (glob("blogentries/*.php") as $filename)
+      foreach (glob("blogentries/*.php") as $filename)
       {
           include $filename;
       }

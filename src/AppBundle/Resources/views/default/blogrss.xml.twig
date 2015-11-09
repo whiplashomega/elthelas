@@ -5,9 +5,11 @@
     <link>https://elthelas.com/blog</link>
     <description>News and changes concerning the Elthelas Campaign Setting for Dungeons and Dragons</description>
     {% for item in items %}
-      <title>{{ item.title }}</title>
-      <link>{{ item.link }}</link>
-      <description><![CDATA[ {{ item.description | raw }} ]]></description>
+      <item>
+        <title>{{ item.title }}</title>
+        <link>{{ item.link }}</link>
+        <description><![CDATA[ {{ item.description | raw }} ]]></description>
+      </item>
     {% endfor %}
   </channel>
 </rss>
