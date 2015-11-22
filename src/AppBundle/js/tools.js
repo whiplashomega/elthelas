@@ -68,6 +68,7 @@
                         $scope.creatures[x].name,
                         $scope.creatures[x].race,
                         $scope.creatures[x].classlevel,
+                        $scope.creatures[x].cr,
                         $scope.creatures[x].background,
                         $scope.creatures[x].alignment
                 ]);
@@ -83,8 +84,9 @@
                 'columns': [
                   { width: '10%', title: "select" },
                   { width: '20%', title: "name" },
-                  { width: '20%', title: "race" },
-                  { width: '20%', title: "class/level" },
+                  { width: '15%', title: "race" },
+                  { width: '15%', title: "class/level" },
+                  { width: '10%', title: "cr" },
                   { width: '15%', title: "background" },
                   { width: '15%', title: "alignment" }
                 ]
@@ -131,6 +133,7 @@
                         creatures[x].name,
                         creatures[x].race,
                         creatures[x].classlevel,
+                        creatures[x].cr,
                         creatures[x].background,
                         creatures[x].alignment
                 ]);
