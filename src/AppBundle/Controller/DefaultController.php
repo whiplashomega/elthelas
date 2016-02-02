@@ -44,6 +44,7 @@ class DefaultController extends Controller
       {
           include $filename;
       }
+      $item = array_reverse($items);
       return $this->render('AppBundle:default:blog.html.twig', array('pagetitle' => 'News and Changes', 'items' => $items));
     }
     /**
@@ -55,6 +56,7 @@ class DefaultController extends Controller
       {
           include $filename;
       }
+      $item = array_reverse($items);
       return $this->render('AppBundle:default:blogrss.xml.twig', array('pagetitle' => 'News and Changes', 'items' => $items));
     }
     /**
