@@ -1,5 +1,5 @@
 <?php
-  $item = array("title" => "Enter the Factotum",
+  $item = array("title" => "Desadorel, Center of the Universe",
                    "date" => "02/03/2016",
                    "description" => "Updated current events",
                 "link" => "https://elthelas.com/blog/160203"
