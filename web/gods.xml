@@ -51,7 +51,7 @@
     <holysymbol>A platinum dragon on a blue background</holysymbol>
     <alignment>Lawful Good</alignment>
     <domains>Air, Courage, Dragon, Glory, Good, Magic, Nobility, Protection, Storm</domains>
-    <domains5>Tempest, War</domains5>
+    <domains5>Fire, Tempest, War</domains5>
     <interfaithblessing>+1 to attack rolls and saves</interfaithblessing>
     <worshippers>Bahamut is worshiped by the people of Dera'Dragorim for his rescue of their people as well as those who admire the strength, power, and goodness of metallic dragons, as well as good dragons themselves.</worshippers>
     <allowedalignments>Lawful Good, Neutral Good</allowedalignments>
@@ -163,7 +163,7 @@
     <holysymbol>flames</holysymbol>
     <alignment>Chaotic Neutral</alignment>
     <domains>Chaos, Destruction, Fire, Hunger, Lust, Purification, Renewal, Wrath</domains>
-    <domains5>Light</domains5>
+    <domains5>Fire, Light</domains5>
     <interfaithblessing>+2 to damage rolls</interfaithblessing>
     <worshippers>Molton has few worshippers, he offers little to mortal men. Those related to the plane of fire, such as fire mephlings, mephits, elementals, and genasi. He also finds some devotees among sorcerers and wizards who admire the power of fire.</worshippers>
     <allowedalignments>Chaotic Good, Neutral, Chaotic Neutral, Chaotic Evil</allowedalignments>
