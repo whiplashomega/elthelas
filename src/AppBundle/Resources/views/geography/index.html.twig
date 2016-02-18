@@ -28,12 +28,12 @@
 	
   <script type="text/javascript">
     var routebase = "{{ path("locdata", {'type': 'cities', 'location': 'alados' }) }}";
-    $("#main").removeClass("col-md-10").addClass("col-md-9");
-    $("#sidebar").removeClass("col-md-9").addClass("col-md-3");
+    $("#main").removeClass("col-md-10").addClass("col-md-12");
+    $("#sidebar").remove();
 		var map = L.map('map').setView([0, 0], 2);
     //Uncomment this code to enable getting lattitude and longitude figures by clicking on the map, useful for placing new markers
     map.on('click', function(e) {
-      alert("Lat, Lon : " + e.latlng.lat + ", " + e.latlng.lng);
+      //alert("Lat, Lon : " + e.latlng.lat + ", " + e.latlng.lng);
     });
 		L.tileLayer('/images/maps/tiles/{z}/{y}/{x}.png', {
 		    attribution: '|--------| = 320/160/80/40 miles by zoom | map image created by Heather Domaszek',
@@ -50,16 +50,33 @@
 			}		
 			markers = [];
     }
-
+    function addoverlay(locationurl) {
+        var overlay = $("<div class='lightbox'></div>");
+        var backing = $("<div class='lightback'></div>");
+        var close = $("<input type='button' class='btn btn-danger closelightbox' value='Close' />");
+        close.click(function() {
+          $(".lightback").remove();
+        });
+        overlay.html("<h4>Loading...</h4>");
+        overlay.append(close);
+        backing.append(overlay);
+        $("body").append(backing);
+        $.get(locationurl, function(data) {
+          ga('send', 'pageview', locationurl);
+          overlay.html(" ");
+          close = $("<input type='button' class='btn btn-danger closelightbox' value='Close' />");
+          close.click(function() {
+            $(".lightback").remove();
+          });
+          overlay.append(close);
+          overlay.append(data);
+        });
+    }
 		function addmarker(markers, name, coordinates, type) {
       var locationurl = routebase.slice(0,-13) + type + "/" + name;
       marker = L.marker(coordinates);
       $(marker).click(function() {
-        $("#sidebar").html("<h4>Loading...</h4>");
-        $.get(locationurl, function(data) {
-          ga('send', 'pageview', locationurl);
-          $("#sidebar").html(data);
-        });
+        addoverlay(locationurl);
       });
       markers.push(marker);
       map.addLayer(marker);

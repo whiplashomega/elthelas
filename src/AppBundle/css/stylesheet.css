@@ -9243,6 +9243,46 @@ input.gsc-search-button, input.gsc-search-button:hover, input.gsc-search-button:
   margin: 8px;
 }
 
+/* line 71, ../sass/_layout.scss */
+.lightbox {
+  position: relative;
+  display: block;
+  width: 80%;
+  padding: 15px;
+  height: 80%;
+  min-height: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 9999;
+  background-color: white;
+  top: 100px;
+  overflow-y: scroll;
+}
+
+/* line 85, ../sass/_layout.scss */
+.lightback {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 9998;
+  top: 0;
+}
+
+/* line 93, ../sass/_layout.scss */
+.closelightbox {
+  float: right;
+}
+
+/* line 96, ../sass/_layout.scss */
+.lightimage {
+  float: right;
+  clear: right;
+  margin: 15px;
+  width: 50%;
+  height: auto;
+}
+
 /* line 1, ../sass/_topnav.scss */
 nav.navbar {
   clear: both;
@@ -9259,9 +9299,9 @@ nav.navbar {
 }
 /* line 7, ../sass/_sidenav.scss */
 .nav-pills li {
-  border: 1px solid #cccccc;
+  border: 1px solid #cdcdcd;
   border-radius: 5px;
-  background-color: #cccccc;
+  background-color: #cdcdcd;
 }
 /* line 11, ../sass/_sidenav.scss */
 .nav-pills li a {
