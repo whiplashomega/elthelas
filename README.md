@@ -4,6 +4,8 @@ A symfony2 website where I host all of the information related to my D&D campaig
 ##Branches
 Production releases are tracked on the 'production' branch.
 
+[See the live version at https://elthelas.com](https://elthelas.com)
+
 Updates that do not require significant testing (such as introducing new content) are done on the master branch.
 
 New features and significant code changes are done on the 2.0dev branch, when a new feature is ready it is merged into master and production.
