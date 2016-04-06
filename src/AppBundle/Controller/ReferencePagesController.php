@@ -96,6 +96,7 @@ class ReferencePagesController extends Controller
 			$loadedgod['appearance'] = $godXML->getElementsByTagName('appearance')->item(0)->textContent;
 			$loadedgod['dogma'] = $godXML->getElementsByTagName('dogma')->item(0)->textContent;
 			$loadedgod['clergy'] = $godXML->getElementsByTagName('clergy')->item(0)->textContent;
+			$loadedgod['home'] = $godXML->getElementsByTagName('home')->item(0)->textContent;
       }
     }
 
