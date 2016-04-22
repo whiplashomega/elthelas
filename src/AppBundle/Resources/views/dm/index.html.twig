@@ -17,7 +17,7 @@
         <li><a href="#creatureCreator">Creature Creator</a></li>
         <li><a href="#encounterBuilder">Encounter Builder</a></li>
         <li><a href="#referenceManual">Reference Manual</a></li>
-        <li><a href="#charBuilder">Character Builder</a></li>
+        <li><a href="#encounterDifficulty">Encounter Difficulty</a></li>
         <li><a href="#initTracker">Init Tracker</a></li>
         <li><a href="#dmJournal">DM Journal</a></li>
         <li><a href="#diceRoller">Dice Roller</a></li>
@@ -511,178 +511,38 @@
         </div>
         <!--Conditions, Injuries, Spells, Actions, Cover-->
       </div>
-      <div class="app" id="charBuilder" data-ng-controller="charBuilder" data-ng-init="init()">
-        <h3>Character Builder</h3>
-        <p>
-          Use this tool to create a ready to go NPC or character for use in the encounter builder, without having to do manual calculations.
-          Need something beyond the defaults? You can always edit values afterwards in the Creature Creator.
-        </p>
-        <div class="row">
-          <div class="form-group col-md-6">
-            <label>Name <input type="text" data-ng-model="creatureentry.name" /></label>
+      <div class="app" id="encounterDifficulty" data-ng-controller="encounterDifficulty" data-ng-init="init()">
+        <h2>Number of Creatures needed for an appropriate challenge at party level</h2>
+        <h3>Party</h3>
+        <div class="row" data-ng-repeat="character in party">
+          <div class="col-sm-7 form-group">
+            <label>Character</label>
+            <input type="text" data-ng-model="character.name" class="form-control" />
           </div>
-          <div class="form-group col-md-6">
-            <label>Alignment <input type="text" data-ng-model="creatureentry.alignment" /></label>
+          <div class="col-sm-3 form-group">
+            <label>Level</label>
+            <input type="number" data-ng-model="character.level" class="form-control" />
+          </div>
+          <div class="col-sm-2">
+            <input type="button" value="Remove" data-ng-click="removecharacter(character)" class="btn btn-danger" />
           </div>
         </div>
-        <div class="row">
-          <div class="form-group col-md-4">
-            <label>Race <select data-ng-model="character.race"
-                            data-ng-options="race.race as race.name for race in races track by race.id"
-                            class="form-control"></select>
-            </label>
-          </div>
-          <div class="form-group col-md-4">
-            <label>Background <select data-ng-model="character.background"
-                                data-ng-options="background.background as background.name for background in backgrounds track by background.id"
-                                class="form-control"></select>
-            </label>
-          </div>
-          <div class="form-group col-md-4">
-            <label>Class <select data-ng-model="character.charclass"
-                            data-ng-options="charclass.charclass as charclass.name for charclass in classes track by charclass.id"
-                            class="form-control"></select>
-            </label>
-          </div>          
-        </div>
-        <div class="row">
-          <div class="col-md-4">
-            Enter your rolls plus any non-racial stat bonuses or not-set stat bonuses (like for half-elves).
-            <div class="form-group">
-              <label>STR <input type="number" class="form-control" data-ng-model="character.str" /></label>
-            </div>
-            <div class="form-group"> 
-              <label>DEX <input type="number" class="form-control" data-ng-model="character.dex" /></label>
-            </div>
-            <div class="form-group">
-              <label>CON <input type="number" class="form-control" data-ng-model="character.con" /></label>
-            </div>
-            <div class="form-group">
-              <label>INT <input type="number" class="form-control" data-ng-model="character.intel" /></label>
-            </div>
-            <div class="form-group">
-              <label>WIS <input type="number" class="form-control" data-ng-model="character.wis" /></label>
-            </div>
-            <div class="form-group">
-              <label>CHA <input type="number" class="form-control" data-ng-model="character.cha" /></label>
-            </div>              
-          </div>
-          <div class="col-md-4">
-            <div class="form-group">
-              <label>Level <input type="number" class="form-control" data-ng-model="character.level"></label>
-            </div>
-            <div class="form-group">
-              <label>Skill Proficiencies <select name="skillproficiencies" id="skillproficiencies" class="form-control" ng-model="character.skillproficiencies" multiple size="18">
-                <option value="acrobatics">Acrobatics</option>
-                <option value="animalhandling">Animal Handling</option>
-                <option value="arcana">Arcana</option>
-                <option value="athletics">Athletics</option>
-                <option value="deception">Deception</option>
-                <option value="history">History</option>
-                <option value="insight">Insight</option>
-                <option value="intimidation">Intimidation</option>
-                <option value="investigation">Investigation</option>
-                <option value="medicine">Medicine</option>
-                <option value="nature">Nature</option>
-                <option value="perception">Perception</option>
-                <option value="performance">Performance</option>
-                <option value="persuasion">Persuasion</option>
-                <option value="religion">Religion</option>
-                <option value="slightofhand">Slight of Hand</option>
-                <option value="stealth">Stealth</option>
-                <option value="survival">Survival</option>
-              </select></label>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="form-group">
-              <label>Armor <select data-ng-model="character.armor"
-                              data-ng-options="armor.armor as armor.name for armor in armors track by armor.id"
-                              class="form-control"></select>
-              </label>
-            </div>
-            <div class="form-group">
-              <label>Shield <input type="checkbox" ng-model="character.shield"</label>
-					</div>
-					{% verbatim %}
-					
-					<div class="statblock">
-            <ul>
-              <li><a href="#charstatblock">Stats</a></li>
-              <li><a href="#charskills">Skills</a></li>
-              <li><a href="#charattacks">Actions</a></li>
-              <li><a href="#chardescription">Description</a></li>
-            </ul>
-						<div id="charstatblock">
-              <h4 data-ng-bind="creatureentry.name"></h4>
-              <h5>{{ creatureentry.race }} {{creatureentry.classlevel}} {{creatureentry.alignment}}</h5>
-              <h5><strong>Armor Class</strong> {{ creatureentry.ac }}</h5>
-              <h5><strong>Hit Points</strong> <input type="number" min="0" max="1000" style="width: 50px"/> / {{ creatureentry.hpmax }} ({{creatureentry.hitdice}} hitdice)</h5>
-              <h5><strong>Speed</strong> {{creatureentry.speed}}</h5>
-              <table class="table">
-                <tr><td>STR</td><td>DEX</td><td>CON</td><td>INT</td><td>WIS</td><td>CHA</td></tr>
-                <tr>
-                  <td>{{creatureentry.str}}</td><td>{{creatureentry.dex}}</td><td>{{creatureentry.con}}</td><td>{{creatureentry.intel}}</td>
-                  <td>{{creatureentry.wis}}</td><td>{{creatureentry.cha}}</td>
-                </tr>
-              </table>
-              <h5>
-                <strong>Saves</strong> Str +{{creatureentry.strsave}} Dex +{{creatureentry.dexsave}} Con +{{creatureentry.consave}}
-                Int +{{creatureentry.intsave}} Wis +{{creatureentry.wissave}} Cha {{creatureentry.chasave}}
-              </h5>
-              <h5><strong>Proficiency Bonus</strong> {{creatureentry.proficiencybonus}}</h5>
-                  
-              <h5><strong>Damage Resistances</strong> {{creatureentry.damageresistances}}</h5>
-              <h5><strong>Immunities</strong> {{creatureentry.immunities}}</h5>
-              <h5><strong>Senses</strong> {{creatureentry.senses}}</h5>
-              <h5><strong>Languages</strong> {{creatureentry.languages}}</h5>
-              <h5><strong>Challenges</strong> {{creatureentry.cr}} ({{creatureentry.experience}} XP)</h5>
-            </div>
-						<div id="charskills">
-							<h5>Acrobatics <span data-ng-bind="creatureentry.acrobatics"></span></h5>
-							<h5>Animal Handling <span data-ng-bind="creatureentry.animalhandling"></span></h5>
-							<h5>Arcana <span data-ng-bind="creatureentry.arcana"></span></h5>
-							<h5>Athletics <span data-ng-bind="creatureentry.athletics"></span></h5>
-							<h5>Deception <span data-ng-bind="creatureentry.deception"></span></h5>
-							<h5>History <span data-ng-bind="creatureentry.history"></span></h5>
-							<h5>Insight <span data-ng-bind="creatureentry.insight"></span></h5>
-							<h5>Intimidation <span data-ng-bind="creatureentry.intimidation"></span></h5>
-							<h5>Investigation <span data-ng-bind="creatureentry.investigation"></span></h5>
-							<h5>Medicine <span data-ng-bind="creatureentry.medicine"></span></h5>
-							<h5>Nature <span data-ng-bind="creatureentry.nature"></span></h5>
-							<h5>Perception <span data-ng-bind="creatureentry.perception"></span></h5>
-							<h5>Performance <span data-ng-bind="creatureentry.performance"></span></h5>
-							<h5>Persuasion <span data-ng-bind="creatureentry.persuasion"></span></h5>
-							<h5>Religion <span data-ng-bind="creatureentry.religion"></span></h5>
-							<h5>Slight of Hand <span data-ng-bind="creatureentry.slightofhand"></span></h5>
-							<h5>Stealth <span data-ng-bind="creatureentry.stealth"></span></h5>
-							<h5>Survival <span data-ng-bind="creatureentry.survival"></span></h5>
-						</div>
-						<div id="charattacks">
-              <h4>Attacks</h4>
-              <h5 ng-repeat="attack in creatureentry.attacks">
-                {{attack.attack}} +{{attack.bonus}} ({{attack.damage}})
-              </h5>
-              <h4>Other Actions and Traits</h4>
-              <p>
-                {{creatureentry.features}}
-              </p>
-            </div>
-            <div id="chardescription">
-              <h5><strong>Background</strong> {{creatureentry.background}} </h5>
-              <p>
-                <strong>Physical Description</strong> {{creatureentry.physicaldescription}}
-              </p>
-              <p>
-                <strong>Possessions</strong> {{creatureentry.possessions}}
-              </p>
-            </div>
-          </div>
-				{% endverbatim %}
-        
-        </div>
-
-      </div>
+        <input type="button" value="Add Character" data-ng-click="addcharacter()" class="btn btn-primary" />
+        <input type="button" class="btn btn-success" value="Calculate" data-ng-click="calculate()" />
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>CR</th><th>Easy</th><th>Medium</th><th>Hard</th><th>Deadly</th>
+            </tr>            
+          </thead>
+          {% verbatim %}
+          <tbody>
+            <tr data-ng-repeat="row in resulttable">
+              <td>{{row[0]}}</td><td>{{row[1]}}</td><td>{{row[2]}}</td><td>{{row[3]}}</td><td>{{row[4]}}</td>
+            </tr>
+          </tbody>
+          {% endverbatim %}
+        </table>
       </div>
       <div class="app" id="initTracker" data-ng-controller="initTracker" >
         <h3>Initiative Tracker</h3>
