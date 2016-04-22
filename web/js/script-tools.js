@@ -15435,7 +15435,7 @@ var e=c.find(".active:last a"),f=a.Event("hide.bs.tab",{relatedTarget:b[0]}),g=a
           }
         }
         for(row in $scope.resulttable) {
-          var xpPerCreature = $.grep(xpbycr, function(e) {return e.cr == $scope.resulttable[row][0]});
+          var xpPerCreature = $.grep(xpbycr, function(e) {return e.cr == $scope.resulttable[row][0]})[0].xp;
           for(var x = 1; x < $scope.resulttable[row].length; x++) {
             
           }
