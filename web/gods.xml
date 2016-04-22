@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <!DOCTYPE gods [
   <!ELEMENT gods (god+)>
-  <!ELEMENT god (name, holysymbol, alignment, domains, domains5, interfaithblessing, worshippers, allowedalignments, weapon, appearance, dogma, clergy)>
+  <!ELEMENT god (name, holysymbol, alignment, domains, domains5, interfaithblessing, worshippers, allowedalignments, weapon, appearance, dogma, clergy, home)>
   <!ATTLIST god id ID #REQUIRED>
   <!ELEMENT name (#PCDATA)>
   <!ELEMENT holysymbol (#PCDATA)>
