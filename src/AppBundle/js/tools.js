@@ -250,9 +250,9 @@
           cr: 30, xp: 155000
         },
         ];
-      $scope.character = {
-        name: "",
-        level: 1
+      $scope.character = function() {
+        this.name = "";
+        this.level = 1;
       }
       $scope.party = [
                         {
@@ -275,7 +275,7 @@
       };
       
       $scope.removecharacter = function(character) {
-        $scope.party.splice(party.indexOf(character), 1);
+        $scope.party.splice($scope.party.indexOf(character), 1);
       }
       
       $scope.calculate = function() {
@@ -291,9 +291,9 @@
             $scope.Threshold[x] += y[x];
           }
         }
-        for(row in resulttable) {
-          var xpPerCreature = $.grep(xpbycr, function(e) {return e.cr == resulttable[row][0]});
-          for(var x = 1; x < resulttable[row].length; x++) {
+        for(row in $scope.resulttable) {
+          var xpPerCreature = $.grep(xpbycr, function(e) {return e.cr == $scope.resulttable[row][0]});
+          for(var x = 1; x < $scope.resulttable[row].length; x++) {
             
           }
           var tempNumbers = [$scope.Threshold[0] / xpPerCreature,
@@ -302,49 +302,49 @@
                              $scope.Threshold[3] / xpPerCreature];
           for (var z = 0; z < tempNumbers.length; z++) {
             if (tempNumbers[z] <= 2) {
-              resulttable[row][z+1] = 1;
+              $scope.resulttable[row][z+1] = 1;
             }
             else if (tempNumbers[z] <= 5) {
-              resulttable[row][z+1] = 2;
+              $scope.resulttable[row][z+1] = 2;
             }
             else if (tempNumbers[z] <= 7) {
-              resulttable[row][z+1] = 3;
+              $scope.resulttable[row][z+1] = 3;
             }
             else if (tempNumbers[z] <= 9) {
-              resulttable[row][z+1] = 4;
+              $scope.resulttable[row][z+1] = 4;
             }
             else if (tempNumbers[z] <= 11) {
-              resulttable[row][z+1] = 5;
+              $scope.resulttable[row][z+1] = 5;
             }
             else if (tempNumbers[z] <= 17) {
-              resulttable[row][z+1] = 6;
+              $scope.resulttable[row][z+1] = 6;
             }
             else if (tempNumbers[z] <= 19) {
-              resulttable[row][z+1] = 7;
+              $scope.resulttable[row][z+1] = 7;
             }
             else if (tempNumbers[z] <= 22) {
-              resulttable[row][z+1] = 8;
+              $scope.resulttable[row][z+1] = 8;
             }
             else if (tempNumbers[z] <= 24) {
-              resulttable[row][z+1] = 9;
+              $scope.resulttable[row][z+1] = 9;
             }
             else if (tempNumbers[z] <= 32) {
-              resulttable[row][z+1] = 10;
+              $scope.resulttable[row][z+1] = 10;
             }
             else if (tempNumbers[z] <= 35) {
-              resulttable[row][z+1] = 11;
+              $scope.resulttable[row][z+1] = 11;
             }
             else if (tempNumbers[z] <= 38) {
-              resulttable[row][z+1] = 12;
+              $scope.resulttable[row][z+1] = 12;
             }
             else if (tempNumbers[z] <= 41) {
-              resulttable[row][z+1] = 13;
+              $scope.resulttable[row][z+1] = 13;
             }
             else if (tempNumbers[z] <= 59) {
-              resulttable[row][z+1] = 14;
+              $scope.resulttable[row][z+1] = 14;
             }
             else {
-              resulttable[row][z+1] = tempNumbers[z] / 4;
+              $scope.resulttable[row][z+1] = tempNumbers[z] / 4;
             }
           }
         }
