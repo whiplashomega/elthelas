@@ -151,15 +151,12 @@
 
     });
 
-    dmTools.controller('referenceManual', function($scope, $http, $sanitize) {
+    dmTools.controller('referenceManual', function($scope, $http) {
       $scope.spelllist = spells;
       $scope.content = "";
       $scope.loadspell = function() {
         var index = $("input[name='spellselect']:checked").val();
         $("#selectedspell").html(marked($scope.spelllist[index][3]));
-      }
-      $scope.loadtaglist = function(tag) {
-        
       }
       $scope.loadspells = function() {
         var tabledata = [];
