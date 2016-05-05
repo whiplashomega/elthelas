@@ -15299,7 +15299,7 @@ var e=c.find(".active:last a"),f=a.Event("hide.bs.tab",{relatedTarget:b[0]}),g=a
 
       $scope.loadspell = function() {
         var index = $("input[name='spellselect']:checked").val();
-        $scope.content = $("#selectedspell").html(marked($scope.spelllist[index][2]));
+        $scope.content = $("#selectedspell").html(marked($scope.spelllist[index][3]));
       }
       $scope.loadtaglist = function(tag) {
         
