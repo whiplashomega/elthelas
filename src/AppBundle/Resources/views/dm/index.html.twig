@@ -283,7 +283,7 @@
             <h3>Spells</h3>
             <table id="spelltable"></table>
 						<input type="button" value="Load Spell" data-ng-click="loadspell()" />
-            <div id="selectedspell" data-ng-model="content">
+            <div id="selectedspell" data-ng-bind="content">
               
             </div>
           </div>
@@ -644,9 +644,6 @@
           </div>
         </div>
         <h5 data-ng-bind="results"></h5>
-      </div>
-      <div class="app" id="dungeonMap" data-ng-controller="dungeonMap" style="display: none">
-        <h3>Dungeon Map</h3>
       </div>
     </div>
   </div>
