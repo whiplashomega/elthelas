@@ -2,7 +2,8 @@
 layout: post
 title: "Modify Memory"
 date: 2015-07-30
-tags: [bard, wizard, level5]
+source: PHB.261
+tags: [bard, wizard, level5, enchantment]
 ---
 
 **5th-level enchantment**

@@ -2,7 +2,8 @@
 layout: post
 title:  "Sacred Flame"
 date:   2014-08-24
-tags: [cleric, cantrip]
+source: PHB.272
+tags: [cleric, cantrip, evocation]
 ---
 
 **Evocation cantrip**

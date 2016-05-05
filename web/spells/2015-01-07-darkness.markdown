@@ -2,10 +2,11 @@
 layout: post
 title:  "Darkness"
 date:   2015-01-07
-tags: [sorcerer, warlock, wizard, level2]
+source: PHB.230
+tags: [sorcerer, warlock, wizard, level2, evocation]
 ---
 
-**2nd-Level evocation**
+**2nd-level evocation**
 
 **Casting Time**: 1 action
 

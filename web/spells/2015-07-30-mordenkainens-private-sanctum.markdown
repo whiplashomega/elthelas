@@ -2,7 +2,8 @@
 layout: post
 title: "Mordenkainen's Private Sanctum"
 date: 2015-07-30
-tags: [wizard, level4]
+source: PHB.262
+tags: [wizard, level4, abjuration]
 ---
 
 **4th-level abjuration**

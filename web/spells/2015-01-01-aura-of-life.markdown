@@ -2,7 +2,8 @@
 layout: post
 title:  "Aura of Life"
 date:   2015-01-01
-tags: [paladin, level4]
+source: PHB.216
+tags: [paladin, level4, abjuration]
 ---
 
 **4th-level abjuration**

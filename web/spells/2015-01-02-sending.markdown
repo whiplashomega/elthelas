@@ -2,7 +2,9 @@
 layout: post
 title:  "Sending"
 date:   2015-01-02
-tags: [cleric, wizard, level3]
+source: PHB.274
+tags: [bard, cleric, wizard, level3]
+tags: [bard, cleric, wizard, level3, evocation]
 ---
 
 **3rd-level evocation**

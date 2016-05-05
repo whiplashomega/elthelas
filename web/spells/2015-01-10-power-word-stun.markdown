@@ -2,7 +2,8 @@
 layout: post
 title:  "Power Word Stun"
 date:   2015-01-10
-tags:   [bard, sorcerer, warlock, wizard, level8]
+source: PHB.267
+tags:   [bard, sorcerer, warlock, wizard, level8, enchantment]
 ---
 
 **8th-level enchantment**

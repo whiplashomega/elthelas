@@ -2,7 +2,8 @@
 layout: post
 title: "Divination"
 date: 2015-07-14
-tags: [cleric, level4]
+source: PHB.234
+tags: [cleric, level4, divination, ritual]
 ---
 
 **4th-level divination (ritual)**

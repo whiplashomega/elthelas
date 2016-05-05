@@ -2,7 +2,8 @@
 layout: post
 title:  "Protection from Energy"
 date:   2015-01-02
-tags: [cleric, druid, ranger, sorcerer, wizard, level3]
+source: PHB.270
+tags: [cleric, druid, ranger, sorcerer, wizard, level3, abjuration]
 ---
 
 **3rd-level abjuration**
@@ -15,4 +16,4 @@ tags: [cleric, druid, ranger, sorcerer, wizard, level3]
 
 **Duration**: Concentration, up to 1 minute
 
-For the duration, the w illing creature you touch has resistance to one damage type o f your choice: acid, cold, fire, lightning, or thunder.
+For the duration, the willing creature you touch has resistance to one damage type of your choice: acid, cold, fire, lightning, or thunder.

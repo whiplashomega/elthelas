@@ -2,7 +2,8 @@
 layout: post
 title:  "Demiplane"
 date:   2015-01-10
-tags:   [warlock, wizard, level8]
+source: PHB.231
+tags:   [warlock, wizard, level8, conjuration]
 ---
 
 **8th-level conjuration**

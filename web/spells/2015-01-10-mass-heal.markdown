@@ -2,7 +2,8 @@
 layout: post
 title:  "Mass Heal"
 date:   2015-01-10
-tags:   [cleric, level9]
+source: PHB.258
+tags:   [cleric, level9, conjuration]
 ---
 
 **9th-level conjuration**

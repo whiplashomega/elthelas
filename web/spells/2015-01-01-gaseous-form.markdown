@@ -2,7 +2,8 @@
 layout: post
 title:  "Gaseous Form"
 date:   2015-01-01
-tags: [sorcerer, wizard, level3]
+source: PHB.244
+tags: [sorcerer, wizard, level3, transmutation]
 ---
 
 **3rd-level transmutation**

@@ -2,7 +2,8 @@
 layout: post
 title: "Vampiric Touch"
 date: 2015-07-30
-tags: [warlock, wizard, level3]
+source: PHB.285
+tags: [warlock, wizard, level3, necromancy]
 ---
 
 **3rd-level necromancy**

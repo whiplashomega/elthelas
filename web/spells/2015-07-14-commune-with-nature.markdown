@@ -2,7 +2,8 @@
 layout: post
 title: "Commune with Nature"
 date: 2015-07-14
-tags: [druid, ranger, level5]
+source: PHB.224
+tags: [druid, ranger, level5, divination, ritual]
 ---
 
 **5th-level divination (ritual)**

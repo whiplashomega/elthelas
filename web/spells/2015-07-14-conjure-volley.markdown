@@ -2,10 +2,11 @@
 layout: post
 title: "Conjure Volley"
 date: 2015-07-14
-tags: [ranger, level5]
+source: PHB.226
+tags: [ranger, level5, conjuration]
 ---
 
-**5th-level Conjuration**
+**5th-level conjuration**
 
 **Casting Time**: 1 action
 

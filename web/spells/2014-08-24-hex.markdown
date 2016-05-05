@@ -2,7 +2,8 @@
 layout: post
 title:  "Hex"
 date:   2014-08-24
-tags: [warlock, level1]
+source: PHB.251
+tags: [warlock, level1, enchantment]
 ---
 
 **1st-level enchantment**

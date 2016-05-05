@@ -2,7 +2,8 @@
 layout: post
 title:  "Elemental Weapon"
 date:   2015-01-01
-tags: [paladin, level3]
+source: PHB.237
+tags: [paladin, level3, transmutation]
 ---
 
 **3rd-level transmutation**

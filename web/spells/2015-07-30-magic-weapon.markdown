@@ -2,7 +2,8 @@
 layout: post
 title: "Magic Weapon"
 date: 2015-07-30
-tags: [paladin, wizard, level2]
+source: PHB.257
+tags: [paladin, wizard, level2, transmutation]
 ---
 
 **2nd-level transmutation**

@@ -2,7 +2,8 @@
 layout: post
 title: "Enhance Ability"
 date: 2015-07-14
-tags: [bard, cleric, druid, sorcerer, level2]
+source: PHB.237
+tags: [bard, cleric, druid, sorcerer, level2, transmutation]
 ---
 
 **2nd-level transmutation**
@@ -25,7 +26,7 @@ You touch a creature and bestow upon it a magical enhancement. Choose one of the
 
 **Eagle's Splendor.** The target has advantage on Charisma checks.
 
-**Fox's Cunning.** The target thas advantage on Intelligence checks.
+**Fox's Cunning.** The target has advantage on Intelligence checks.
 
 **Owl's Wisdom.** The target has advantage on Wisdom checks.
 

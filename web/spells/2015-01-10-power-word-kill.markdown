@@ -1,8 +1,9 @@
 ---
 layout: post
-title:  Power Word Kill
+title:  "Power Word Kill"
 date:   2015-01-10
-tags:   [bard, sorcerer, warlock, wizard, level9]
+source: PHB.266
+tags:   [bard, sorcerer, warlock, wizard, level9, enchantment]
 ---
 
 **9th-level enchantment**

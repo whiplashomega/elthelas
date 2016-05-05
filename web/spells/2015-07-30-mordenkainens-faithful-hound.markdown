@@ -2,7 +2,8 @@
 layout: post
 title: "Mordenkainen's Faithful Hound"
 date: 2015-07-30
-tags: [wizard, level4]
+source: PHB.261
+tags: [wizard, level4, conjuration]
 ---
 
 **4th-level conjuration**
@@ -11,7 +12,7 @@ tags: [wizard, level4]
 
 **Range**: 30 feet
 
-**Components**: V, S, M (a tiny silver whistle, a pieee of bone, and a thread)
+**Components**: V, S, M (a tiny silver whistle, a piece of bone, and a thread)
 
 **Duration**: 8 hours
 

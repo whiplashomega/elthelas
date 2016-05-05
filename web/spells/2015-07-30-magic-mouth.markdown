@@ -2,7 +2,8 @@
 layout: post
 title: "Magic Mouth"
 date: 2015-07-30
-tags: [bard, wizard, level2]
+source: PHB.257
+tags: [bard, wizard, level2, illusion]
 ---
 
 **2nd-level illusion (ritual)**

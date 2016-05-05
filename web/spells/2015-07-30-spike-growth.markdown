@@ -2,7 +2,8 @@
 layout: post
 title: "Spike Growth"
 date: 2015-07-30
-tags: [druid, ranger, level2]
+source: PHB.277
+tags: [druid, ranger, level2, transmutation]
 ---
 
 **2nd-level transmutation**

@@ -2,7 +2,8 @@
 layout: post
 title:  "Sequester"
 date:   2015-01-12
-tags:   [wizard, level7]
+source: PHB.274
+tags:   [wizard, level7, transmutation]
 ---
 
 **7th-level transmutation**

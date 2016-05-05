@@ -2,7 +2,8 @@
 layout: post
 title:  "Crusader's Mantle"
 date:   2015-01-01
-tags: [paladin, level3]
+source: PHB.230
+tags: [paladin, level3, evocation]
 ---
 
 **3rd-level evocation**

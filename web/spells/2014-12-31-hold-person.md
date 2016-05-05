@@ -2,10 +2,11 @@
 layout: post
 title:  "Hold Person"
 date:   2014-12-31
-tags: [bard, cleric, druid, sorcerer, warlock, wizard, level2]
+source: PHB.251
+tags: [bard, cleric, druid, sorcerer, warlock, wizard, level2, divination]
 ---
 
-**2nd-level divination (ritual)**
+**2nd-level enchantment**
 
 **Casting Time**: 1 action
 

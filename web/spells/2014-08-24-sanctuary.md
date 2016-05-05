@@ -2,7 +2,8 @@
 layout: post
 title:  "Sanctuary"
 date:   2014-08-24
-tags: [cleric, level1]
+source: PHB.272
+tags: [cleric, level1, abjuration]
 ---
 
 **1st-level abjuration**

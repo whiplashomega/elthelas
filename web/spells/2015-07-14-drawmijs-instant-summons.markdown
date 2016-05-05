@@ -2,10 +2,11 @@
 layout: post
 title:  "Drawmij's Instant Summons"
 date:   2015-07-14
-tags: [wizard, level6]
+source: PHB.235
+tags: [wizard, level6, conjuration, ritual]
 ---
 
-**6th-level Conjuration (ritual)**
+**6th-level conjuration (ritual)**
 
 **Casting Time**: 1 minute
 

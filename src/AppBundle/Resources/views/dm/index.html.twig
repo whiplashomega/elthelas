@@ -9,7 +9,10 @@
 {% endblock %}
 
 {% block body %}
-{% include "::spells.html.twig" %}  
+{# include "::spells.html.twig" #}
+<script>
+  var spells = {{ spells|json_encode()|raw }};
+</script>
 <div data-ng-app="dmTools" class="container-fluid">
   <div class="row">
     <div id="content" class="col-sm-12">

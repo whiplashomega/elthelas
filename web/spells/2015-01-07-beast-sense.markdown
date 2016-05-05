@@ -2,14 +2,15 @@
 layout: post
 title:  "Beast Sense"
 date:   2015-01-07
-tags: [druid, ranger, level2]
+source: PHB.217
+tags: [druid, ranger, level2, divination, ritual]
 ---
 
 **2nd-level divination (ritual)**
 
 **Casting Time**: 1 action
 
-**Range**: touch
+**Range**: Touch
 
 **Components**: S
 

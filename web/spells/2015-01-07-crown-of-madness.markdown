@@ -2,10 +2,11 @@
 layout: post
 title:  "Crown of Madness"
 date:   2015-01-07
-tags: [bard, sorcerer, warlock, wizard, level2]
+source: PHB.229
+tags: [bard, sorcerer, warlock, wizard, level2, enchantment]
 ---
 
-**2nd-Level enchantment**
+**2nd-level enchantment**
 
 **Casting Time**: 1 action
 

@@ -2,10 +2,11 @@
 layout: post
 title:  "Comprehend Languages"
 date:   2014-08-24
-tags: [bard, sorcerer, warlock, wizard, level1]
+source: PHB.224
+tags: [bard, sorcerer, warlock, wizard, level1, divination, ritual]
 ---
 
-**1st-level divination (Ritual)**
+**1st-level divination (ritual)**
 
 **Casting Time**: 1 action
 

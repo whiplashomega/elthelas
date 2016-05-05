@@ -15307,13 +15307,13 @@ var e=c.find(".active:last a"),f=a.Event("hide.bs.tab",{relatedTarget:b[0]}),g=a
       $scope.loadspells = function() {
         var tabledata = [];
         for(x in $scope.spelllist) {
-            $scope.spelllist[x][1] = $scope.spelllist[x][1].replace("[","").replace("]","");
-            $scope.spelllist[x][1] = $scope.spelllist[x][1].split(',');
+            $scope.spelllist[x][2] = $scope.spelllist[x][2].replace("[","").replace("]","");
+            $scope.spelllist[x][2] = $scope.spelllist[x][2].split(',');
             tabledata.push([
                "<input type='radio' name='spellselect' value='" + x + "' />",
                $scope.spelllist[x][0],
-               $scope.spelllist[x][1].join(),
-               $scope.spelllist[x][1][$scope.spelllist[x][1].length-1]
+               $scope.spelllist[x][1],
+               $scope.spelllist[x][2].join(),
             ]);
         }
         var table = $("#spelltable").dataTable({
@@ -15321,8 +15321,8 @@ var e=c.find(".active:last a"),f=a.Event("hide.bs.tab",{relatedTarget:b[0]}),g=a
             'columns': [
                 { width: '10%', title: "select" },
                 { width: '40%', title: "title" },
-                { width: '25%', title: "tags" },
-                { width: '15%', title: "level"}
+                { width: '15%', title: 'source'},
+                { width: '35%', title: "tags" },
             ]
         });
       };

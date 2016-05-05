@@ -2,7 +2,8 @@
 layout: post
 title: "Forbiddance"
 date: 2015-07-14
-tags: [cleric, level6]
+source: PHB.243
+tags: [cleric, level6, abjuration, ritual]
 ---
 
 **6th-level abjuration (ritual)**

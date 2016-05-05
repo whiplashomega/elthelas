@@ -2,7 +2,8 @@
 layout: post
 title:  "Stinking Cloud"
 date:   2015-01-02
-tags: [bard, sorcerer, wizard, level3]
+source: PHB.278
+tags: [bard, sorcerer, wizard, level3, conjuration]
 ---
 
 **3rd-level conjuration**

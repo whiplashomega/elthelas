@@ -2,7 +2,8 @@
 layout: post
 title: "Spider Climb"
 date: 2015-07-30
-tags: [sorcerer, warlock, wizard, level2]
+source: PHB.277
+tags: [sorcerer, warlock, wizard, level2, transmutation]
 ---
 
 **2nd-level transmutation**
@@ -15,4 +16,4 @@ tags: [sorcerer, warlock, wizard, level2]
 
 **Duration**: Concentration, up to 1 hour
 
-Until the spell ends, one willing creature you touch gains the ability to move up, down, and across vertical surfaces and upside down along ceilings, while leaving its hands free. The target also gains a c1imbing speed equal to its walking speed.
+Until the spell ends, one willing creature you touch gains the ability to move up, down, and across vertical surfaces and upside down along ceilings, while leaving its hands free. The target also gains a climbing speed equal to its walking speed.

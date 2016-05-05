@@ -2,7 +2,8 @@
 layout: post
 title: "Suggestion"
 date: 2015-05-11
-tags: [bard, sorcerer, warlock, wizard, level2]
+source: PHB.279
+tags: [bard, sorcerer, warlock, wizard, level2, enchantment]
 ---
 
 **2nd-level enchantment**

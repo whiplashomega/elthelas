@@ -2,7 +2,8 @@
 layout: post
 title: "Locate Creature"
 date: 2015-07-30
-tags: [bard, cleric, druid, paladin, ranger, wizard, level4]
+source: PHB.256
+tags: [bard, cleric, druid, paladin, ranger, wizard, level4, divination]
 ---
 
 **4th-level divination**

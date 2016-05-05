@@ -2,7 +2,8 @@
 layout: post
 title: "Giant Insect"
 date: 2015-07-30
-tags: [druid, level4]
+source: PHB.245
+tags: [druid, level4, transmutation]
 ---
 
 **4th-level transmutation**

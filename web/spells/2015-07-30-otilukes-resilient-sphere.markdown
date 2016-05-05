@@ -2,7 +2,8 @@
 layout: post
 title: "Otiluke's Resilient Sphere"
 date: 2015-07-30
-tags: [wizard, level4]
+source: PHB.264
+tags: [wizard, level4, evocation]
 ---
 
 **4th-level evocation**

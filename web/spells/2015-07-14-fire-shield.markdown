@@ -2,7 +2,8 @@
 layout: post
 title: "Fire Shield"
 date: 2015-07-14
-tags: [wizard, level4]
+source: PHB.241
+tags: [wizard, level4, evocation]
 ---
 
 **4th-level evocation**

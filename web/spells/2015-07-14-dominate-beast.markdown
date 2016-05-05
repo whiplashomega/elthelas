@@ -2,7 +2,8 @@
 layout: post
 title: "Dominate Beast"
 date: 2015-07-14
-tags: [druid, sorcerer, level4]
+source: PHB.234
+tags: [druid, sorcerer, level4, enchantment]
 ---
 
 **4th-level enchantment**

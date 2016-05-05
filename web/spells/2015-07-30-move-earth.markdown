@@ -2,7 +2,8 @@
 layout: post
 title: "Move Earth"
 date: 2015-07-30
-tags: [druid, sorcerer, wizard, level6]
+source: PHB.263
+tags: [druid, sorcerer, wizard, level6, transmutation]
 ---
 
 **6th-level transmutation**
@@ -11,7 +12,7 @@ tags: [druid, sorcerer, wizard, level6]
 
 **Range**: 120 feet
 
-**Components**: V, S, M (an iron blade and a small bag containing a mixture of soils--c1ay, loam, and sand)
+**Components**: V, S, M (an iron blade and a small bag containing a mixture of soils--clay, loam, and sand)
 
 **Duration**: Concentration, up to 2 hours
 

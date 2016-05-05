@@ -26,8 +26,8 @@ if(getenv('CLEARDB_DATABASE_URL')) {
     $container->setParameter('database_host', 'localhost');
     $container->setParameter('database_port', '3306');
     $container->setParameter('database_name', 'elthelas');
-    $container->setParameter('database_user', 'elthelas');
-    $container->setParameter('database_password', 'elthelas');
+    $container->setParameter('database_user', 'root');
+    $container->setParameter('database_password', '');
     $container->setParameter('secret', 'elthelas');
     $container->setParameter('locale', 'en');
     $container->setParameter('mailer_transport', null);

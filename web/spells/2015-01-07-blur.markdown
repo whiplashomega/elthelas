@@ -2,14 +2,15 @@
 layout: post
 title:  "Blur"
 date:   2015-01-07
-tags: [sorcerer, wizard, level2]
+source: PHB.219
+tags: [sorcerer, wizard, level2, illusion]
 ---
 
-**2nd-Level illusion**
+**2nd-level illusion**
 
 **Casting Time**: 1 action
 
-**Range**: self
+**Range**: Self
 
 **Components**: V
 

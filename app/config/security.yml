@@ -15,12 +15,12 @@ security:
             pattern: ^/
             form_login:
                 provider: fos_userbundle
-                csrf_provider: form.csrf_provider
+                csrf_token_generator: security.csrf.token_manager
                 default_target_path: /dm
             logout: true
             anonymous:    true
             remember_me:
-              key: "%secret%"
+              secret: "%secret%"
               always_remember_me: true
 
     access_control:

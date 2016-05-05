@@ -2,10 +2,11 @@
 layout: post
 title:  "Blindness/Deafness"
 date:   2014-12-31
-tags: [bard, cleric, sorcerer, wizard, level2]
+source: PHB.219
+tags: [bard, cleric, sorcerer, wizard, level2, necromancy]
 ---
 
-**2nd-level Necromancy**
+**2nd-level necromancy**
 
 **Casting Time**: 1 action
 

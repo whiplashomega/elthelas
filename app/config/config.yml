@@ -15,11 +15,10 @@ framework:
     templating:
         engines: ['twig']
         #assets_version: SomeVersionScheme
+    assets:
         packages:
             cdn:
-                base_urls:
-                    http: ['https://ajax.googleapis.com/ajax/libs/']
-                    ssl: ['https://ajax.googleapis.com/ajax/libs/']
+                base_urls: 'https://ajax.googleapis.com/ajax/libs/'
     default_locale:  "%locale%"
     trusted_hosts:   ~
     trusted_proxies: ~
@@ -84,7 +83,7 @@ fos_user:
     firewall_name: main
     user_class: AppBundle\Entity\User
     from_email:
-        address:    admin@elthelas.herokuapp.com
+        address:    admin@elthelas.com
         sender_name: DO_NOT_REPLY
     registration:
         confirmation:

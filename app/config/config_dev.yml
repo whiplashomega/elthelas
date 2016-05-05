@@ -42,9 +42,6 @@ monolog:
         #    type:   chromephp
         #    level:  info
 
-assetic:
-    use_controller: true
-
 swiftmailer:
     transport: "%mailer_transport%"
     host:      "%mailer_host%"

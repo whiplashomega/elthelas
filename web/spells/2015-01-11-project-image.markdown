@@ -2,7 +2,8 @@
 layout: post
 title:  "Project Image"
 date:   2015-01-11
-tags:   [bard, wizard, level7]
+source: PHB.270
+tags:   [bard, wizard, level7, illusion]
 ---
 
 **7th-level illusion**

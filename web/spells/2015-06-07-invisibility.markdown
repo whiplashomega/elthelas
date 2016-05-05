@@ -2,7 +2,8 @@
 layout: post
 title: "Invisibility"
 date: 2015-06-07
-tags: [bard, sorcerer, warlock, wizard, level2]
+source: PHB.254
+tags: [bard, sorcerer, warlock, wizard, level2, illusion]
 ---
 
 **2nd-level illusion**

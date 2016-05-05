@@ -2,14 +2,15 @@
 layout: post
 title: "Lightning Bolt"
 date: 2015-07-30
-tags: [sorcerer, wizard, level3]
+source: PHB.255
+tags: [sorcerer, wizard, level3, evocation]
 ---
 
 **3rd-level evocation**
 
 **Casting Time**: 1 action
 
-**Range**: Self (1OO-foot line)
+**Range**: Self (100-foot line)
 
 **Components**: V, S, M (a bit of fur and a rod of amber, crystal, or glass)
 

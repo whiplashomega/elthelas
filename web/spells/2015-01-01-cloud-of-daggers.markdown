@@ -2,10 +2,11 @@
 layout: post
 title:  "Cloud of Daggers"
 date:   2015-01-01
-tags: [bard, sorcerer, warlock, wizard, level2]
+source: PHB.222
+tags: [bard, sorcerer, warlock, wizard, level2, conjuration]
 ---
 
-**2nd-level Conjuration**
+**2nd-level conjuration**
 
 **Casting Time**: 1 action
 

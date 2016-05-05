@@ -2,7 +2,8 @@
 layout: post
 title:  "Plant Growth"
 date:   2015-01-02
-tags: [druid, ranger, level3]
+source: PHB.266
+tags: [bard, druid, ranger, level3, transmutation]
 ---
 
 **3rd-level transmutation**

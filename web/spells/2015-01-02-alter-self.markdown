@@ -2,10 +2,11 @@
 layout: post
 title:  "Alter Self"
 date:   2015-01-2
-tags: [sorcerer, wizard, level2]
+source: PHB.211
+tags: [sorcerer, wizard, level2, transmutation]
 ---
 
-**2nd-Level Transmuation**
+**2nd-level transmutation**
 
 **Casting Time**: 1 action
 

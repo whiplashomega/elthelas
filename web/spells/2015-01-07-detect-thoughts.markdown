@@ -2,14 +2,15 @@
 layout: post
 title:  "Detect Thoughts"
 date:   2015-01-07
-tags: [bard, sorcerer, wizard, level2]
+source: PHB.231
+tags: [bard, sorcerer, wizard, level2, divination]
 ---
 
-**2nd-Level divination**
+**2nd-level divination**
 
 **Casting Time**: 1 action
 
-**Range**: self
+**Range**: Self
 
 **Components**: V, S, M (a copper piece)
 

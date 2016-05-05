@@ -2,7 +2,8 @@
 layout: post
 title: "Contingency"
 date: 2015-07-14
-tags: [wizard, level6]
+source: PHB.227
+tags: [wizard, level6, evocation]
 ---
 
 **6th-level evocation**

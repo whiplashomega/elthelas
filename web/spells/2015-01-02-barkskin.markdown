@@ -2,10 +2,11 @@
 layout: post
 title:  "Barkskin"
 date:   2015-01-02
-tags: [druid, ranger, level2]
+source: PHB.217
+tags: [druid, ranger, level2, transmutation]
 ---
 
-**2nd-level transmuation**
+**2nd-level transmutation**
 
 **Casting Time**: 1 action
 

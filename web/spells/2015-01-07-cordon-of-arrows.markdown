@@ -2,10 +2,11 @@
 layout: post
 title:  "Cordon Of Arrows"
 date:   2015-01-07
-tags: [ranger, level2]
+source: PHB.228
+tags: [ranger, level2, transmutation]
 ---
 
-**2nd-Level transmutation**
+**2nd-level transmutation**
 
 **Casting Time**: 1 action
 
