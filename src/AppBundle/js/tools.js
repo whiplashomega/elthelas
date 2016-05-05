@@ -153,10 +153,10 @@
 
     dmTools.controller('referenceManual', function($scope, $http) {
       $scope.spelllist = spells;
-
+      $scope.content = "";
       $scope.loadspell = function() {
         var index = $("input[name='spellselect']:checked").val();
-        $scope.content = $("#selectedspell").html(marked($scope.spelllist[index][3]));
+        $scope.content = marked($scope.spelllist[index][3]);
       }
       $scope.loadtaglist = function(tag) {
         
