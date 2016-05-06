@@ -27,6 +27,7 @@ class ReferencePagesController extends Controller
       ->setFrom("elthelaswebmaster@gmail.com")
       ->setTo("whiplashomega@gmail.com")
       ->setBody("testing testing 123", "text/html");
+    $this->get('mailer')->send($message);
     return $this->render('AppBundle:ref:calendar.html.twig', array('pagetitle' => 'Calendar'));
   }
   /**
