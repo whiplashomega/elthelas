@@ -18,7 +18,8 @@ if(getenv('CLEARDB_DATABASE_URL')) {
     $container->setParameter('locale', 'en');
     $container->setParameter('mailer_transport', "gmail");
     $container->setParameter('mailer_host', "smtp.gmail.com");
-    $container->setParameter('mailer_user', "elthelaswebmaster");
+    $container->setParameter('mailer_user', "elthelaswebmaster@gmail.com");
+    $container->setParameter('mailer_port', "465");
     $container->setParameter('mailer_password', $mailerpassword);
     }
     else { //we are not on production, so we'll use our defaults for development servers
