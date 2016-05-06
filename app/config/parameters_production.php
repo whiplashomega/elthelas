@@ -6,7 +6,7 @@
  */
 if(getenv('CLEARDB_DATABASE_URL')) {
     $db = parse_url(getenv('CLEARDB_DATABASE_URL'));
-
+    $mailerpassword = parse_url(getenv('GMAIL_PASS'));
 
     $container->setParameter('database_driver', 'pdo_mysql');
     $container->setParameter('database_host', $db['host']);
@@ -16,10 +16,10 @@ if(getenv('CLEARDB_DATABASE_URL')) {
     $container->setParameter('database_password', $db['pass']);
     $container->setParameter('secret', getenv('SECRET'));
     $container->setParameter('locale', 'en');
-    $container->setParameter('mailer_transport', null);
-    $container->setParameter('mailer_host', null);
-    $container->setParameter('mailer_user', null);
-    $container->setParameter('mailer_password', null);
+    $container->setParameter('mailer_transport', "gmail");
+    $container->setParameter('mailer_host', "smtp.gmail.com");
+    $container->setParameter('mailer_user', "elthelaswebmaster@gmail.com");
+    $container->setParameter('mailer_password', $mailerpassword);
     }
     else { //we are not on production, so we'll use our defaults for development servers
     $container->setParameter('database_driver', 'pdo_mysql');
