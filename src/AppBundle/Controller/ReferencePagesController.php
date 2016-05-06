@@ -22,6 +22,7 @@ class ReferencePagesController extends Controller
    */
   public function refCalendarAction()
   {
+    mail("whiplashomega@gmail.com","test email","this is a test");
     return $this->render('AppBundle:ref:calendar.html.twig', array('pagetitle' => 'Calendar'));
   }
   /**
