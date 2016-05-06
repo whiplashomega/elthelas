@@ -6,7 +6,7 @@
  */
 if(getenv('CLEARDB_DATABASE_URL')) {
     $db = parse_url(getenv('CLEARDB_DATABASE_URL'));
-    $mailerpassword = parse_url(getenv('GMAIL_PASS'));
+    $mailerpassword = getenv('GMAIL_PASS');
 
     $container->setParameter('database_driver', 'pdo_mysql');
     $container->setParameter('database_host', $db['host']);
