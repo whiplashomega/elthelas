@@ -22,7 +22,11 @@ class ReferencePagesController extends Controller
    */
   public function refCalendarAction()
   {
-    mail("whiplashomega@gmail.com","test email","this is a test");
+    $message = \Swift_Message::newInstance()
+      ->setSubject('Hello Email')
+      ->setFrom("elthelaswebmaster@gmail.com")
+      ->setTo("whiplashomega@gmail.com")
+      ->setBody("testing testing 123", "text/html");
     return $this->render('AppBundle:ref:calendar.html.twig', array('pagetitle' => 'Calendar'));
   }
   /**
