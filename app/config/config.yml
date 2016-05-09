@@ -84,7 +84,7 @@ fos_user:
 
 cspoo_swiftmailer_mailgun:
   key: "key-de4eab78ebecbf3423eb958c77286bce"
-  domain: "app5d1755d3f41b42b48e3f14b0fbdc6a50.mailgun.org"
+  domain: "elthelas.com"
 # Swiftmailer Configuration
 swiftmailer:
     transport: "%mailer_transport%"

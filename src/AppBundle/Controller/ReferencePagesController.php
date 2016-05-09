@@ -22,6 +22,10 @@ class ReferencePagesController extends Controller
    */
   public function refCalendarAction()
   {
+    $logger = $this->get('logger');
+    $logger->info($this->container->getParameter('mailer_host'));
+    $logger->info($this->container->getParameter('mailer_user'));
+    $logger->info($this->container->getParameter('mailer_password'));
     $message = \Swift_Message::newInstance()
       ->setSubject('Hello Email')
       ->setFrom("elthelaswebmaster@gmail.com")
