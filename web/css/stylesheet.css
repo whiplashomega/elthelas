@@ -9283,6 +9283,18 @@ input.gsc-search-button, input.gsc-search-button:hover, input.gsc-search-button:
   height: auto;
 }
 
+/* line 104, ../sass/_layout.scss */
+.pull-right {
+  margin-bottom: 10px;
+  margin-left: 10px;
+}
+
+/* line 108, ../sass/_layout.scss */
+.subrace {
+  clear: right;
+  margin-top: 10px;
+}
+
 /* line 1, ../sass/_topnav.scss */
 nav.navbar {
   clear: both;
