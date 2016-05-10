@@ -12,7 +12,7 @@
           this.id = 0;
           this.attacks = [];
         };
-      $scope.creature = new $scope.creatureModel();
+      $scope.creature = new $scope.creatureModel(); 
       $scope.creatureSelect = 0;
       $scope.alertcontent = "";
       $scope.loadCreature = function(id) {
