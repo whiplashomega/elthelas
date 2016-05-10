@@ -15155,7 +15155,7 @@ var e=c.find(".active:last a"),f=a.Event("hide.bs.tab",{relatedTarget:b[0]}),g=a
           this.id = 0;
           this.attacks = [];
         };
-      $scope.creature = new $scope.creatureModel();
+      $scope.creature = new $scope.creatureModel(); 
       $scope.creatureSelect = 0;
       $scope.alertcontent = "";
       $scope.loadCreature = function(id) {
