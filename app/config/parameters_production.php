@@ -26,12 +26,12 @@ if(getenv('CLEARDB_DATABASE_URL')) {
     }
     else { //we are not on production, so we'll use our defaults for development servers
     $container->setParameter('database_driver', 'pdo_mysql');
-    $container->setParameter('database_host', 'localhost');
+    $container->setParameter('database_host', '0.0.0.0');
     $container->setParameter('database_port', '3306');
-    $container->setParameter('database_name', 'elthelas');
-    $container->setParameter('database_user', 'root');
+    $container->setParameter('database_name', 'c9');
+    $container->setParameter('database_user', 'whiplashomega');
     $container->setParameter('database_password', '');
-    $container->setParameter('secret', 'elthelas');
+    $container->setParameter('secret', 'ThisTokenIsNotSoSecretChangeIt');
     $container->setParameter('locale', 'en');
     $container->setParameter('mailer_transport', null);
     $container->setParameter('mailer_host', null);
