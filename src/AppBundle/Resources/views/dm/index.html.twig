@@ -276,8 +276,9 @@
             <li><a href="#refconditions">Conditions</a></li>
             <li><a href="#refinjuries">Injuries</a></li>
             <li><a href="#refactions">Actions</a></li>
-            <li><a href="#refequipment">Equipment</a></li>
-            <li><a href="#refvarious">Other</a></li>
+            <li><a href="#reftrade">Trade Goods</a></li>
+            <li><a href="#refanimal">Animals</a></li>
+            <li><a href="#reflabor">Labor and Services</a></li>
           </ul>
           <div id="refspells">
             <h3>Spells</h3>
@@ -302,6 +303,12 @@
             <h4>Deafened</h4>
             <ul>
               <li>You can’t hear and automatically fail any ability check requiring hearing.</li>
+            </ul>
+            <h4>Cover</h4>
+            <ul>
+              <li>Creature with Half Cover gets +2 to AC and Dex Saves.</li>
+              <li>3/4 Cover gets +5 to AC and dex saves.</li>
+              <li>Full cover cannot be targetted.</li>
             </ul>
             <h4>Frightened</h4>
             <ul>
@@ -329,6 +336,11 @@
               <li>
                 Attack rolls against you have disadvantage and your attack rolls have advantage.
               </li>
+            </ul>
+            <h4>Obscured/Concealed</h4>
+            <ul>
+              <li>Lightly obscured includes dim light, patchy fog, moderate foliage, disadvantage on wisdom(perception) checks that rely on sight.</li>
+              <li>Heavily obscured areas--such as darkness, opaque fog or dense foliage--blocks  vision entirely, a creature in the area effectively is blind.</li>
             </ul>
             <h4>Paralyzed</h4>
             <ul>
@@ -558,6 +570,15 @@
                   <td>Moving Stealthily</td>
                   <td>Requires moving at half speed.  Make a dexterity(stealth) check opposed by wisdom(perception) or passive perception of observers.</td>
                 </tr>
+                <tr>
+                  <td>Mounting and Dismounting</td>
+                  <td>Once during your move, you can mount a creature that is within 5 feet o f you or dismount. Doing so costs an amount o f movement equal to half your speed.</td>
+                </tr>
+                <tr>
+                  <td>Falling off your mount</td>
+                  <td>if your mount is moved against it's will or you are knocked prone, you must succeed on a DC 10 Dexterity saving throw or fall off the mount, landing prone in a 
+                  space within 5 feet of it.  If your mount is knocked prone you may use your reaction to land on your feet next to it, otherwise you are knocked prone.</td>
+                </tr>
               </tbody>
             </table>
             <h3>Actions in Combat</h3>
@@ -661,6 +682,8 @@
                     Replaces 1 attack.  Use strength(athletics), opposed by strength(athletics) or dexterity(acrobatics).  Target gets grappled condition(speed 0).  
                     Can move grappled creature with you but speed is halved.  Target must be no more than 1 size larger than you.
                   </td>
+                </tr>
+                <tr>
                   <td>Shove</td>
                   <td>
                     Replaces 1 attack. Similar rules to grapple.  Target is knocked prone or pushed back 5 ft on a success.
@@ -669,11 +692,365 @@
               </tbody>
             </table>
           </div>
-          <div id="refequipment">
-            
+          <div id="reftrade">
+            <table class="table table-striped datatable">
+              <thead>
+                <tr>
+                  <th>Name</th><th>Type</th><th>Weight</th><th>Unit of Sale</th><th>Price per Unit</th><th>Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Wheat</td><td>Foodstuff</td><td>60 lbs</td><td>1 bushel</td><td>5 sp</td><td>Unmilled wheat, usually only bought by millers who then make and sell flour</td>
+                </tr>
+                <tr>
+                  <td>Flour</td><td>Foodstuff</td><td>10 lb</td><td>sack</td><td>1.8 sp</td><td>milled flour, 8 days of food</td>
+                </tr>
+                <tr>
+                  <td>Bread</td><td>Foodstuff</td><td>1 lb</td><td>loaf</td><td>2 cp</td><td>cooked bread 0.5 days of food</td>
+                </tr>
+                <tr>
+                  <td>Biscuits</td><td>Foodstuff</td><td>1 lb</td><td>dozen</td><td>3 cp</td><td>soft biscuits 0.8 days of food</td>
+                </tr>
+                <tr>
+                  <td>Hardtack</td><td>Foodstuff</td><td>1 lb</td><td>dozen</td><td>2 cp</td><td>hard unappetizing biscuits, 1 day of food</td>
+                </tr>
+                <tr>
+                  <td>Salt</td><td>Foodstuff</td><td>1 lb</td><td>lb</td><td>5 cp</td><td>delicious salt, can be used to preserve meats or flavor food</td>
+                </tr>
+                <tr>
+                  <td>Ginger</td><td>Foodstuff</td><td>1 lb</td><td>lb</td><td>2 sp</td><td>usually sold as whole ginger root, 0.2 days of food</td>
+                </tr>
+                <tr>
+                  <td>Cinnamon</td><td>Foodstuff</td><td>1 lb</td><td>lb</td><td>7 sp</td><td>the bark of the cinnamon tree, sold as rolled sheets, 0.5 days of food</td>
+                </tr>
+                <tr>
+                  <td>Pepper</td><td>Foodstuff</td><td>1 lb</td><td>lb</td><td>7 sp</td><td>The black variety, used to disguise the taste of spoiled meat, 0.5 days of food</td>
+                </tr>
+                <tr>
+                  <td>Cloves</td><td>Foodstuff</td><td>1 lb</td><td>lb</td><td>2.5 gp</td><td>A rare spice made from the flower buds of the clove tree, 0.6 days of food</td>
+                </tr>
+                <tr>
+                  <td>Vegetables</td><td>Foodstuff</td><td>1 lb</td><td>lb</td><td>2 cp</td><td>Carrots, tomatoes, cucumbers, etc, 0.1 days of food</td>
+                </tr>
+                <tr>
+                  <td>Milk</td><td>Foodstuff</td><td>8.5 lb</td><td>gallon</td><td>3 cp</td><td>Delicious cow(or goat, or other mammal) juice, 1.2 days of food</td>
+                </tr>
+                <tr>
+                  <td>Cheese</td><td>Foodstuff</td><td>22 lb</td><td>wheel</td><td>5 sp</td><td>A large wheel of cheese, 20 days of food</td>
+                </tr>
+                <tr>
+                  <td>Straw</td><td>Foodstuff</td><td>36 lb</td><td>truss</td><td>1 cp</td><td>a decent basic feed for cows, horses, and other grazing herbivores, 3 days of animal feed</td>
+                </tr>
+                <tr>
+                  <td>Corn</td><td>Foodstuff</td><td>60 lb</td><td>bushel</td><td>4 sp</td><td>Sweet or flour corn suitable for eating, full ears. Can also be ground into flour.  14 days of food</td>
+                </tr>
+                <tr>
+                  <td>Fresh Fruit</td><td>Foodstuff</td><td>1 lb</td><td>lb</td><td>3 cp</td><td>Fruit, from apples to berries. 0.1 days of food</td>
+                </tr>
+                <tr>
+                  <td>Eggs</td><td>Foodstuff</td><td>1.5 lb</td><td>dozen</td><td>2 sp</td><td>Fruit, from apples to berries. 0.5 days of food</td>
+                </tr>
+                <tr>
+                  <td>Meat, dried or salted</td><td>Foodstuff</td><td>1 lb</td><td>lb</td><td>2 sp</td><td>Meat is typically dried or salted to preserve it. 0.6 days of food</td>
+                </tr>
+                <tr>
+                  <td>Meat, fresh</td><td>Foodstuff</td><td>1 lb</td><td>lb</td><td>1 sp</td><td>Fresh meat, delicious but spoils easily, 0.5 days of food</td>
+                </tr>
+                <tr>
+                  <td>Peasant's diet (daily)</td><td>Foodstuff</td><td>3 lbs</td><td>one days worth of food</td><td>3 cp</td><td>A days worth of simple wheat or corn bread, vegetables, and milk</td>
+                </tr>
+                <tr>
+                  <td>Balanced diet (daily)</td><td>Foodstuff</td><td>3 lbs</td><td>one days worth of food</td><td>1.7 sp</td><td>includes some preserved meat, vegetables, fruits, cheese, and bread, but little or no spices.</td>
+                </tr>
+                <tr>
+                  <td>Rich diet (daily)</td><td>Foodstuff</td><td>4 lbs</td><td>one days worth of food</td><td>6 sp</td><td>includes fresh meat, vegetables, fruits, cheese, milk, bread, and spices in enough quantity to put on weight over time.</td>
+                </tr>
+                <tr>
+                  <td>Survival Rations (daily)</td><td>Foodstuff</td><td>1 lb</td><td>one days worth of food</td><td>5 cp</td><td>Hardtack and a little jerky for protein.</td>
+                </tr>
+                <tr>
+                  <td>Good Rations (daily)</td><td>Foodstuff</td><td>1.5 lb</td><td>one days worth of food</td><td>1.2 sp</td><td>preserved meat, biscuits, and cheese.</td>
+                </tr>
+                <tr>
+                  <td>Canvas</td><td>Raw Material</td><td>0.5 lb</td><td>square yard</td><td>3 sp</td><td>heavy cotton canvas, good for tents or ships sails.</td>
+                </tr>
+                <tr>
+                  <td>Linen</td><td>Raw Material</td><td>0.2 lb</td><td>square yard</td><td>9 sp</td><td>fine linen, used to make comfortable warm weather clothing.</td>
+                </tr>
+                <tr>
+                  <td>Silk</td><td>Raw Material</td><td>0.2 lb</td><td>square yard</td><td>6 gp</td><td>fine silks, used for the finest clothing.</td>
+                </tr>
+                <tr>
+                  <td>Cotton</td><td>Raw Material</td><td>500 lb</td><td>bale</td><td>40 gp</td><td>raw cotton, used to produce cotton cloth.</td>
+                </tr>
+                <tr>
+                  <td>Flax</td><td>Raw Material</td><td>500 lb</td><td>bale</td><td>120 gp</td><td>raw flax, used to produce linen cloth.</td>
+                </tr>
+                <tr>
+                  <td>Wool</td><td>Raw Material</td><td>500 lb</td><td>bale</td><td>40 gp</td><td>raw wool, used to produce wool cloth.</td>
+                </tr>
+                <tr>
+                  <td>Cotton Cloth</td><td>Raw Material</td><td>0.3 lb</td><td>square yard</td><td>2 sp</td><td>medium weight cotton cloth, suitable for making clothing.</td>
+                </tr>
+                <tr>
+                  <td>Wool Cloth</td><td>Raw Material</td><td>0.4 lb</td><td>square yard</td><td>3 sp</td><td>thick wool cloth, suitable for making cold weather clothing.</td>
+                </tr>
+                <tr>
+                  <td>Softwood lumber, milled</td><td>Raw Material</td><td>2 lb</td><td>inches thick x square feet</td><td>2 cp</td><td>milled boards of spruce, pine, maple, or other softwoods. Used for the planks of a ship or as a cheap construction material for buildings.</td>
+                </tr>
+                <tr>
+                  <td>Softwood lumber, raw logs</td><td>Raw Material</td><td>1 2/3 lb</td><td>radius(feet)^2*length(inches)</td><td>radius(feet)^2*length(inches)*2 cp or 6 gp for a 10 ft long 12" diameter log</td><td>raw logs of softwood trees.</td>
+                </tr>
+                <tr>
+                  <td>Hardwood lumber, milled</td><td>Raw Material</td><td>3.75 lb</td><td>inches thick x square feet</td><td>1 sp</td><td>milled boards of oak, walnut, cherry, or other hardwoods.  Used primarily for furniture.</td>
+                </tr>
+                <tr>
+                  <td>Hardwood lumber, raw logs</td><td>Raw Material</td><td>3 lb</td><td>radius(feet)^2*length(inches)</td><td>radius(feet)^2*length(inches)*2 sp or 6 gp for a 10 ft long 12" diameter log</td><td>raw logs of hardwood trees.</td>
+                </tr>
+                <tr>
+                  <td>Ironwood lumber, milled</td><td>Raw Material</td><td>6 lb</td><td>inches thick x square feet</td><td>4 gp</td><td>milled boards of oak, walnut, cherry, or other hardwoods.  Used primarily for furniture.</td>
+                </tr>
+                <tr>
+                  <td>Ironwood lumber, raw logs</td><td>Raw Material</td><td>4.8 lb</td><td>radius(feet)^2*length(inches)</td><td>radius(feet)^2*length(inches)*40 sp or 120 gp for a 10 ft long 12" diameter log</td><td>raw logs of hardwood trees.</td>
+                </tr>
+                <tr>
+                  <td>Hides</td><td>Raw Material</td><td>20 lb</td><td>1 finished hide</td><td>10 gp</td><td>A cowhide that has been dried and de-fleshed.</td>
+                </tr>
+                <tr>
+                  <td>Leather</td><td>Raw Material</td><td>1 lb</td><td>lb</td><td>2 gp</td><td>Leather ready for use in clothing or armor.</td>
+                </tr>
+                <tr>
+                  <td>Dragon Hide</td><td>Raw Material</td><td>150 lb</td><td>1 finished hide</td><td>3000 gp</td><td>A finished dragonhide that has been dried, descaled and de-fleshed.</td>
+                </tr>
+                <tr>
+                  <td>Dragon Leather</td><td>Raw Material</td><td>1 lb</td><td>lb</td><td>40 gp</td><td>Dragon leather ready for use in clothing or armor.</td>
+                </tr>
+                <tr>
+                  <td>Dragon Scales</td><td>Raw Material</td><td>1 lb</td><td>lb</td><td>30 gp</td><td>Dragon scales ready for use in clothing or armor.</td>
+                </tr>
+                <tr>
+                  <td>Hemp</td><td>Raw Material</td><td>500 lb</td><td>bale</td><td>10 gp</td><td>Hemp used for making rope.</td>
+                </tr>
+                <tr>
+                  <td>Cut Stone</td><td>Raw Material</td><td>2000 lb</td><td>ton</td><td>1 gp</td><td>Rough cut stone suitable for construction.</td>
+                </tr>
+                <tr>
+                  <td>Brick</td><td>Raw Material</td><td>2000 lb</td><td>ton</td><td>17 gp</td><td>Molded clay brick suitable for construction.</td>
+                </tr>
+                <tr>
+                  <td>Marble</td><td>Raw Material</td><td>2000 lb</td><td>ton</td><td>135 gp</td><td>cut marble suitable for construction.</td>
+                </tr>
+                <tr>
+                  <td>Concrete</td><td>Raw Material</td><td>2000 lb</td><td>ton</td><td>13 gp</td><td>unmixed concrete.</td>
+                </tr>
+                <tr>
+                  <td>Copper</td><td>Raw Material</td><td>1 lb</td><td>lb</td><td>3 sp</td><td>Smelted Copper.</td>
+                </tr>
+                <tr>
+                  <td>Silver</td><td>Raw Material</td><td>1 lb</td><td>lb</td><td>35 gp</td><td>Smelted Silver.</td>
+                </tr>
+                <tr>
+                  <td>Gold</td><td>Raw Material</td><td>1 lb</td><td>lb</td><td>1000 gp</td><td>Smelted Gold.</td>
+                </tr>
+                <tr>
+                  <td>Platinum</td><td>Raw Material</td><td>1 lb</td><td>lb</td><td>2000 gp</td><td>Smelted Platinum.</td>
+                </tr>
+                <tr>
+                  <td>Arcanum Crystal</td><td>Raw Material</td><td>1 lb</td><td>lb</td><td>100 gp</td><td>Unaligned Arcanum Crystal.</td>
+                </tr>
+                <tr>
+                  <td>Bronze</td><td>Raw Material</td><td>1 lb</td><td>lb</td><td>6 sp</td><td>Smelted bronze.</td>
+                </tr>
+                <tr>
+                  <td>Tin</td><td>Raw Material</td><td>1 lb</td><td>lb</td><td>2 sp</td><td>Smelted tin.</td>
+                </tr>
+                <tr>
+                  <td>Zinc</td><td>Raw Material</td><td>1 lb</td><td>lb</td><td>2 sp</td><td>Smelted zinc.</td>
+                </tr>
+                <tr>
+                  <td>Iron</td><td>Raw Material</td><td>-</td><td>-</td><td>1 lb</td><td>lb</td><td>1 sp</td><td>Smelted iron.</td>
+                </tr>
+                <tr>
+                  <td>Steel</td><td>Raw Material</td><td>1 lb</td><td>lb</td><td>2 sp</td><td>Smelted steel.</td>
+                </tr>
+                <tr>
+                  <td>Brass</td><td>Raw Material</td><td>1 lb</td><td>lb</td><td>6 sp</td><td>Smelted brass.</td>
+                </tr>
+                <tr>
+                  <td>Nickel</td><td>Raw Material</td><td>1 lb</td><td>lb</td><td>3 gp</td><td>Smelted nickel.</td>
+                </tr>
+                <tr>
+                  <td>Red Parakas Steel</td><td>Raw Material</td><td>1 lb</td><td>lb</td><td>5 gp</td><td>Smelted Parakas Steel.</td>
+                </tr>
+                <tr>
+                  <td>Adamantium</td><td>Raw Material</td><td>1 lb</td><td>lb</td><td>10 gp</td><td>Smelted Adamantium.</td>
+                </tr>
+                <tr>
+                  <td>Mithril</td><td>Raw Material</td><td>1 lb</td><td>lb</td><td>15 gp</td><td>Smelted Mithril.</td>
+                </tr>
+                <tr>
+                  <td>Aluminum</td><td>Raw Material</td><td>1 lb</td><td>lb</td><td>1 gp</td><td>Smelted Aluminum.</td>
+                </tr>
+                <tr>
+                  <td>Coal</td><td>Raw Material</td><td>1 lb</td><td>lb</td><td>5 cp</td><td>Raw Coal.</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
-          <div id="refvarious">
-            
+          <div id="refanimal">
+            <table class="table table-striped datatable">
+              <thead>
+                <tr>
+                  <th>Animal</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Camel</td><td>Mount</td><td>-</td><td>per head</td><td>110 gp</td><td>A camel trained for riding.</td>
+                </tr>
+                <tr>
+                  <td>Donkey</td><td>Livestock</td><td>-</td><td>per head</td><td>15 gp</td><td>A donkey trained for carrying goods.</td>
+                </tr>
+                <tr>
+                  <td>Draft Horse</td><td>Livestock</td><td>-</td><td>per head</td><td>60 gp</td><td>A large horse trained for carrying goods or pulling a load.</td>
+                </tr>
+                <tr>
+                  <td>Riding Horse</td><td>Mount</td><td>-</td><td>per head</td><td>100 gp</td><td>A horse trained for riding.</td>
+                </tr>
+                <tr>
+                  <td>Riding Dog</td><td>Mount</td><td>-</td><td>per head</td><td>25 gp</td><td>A large dog trained for riding by small or smaller creatures.</td>
+                </tr>
+                <tr>
+                  <td>Herding/Work Dog</td><td>Livestock</td><td>-</td><td>per head</td><td>15 gp</td><td>A dog trained for work such as herding or tracking.</td>
+                </tr>
+                <tr>
+                  <td>Pony</td><td>Mount</td><td>-</td><td>per head</td><td>40 gp</td><td>A pony trained for riding.</td>
+                </tr>
+                <tr>
+                  <td>War horse</td><td>Mount</td><td>-</td><td>per head</td><td>200 gp</td><td>A large horse trained for riding and fighting in battle.</td>
+                </tr>
+                <tr>
+                  <td>War camel</td><td>Mount</td><td>-</td><td>per head</td><td>220 gp</td><td>A camel trained for riding and fighting in battle.</td>
+                </tr>
+                <tr>
+                  <td>Milk Cow</td><td>Livestock</td><td>-</td><td>per head</td><td>200 gp</td><td>A cow ready to give milk.</td>
+                </tr>
+                <tr>
+                  <td>Ox/Bull</td><td>Livestock</td><td>-</td><td>per head</td><td>40 gp</td><td>An ox or bull trained to haul or pull.</td>
+                </tr>
+                <tr>
+                  <td>Pig</td><td>Livestock</td><td>-</td><td>per head</td><td>9 gp</td><td>A pig sow, to be raised for meat.</td>
+                </tr>
+                <tr>
+                  <td>Sheep</td><td>Livestock</td><td>-</td><td>per head</td><td>30 gp</td><td>A sheep that can be raised for wool.</td>
+                </tr>
+                <tr>
+                  <td>Goat</td><td>Livestock</td><td>-</td><td>per head</td><td>50 gp</td><td>A goat that can be used for milk or meat.</td>
+                </tr>
+                <tr>
+                  <td>Elephant</td><td>Livestock</td><td>-</td><td>per head</td><td>2250 gp</td><td>A young elephant.</td>
+                </tr>
+                <tr>
+                  <td>Chicken</td><td>Livestock</td><td>-</td><td>per head</td><td>2 gp</td><td>An egg laying chicken.</td>
+                </tr>
+                <tr>
+                  <td>Goose</td><td>Livestock</td><td>-</td><td>per head</td><td>4 gp</td><td>An egg laying goose.</td>
+                </tr>
+                <tr>
+                  <td>Cat</td><td>Livestock</td><td>-</td><td>per head</td><td>10 gp</td><td>A mousing cat.</td>
+                </tr>
+                <tr>
+                  <td>Other Beast</td><td>Livestock</td><td>-</td><td>per head</td><td>ROUNDUP((CR * 0.75)^2) * 250 gp</td><td>A captured wild beasts cost is based on the difficulty in capturing it.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div id="reflabor">
+            <p>
+              Prices listed are per person per day.
+            </p>
+            <table class="table table-striped datatable">
+              <thead>
+                <tr>
+                  <th>Worker</th><th>Class Level</th><th>In Vicinity of Home</th><th>Adventuring</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Guard/Mercenary</td><td>Level 1 Fighter</td><td>2 gp</td><td>4 gp</td>
+                </tr>
+                <tr>
+                  <td>Unskilled Laborer</td><td>Level 1 Commoner</td><td>5 sp (plus materials)</td><td>1 gp (plus materials)</td>
+                </tr>
+                <tr>
+                  <td>Artisan</td><td>Level 5 Commoner</td><td>3 gp (plus materials)</td><td>6 gp (plus materials)</td>
+                </tr>
+                <tr>
+                  <td>Master Craftsman</td><td>5 gp (plus materials)</td><td>10 gp (plus materials)</td>
+                </tr>
+                <tr>
+                  <td>Level 1 NPC</td><td>Any PC Class Level 1</td><td>2 gp</td><td>4 gp</td>
+                </tr>
+                <tr>
+                  <td>Level 2 NPC</td><td>Any PC Class Level 2</td><td>10 gp</td><td>20 gp</td>
+                </tr>
+                <tr>
+                  <td>Level 3 NPC</td><td>Any PC Class Level 3</td><td>20 gp</td><td>40 gp</td>
+                </tr>
+                <tr>
+                  <td>Level 4 NPC</td><td>Any PC Class Level 4</td><td>40 gp</td><td>80 gp</td>
+                </tr>
+                <tr>
+                  <td>Level 5 NPC</td><td>Any PC Class Level 5</td><td>60 gp</td><td>120 gp</td>
+                </tr>
+                <tr>
+                  <td>Level 6 NPC</td><td>Any PC Class Level 6</td><td>90 gp</td><td>180 gp</td>
+                </tr>
+                <tr>
+                  <td>Level 7 NPC</td><td>Any PC Class Level 7</td><td>120 gp</td><td>240 gp</td>
+                </tr>
+                <tr>
+                  <td>Level 8 NPC</td><td>Any PC Class Level 8</td><td>160 gp</td><td>320 gp</td>
+                </tr>
+                <tr>
+                  <td>Level 9 NPC</td><td>Any PC Class Level 9</td><td>200 gp</td><td>400 gp</td>
+                </tr>
+                <tr>
+                  <td>Level 10 NPC</td><td>Any PC Class Level 10</td><td>250 gp</td><td>500 gp</td>
+                </tr>
+                <tr>
+                  <td>Level 11 NPC</td><td>Any PC Class Level 11</td><td>300 gp</td><td>600 gp</td>
+                </tr>
+                <tr>
+                  <td>Level 12 NPC</td><td>Any PC Class Level 12</td><td>360 gp</td><td>720 gp</td>
+                </tr>
+                <tr>
+                  <td>Level 13 NPC</td><td>Any PC Class Level 13</td><td>420 gp</td><td>840 gp</td>
+                </tr>
+                <tr>
+                  <td>Level 14 NPC</td><td>Any PC Class Level 14</td><td>490 gp</td><td>980 gp</td>
+                </tr>
+                <tr>
+                  <td>Level 15 NPC</td><td>Any PC Class Level 15</td><td>560 gp</td><td>1120 gp</td>
+                </tr>
+                <tr>
+                  <td>Level 16 NPC</td><td>Any PC Class Level 16</td><td>640 gp</td><td>1280 gp</td>
+                </tr>
+                <tr>
+                  <td>Level 17 NPC</td><td>Any PC Class Level 17</td><td>720 gp</td><td>1440 gp</td>
+                </tr>
+                <tr>
+                  <td>Level 18 NPC</td><td>Any PC Class Level 18</td><td>810 gp</td><td>1620 gp</td>
+                </tr>
+                <tr>
+                  <td>Level 19 NPC</td><td>Any PC Class Level 19</td><td>900 gp</td><td>1800 gp</td>
+                </tr>
+                <tr>
+                  <td>Level 20 NPC</td><td>Any PC Class Level 20</td><td>1000 gp</td><td>2000 gp</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
         <!--Conditions, Injuries, Spells, Actions, Cover-->

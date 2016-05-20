@@ -183,6 +183,7 @@
       $scope.init = function() {
         $("#refdiv").tabs();
         $scope.loadspells();
+        $(".datatable").dataTable();
       };
     });
     
