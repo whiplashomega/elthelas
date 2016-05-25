@@ -124,6 +124,12 @@ class ReferencePagesController extends Controller
     return $this->render('AppBundle:ref:races.html.twig',array('pagetitle' => 'Races'));
   }
   /**
+   * @Route("/ref/races/{race}", name="show_race")
+   */
+   public function showRacesAction($race, Request $request) {
+     return $this->render('AppBundle:ref:races.html.twig', array('pagetitle' => 'Races', 'race' => $race));
+   }
+  /**
    *@Route("/ref/classes", name="ref_classes")
    */
   public function classesAction(Request $request) {

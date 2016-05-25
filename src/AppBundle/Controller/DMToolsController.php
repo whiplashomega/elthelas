@@ -15,7 +15,7 @@ class DMToolsController extends Controller {
    */
   public function indexAction(Request $request) {
     $dir = $_SERVER['DOCUMENT_ROOT']."\spells";
-    $spells = scandir($dir);
+    /*$spells = scandir($dir);
     unset($spells[1]);
     unset($spells[0]);
     $spellarray = array();
@@ -27,7 +27,7 @@ class DMToolsController extends Controller {
       $spellentry = implode($spelldesc);
       
       $spellarray[] = array($spelltitle, $spellsource, $spelltags, $spellentry);
-    }
-    return $this->render('AppBundle:dm:index.html.twig', array('pagetitle' => 'Dungeon Master\'s Toolset', 'spells' => $spellarray));
+    }*/
+    return $this->render('AppBundle:dm:index.html.twig', array('pagetitle' => 'Dungeon Master\'s Toolset'/*, 'spells' => $spellarray*/));
   }
 }
