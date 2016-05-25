@@ -7,7 +7,7 @@
   $item["text"] = <<<EOD
   <p>
     Not a lot to say today except that you should check out the <a href="https://elthelas.com/history/current">Current Events</a> page.  I've updated
-    that page as well as the <a href="https://elthelas.com/history/timeline">Timeline of Major Events</a> to reflect recent occurances in the core
+    that page as well as the <a href="https://elthelas.com/history/timeline">Timeline of Major Events</a> to reflect recent occurrances in the core
     campaign.
   </p>
   <p>

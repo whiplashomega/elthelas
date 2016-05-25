@@ -7,7 +7,7 @@
   $item["text"] = <<<EOD
   <p>
     Made updates to the Factotum class.  It now has 3 philosophy choices, and has been reasonably well tested for balance.  Scourer's have been
-    introduced as well, but still need playtesting.  I also have listed proposed changes for the Ranger and Barbarian classes that should help
+    introduced as well, but still need play testing.  I also have listed proposed changes for the Ranger and Barbarian classes that should help
     those classes balance.
   </p>
   <p>

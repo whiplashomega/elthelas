@@ -12,7 +12,7 @@
   </p>
   <p>
     Also, and perhaps more interestingly, I have added a new playable class, the Factotum.  This is purely homebrew, and it is of course a DMs
-    prerogitive if they want to include it in their campaign.  Nevertheless I feel I have managed to keep it reasonably balanced for player use,
+    prerogative if they want to include it in their campaign.  Nevertheless I feel I have managed to keep it reasonably balanced for player use,
     while maintaining the spirit of the old 3.5 Factotum.  It was developed at the specific request of my wife, because she was obsessed with the
     old 3.5 Factotum class, and was very sad that it wasn't included in 5th edition.  There is an overlap of terms, because Factotums have a feature
     called 'Inspiration Points' that functions entirely differently from the 'Inspiration' feature as defined in the PHB.  If it bugs you, call them
