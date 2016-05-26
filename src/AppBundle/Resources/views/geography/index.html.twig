@@ -261,7 +261,7 @@
   <script src="{{asset('jqueryui/1.11.3/jquery-ui.min.js', 'cdn')}}"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
-  {% javascripts '@AppBundle/libraries/*' '@AppBundle/js/initialize.js' output='js/script.js'%}
+  {% javascripts '@AppBundle/libraries/*' '@AppBundle/js/initialize.js' '@AppBundle/js/leaflet.label.js' output='js/script.js'%}
     <script src="{{ asset_url }}"></script>
   {% endjavascripts %}
 	
