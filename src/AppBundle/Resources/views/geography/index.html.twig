@@ -13,7 +13,7 @@
     <input type="button" value="Continents and Oceans" id="continents" class="btn btn-default" />
     <input type="button" value="Geographical Features" id="features" class="btn btn-default" />
     <input type="button" value="Clear" id="clear" class="btn btn-default" />
-  		<div id="map" style="width: 90%; height: 800px; margin: 10px auto;"></div>
+  		<div id="map" style="width: 90%; max-width: 1024px; height: 800px; margin: 10px auto;"></div>
     <h2>Geographical Index</h2>
     <div class="row">
       <h3>Nations</h3>
@@ -270,16 +270,18 @@
     $("#main").removeClass("col-md-10").addClass("col-md-12");
     $("#sidebar").remove();
 		var map = L.map('map').setView([0, 0], 2);
+		//var bounds = L.bounds([-180,90],[180, -90]);
+		//map.setMaxBounds(bounds);
     //Uncomment this code to enable getting lattitude and longitude figures by clicking on the map, useful for placing new markers
-    map.on('click', function(e) {
+    //map.on('click', function(e) {
       //alert("Lat, Lon : " + e.latlng.lat + ", " + e.latlng.lng);
-    });
+    //});
 		L.tileLayer('/images/maps/tiles/{z}/{y}/{x}.png', {
 		    attribution: '|--------| = 320/160/80/40 miles by zoom | map image created by Heather Domaszek',
 			minZoom: 0,
 		    maxZoom: 4,
 		    tms: true,
-		    continuousWorld: true
+		    noWrap: true
 		    //noWrap: true
 		}).addTo(map);
 		var markers = [];
@@ -323,15 +325,17 @@
         alt: commonname,
       }).bindLabel(commonname, { noHide: true, clickable: true, direction: "auto", });
       $(marker).click(function() {
+        map.flyTo(coordinates, 4);
         addoverlay(locationurl);
       });
       $(marker.label).click(function() {
+        map.flyTo(coordinates, 4);
         addoverlay(locationurl);
       });
       markers.push(marker);
       map.addLayer(marker);
 		}
-    $("#nations").click(function() {
+    var addnations = function() {
       clearmarkers();
       var type="nations";
       addmarker(markers, "alfadir", [-56,-94], type, "Alfadir");
@@ -481,8 +485,11 @@
                               {stroke: false, color: '#FFFF00'});
       map.addLayer(zelfir);
       
+    }
+    $("#nations").click(function() {
+      addnations();
     });
-		$("#landmarks").click(function() {
+		var addlandmarks = function() {
 			//clear the old markers
 			clearmarkers();
 			
@@ -503,8 +510,11 @@
 			addmarker(markers, "peloria", [-20,118], type, "Peloria");
 			addmarker(markers, "sorcerersprison", [-43,-158], type, "Sorcerer's Prison");
 
+		}
+		$("#landmarks").click(function() {
+		  addlandmarks();
 		});
-    $("#continents").click(function() {
+    var addcontinents = function() {
       clearmarkers();
       
       var type = "continents";
@@ -519,8 +529,11 @@
       addmarker(markers, "southsea", [-75, 50], type, "South Sea");
       addmarker(markers, "tradesea", [5,-40], type, "Trade Sea");
       
+    }    
+    $("#continents").click(function() {
+      addcontinents();
     });
-    $("#cities").click(function() {
+    var addcities = function() {
       clearmarkers();
       var type = "cities";
       addmarker(markers, "alados", [-52.7, 25.8], type, "Alados");
@@ -592,8 +605,11 @@
       addmarker(markers, "vashna", [31.5, -75.5], type, "Vashna");
       addmarker(markers, "westport", [66.5, 66.1], type, "Westport");
       addmarker(markers, "zelfin", [-59.5, -130], type, "Zelfin");
+    }    
+    $("#cities").click(function() {
+      addcities();
     });
-		$("#features").click(function() {
+		var addfeatures = function() {
 			//clear the old markers
 			clearmarkers();
 			
@@ -642,6 +658,9 @@
 			addmarker(markers, "dormanriver", [62,150], type, "Dorman River");
       addmarker(markers, "exodusisthmus", [-51,-110], type, "Exodus Isthmus");
       addmarker(markers, "isleofpeaks", [-46.8,93.8], type, "Isle of Peaks");
+		}
+		$("#features").click(function() {
+		  addfeatures();
 		});
 		$("#clear").click(function() {
 			clearmarkers();
