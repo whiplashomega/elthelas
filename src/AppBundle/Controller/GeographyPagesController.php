@@ -20,7 +20,7 @@ class GeographyPagesController extends Controller
    * @Route("/geo/{type}/{location}", name="location")
   */
   public function locationAction($type, $location, Request $request) {
-    return $this->render('AppBundle:geography:index.html.twig',array('pagetitle' => 'Geography', 'type' => $type, 'location' => $location ));     
+    return $this->render('AppBundle:geography:index.html.twig',array('pagetitle' => "Geography - ".ucwords($location), 'type' => $type, 'location' => $location ));     
   }
   /**
    * @Route("/world/{type}/{location}", name="locdata")
