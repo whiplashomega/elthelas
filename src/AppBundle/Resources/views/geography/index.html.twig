@@ -259,9 +259,9 @@
   <!--<script src="{{asset('angularjs/1.3.14/angular.min.js', 'cdn')}}"></script>-->
   <script src="{{asset('jquery/2.1.3/jquery.min.js', 'cdn')}}"></script>
   <script src="{{asset('jqueryui/1.11.3/jquery-ui.min.js', 'cdn')}}"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
-  {% javascripts '@AppBundle/libraries/*' '@AppBundle/js/initialize.js' '@AppBundle/js/leaflet.label.js' output='js/script.js'%}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.0-rc.1/leaflet.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.0-rc.1/leaflet.js"></script>
+  {% javascripts '@AppBundle/libraries/*' '@AppBundle/js/initialize.js' '@AppBundle/js/leaflet.label.js' output='js/script-geo.js'%}
     <script src="{{ asset_url }}"></script>
   {% endjavascripts %}
 	
