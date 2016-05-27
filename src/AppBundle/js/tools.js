@@ -8,6 +8,8 @@
     
     dmTools.controller('creatureCreator', function($scope, $http) {
       $scope.creatures = [];
+      $scope.cr = 0;
+      
       $scope.creatureModel = function() {
           this.id = 0;
           this.attacks = [];
