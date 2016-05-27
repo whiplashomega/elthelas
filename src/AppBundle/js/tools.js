@@ -8,7 +8,6 @@
     
     dmTools.controller('creatureCreator', function($scope, $http) {
       $scope.creatures = [];
-      $scope.cr = 0;
       
       $scope.creatureModel = function() {
           this.id = 0;
@@ -17,6 +16,7 @@
       $scope.creature = new $scope.creatureModel(); 
       $scope.creatureSelect = 0;
       $scope.alertcontent = "";
+      
       $scope.loadCreature = function(id) {
         if (id == undefined) {
           id = $("input[name='creature']:checked").val();
@@ -509,6 +509,71 @@
       
       $scope.init = function() {
         $scope.getJournals();
+      }
+    });
+    
+    dmTools.controller('crCalculator', function($scope, $http) {
+      $scope.cr = 0;
+      $scope.ac = 0;
+      $scope.hp = 0;
+      $scope.attack = 0;
+      $scope.damage = 0;
+      $scope.savedc = 0;
+
+      $scope.calculate = function() {
+        
+        var accr = Math.max(($scope.ac - 11.5) * 2,0.5);
+        
+        var hp = $scope.hp;
+        var hpcr = 0;
+        if (hp <= 6) {
+          hpcr = 0;
+        } else if(hp <= 35) {
+          hpcr = 0.125;
+        } else if(hp <= 49) {
+          hpcr = 0.25;
+        } else if(hp <= 70) {
+          hpcr = 0.5;
+        } else if(hp <= 370) {
+          hpcr = Math.floor((hp - 85)/15 + 2);
+        } else {
+          hpcr = Math.floor((hp - 401)/45 + 21);
+        }
+        
+        var defcr = (accr + hpcr) / 2;
+        
+        var attackcr = Math.max(($scope.attack - 1.5) * 2, 0.5);
+        
+        var damage = $scope.damage;
+        var damagecr = 0;
+        if (damage <= 1) {
+          damagecr = 0;
+        } else if(damage <= 3) {
+          damagecr = 0.125;
+        } else if(damage <= 5) {
+          damagecr = 0.25;
+        } else if(damage <= 8) {
+          damagecr = 0.5;
+        } else if(damage < 123) {
+          damagecr = Math.ceil((damage - 8)/6);
+        } else {
+          damagecr = Math.ceil((damage - 140)/18 + 20);
+        }
+        
+        var savecr = 0;
+        if($scope.savedc <= 11) {
+          savecr = 0;
+        } else if($scope.savedc <= 12) {
+          savecr = 0.5;
+        } else if($scope.savedc <= 13) {
+          savecr = 1;
+        } else {
+          savecr = ($scope.savedc - 13) * 3;
+        }
+        
+        var offcr = (attackcr + damagecr + savecr) / 3;
+        
+        $scope.cr = (offcr + defcr) / 2;
       }
     });
     

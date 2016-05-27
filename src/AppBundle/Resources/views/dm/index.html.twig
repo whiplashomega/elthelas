@@ -23,6 +23,7 @@
         <li><a href="#encounterDifficulty">Encounter Difficulty</a></li>
         <li><a href="#initTracker">Init Tracker</a></li>
         <li><a href="#dmJournal">DM Journal</a></li>
+        <li><a href="#crCalculator">CR Calculator</a></li>
         <li><a href="#diceRoller">Dice Roller</a></li>
       </ul>
       <div class="app" id="creatureCreator" data-ng-controller="creatureCreator" data-ng-init="init()">
@@ -33,10 +34,10 @@
             <table class="creatureLoad"></table>
           </div>
           <div class="col-md-3 btn-group">
-            <input type="button" value="New" id="newchar" ng-click="newChar()" class="btn btn-default" />
-            <input type="button" value="Load" id="loadchar" ng-click="loadCreature()" class="btn btn-default"/>
-            <input type="button" value="Save" id="savechar" ng-click="saveCreature()" class="btn btn-default"/>
-            <input type="button" value="Delete" id="deletechar" ng-click="deleteCreature()" class="btn btn-default" />
+            <input type="button" value="New" id="newchar" ng-click="newChar()" class="btn btn-success" />
+            <input type="button" value="Load" id="loadchar" ng-click="loadCreature()" class="btn btn-primary"/>
+            <input type="button" value="Save" id="savechar" ng-click="saveCreature()" class="btn btn-primary"/>
+            <input type="button" value="Delete" id="deletechar" ng-click="deleteCreature()" class="btn btn-danger" />
           </div>
           <div id="creatoralerts" class="hidden col-md-4 alert alert-success" data-ng-bind="alertcontent">
             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -70,6 +71,7 @@
             
             <div class="col-md-2 form-group">
               <label>CR: <input type="number" id="cr" data-ng-model="creature.cr" class="form-control" /></label>
+              Calculated CR: <span data-ng-bind="cr"></span><input type="button" value="Calculate" id="crbutton" ng-click="calculateCR()" class="btn btn-default" />
             </div>
             
             <div class="col-md-2 form-group">
@@ -1412,6 +1414,24 @@
           
           <pre data-ng-bind="journal.text"></pre>
         </div>
+      </div>
+      <div class="app" id="dmJournal" data-ng-controller="crCalculator" data-ng-init="init()">
+        <h2>CR Calculator</h2>
+        <p>
+          Input the following information about the NPC you are creating in order to calculate the recommended CR for the creature or
+          NPC you are creating.
+        </p>
+        <h3>Defensive</h3>
+        <div class="row">
+          <div class="col-sm-4 form-group"><label>AC<input type="number" class="form-control" data-ng-model="ac" data-ng-change="calculate()" /></label></div>
+          <div class="col-sm-4 form-group"><label>HP<input type="number" class="form-control" data-ng-model="hp" data-ng-change="calculate()" /></label></div>
+        </div>
+        <div class="row">
+          <div class="col-sm-2 form-group"><label>Attack Bonus<input type="number" class="form-control" data-ng-model="attack" data-ng-change="calculate()" /></label></div>
+          <div class="col-sm-2 form-group"><label>Damage per Round<input type="number" class="form-control" data-ng-model="damage" data-ng-change="calculate()" /></label></div>
+          <div class="col-sm-2 form-group"><label>Save DC<input type="number" class="form-control" data-ng-model="savedc" data-ng-change="calculate()" /></label></div>
+        </div>
+        <h3>Calculated CR: <span data-ng-bind="cr"></span></h3>
       </div>
       <div class="app" id="diceRoller" data-ng-controller="diceRoller">
         <h3>Dice Roller</h3>
