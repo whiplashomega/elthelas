@@ -571,7 +571,7 @@
           savecr = ($scope.savedc - 13) * 3;
         }
         
-        var offcr = (attackcr + damagecr + savecr) / 3;
+        var offcr = (Math.max(attackcr, savecr) + damagecr) / 2;
         
         $scope.cr = (offcr + defcr) / 2;
       }
