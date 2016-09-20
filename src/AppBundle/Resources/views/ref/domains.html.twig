@@ -1,6 +1,6 @@
 {% extends 'AppBundle:ref:index.html.twig' %}
 {% block body %}
-  	<h2>Divine Domains</h2>
+<h2>Divine Domains</h2>
 <p>
     In a pantheon, every deity has influence over different aspects of mortal life and civilization, called a deity's domain.  All
     the domains over which a deity has influence are called the deity's portfolio.  For example, the portfolio of the greek god
@@ -16,6 +16,114 @@
 <p>
     Each domain's description gives examples of deities
 who have influence over that domain.
+</p>
+<h3>Arcana Domain</h3>
+<h4>Arcana Domain Spells</h4>
+<table class='classtable table table-striped'>
+	<thead>
+		<tr>
+			<th>Cleric Level</th><th>Spells</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>1st</td><td>detect magic, magic missile</td>
+		</tr>
+		<tr>
+			<td>3rd</td><td>magic weapon, Nystul's magic aura</td>
+		</tr>
+		<tr>
+			<td>5th</td><td>dispel magic, magic circle</td>
+		</tr>
+		<tr>
+			<td>7th</td><td>arcane eye, Leomund's secret chest</td>
+		</tr>
+		<tr>
+			<td>planar binding, teleportation circle</td>
+		</tr>
+	</tbody>
+</table>
+	<h4>Arcane Initiate</h4>
+	<p>
+		When you choose this domain at 1st level, you gain proficiency in the 
+		Arcana skill, and you gain two cantrips of your choice from the wizard 
+		spell list. For you, these cantrips count as cleric cantrips.
+	</p>
+	<h4>Channel Divinity: Arcane Abjuration</h4>
+	<p>
+		Starting at 2nd level, you can use your Channel Divinity
+		to abjure otherworldly creatures.
+	</p>
+	<p>
+		As an action, you present your holy symbol, and one
+		celestial, elemental, fey, or fiend of your choice that
+		is within 30 feet of you must make a Wisdom saving
+		throw, provided that the creature can see or hear you. If
+		the creature fails its saving throw, it is turned for 1 minute
+		or until it takes any damage.
+	</p>
+	<p>
+		A turned creature must spend its turns trying to move
+		as far away from you as it can, and it can't willingly end
+		its move in a space within 30 feet of you. It also can't
+		take reactions. For its action, it can only use the Dash
+		action or try to escape from an effect that prevents it
+		from moving. If there's nowhere to move, the creature
+		can use the Dodge action.
+	</p>
+	<p>
+		After you reach 5th level, when a creature fails its saving
+		throw against your Arcane Abjuration feature, the
+		creature is banished for 1 minute (as in the banishment
+		spell, no concentration required) if it isn't on its plane of
+		origin and its challenge rating is at or below a certain
+		threshold, as shown on the Arcane Banishment table.
+	</p>
+	<h4>Arcane Banishment</h4>
+	<table class='classtable table table-striped'>
+		<thead>
+			<tr>
+				<th>Cleric Level</th><th>Banishes Creatures of CR ...</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>5th</td><td>1/2 or lower</td>
+			</tr>
+			<tr>
+				<td>8th</td><td>1 or lower</td>
+			</tr>
+			<tr>
+				<td>11th</td><td>2 or lower</td>
+			</tr>
+			<tr>
+				<td>14th</td><td>3 or lower</td>
+			</tr>
+			<tr>
+				<td>17th</td><td>4 or lower</td>
+			</tr>
+		</tbody>
+	</table>
+<h4>Spell Breaker</h4>
+<p>
+	Starting at 6th level, when you restore hit points to an
+	ally with a spell of 1st level or higher, you can also end
+	one spell of your choice on that creature. The level of the
+	spell you end must be equal to or lower than the level of
+	the spell slot you use to cast the healing spell.
+</p>
+<h4>Potent Spellcasting</h4>
+<p>
+	Starting at 8th level, you add your Wisdom modifier to
+	the damage you deal with any cleric cantrip.
+</p>
+<h4>Arcane Mastery</h4>
+<p>
+	At 17th level, you choose four spells from the wizard
+	spell list, one from each of the following levels: 6th, 7th,
+	8th, and 9th. You add them to your list of domain spells.
+	Like your other domain spells, they are always prepared
+	and count as cleric spells for you.
 </p>
 <h3>Fire Domain</h3>
 <h4>Fire Domain Spells</h4>
@@ -80,12 +188,88 @@ increases to 2d8.
 <p>
 	At 17th level you gain the ability to summon a fire elemental once per day.  The fire elemental serves you and only you faithfully,
 	obeying your verbal commands.  It stays with you until it is killed, but you can only have one elemental companion such as this at
-	a time.
+	a time.  Summoning the elemental requires 1 minute of intense concentration and meditation, during which you cannot move more than 5 feet from the location you started
+	the summoning, and must use your action on every turn to continue the summoning ritual.
+</p>
+<h3>Death Domain</h3>
+<h4>Death Domain Spells</h4>
+<table class="classtable table table-striped">
+	<thead>
+		<tr>
+			<th>Cleric Level</th><th>Spells</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>1st</td><td>false life, ray of sickness</td>
+		</tr>
+		<tr>
+			<td>3rd</td><td>blindness/deafness, ray of enfeeblement</td>
+		</tr>
+		<tr>
+			<td>5th</td><td>animate dead, vampiric touch</td>
+		</tr>
+		<tr>
+			<td>7th</td><td>blight</td><td>death ward</td>
+		</tr>
+		<tr>
+			<td>9th</td><td>antilife shell, cloudkill</td>
+		</tr>
+	</tbody>
+</table>
+<h4>Bonus Proficiency</h4>
+<p>
+	When the cleric chooses this domain at 1st level, he or
+	she gains proficiency with martial weapons.
+</p>
+<h4>Reaper</h4>
+<p>
+	At 1st level, the cleric learns one necromancy cantrip
+	of his or her choice from any spell list. When the cleric
+	casts a necromancy cantrip that normally targets only
+	one creature, the spell can instead target two creatures
+	within range and within 5 feet of each other.
+</p>
+<h4>Channel Divinity: Touch of Death</h4>
+<p>
+	Starting at 2nd level, the cleric can use Channel Divinity
+	to destroy another creature's life force by touch.
+</p>
+<p>
+	When the cleric hits a creature with a melee attack,
+	the cleric can use Channel Divinity to deal extra
+	necrotic damage to the target. The damage equals 5 +
+	twice his or her cleric level.
+</p>
+<h4>Inescapable Destruction</h4>
+<p>
+	
+	Starting at 6th level, the cleric's ability to channel
+	negative energy becomes more potent. Necrotic damage
+	dealt by the character's cleric spells and Channel
+	Divinity options ignores resistance to necrotic damage.
+</p>
+<h4>Divine Strike</h4>
+<p>
+	At 8th level, the cleric gains the ability to infuse his or
+	her weapon strikes with necrotic energy. Once on each
+	of the cleric's turns when he or she hits a creature with a
+	weapon attack, the cleric can cause the attack to deal an
+	extra 1d8 necrotic damage to the target. When the cleric
+	reaches 14th level, the extra damage increases to 2d8.
+</p>
+<h4>Improved Reaper</h4>
+<p>
+	Starting at 17th level, when the cleric casts a
+	necromancy spell of 1st through 5th level that targets
+	only one creature, the spell can instead target two
+	creatures within range and within 5 feet of each other. If
+	the spell consumes its material components, the cleric
+	must provide them for each target.
 </p>
 <h3>Knowledge Domain</h3>
 <p>
-The gods of knowledge-including Oghma, Boccob,
-Gilean, Aureon, and Thoth-value learning and
+The gods of knowledge-Amathera and Tock-value learning and
 understanding above all. Some teach that knowledge is
 to be gathered and shared in libraries and universities,
 or promote the practical knowledge of craft and
