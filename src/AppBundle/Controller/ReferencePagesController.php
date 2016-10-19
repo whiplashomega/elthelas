@@ -153,4 +153,10 @@ class ReferencePagesController extends Controller
   public function magicAction(Request $request) {
     return $this->render('AppBundle:ref:magic.html.twig',array('pagetitle' => 'Magic'));
   }
+  /**
+   *@Route("/ref/referencemanual", name="ref_referencemanual")
+   */
+  public function referenceManualAction(Request $request) {
+    return $this->render('AppBundle:ref:referencemanual.html.twig',array('pagetitle' => 'Quick Reference Manual'));
+  }
 }
