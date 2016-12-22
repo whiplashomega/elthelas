@@ -1,5 +1,6 @@
+/*global spells marked*/
 (function($, ng) {
-    var dmTools = ng.module('dmTools', []);
+    var dmTools = ng.module('dmTools', ['ngSanitize']);
     
     //We'll go ahead and use jQuery and jQuery UI to initialize our layout space before we get into the meat of the various angular controllers.
     $("#content").tabs();
@@ -156,29 +157,32 @@
     dmTools.controller('referenceManual', function($scope, $http) {
       $scope.spelllist = spells;
       $scope.content = "";
+      $scope.loadedspell = "";
       $scope.loadspell = function() {
         var index = $("input[name='spellselect']:checked").val();
-        $("#selectedspell").html(marked($scope.spelllist[index][3]));
+        $scope.loadedspell = $scope.spelllist[index];
       }
       $scope.loadspells = function() {
         var tabledata = [];
-        for(x in $scope.spelllist) {
-            $scope.spelllist[x][2] = $scope.spelllist[x][2].replace("[","").replace("]","");
-            $scope.spelllist[x][2] = $scope.spelllist[x][2].split(',');
+        for(var x in $scope.spelllist) {
             tabledata.push([
                "<input type='radio' name='spellselect' value='" + x + "' />",
-               $scope.spelllist[x][0],
-               $scope.spelllist[x][1],
-               $scope.spelllist[x][2].join(),
+               $scope.spelllist[x].title,
+               $scope.spelllist[x].range,
+               $scope.spelllist[x].castingTime,
+               $scope.spelllist[x].source,
+               $scope.spelllist[x].tags.join(", "),
             ]);
         }
         var table = $("#spelltable").dataTable({
             'data': tabledata,
             'columns': [
-                { width: '10%', title: "select" },
-                { width: '40%', title: "title" },
-                { width: '15%', title: 'source'},
-                { width: '35%', title: "tags" },
+                { width: '10%', title: "Select" },
+                { width: '30%', title: "Title" },
+                { width: '12%', title: "Range" },
+                { width: '12%', title: "Casting Time" },
+                { width: '12%', title: 'Source'},
+                { width: '24%', title: "Tags" },
             ]
         });
       };

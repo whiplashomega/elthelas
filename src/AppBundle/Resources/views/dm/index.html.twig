@@ -11,7 +11,7 @@
 {% block body %}
 {% include "::spells.html.twig" %}
 <script>
-  //var spells = {# spells|json_encode()|raw #};
+  //var spells = {# spells|raw #};
 </script>
 <div data-ng-app="dmTools" class="container-fluid">
   <div class="row">
@@ -288,8 +288,17 @@
             <h3>Spells</h3>
             <table id="spelltable"></table>
 						<input type="button" value="Load Spell" data-ng-click="loadspell()" />
-            <div id="selectedspell">
-              
+            <div ng-if="loadedspell !== ''" id="selectedspell">
+              {% verbatim %}
+                <h2>{{loadedspell.title}}</h2>
+                <p><strong>{{loadedspell.school}} {{loadedspell.level}} <span ng-if="loadedspell.ritual">(ritual)</span></strong></p>
+                <p>Source: {{loadedspell.source}}</p>
+                <p>Casting Time: {{loadedspell.castingTime}}</p>
+                <p>Range: {{loadedspell.range}}</p>
+                <p>Components: {{loadedspell.components}}</p>
+                <p>Duration: {{loadedspell.duration}}</p>
+                <div ng-bind-html="loadedspell.description"></div>
+              {% endverbatim %}
             </div>
           </div>
           <div id="refconditions">
@@ -1487,6 +1496,7 @@
                        '@AppBundle/js/tools.js'
                        output='js/script-tools.js'%}
         <script src="{{ asset_url }}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-sanitize/1.6.0/angular-sanitize.min.js"></script>
         {% endjavascripts %}
 
         {% endblock %}
