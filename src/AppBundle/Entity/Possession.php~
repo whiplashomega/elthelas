@@ -9,9 +9,9 @@ use JsonSerializable;
 
   /**
    *@ORM\Entity
-   *@ORM\Table(name="attack")
+   *@ORM\Table(name="possession")
    */
-class Attack {
+class Possession {
   
   /**
     *@ORM\Column(type="integer")
@@ -28,12 +28,17 @@ class Attack {
   /**
    *@ORM\Column(type="integer")
    */
-  protected $bonus;
+  protected $weight;
   
   /**
    *@ORM\Column(type="string")
    */
-  protected $damage;
+  protected $value;
+  
+  /**
+   *@ORM\Column(type="boolean")
+   */
+  protected $onperson;
   
   /**
    *@ORM\ManyToOne(targetEntity="Character", inversedBy="attacks")

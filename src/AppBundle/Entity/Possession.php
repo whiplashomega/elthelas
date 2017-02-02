@@ -9,9 +9,9 @@ use JsonSerializable;
 
   /**
    *@ORM\Entity
-   *@ORM\Table(name="attack")
+   *@ORM\Table(name="possession")
    */
-class Attack {
+class Possession {
   
   /**
     *@ORM\Column(type="integer")
@@ -28,15 +28,20 @@ class Attack {
   /**
    *@ORM\Column(type="integer")
    */
-  protected $bonus;
+  protected $weight;
   
   /**
    *@ORM\Column(type="string")
    */
-  protected $damage;
+  protected $value;
   
   /**
-   *@ORM\ManyToOne(targetEntity="Character", inversedBy="attacks")
+   *@ORM\Column(type="boolean")
+   */
+  protected $onperson;
+  
+  /**
+   *@ORM\ManyToOne(targetEntity="Character", inversedBy="possessions")
    *@ORM\JoinColumn(name="character_id", referencedColumnName="id")
    */
   protected $character;  
@@ -56,7 +61,7 @@ class Attack {
      *
      * @param string $name
      *
-     * @return Attack
+     * @return Possession
      */
     public function setName($name)
     {
@@ -76,51 +81,75 @@ class Attack {
     }
 
     /**
-     * Set bonus
+     * Set weight
      *
-     * @param integer $bonus
+     * @param integer $weight
      *
-     * @return Attack
+     * @return Possession
      */
-    public function setBonus($bonus)
+    public function setWeight($weight)
     {
-        $this->bonus = $bonus;
+        $this->weight = $weight;
 
         return $this;
     }
 
     /**
-     * Get bonus
+     * Get weight
      *
      * @return integer
      */
-    public function getBonus()
+    public function getWeight()
     {
-        return $this->bonus;
+        return $this->weight;
     }
 
     /**
-     * Set damage
+     * Set value
      *
-     * @param string $damage
+     * @param string $value
      *
-     * @return Attack
+     * @return Possession
      */
-    public function setDamage($damage)
+    public function setValue($value)
     {
-        $this->damage = $damage;
+        $this->value = $value;
 
         return $this;
     }
 
     /**
-     * Get damage
+     * Get value
      *
      * @return string
      */
-    public function getDamage()
+    public function getValue()
     {
-        return $this->damage;
+        return $this->value;
+    }
+
+    /**
+     * Set onperson
+     *
+     * @param boolean $onperson
+     *
+     * @return Possession
+     */
+    public function setOnperson($onperson)
+    {
+        $this->onperson = $onperson;
+
+        return $this;
+    }
+
+    /**
+     * Get onperson
+     *
+     * @return boolean
+     */
+    public function getOnperson()
+    {
+        return $this->onperson;
     }
 
     /**
@@ -128,7 +157,7 @@ class Attack {
      *
      * @param \AppBundle\Entity\Character $character
      *
-     * @return Attack
+     * @return Possession
      */
     public function setCharacter(\AppBundle\Entity\Character $character = null)
     {

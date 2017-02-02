@@ -25,54 +25,38 @@ class User extends BaseUser
     protected $journals;
 
     /**
-     * @ORM\OneToMany(targetEntity="Creature", mappedBy="ownedby")
+     * @ORM\OneToMany(targetEntity="Character", mappedBy="ownedby")
      */
-    protected $creatures;
-    
-    public function __construct()
-    {
-        parent::__construct();
-        // your own logic
-        $this->journals = new ArrayCollection();
-    }
+    protected $characters;
 
     /**
-     * Get id
+     * Add journal
      *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Add journals
+     * @param \AppBundle\Entity\Journal $journal
      *
-     * @param \AppBundle\Entity\Journal $journals
      * @return User
      */
-    public function addJournal(\AppBundle\Entity\Journal $journals)
+    public function addJournal(\AppBundle\Entity\Journal $journal)
     {
-        $this->journals[] = $journals;
+        $this->journals[] = $journal;
 
         return $this;
     }
 
     /**
-     * Remove journals
+     * Remove journal
      *
-     * @param \AppBundle\Entity\Journal $journals
+     * @param \AppBundle\Entity\Journal $journal
      */
-    public function removeJournal(\AppBundle\Entity\Journal $journals)
+    public function removeJournal(\AppBundle\Entity\Journal $journal)
     {
-        $this->journals->removeElement($journals);
+        $this->journals->removeElement($journal);
     }
 
     /**
      * Get journals
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getJournals()
     {
@@ -80,35 +64,36 @@ class User extends BaseUser
     }
 
     /**
-     * Add creatures
+     * Add character
      *
-     * @param \AppBundle\Entity\Creature $creatures
+     * @param \AppBundle\Entity\Character $character
+     *
      * @return User
      */
-    public function addCreature(\AppBundle\Entity\Creature $creatures)
+    public function addCharacter(\AppBundle\Entity\Character $character)
     {
-        $this->creatures[] = $creatures;
+        $this->characters[] = $character;
 
         return $this;
     }
 
     /**
-     * Remove creatures
+     * Remove character
      *
-     * @param \AppBundle\Entity\Creature $creatures
+     * @param \AppBundle\Entity\Character $character
      */
-    public function removeCreature(\AppBundle\Entity\Creature $creatures)
+    public function removeCharacter(\AppBundle\Entity\Character $character)
     {
-        $this->creatures->removeElement($creatures);
+        $this->characters->removeElement($character);
     }
 
     /**
-     * Get creatures
+     * Get characters
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
-    public function getCreatures()
+    public function getCharacters()
     {
-        return $this->creatures;
+        return $this->characters;
     }
 }

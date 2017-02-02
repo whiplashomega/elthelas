@@ -9,9 +9,9 @@
 {% endblock %}
 
 {% block body %}
-{% include "::spells.html.twig" %}
+{# include "::spells.html.twig" #}
 <script>
-  //var spells = {# spells|raw #};
+  var spells = {{ spells|raw }};
 </script>
 <div data-ng-app="dmTools" class="container-fluid">
   <div class="row">
@@ -1459,7 +1459,7 @@
               <label>d8 <input type="number" class="form-control" data-ng-model="numD8" /></label>
             </div>
             <div class="form-group">
-              <label>+ <input type="number" class="form-control" data-ng-model="staticMod" />
+              <label>+ <input type="number" class="form-control" data-ng-model="staticMod" /></label>
             </div>
           </div>
           <div class="col-md-6">

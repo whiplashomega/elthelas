@@ -1,0 +1,101 @@
+<?php
+
+  namespace AppBundle\Entity;
+  use FOS\UserBundle\Model\User as BaseUser;
+  use Doctrine\ORM\Mapping as ORM;
+  use Doctrine\Common\Collections\ArrayCollection;
+  use JsonSerializable;
+  
+  /**
+   *@ORM\Entity
+   *@ORM\Table(name="spellbook")
+   */
+  class Spell {
+    /**
+     *@ORM\Column(type="integer")
+     *@ORM\Id
+     *@ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+    
+    /**
+     *@ORM\Column(type="string")
+     */
+    protected $title;
+    
+    /**
+     *@ORM\Column(type="string", nullable=true)
+     */
+    protected $source;
+    
+    /**
+     *@ORM\Column(type="string", nullable=true)
+     */
+    protected $school;
+    
+    /**
+     *@ORM\Column(type="string", nullable=true)
+     */
+    protected $level;
+    
+    /**
+     *@ORM\Column(type="boolean")
+     */
+    protected $ritual;
+    
+    /**
+     *@ORM\Column(type="string", nullable=true)
+     */
+    protected $castingtime;
+    
+    /**
+     *@ORM\Column(type="string", nullable=true)
+     */
+    protected $range;
+    
+    /**
+     *@ORM\Column(type="string", nullable=true)
+     */
+    protected $components;
+    
+    /**
+     *@ORM\Column(type="string", nullable=true)
+     */
+    protected $duration;
+    
+    /**
+     *@ORM\Column(type="boolean")
+     */
+    protected $concentration;
+    
+    /**
+     *@ORM\Column(type="text")
+     */
+    protected $description;
+    
+    /**
+     *@ORM\Column(type="text")
+     */
+    protected $higherlevels;    
+    
+    /**
+     *@ORM\Column(type="string", nullable=true)
+     */
+    protected $fromclass;
+    
+    /**
+     *@ORM\Column(type="boolean")
+     */
+    protected $prepared;
+    
+    /**
+     *@ORM\Column(type="string", nullable=true)
+     */
+    protected $castingstat;
+    
+    /**
+     *@ORM\ManyToOne(targetEntity="Character", inversedBy="spells")
+     *@ORM\JoinColumn(name="character_id", referencedColumnName="id")
+     */
+    protected $character;
+  }

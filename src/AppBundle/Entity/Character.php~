@@ -1,0 +1,100 @@
+<?php
+
+  namespace AppBundle\Entity;
+  use FOS\UserBundle\Model\User as BaseUser;
+  use Doctrine\ORM\Mapping as ORM;
+  use Doctrine\Common\Collections\ArrayCollection;
+  use JsonSerializable;
+  
+  /**
+   *@ORM\Entity
+   *@ORM\Table(name="character")
+   */
+  class Character extends Creature implements JsonSerializable {
+    
+    /**
+     *@ORM\Column(type="integer")
+     *@ORM\Id
+     *@ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+    
+    /**
+     *@ORM\Column(type="string", nullable=true)
+     */
+    protected $race;
+    
+    /**
+     *@ORM\Column(type="string", nullable=true)
+     */
+    protected $classlevel;
+    
+    /**
+     *@ORM\Column(type="string", nullable=true)
+     */
+    protected $background;
+    
+    /**
+     *@ORM\Column(type="integer")
+     */
+    protected $proficiency;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Attack", mappedBy="character")
+     */
+    protected $attacks;
+
+    /**
+     *@ORM\OneToMany(targetEntity="Possession", mappedBy="character")
+     */
+    protected $possessions;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Spell", mappedBy="character")
+     */
+    protected $spells; 
+    
+   /**
+   *@ORM\ManyToOne(targetEntity="User", inversedBy="creatures")
+   *@ORM\JoinColumn(name="user_id", referencedColumnName="id")
+   */
+  protected $ownedby;
+    
+    public function jsonSerialize() {
+      $json = array();
+      foreach($this as $key => $value) {
+        if($key != "attacks" && $key != "spells") {
+          $json[$key] = $value;
+        } elseif($key === "attacks") {
+          $json[$key] = array();
+          for($x = 0; $x < count($this->attacks); $x++) {
+            $json[$key][$x] = array();
+            $json[$key][$x]["id"] = $this->attacks[$x]->getId();
+            $json[$key][$x]["attack"] = $this->attacks[$x]->getName();
+            $json[$key][$x]["bonus"] = $this->attacks[$x]->getBonus();
+            $json[$key][$x]["damage"] = $this->attacks[$x]->getDamage();
+          }
+        } elseif($key === "possessions") {
+          
+        } elseif($key === "spells") {
+          $json[$key][$x] = array();
+          $json[$key][$x]["id"] = $this->spells[$x]->getId();
+          $json[$key][$x]["source"] = $this->spells[$x]->getSource();
+          $json[$key][$x]["school"] = $this->spells[$x]->getSchool();
+          $json[$key][$x]["level"] = $this->spells[$x]->getLevel();
+          $json[$key][$x]["ritual"] = $this->spells[$x]->getRitual();
+          $json[$key][$x]["castingtime"] = $this->spells[$x]->getCastingtime();
+          $json[$key][$x]["range"] = $this->spells[$x]->getRange();
+          $json[$key][$x]["components"] = $this->spells[$x]->getComponents();
+          $json[$key][$x]["duration"] = $this->spells[$x]->getDuration();
+          $json[$key][$x]["concentration"] = $this->spells[$x]->getConcentration();
+          $json[$key][$x]["description"] = $this->spells[$x]->getDescription();
+          $json[$key][$x]["higherlevels"] = $this->spells[$x]->getHigherlevels();
+          $json[$key][$x]["fromclass"] = $this->spells[$x]->getFromclass();
+          $json[$key][$x]["prepared"] = $this->spells[$x]->getPrepared();
+          $json[$key][$x]["castingstat"] = $this->spells[$x]->getCastingstat();
+        }
+      }
+      return $json;
+    }
+  }
