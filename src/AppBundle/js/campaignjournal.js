@@ -1,3 +1,5 @@
+/* global deleteroute getallroute $ */
+
 var days = ["Godsday", "Elvesday", "Gnomesday", "Dragonsday", "Mansday", "Dwarvesday", "Trollsday", "Orcsday"];
 var months = ["Dorunor", "Trimalan", "Sylvanus", "Gaiana", "Maridia", "Moltyr", "Saris", "Tockra", "Amatherin"];
 
@@ -6,11 +8,8 @@ $.get(getallroute, function(journals) {
     var entries = $("#journalentries");
     entries.html(" ");
     journals.sort(sortdate);
-    for (var x = 0; x < journals.length; x++) {
-      entries.append("<p>" + journals[x].date + "<br />\n" + journals[x].text + "</p>");
-      var deletebutton = $("<input type='button' value='Delete' />");
-      deletebutton.attr("data-journal-id", journals[x].id);
-      $(deletebutton).click(function() {
+    
+    var deletefunction = function() {
         var thisdeleteroute = deleteroute.slice(0, -1) + $(this).attr("data-journal-id");
         $.post(thisdeleteroute, function(t) {
             if (t == "1") {
@@ -18,8 +17,13 @@ $.get(getallroute, function(journals) {
             } else {
               alert("Error: Could not Delete");
             }
-          });
-      });
+          });    
+    };
+    for (var x = 0; x < journals.length; x++) {
+      entries.append("<p>" + journals[x].date + "<br />\n" + journals[x].text + "</p>");
+      var deletebutton = $("<input type='button' value='Delete' />");
+      deletebutton.attr("data-journal-id", journals[x].id);
+      $(deletebutton).click(deletefunction);
       entries.append(deletebutton);
       entries.append("<br /><hr />");
     }

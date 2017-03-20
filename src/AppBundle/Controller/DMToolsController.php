@@ -57,7 +57,7 @@ class DMToolsController extends Controller {
   }
   
   /**
-   *@Route("/dm/spells", name="dmtools")
+   *@Route("/dm/chardashboard", name="characterdashboard")
    *@Security("has_role('ROLE_USER')")
    */
   public function spellbookAction(Request $request) {
@@ -84,7 +84,21 @@ class DMToolsController extends Controller {
       $range = str_replace("**Range**: ","",$spelldesc[12]);
       $components = str_replace("**Components**: ","",$spelldesc[14]);
       $duration = str_replace("**Duration**: ","",$spelldesc[16]);
-      $description = str_replace("<p>\n</p>","",str_replace("**At Higher Levels.**","<strong>At Higher Levels.</strong>","<p>".implode("</p><p>",array_slice($spelldesc, 18))."</p>"));
+      $concentration = false;
+      if (strpos($duration, 'concentration') !== FALSE || strpos($duration, 'Concentration') !== FALSE)
+      {
+        $concentration = true;
+      }
+      $description = str_replace(
+          "<p>\n</p>",
+          "",
+          str_replace("**At Higher Levels.**","<strong>At Higher Levels.</strong>",
+            "<p>".implode(
+              "</p><p>",
+              array_slice($spelldesc, 18)
+            )."</p>"
+          )
+        );
       
       $spellarray[] = array(
         "title" => $spelltitle, 
@@ -97,8 +111,9 @@ class DMToolsController extends Controller {
         "range"=>$range, 
         "components"=>$components,
         "duration"=>$duration,
-        "description"=>$description);
+        "description"=>$description,
+        "concentration"=>$concentration,);
     }
-    return $this->render('AppBundle:dm:spellbook.html.twig', array('pagetitle' => 'Spellbook System', 'spells' => json_encode($spellarray)));    
+    return $this->render('AppBundle:dm:characters.html.twig', array('pagetitle' => 'Spellbook System', 'spells' => json_encode($spellarray)));    
   }
 }

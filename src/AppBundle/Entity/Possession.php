@@ -41,10 +41,25 @@ class Possession {
   protected $onperson;
   
   /**
-   *@ORM\ManyToOne(targetEntity="Character", inversedBy="possessions")
-   *@ORM\JoinColumn(name="character_id", referencedColumnName="id")
+   *@ORM\Column(type="boolean")
    */
-  protected $character;  
+  protected $equipped;
+  
+  /**
+   *@ORM\Column(type="string")
+   */
+  protected $armortype;
+  
+  /**
+   *@ORM\Column(type="integer")
+   */
+  protected $ac;
+  
+  /**
+   *@ORM\ManyToOne(targetEntity="DDCharacter", inversedBy="possessions")
+   *@ORM\JoinColumn(name="ddcharacter_id", referencedColumnName="id")
+   */
+  protected $ddcharacter;
 
     /**
      * Get id
@@ -153,26 +168,98 @@ class Possession {
     }
 
     /**
-     * Set character
+     * Set ddcharacter
      *
-     * @param \AppBundle\Entity\Character $character
+     * @param \AppBundle\Entity\DDCharacter $ddcharacter
      *
      * @return Possession
      */
-    public function setCharacter(\AppBundle\Entity\Character $character = null)
+    public function setDdcharacter(\AppBundle\Entity\DDCharacter $ddcharacter = null)
     {
-        $this->character = $character;
+        $this->ddcharacter = $ddcharacter;
 
         return $this;
     }
 
     /**
-     * Get character
+     * Get ddcharacter
      *
-     * @return \AppBundle\Entity\Character
+     * @return \AppBundle\Entity\DDCharacter
      */
-    public function getCharacter()
+    public function getDdcharacter()
     {
-        return $this->character;
+        return $this->ddcharacter;
+    }
+
+    /**
+     * Set equipped
+     *
+     * @param boolean $equipped
+     *
+     * @return Possession
+     */
+    public function setEquipped($equipped)
+    {
+        $this->equipped = $equipped;
+
+        return $this;
+    }
+
+    /**
+     * Get equipped
+     *
+     * @return boolean
+     */
+    public function getEquipped()
+    {
+        return $this->equipped;
+    }
+
+    /**
+     * Set armortype
+     *
+     * @param string $armortype
+     *
+     * @return Possession
+     */
+    public function setArmortype($armortype)
+    {
+        $this->armortype = $armortype;
+
+        return $this;
+    }
+
+    /**
+     * Get armortype
+     *
+     * @return string
+     */
+    public function getArmortype()
+    {
+        return $this->armortype;
+    }
+
+    /**
+     * Set ac
+     *
+     * @param integer $ac
+     *
+     * @return Possession
+     */
+    public function setAc($ac)
+    {
+        $this->ac = $ac;
+
+        return $this;
+    }
+
+    /**
+     * Get ac
+     *
+     * @return integer
+     */
+    public function getAc()
+    {
+        return $this->ac;
     }
 }

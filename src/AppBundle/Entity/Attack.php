@@ -36,10 +36,15 @@ class Attack {
   protected $damage;
   
   /**
-   *@ORM\ManyToOne(targetEntity="Character", inversedBy="attacks")
+   *@ORM\Column(type="string")
+   */
+  protected $crit;
+  
+  /**
+   *@ORM\ManyToOne(targetEntity="DDCharacter", inversedBy="attacks")
    *@ORM\JoinColumn(name="character_id", referencedColumnName="id")
    */
-  protected $character;  
+  protected $ddcharacter;  
 
     /**
      * Get id
@@ -124,26 +129,50 @@ class Attack {
     }
 
     /**
-     * Set character
+     * Set ddcharacter
      *
-     * @param \AppBundle\Entity\Character $character
+     * @param \AppBundle\Entity\DDCharacter $ddcharacter
      *
      * @return Attack
      */
-    public function setCharacter(\AppBundle\Entity\Character $character = null)
+    public function setDdcharacter(\AppBundle\Entity\DDCharacter $ddcharacter = null)
     {
-        $this->character = $character;
+        $this->ddcharacter = $ddcharacter;
 
         return $this;
     }
 
     /**
-     * Get character
+     * Get ddcharacter
      *
-     * @return \AppBundle\Entity\Character
+     * @return \AppBundle\Entity\DDCharacter
      */
-    public function getCharacter()
+    public function getDdcharacter()
     {
-        return $this->character;
+        return $this->ddcharacter;
+    }
+
+    /**
+     * Set crit
+     *
+     * @param string $crit
+     *
+     * @return Attack
+     */
+    public function setCrit($crit)
+    {
+        $this->crit = $crit;
+
+        return $this;
+    }
+
+    /**
+     * Get crit
+     *
+     * @return string
+     */
+    public function getCrit()
+    {
+        return $this->crit;
     }
 }

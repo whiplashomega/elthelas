@@ -97,12 +97,62 @@ class Creature {
   /**
    *@ORM\Column(type="integer", nullable=true)
    */
+  protected $hpcurrent;
+  
+  /**
+   *@ORM\Column(type="integer", nullable=true)
+   */
   protected $hpmax;
   
   /**
    *@ORM\Column(type="integer", nullable=true)
    */
-  protected $hitdice;
+  protected $hptemp;
+  
+  /**
+   *@ORM\Column(type="integer", nullable=true)
+   */
+  protected $d6hitdicecur;
+  
+  /**
+   *@ORM\Column(type="integer", nullable=true)
+   */
+  protected $d6hitdice;
+  
+  /**
+   *@ORM\Column(type="integer", nullable=true)
+   */
+  protected $d8hitdicecur;
+  
+  /**
+   *@ORM\Column(type="integer", nullable=true)
+   */
+  protected $d8hitdice;
+  
+  /**
+   *@ORM\Column(type="integer", nullable=true)
+   */
+  protected $d10hitdicecur; 
+  
+  /**
+   *@ORM\Column(type="integer", nullable=true)
+   */
+  protected $d10hitdice;   
+  
+  /**
+   *@ORM\Column(type="integer", nullable=true)
+   */
+  protected $d12hitdicecur;  
+  
+  /**
+   *@ORM\Column(type="integer", nullable=true)
+   */
+  protected $d12hitdice;  
+  
+  /**
+   *@ORM\Column(type="string", nullable=true)
+   */
+  protected $unarmoredstat;    
   
   /**
    *@ORM\Column(type="integer", nullable=true)
@@ -200,14 +250,14 @@ class Creature {
   protected $survival;
   
   /**
-   *@ORM\Column(type="integer", nullable=true)
-   */
-  protected $ac;
-  
-  /**
    *@ORM\Column(type="text", nullable=true)
    */
   protected $speed;
+  
+  /**
+   *@ORM\Column(type="integer", nullable=true)
+   */
+  protected $mediummaxac;
 
   /**
    *@ORM\Column(type="text", nullable=true)
@@ -225,16 +275,6 @@ class Creature {
   protected $imagepath;
   
   /**
-   *@ORM\Column(type="integer", nullable=true)
-   */
-  protected $cr;
-  
-  /**
-   *@ORM\Column(type="integer", nullable=true)
-   */
-  protected $proficiencybonus;
-  
-  /**
    *@ORM\Column(type="string", nullable=true)
    */
   protected $damageresistances;
@@ -250,7 +290,7 @@ class Creature {
   protected $senses;
   
   /**
-   *@ORM\Column(type="string", nullable=true)
+   *@ORM\Column(type="text", nullable=true)
    */
   protected $languages;
   

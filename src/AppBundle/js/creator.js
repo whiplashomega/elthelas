@@ -1,12 +1,14 @@
-var currentchar;
+/* global $ loadallpath addpath loadpath */
 
+var currentchar;
+var onerow = false; 
 function fillform(creature) {
   $("#charform").removeClass("hidden");
-  for(trait in creature) {
+  for(var trait in creature) {
     $("#" + trait).val(creature[trait]);
     currentchar = creature;
   }
-  $("#charid").val(creature["id"]);
+  $("#charid").val(creature.id);
   $("#attacksdiv .attackrow").remove();
   if (creature.attacks) {
     for(var x = 0; x < creature.attacks.length; x++) {
@@ -31,7 +33,7 @@ function loadlist() {
       var newchar = $("<option></option>").val("new").html("New Character");
       newchar.appendTo(select);
     });
-};
+}
 
 function loadchar() {
   var selected = $("#charselect").find(":selected").val();
@@ -55,7 +57,7 @@ function savechar() {
     alert("you must create a new character or load an existing character before you can save.");
   } else {
     var newchar = {};
-    for(trait in currentchar) {
+    for(var trait in currentchar) {
       newchar[trait] = $("#" + trait).val();
       console.log(newchar.trait);
     }

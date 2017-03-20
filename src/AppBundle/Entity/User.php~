@@ -25,7 +25,75 @@ class User extends BaseUser
     protected $journals;
 
     /**
-     * @ORM\OneToMany(targetEntity="Character", mappedBy="ownedby")
+     * @ORM\OneToMany(targetEntity="DDCharacter", mappedBy="ownedby")
      */
-    protected $characters;
+    protected $ddcharacters;
+
+    /**
+     * Add journal
+     *
+     * @param \AppBundle\Entity\Journal $journal
+     *
+     * @return User
+     */
+    public function addJournal(\AppBundle\Entity\Journal $journal)
+    {
+        $this->journals[] = $journal;
+
+        return $this;
+    }
+
+    /**
+     * Remove journal
+     *
+     * @param \AppBundle\Entity\Journal $journal
+     */
+    public function removeJournal(\AppBundle\Entity\Journal $journal)
+    {
+        $this->journals->removeElement($journal);
+    }
+
+    /**
+     * Get journals
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getJournals()
+    {
+        return $this->journals;
+    }
+
+    /**
+     * Add ddcharacter
+     *
+     * @param \AppBundle\Entity\DDCharacter $ddcharacter
+     *
+     * @return User
+     */
+    public function addDdcharacter(\AppBundle\Entity\DDCharacter $ddcharacter)
+    {
+        $this->ddcharacters[] = $ddcharacter;
+
+        return $this;
+    }
+
+    /**
+     * Remove ddcharacter
+     *
+     * @param \AppBundle\Entity\DDCharacter $ddcharacter
+     */
+    public function removeDdcharacter(\AppBundle\Entity\DDCharacter $ddcharacter)
+    {
+        $this->ddcharacters->removeElement($ddcharacter);
+    }
+
+    /**
+     * Get ddcharacters
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getDdcharacters()
+    {
+        return $this->ddcharacters;
+    }
 }

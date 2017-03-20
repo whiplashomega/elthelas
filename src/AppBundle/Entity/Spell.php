@@ -94,11 +94,11 @@
     protected $castingstat;
     
     /**
-     *@ORM\ManyToOne(targetEntity="Character", inversedBy="spells")
+     *@ORM\ManyToOne(targetEntity="DDCharacter", inversedBy="spells")
      *@ORM\JoinColumn(name="character_id", referencedColumnName="id")
      */
-    protected $character;
-  
+    protected $ddcharacter;
+
     /**
      * Get id
      *
@@ -470,26 +470,26 @@
     }
 
     /**
-     * Set character
+     * Set ddcharacter
      *
-     * @param \AppBundle\Entity\Character $character
+     * @param \AppBundle\Entity\DDCharacter $ddcharacter
      *
      * @return Spell
      */
-    public function setCharacter(\AppBundle\Entity\Character $character = null)
+    public function setDdcharacter(\AppBundle\Entity\DDCharacter $ddcharacter = null)
     {
-        $this->character = $character;
+        $this->ddcharacter = $ddcharacter;
 
         return $this;
     }
 
     /**
-     * Get character
+     * Get ddcharacter
      *
-     * @return \AppBundle\Entity\Character
+     * @return \AppBundle\Entity\DDCharacter
      */
-    public function getCharacter()
+    public function getDdcharacter()
     {
-        return $this->character;
+        return $this->ddcharacter;
     }
 }

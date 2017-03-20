@@ -1,3 +1,5 @@
+/* global $ loadpath loadallpath */
+
 function loadchar(location) {
   var correctpath = loadpath.slice(0, -1) + $("#charselect").find(":selected").val();
   $.get(correctpath, function(data) {
@@ -21,7 +23,7 @@ function buildchar(character, location) {
   chardiv.find(".arcana").text(character.arcana);
   chardiv.find(".athletics").text(character.athletics);
   var attacks = character.attacks;
-  for (x in attacks) {
+  for (var x in attacks) {
     var attackrow = $("#templates .attack").clone();
     attackrow.find(".attackname").text(attacks[x].attack);
     attackrow.find(".bonus").text(attacks[x].bonus);
@@ -83,7 +85,6 @@ function buildchar(character, location) {
 }
 
 function addinit(character) {
-  addrow();
   var initiative = Math.floor((character.dex - 10)/2);
   $("#chartablebody tr:last-child .charname").val(character.name);
   $("#chartablebody tr:last-child .charinit").val(initiative);
@@ -91,7 +92,7 @@ function addinit(character) {
 
 $(document).ready(function () {
 $.get(loadallpath, function(data) {
-  for (character in data) {
+  for (var character in data) {
     var option = $("<option></option>");    
     option.text(data[character].name);
     option.val(data[character].id);

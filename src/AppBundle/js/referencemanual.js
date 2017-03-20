@@ -1,3 +1,5 @@
+/* global jQuery angular spells marked */
+
 (function($, ng) {
     var dmTools = ng.module('dmTools', []);
     
@@ -8,10 +10,10 @@
       $scope.loadspell = function() {
         var index = $("input[name='spellselect']:checked").val();
         $("#selectedspell").html(marked($scope.spelllist[index][3]));
-      }
+      };
       $scope.loadspells = function() {
         var tabledata = [];
-        for(x in $scope.spelllist) {
+        for(var x in $scope.spelllist) {
             $scope.spelllist[x][2] = $scope.spelllist[x][2].replace("[","").replace("]","");
             $scope.spelllist[x][2] = $scope.spelllist[x][2].split(',');
             tabledata.push([

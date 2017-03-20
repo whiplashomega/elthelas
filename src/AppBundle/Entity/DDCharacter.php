@@ -8,9 +8,9 @@
   
   /**
    *@ORM\Entity
-   *@ORM\Table(name="character")
+   *@ORM\Table(name="ddcharacter")
    */
-  class Character extends Creature implements JsonSerializable {
+  class DDCharacter extends Creature implements JsonSerializable {
     
     /**
      *@ORM\Column(type="integer")
@@ -35,30 +35,50 @@
     protected $background;
     
     /**
+     *@ORM\Column(type="text", nullable=true)
+     */
+    protected $bond;
+    
+    /**
+     *@ORM\Column(type="text", nullable=true)
+     */
+    protected $ideal;
+    
+    /**
+     *@ORM\Column(type="text", nullable=true)
+     */
+    protected $flaw;
+    
+    /**
      *@ORM\Column(type="integer")
      */
     protected $proficiency;
     
+    
     /**
-     * @ORM\OneToMany(targetEntity="Attack", mappedBy="character")
+     * @ORM\OneToMany(targetEntity="Attack", mappedBy="ddcharacter")
      */
     protected $attacks;
 
     /**
-     *@ORM\OneToMany(targetEntity="Possession", mappedBy="character")
+     *@ORM\OneToMany(targetEntity="Possession", mappedBy="ddcharacter")
      */
     protected $possessions;
     
     /**
-     * @ORM\OneToMany(targetEntity="Spell", mappedBy="character")
+     * @ORM\OneToMany(targetEntity="Spell", mappedBy="ddcharacter")
      */
     protected $spells; 
     
    /**
-   *@ORM\ManyToOne(targetEntity="User", inversedBy="characters")
+   *@ORM\ManyToOne(targetEntity="User", inversedBy="ddcharacters")
    *@ORM\JoinColumn(name="user_id", referencedColumnName="id")
    */
   protected $ownedby;
+    
+    public function __set($param, $value) {
+      $this->$param = $value;
+    }
     
     public function jsonSerialize() {
       $json = array();
@@ -70,34 +90,47 @@
           for($x = 0; $x < count($this->attacks); $x++) {
             $json[$key][$x] = array();
             $json[$key][$x]["id"] = $this->attacks[$x]->getId();
-            $json[$key][$x]["attack"] = $this->attacks[$x]->getName();
+            $json[$key][$x]["name"] = $this->attacks[$x]->getName();
             $json[$key][$x]["bonus"] = $this->attacks[$x]->getBonus();
             $json[$key][$x]["damage"] = $this->attacks[$x]->getDamage();
+            $json[$key][$x]["damage"] = $this->attacks[$x]->getCrit();
           }
         } elseif($key === "possessions") {
-          
+          $json[$key] = array();
+          for($x = 0; $x < count($this->possessions); $x++) {
+              $json[$key][$x]["id"] = $this->possessions[$x]->getId();
+              $json[$key][$x]["name"] = $this->possessions[$x]->getName();
+              $json[$key][$x]["weight"] = $this->possessions[$x]->getWeight();
+              $json[$key][$x]["value"] = $this->possessions[$x]->getValue();
+              $json[$key][$x]["onperson"] = $this->possessions[$x]->getOnperson();
+              $json[$key][$x]["equipped"] = $this->possessions[$x]->getEquipped();
+              $json[$key][$x]["armortype"] = $this->possessions[$x]->getArmortype();
+              $json[$key][$x]["ac"] = $this->possessions[$x]->getAc();
+          }
         } elseif($key === "spells") {
-          $json[$key][$x] = array();
-          $json[$key][$x]["id"] = $this->spells[$x]->getId();
-          $json[$key][$x]["source"] = $this->spells[$x]->getSource();
-          $json[$key][$x]["school"] = $this->spells[$x]->getSchool();
-          $json[$key][$x]["level"] = $this->spells[$x]->getLevel();
-          $json[$key][$x]["ritual"] = $this->spells[$x]->getRitual();
-          $json[$key][$x]["castingtime"] = $this->spells[$x]->getCastingtime();
-          $json[$key][$x]["range"] = $this->spells[$x]->getRange();
-          $json[$key][$x]["components"] = $this->spells[$x]->getComponents();
-          $json[$key][$x]["duration"] = $this->spells[$x]->getDuration();
-          $json[$key][$x]["concentration"] = $this->spells[$x]->getConcentration();
-          $json[$key][$x]["description"] = $this->spells[$x]->getDescription();
-          $json[$key][$x]["higherlevels"] = $this->spells[$x]->getHigherlevels();
-          $json[$key][$x]["fromclass"] = $this->spells[$x]->getFromclass();
-          $json[$key][$x]["prepared"] = $this->spells[$x]->getPrepared();
-          $json[$key][$x]["castingstat"] = $this->spells[$x]->getCastingstat();
+          $json[$key] = array();
+          for($x = 0; $x < count($this->spells); $x++) {
+            $json[$key][$x]["id"] = $this->spells[$x]->getId();
+            $json[$key][$x]["source"] = $this->spells[$x]->getSource();
+            $json[$key][$x]["school"] = $this->spells[$x]->getSchool();
+            $json[$key][$x]["level"] = $this->spells[$x]->getLevel();
+            $json[$key][$x]["ritual"] = $this->spells[$x]->getRitual();
+            $json[$key][$x]["castingtime"] = $this->spells[$x]->getCastingtime();
+            $json[$key][$x]["range"] = $this->spells[$x]->getRange();
+            $json[$key][$x]["components"] = $this->spells[$x]->getComponents();
+            $json[$key][$x]["duration"] = $this->spells[$x]->getDuration();
+            $json[$key][$x]["concentration"] = $this->spells[$x]->getConcentration();
+            $json[$key][$x]["description"] = $this->spells[$x]->getDescription();
+            $json[$key][$x]["higherlevels"] = $this->spells[$x]->getHigherlevels();
+            $json[$key][$x]["fromclass"] = $this->spells[$x]->getFromclass();
+            $json[$key][$x]["prepared"] = $this->spells[$x]->getPrepared();
+            $json[$key][$x]["castingstat"] = $this->spells[$x]->getCastingstat();
+          }
         }
       }
       return $json;
     }
-      /**
+    /**
      * Constructor
      */
     public function __construct()
@@ -105,6 +138,7 @@
         $this->attacks = new \Doctrine\Common\Collections\ArrayCollection();
         $this->possessions = new \Doctrine\Common\Collections\ArrayCollection();
         $this->spells = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->mediummaxac = 2;
     }
 
     /**
@@ -122,7 +156,7 @@
      *
      * @param string $race
      *
-     * @return Character
+     * @return DDCharacter
      */
     public function setRace($race)
     {
@@ -146,7 +180,7 @@
      *
      * @param string $classlevel
      *
-     * @return Character
+     * @return DDCharacter
      */
     public function setClasslevel($classlevel)
     {
@@ -170,7 +204,7 @@
      *
      * @param string $background
      *
-     * @return Character
+     * @return DDCharacter
      */
     public function setBackground($background)
     {
@@ -194,7 +228,7 @@
      *
      * @param integer $proficiency
      *
-     * @return Character
+     * @return DDCharacter
      */
     public function setProficiency($proficiency)
     {
@@ -218,7 +252,7 @@
      *
      * @param string $name
      *
-     * @return Character
+     * @return DDCharacter
      */
     public function setName($name)
     {
@@ -242,7 +276,7 @@
      *
      * @param string $type
      *
-     * @return Character
+     * @return DDCharacter
      */
     public function setType($type)
     {
@@ -266,7 +300,7 @@
      *
      * @param string $alignment
      *
-     * @return Character
+     * @return DDCharacter
      */
     public function setAlignment($alignment)
     {
@@ -290,7 +324,7 @@
      *
      * @param integer $str
      *
-     * @return Character
+     * @return DDCharacter
      */
     public function setStr($str)
     {
@@ -314,7 +348,7 @@
      *
      * @param integer $dex
      *
-     * @return Character
+     * @return DDCharacter
      */
     public function setDex($dex)
     {
@@ -338,7 +372,7 @@
      *
      * @param integer $con
      *
-     * @return Character
+     * @return DDCharacter
      */
     public function setCon($con)
     {
@@ -362,7 +396,7 @@
      *
      * @param integer $intel
      *
-     * @return Character
+     * @return DDCharacter
      */
     public function setIntel($intel)
     {
@@ -386,7 +420,7 @@
      *
      * @param integer $wis
      *
-     * @return Character
+     * @return DDCharacter
      */
     public function setWis($wis)
     {
@@ -410,7 +444,7 @@
      *
      * @param integer $cha
      *
-     * @return Character
+     * @return DDCharacter
      */
     public function setCha($cha)
     {
@@ -434,7 +468,7 @@
      *
      * @param integer $strsave
      *
-     * @return Character
+     * @return DDCharacter
      */
     public function setStrsave($strsave)
     {
@@ -458,7 +492,7 @@
      *
      * @param integer $dexsave
      *
-     * @return Character
+     * @return DDCharacter
      */
     public function setDexsave($dexsave)
     {
@@ -482,7 +516,7 @@
      *
      * @param integer $consave
      *
-     * @return Character
+     * @return DDCharacter
      */
     public function setConsave($consave)
     {
@@ -506,7 +540,7 @@
      *
      * @param integer $intsave
      *
-     * @return Character
+     * @return DDCharacter
      */
     public function setIntsave($intsave)
     {
@@ -530,7 +564,7 @@
      *
      * @param integer $wissave
      *
-     * @return Character
+     * @return DDCharacter
      */
     public function setWissave($wissave)
     {
@@ -554,7 +588,7 @@
      *
      * @param integer $chasave
      *
-     * @return Character
+     * @return DDCharacter
      */
     public function setChasave($chasave)
     {
@@ -578,7 +612,7 @@
      *
      * @param integer $hpmax
      *
-     * @return Character
+     * @return DDCharacter
      */
     public function setHpmax($hpmax)
     {
@@ -602,7 +636,7 @@
      *
      * @param integer $hitdice
      *
-     * @return Character
+     * @return DDCharacter
      */
     public function setHitdice($hitdice)
     {
@@ -626,7 +660,7 @@
      *
      * @param integer $passiveperception
      *
-     * @return Character
+     * @return DDCharacter
      */
     public function setPassiveperception($passiveperception)
     {
@@ -650,7 +684,7 @@
      *
      * @param integer $acrobatics
      *
-     * @return Character
+     * @return DDCharacter
      */
     public function setAcrobatics($acrobatics)
     {
@@ -674,7 +708,7 @@
      *
      * @param integer $animalhandling
      *
-     * @return Character
+     * @return DDCharacter
      */
     public function setAnimalhandling($animalhandling)
     {
@@ -698,7 +732,7 @@
      *
      * @param integer $arcana
      *
-     * @return Character
+     * @return DDCharacter
      */
     public function setArcana($arcana)
     {
@@ -722,7 +756,7 @@
      *
      * @param integer $athletics
      *
-     * @return Character
+     * @return DDCharacter
      */
     public function setAthletics($athletics)
     {
@@ -746,7 +780,7 @@
      *
      * @param integer $deception
      *
-     * @return Character
+     * @return DDCharacter
      */
     public function setDeception($deception)
     {
@@ -770,7 +804,7 @@
      *
      * @param integer $history
      *
-     * @return Character
+     * @return DDCharacter
      */
     public function setHistory($history)
     {
@@ -794,7 +828,7 @@
      *
      * @param integer $insight
      *
-     * @return Character
+     * @return DDCharacter
      */
     public function setInsight($insight)
     {
@@ -818,7 +852,7 @@
      *
      * @param integer $intimidation
      *
-     * @return Character
+     * @return DDCharacter
      */
     public function setIntimidation($intimidation)
     {
@@ -842,7 +876,7 @@
      *
      * @param integer $investigation
      *
-     * @return Character
+     * @return DDCharacter
      */
     public function setInvestigation($investigation)
     {
@@ -866,7 +900,7 @@
      *
      * @param integer $medicine
      *
-     * @return Character
+     * @return DDCharacter
      */
     public function setMedicine($medicine)
     {
@@ -890,7 +924,7 @@
      *
      * @param integer $nature
      *
-     * @return Character
+     * @return DDCharacter
      */
     public function setNature($nature)
     {
@@ -914,7 +948,7 @@
      *
      * @param integer $perception
      *
-     * @return Character
+     * @return DDCharacter
      */
     public function setPerception($perception)
     {
@@ -938,7 +972,7 @@
      *
      * @param integer $performance
      *
-     * @return Character
+     * @return DDCharacter
      */
     public function setPerformance($performance)
     {
@@ -962,7 +996,7 @@
      *
      * @param integer $persuasion
      *
-     * @return Character
+     * @return DDCharacter
      */
     public function setPersuasion($persuasion)
     {
@@ -986,7 +1020,7 @@
      *
      * @param integer $religion
      *
-     * @return Character
+     * @return DDCharacter
      */
     public function setReligion($religion)
     {
@@ -1010,7 +1044,7 @@
      *
      * @param integer $slightofhand
      *
-     * @return Character
+     * @return DDCharacter
      */
     public function setSlightofhand($slightofhand)
     {
@@ -1034,7 +1068,7 @@
      *
      * @param integer $stealth
      *
-     * @return Character
+     * @return DDCharacter
      */
     public function setStealth($stealth)
     {
@@ -1058,7 +1092,7 @@
      *
      * @param integer $survival
      *
-     * @return Character
+     * @return DDCharacter
      */
     public function setSurvival($survival)
     {
@@ -1082,7 +1116,7 @@
      *
      * @param integer $ac
      *
-     * @return Character
+     * @return DDCharacter
      */
     public function setAc($ac)
     {
@@ -1106,7 +1140,7 @@
      *
      * @param string $speed
      *
-     * @return Character
+     * @return DDCharacter
      */
     public function setSpeed($speed)
     {
@@ -1130,7 +1164,7 @@
      *
      * @param string $features
      *
-     * @return Character
+     * @return DDCharacter
      */
     public function setFeatures($features)
     {
@@ -1154,7 +1188,7 @@
      *
      * @param string $physicaldescription
      *
-     * @return Character
+     * @return DDCharacter
      */
     public function setPhysicaldescription($physicaldescription)
     {
@@ -1178,7 +1212,7 @@
      *
      * @param string $imagepath
      *
-     * @return Character
+     * @return DDCharacter
      */
     public function setImagepath($imagepath)
     {
@@ -1202,7 +1236,7 @@
      *
      * @param integer $cr
      *
-     * @return Character
+     * @return DDCharacter
      */
     public function setCr($cr)
     {
@@ -1226,7 +1260,7 @@
      *
      * @param integer $proficiencybonus
      *
-     * @return Character
+     * @return DDCharacter
      */
     public function setProficiencybonus($proficiencybonus)
     {
@@ -1250,7 +1284,7 @@
      *
      * @param string $damageresistances
      *
-     * @return Character
+     * @return DDCharacter
      */
     public function setDamageresistances($damageresistances)
     {
@@ -1274,7 +1308,7 @@
      *
      * @param string $immunities
      *
-     * @return Character
+     * @return DDCharacter
      */
     public function setImmunities($immunities)
     {
@@ -1298,7 +1332,7 @@
      *
      * @param string $senses
      *
-     * @return Character
+     * @return DDCharacter
      */
     public function setSenses($senses)
     {
@@ -1322,7 +1356,7 @@
      *
      * @param string $languages
      *
-     * @return Character
+     * @return DDCharacter
      */
     public function setLanguages($languages)
     {
@@ -1346,7 +1380,7 @@
      *
      * @param integer $experience
      *
-     * @return Character
+     * @return DDCharacter
      */
     public function setExperience($experience)
     {
@@ -1370,7 +1404,7 @@
      *
      * @param \AppBundle\Entity\Attack $attack
      *
-     * @return Character
+     * @return DDCharacter
      */
     public function addAttack(\AppBundle\Entity\Attack $attack)
     {
@@ -1404,7 +1438,7 @@
      *
      * @param \AppBundle\Entity\Possession $possession
      *
-     * @return Character
+     * @return DDCharacter
      */
     public function addPossession(\AppBundle\Entity\Possession $possession)
     {
@@ -1438,7 +1472,7 @@
      *
      * @param \AppBundle\Entity\Spell $spell
      *
-     * @return Character
+     * @return DDCharacter
      */
     public function addSpell(\AppBundle\Entity\Spell $spell)
     {
@@ -1472,7 +1506,7 @@
      *
      * @param \AppBundle\Entity\User $ownedby
      *
-     * @return Character
+     * @return DDCharacter
      */
     public function setOwnedby(\AppBundle\Entity\User $ownedby = null)
     {
@@ -1489,5 +1523,365 @@
     public function getOwnedby()
     {
         return $this->ownedby;
+    }
+
+    /**
+     * Set d6hitdice
+     *
+     * @param integer $d6hitdice
+     *
+     * @return DDCharacter
+     */
+    public function setD6hitdice($d6hitdice)
+    {
+        $this->d6hitdice = $d6hitdice;
+
+        return $this;
+    }
+
+    /**
+     * Get d6hitdice
+     *
+     * @return integer
+     */
+    public function getD6hitdice()
+    {
+        return $this->d6hitdice;
+    }
+
+    /**
+     * Set d8hitdice
+     *
+     * @param integer $d8hitdice
+     *
+     * @return DDCharacter
+     */
+    public function setD8hitdice($d8hitdice)
+    {
+        $this->d8hitdice = $d8hitdice;
+
+        return $this;
+    }
+
+    /**
+     * Get d8hitdice
+     *
+     * @return integer
+     */
+    public function getD8hitdice()
+    {
+        return $this->d8hitdice;
+    }
+
+    /**
+     * Set d10hitdice
+     *
+     * @param integer $d10hitdice
+     *
+     * @return DDCharacter
+     */
+    public function setD10hitdice($d10hitdice)
+    {
+        $this->d10hitdice = $d10hitdice;
+
+        return $this;
+    }
+
+    /**
+     * Get d10hitdice
+     *
+     * @return integer
+     */
+    public function getD10hitdice()
+    {
+        return $this->d10hitdice;
+    }
+
+    /**
+     * Set d12hitdice
+     *
+     * @param integer $d12hitdice
+     *
+     * @return DDCharacter
+     */
+    public function setD12hitdice($d12hitdice)
+    {
+        $this->d12hitdice = $d12hitdice;
+
+        return $this;
+    }
+
+    /**
+     * Get d12hitdice
+     *
+     * @return integer
+     */
+    public function getD12hitdice()
+    {
+        return $this->d12hitdice;
+    }
+
+    /**
+     * Set hpcurrent
+     *
+     * @param integer $hpcurrent
+     *
+     * @return DDCharacter
+     */
+    public function setHpcurrent($hpcurrent)
+    {
+        $this->hpcurrent = $hpcurrent;
+
+        return $this;
+    }
+
+    /**
+     * Get hpcurrent
+     *
+     * @return integer
+     */
+    public function getHpcurrent()
+    {
+        return $this->hpcurrent;
+    }
+
+    /**
+     * Set hptemp
+     *
+     * @param integer $hptemp
+     *
+     * @return DDCharacter
+     */
+    public function setHptemp($hptemp)
+    {
+        $this->hptemp = $hptemp;
+
+        return $this;
+    }
+
+    /**
+     * Get hptemp
+     *
+     * @return integer
+     */
+    public function getHptemp()
+    {
+        return $this->hptemp;
+    }
+
+    /**
+     * Set d6hitdicecur
+     *
+     * @param integer $d6hitdicecur
+     *
+     * @return DDCharacter
+     */
+    public function setD6hitdicecur($d6hitdicecur)
+    {
+        $this->d6hitdicecur = $d6hitdicecur;
+
+        return $this;
+    }
+
+    /**
+     * Get d6hitdicecur
+     *
+     * @return integer
+     */
+    public function getD6hitdicecur()
+    {
+        return $this->d6hitdicecur;
+    }
+
+    /**
+     * Set d8hitdicecur
+     *
+     * @param integer $d8hitdicecur
+     *
+     * @return DDCharacter
+     */
+    public function setD8hitdicecur($d8hitdicecur)
+    {
+        $this->d8hitdicecur = $d8hitdicecur;
+
+        return $this;
+    }
+
+    /**
+     * Get d8hitdicecur
+     *
+     * @return integer
+     */
+    public function getD8hitdicecur()
+    {
+        return $this->d8hitdicecur;
+    }
+
+    /**
+     * Set d10hitdicecur
+     *
+     * @param integer $d10hitdicecur
+     *
+     * @return DDCharacter
+     */
+    public function setD10hitdicecur($d10hitdicecur)
+    {
+        $this->d10hitdicecur = $d10hitdicecur;
+
+        return $this;
+    }
+
+    /**
+     * Get d10hitdicecur
+     *
+     * @return integer
+     */
+    public function getD10hitdicecur()
+    {
+        return $this->d10hitdicecur;
+    }
+
+    /**
+     * Set d12hitdicecur
+     *
+     * @param integer $d12hitdicecur
+     *
+     * @return DDCharacter
+     */
+    public function setD12hitdicecur($d12hitdicecur)
+    {
+        $this->d12hitdicecur = $d12hitdicecur;
+
+        return $this;
+    }
+
+    /**
+     * Get d12hitdicecur
+     *
+     * @return integer
+     */
+    public function getD12hitdicecur()
+    {
+        return $this->d12hitdicecur;
+    }
+
+    /**
+     * Set unarmoredstat
+     *
+     * @param string $unarmoredstat
+     *
+     * @return DDCharacter
+     */
+    public function setUnarmoredstat($unarmoredstat)
+    {
+        $this->unarmoredstat = $unarmoredstat;
+
+        return $this;
+    }
+
+    /**
+     * Get unarmoredstat
+     *
+     * @return string
+     */
+    public function getUnarmoredstat()
+    {
+        return $this->unarmoredstat;
+    }
+
+    /**
+     * Set mediummaxac
+     *
+     * @param integer $mediummaxac
+     *
+     * @return DDCharacter
+     */
+    public function setMediummaxac($mediummaxac)
+    {
+        $this->mediummaxac = $mediummaxac;
+
+        return $this;
+    }
+
+    /**
+     * Get mediummaxac
+     *
+     * @return integer
+     */
+    public function getMediummaxac()
+    {
+        return $this->mediummaxac;
+    }
+
+    /**
+     * Set bond
+     *
+     * @param string $bond
+     *
+     * @return DDCharacter
+     */
+    public function setBond($bond)
+    {
+        $this->bond = $bond;
+
+        return $this;
+    }
+
+    /**
+     * Get bond
+     *
+     * @return string
+     */
+    public function getBond()
+    {
+        return $this->bond;
+    }
+
+    /**
+     * Set ideal
+     *
+     * @param string $ideal
+     *
+     * @return DDCharacter
+     */
+    public function setIdeal($ideal)
+    {
+        $this->ideal = $ideal;
+
+        return $this;
+    }
+
+    /**
+     * Get ideal
+     *
+     * @return string
+     */
+    public function getIdeal()
+    {
+        return $this->ideal;
+    }
+
+    /**
+     * Set flaw
+     *
+     * @param string $flaw
+     *
+     * @return DDCharacter
+     */
+    public function setFlaw($flaw)
+    {
+        $this->flaw = $flaw;
+
+        return $this;
+    }
+
+    /**
+     * Get flaw
+     *
+     * @return string
+     */
+    public function getFlaw()
+    {
+        return $this->flaw;
     }
 }

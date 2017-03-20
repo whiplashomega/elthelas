@@ -1,11 +1,5 @@
-    //$(document).ready(function() {
-      /*var t = $(".datatable").DataTable({
-        "ordering": false,
-        "paging": false,
-        "search": false
-      });*/
+/* global $ */
 
-    //});
     function addrow() {
       var numchars = Number($("#chartablebody tr:last-child").attr("name").replace(/\D/g,''));
       var chartbody = $("#chartablebody");
@@ -17,7 +11,7 @@
       $(newrow).find("input[type='text']").attr("id", "char" + (numchars + 1) + "name");
       $(newrow).find("input[type='number']").attr("id", "char" + (numchars + 1) + "init");
       $(chartbody).append(newrow);
-    };
+    }
     
     $("#addCharButton").click(function() {
       addrow();
@@ -40,7 +34,7 @@
           return 0;
         }
       }
-    }
+    };
     $("#rollinit").click(function() {
       $(".characterinit").each(function() {
           var score = Number($(this).find(".charinit").val());

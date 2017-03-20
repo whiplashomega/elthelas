@@ -1,4 +1,4 @@
-/*global spells marked*/
+/*global spells marked loadpath updatepath deletepath loadallpath deleteJournalRoute getJournalsRoute addJournalRoute jQuery angular*/
 (function($, ng) {
     var dmTools = ng.module('dmTools', ['ngSanitize']);
     
@@ -19,7 +19,7 @@
       $scope.alertcontent = "";
       
       $scope.loadCreature = function(id) {
-        if (id == undefined) {
+        if (id === undefined) {
           id = $("input[name='creature']:checked").val();
         }
         var load = loadpath.slice(0,-1) + id;
@@ -30,41 +30,42 @@
             $scope.alertcontent = "";
           }, 10000);
         });
-      }
+      };
       
       $scope.newChar = function() {
           $scope.creature = new $scope.creatureModel();
-      }
+      };
       
       $scope.saveCreature = function() {
         var update = updatepath.slice(0,-1) + $scope.creature.id;
-        $http.post(update, $scope.creature).success(function() {
+        $http.get(update, $scope.creature).success(function() {
           $scope.alertcontent = "Saved Successfully!";
           $scope.getAllCreatures();
-          SetTimeout(function() {
+          setTimeout(function() {
             $scope.alertcontent = "";
           }, 10000);
         });
-      }
+      };
       
       $scope.deleteCreature = function(id) {
-        if (id == undefined) {
+        if (id === undefined) {
           id = $("input[name='creature']:checked").val();
         }
         var del = deletepath.slice(0,-1) + id;
         $http.get(del).success(function() {
           $scope.alertcontent = "Deleted Successfully!";
           $scope.getAllCreatures();
-          SetTimeout(function() {
+          setTimeout(function() {
               $scope.alertcontent = "";
             }, 10000);
         });
-      }
+      };
       
       $scope.getAllCreatures = function() {
         $http.get(loadallpath).success(function(data) {
             $scope.creatures = data;
             var tabledata = [];
+            var table;
             for(var x = 0; x < $scope.creatures.length; x++) {
                 tabledata.push([
                         "<input type='radio' name='creature' value='" + $scope.creatures[x].id + "' />",
@@ -77,12 +78,12 @@
                 ]);
             }
             if ($.fn.dataTable.isDataTable('.creatureLoad')) {
-              var table = $('.creatureLoad').dataTable();
+              table = $('.creatureLoad').dataTable();
               table.fnClearTable();
               table.fnAddData(tabledata);
             }
             else {
-              var table = $(".creatureLoad").dataTable({
+              table = $(".creatureLoad").dataTable({
                 'data': tabledata,
                 'columns': [
                   { width: '10%', title: "select" },
@@ -96,14 +97,14 @@
               });              
             }
         });
-      }
+      };
       
       $scope.addAttack = function() {
         $scope.creature.attacks.push({attack: "", bonus: 0, damage: ""});
-      }
+      };
       $scope.init = function() {
         $scope.getAllCreatures();
-      }
+      };
     });
     
     dmTools.controller('encounterBuilder', function($scope, $http) {
@@ -116,16 +117,16 @@
         $http.get(load).success(function(data) {
           $scope.creatures.push(data);
         });        
-      }
+      };
       
       $scope.removeCreature = function(id) {
         $scope.creatures.splice(id,1);
-      }
+      };
       
       $scope.tabify = function() {
         $(".statblock").tabs();
         setTimeout($scope.tabify,3000);
-      }
+      };
       
       $scope.refreshList = function() {
         $http.get(loadallpath).success(function (creatures) {
@@ -144,13 +145,13 @@
           var table = $("#encounterTable").dataTable();
           table.fnClearTable();
           table.fnAddData(tabledata);          
-        })
+        });
 
-      }
+      };
       
       $scope.init = function() {
         $scope.tabify();          
-      }
+      };
 
     });
 
@@ -161,7 +162,7 @@
       $scope.loadspell = function() {
         var index = $("input[name='spellselect']:checked").val();
         $scope.loadedspell = $scope.spelllist[index];
-      }
+      };
       $scope.loadspells = function() {
         var tabledata = [];
         for(var x in $scope.spelllist) {
@@ -257,7 +258,7 @@
       $scope.character = function() {
         this.name = "";
         this.level = 1;
-      }
+      };
       $scope.party = [
                         {
                           name: "",
@@ -275,19 +276,19 @@
       $scope.Threshold = [0,0,0,0];
       
       $scope.addcharacter = function() {
-        $scope.party.push(new $scope.character);
+        $scope.party.push(new $scope.character());
       };
       
       $scope.removecharacter = function(character) {
         $scope.party.splice($scope.party.indexOf(character), 1);
-      }
+      };
       
       $scope.calculate = function() {
         var party = $scope.party;
         var numchars = 0;
         $scope.Threshold = [0,0,0,0];
         
-        for (character in party) {
+        for (var character in party) {
           numchars++;
           var level = party[character].level;
           var y = basetable[level-1];
@@ -295,9 +296,10 @@
             $scope.Threshold[x] += y[x];
           }
         }
-        for(row in $scope.resulttable) {
-          var xpPerCreature = $.grep(xpbycr, function(e) {return e.cr == $scope.resulttable[row][0]})[0].xp;
-          for(var x = 1; x < $scope.resulttable[row].length; x++) {
+        var findfunc = function(e) {return e.cr == $scope.resulttable[row][0];};
+        for(var row in $scope.resulttable) {
+          var xpPerCreature = $.grep(xpbycr, findfunc)[0].xp;
+          for(var w = 1; w < $scope.resulttable[row].length; w++) {
             
           }
           var tempNumbers = [$scope.Threshold[0] / xpPerCreature,
@@ -352,10 +354,10 @@
             }
           }
         }
-      }
+      };
       $scope.init = function() {
         $scope.calculate();
-      }
+      };
     });
     dmTools.controller('initTracker', function($scope, $http) {
       
@@ -363,7 +365,7 @@
         this.name = "";
         this.mod =  0;
         this.init = 0;        
-      }
+      };
       
       $scope.characters = [];
       
@@ -372,11 +374,11 @@
       $scope.addChar = function() {
         $scope.characters.push($scope.character);
         $scope.character = new charInit();
-      }
+      };
       
       $scope.deleteChar = function(character) {
         $scope.characters.splice($scope.characters.indexOf(character), 1);
-      }
+      };
       $scope.charSort = function(a, b) {
             //first we go by initiative roll
             if (a.init < b.init) {
@@ -413,14 +415,14 @@
         $scope.characters.push($scope.character);
         $scope.characters.sort($scope.charSort);
         $scope.character = new charInit();
-      }
+      };
       
       $scope.rollInit = function() {
-        for(x in $scope.characters) {
+        for(var x in $scope.characters) {
           $scope.characters[x].init = Math.floor(Math.random() * 20) + 1 + $scope.characters[x].mod;
         }
         $scope.characters.sort($scope.charSort);
-      }
+      };
     });
     
     dmTools.controller('dmJournal', function($scope, $http) {
@@ -428,9 +430,9 @@
       $scope.journals = [];
       
       var Month = function(id, name) {
-        this.id = id,
-        this.name = name
-      }
+        this.id = id;
+        this.name = name;
+      };
       
       $scope.months =  [
         new Month(1, 'Dorunor'),
@@ -450,8 +452,8 @@
         this.year = Number(year);
         this.toString = function() {
           return this.month.name + " " + this.day + ", " + this.year;
-        }
-      }
+        };
+      };
       
       $scope.thisJournal = {
         date: new $scope.elDate(1, $scope.months[1], 1844),
@@ -493,15 +495,15 @@
         $http.get(path).success(function() {
           $scope.getJournals();
         });
-        var journalId = $scope.journals.indexOf()
+        var journalId = $scope.journals.indexOf();
         $scope.journals.splice($scope.journals.map(function(e) { return e.id; }).indexOf(id), 1);
-      }
+      };
       
       $scope.getJournals = function() {
         $http.get(getJournalsRoute).success(function(data) {
           $scope.journals = data.sort(sortdate);
         });
-      }
+      };
     
       
       $scope.addJournal = function() {
@@ -509,11 +511,11 @@
         $http.post(addJournalRoute, {"date": date, "text": $scope.thisJournal.text }).success(function() {
           $scope.getJournals();
         });
-      }
+      };
       
       $scope.init = function() {
         $scope.getJournals();
-      }
+      };
     });
     
     dmTools.controller('crCalculator', function($scope, $http) {
@@ -578,7 +580,7 @@
         var offcr = (Math.max(attackcr, savecr) + damagecr) / 2;
         
         $scope.cr = (offcr + defcr) / 2;
-      }
+      };
     });
     
     dmTools.controller('diceRoller', function($scope, $http) {
@@ -598,29 +600,29 @@
         for(var x = 0; x < $scope.numD2; x++) {
           total += Math.floor(Math.random()*2)+1;
         }
-        for(var x = 0; x < $scope.numD4; x++) {
+        for(x = 0; x < $scope.numD4; x++) {
           total += Math.floor(Math.random()*4)+1;
         }
-        for(var x = 0; x < $scope.numD6; x++) {
+        for(x = 0; x < $scope.numD6; x++) {
           total += Math.floor(Math.random()*6)+1;
         }
-        for(var x = 0; x < $scope.numD8; x++) {
+        for(x = 0; x < $scope.numD8; x++) {
           total += Math.floor(Math.random()*8)+1;
         }
-        for(var x = 0; x < $scope.numD10; x++) {
+        for(x = 0; x < $scope.numD10; x++) {
           total += Math.floor(Math.random()*10)+1;
         }
-        for(var x = 0; x < $scope.numD12; x++) {
+        for(x = 0; x < $scope.numD12; x++) {
           total += Math.floor(Math.random()*12)+1;
         }
-        for(var x = 0; x < $scope.numD20; x++) {
+        for(x = 0; x < $scope.numD20; x++) {
           total += Math.floor(Math.random()*20)+1;
         }
-        for(var x = 0; x < $scope.numD100; x++) {
+        for(x = 0; x < $scope.numD100; x++) {
           total += Math.floor(Math.random()*100)+1;
         }
         $scope.results = total + $scope.staticMod;
-      }
+      };
       $scope.rollChar = function() {
         var result = "";
         for(var x = 0; x < 6; x++) {
@@ -633,7 +635,7 @@
           result += num.toString() + " ";
         }
         $scope.results = result;
-      }
+      };
     });
     
 })(jQuery, angular);

@@ -25,9 +25,9 @@ class User extends BaseUser
     protected $journals;
 
     /**
-     * @ORM\OneToMany(targetEntity="Character", mappedBy="ownedby")
+     * @ORM\OneToMany(targetEntity="DDCharacter", mappedBy="ownedby")
      */
-    protected $characters;
+    protected $ddcharacters;
 
     /**
      * Add journal
@@ -64,36 +64,36 @@ class User extends BaseUser
     }
 
     /**
-     * Add character
+     * Add ddcharacter
      *
-     * @param \AppBundle\Entity\Character $character
+     * @param \AppBundle\Entity\DDCharacter $ddcharacter
      *
      * @return User
      */
-    public function addCharacter(\AppBundle\Entity\Character $character)
+    public function addDdcharacter(\AppBundle\Entity\DDCharacter $ddcharacter)
     {
-        $this->characters[] = $character;
+        $this->ddcharacters[] = $ddcharacter;
 
         return $this;
     }
 
     /**
-     * Remove character
+     * Remove ddcharacter
      *
-     * @param \AppBundle\Entity\Character $character
+     * @param \AppBundle\Entity\DDCharacter $ddcharacter
      */
-    public function removeCharacter(\AppBundle\Entity\Character $character)
+    public function removeDdcharacter(\AppBundle\Entity\DDCharacter $ddcharacter)
     {
-        $this->characters->removeElement($character);
+        $this->ddcharacters->removeElement($ddcharacter);
     }
 
     /**
-     * Get characters
+     * Get ddcharacters
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getCharacters()
+    public function getDdcharacters()
     {
-        return $this->characters;
+        return $this->ddcharacters;
     }
 }
