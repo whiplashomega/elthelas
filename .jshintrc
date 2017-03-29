@@ -11,7 +11,7 @@
   "noarg": true,
   "node": true,
   "nonbsp": true,
-  "quotmark": "single",
+  //"quotmark": "single",
   "undef": true,
   "unused": "vars",
   "trailing": true,
@@ -23,6 +23,9 @@
     "context"    : false,
     "describe"   : false,
     "it"         : false,
-    "window"     : false
+    "window"     : false,
+    "angular" : true,
+    "jQuery": true,
+    "droll": true
   }
 }
